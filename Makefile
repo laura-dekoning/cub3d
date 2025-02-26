@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/02/26 13:00:42 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/02/26 13:05:10 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,18 +27,9 @@ INCLS_MLX42	:=	$(MLX_DIR)/include/MLX42
 INCLUDES	:=	-I $(INCLS_SO_LONG) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
-SRC_FILES	:=	so_long.c \
-				check_file.c \
-				check_map.c \
-				error.c \
-				map_utils.c \
-				initialize_data.c \
-				flood_fill.c \
-				images.c \
-				render_map.c \
-				movement.c \
-				utils.c \
-				hooks.c
+SRC_FILES	:=	main.c \
+				parser.c \
+				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 OBJ_DIR		:=	obj
