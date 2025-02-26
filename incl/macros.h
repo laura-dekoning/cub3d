@@ -6,15 +6,18 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/02/26 14:56:27 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/02/26 15:04:35 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
+# define SUCCESS 0
+# define FAILURE 1
+
 # define ARGS "This is an invalid number of arguments. Provide 1 map file!"
-# define FILE "This is not a valid file. Provide a .cub file!"
+# define FILE "Incorrect file format. Provide a .cub file!"
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define DUP_E "Map is not valid! Map has more than 1 exit."
 # define DUP_P_E "Map is not valid! Map has player and exit duplicates."
