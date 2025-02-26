@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/02/26 15:04:35 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/02/26 16:38:11 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define ARGS "This is an invalid number of arguments. Provide 1 map file!"
 # define FILE "Incorrect file format. Provide a .cub file!"
+# define TEXTURE "Incorrect format for textures. Provide a .xpm file!"
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define DUP_E "Map is not valid! Map has more than 1 exit."
 # define DUP_P_E "Map is not valid! Map has player and exit duplicates."
