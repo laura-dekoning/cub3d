@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/02/26 15:01:56 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/02/28 15:35:25 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 SRC_DIR		:=	src
 SRC_FILES	:=	main.c \
 				error.c \
+				parse.c \
 				check_map.c \
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))

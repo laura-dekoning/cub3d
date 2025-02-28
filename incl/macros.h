@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/02/26 16:38:11 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/02/28 15:44:50 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # define SUCCESS 0
 # define FAILURE 1
+
+# define NORTH 1
+# define SOUTH 2
+# define WEST 3
+# define EAST 4
 
 # define ARGS "This is an invalid number of arguments. Provide 1 map file!"
 # define FILE "Incorrect file format. Provide a .cub file!"
