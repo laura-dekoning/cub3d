@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/06 18:10:26 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/06 20:05:51 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define FILE "Incorrect file format. Provide a .cub file!"
 # define TEXTURE "Incorrect format for textures. Provide a .xpm file!"
 # define MALLOC "Allocation failed =("
+# define NEG "Floor and ceiling can NOT have negative numbers!"
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define NO_P "Map is not valid! We're missing the player position."
 # define NO_WALL "Map is not valid! Map is not surrounded by walls!"
