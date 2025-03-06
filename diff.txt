@@ -1,0 +1,177 @@
+diff --git a/.vscode/settings.json b/.vscode/settings.json
+new file mode 100644
+index 0000000..d0b311a
+--- /dev/null
++++ b/.vscode/settings.json
+@@ -0,0 +1,9 @@
++{
++	"files.associations": {
++		"array": "cpp",
++		"string": "cpp",
++		"string_view": "cpp",
++		"ranges": "cpp",
++		"span": "cpp"
++	}
++}
+\ No newline at end of file
+diff --git a/Makefile b/Makefile
+index 433e21f..18ef8df 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@
+ 
+@@ -29,8 +29,11 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
+ SRC_DIR		:=	src
+ SRC_FILES	:=	main.c \
+ 				error.c \
++				free_data.c \
+ 				parse.c \
+ 				check_map.c \
++				safe_calloc \
++				get_data.c \
+ 				
+ SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
+ 
+diff --git a/incl/cub3d.h b/incl/cub3d.h
+index 0972b66..aca9179 100644
+--- a/incl/cub3d.h
++++ b/incl/cub3d.h
+@@ -6,7 +6,7 @@
+ 
+@@ -25,6 +25,13 @@
+ 
+ 
+ void	error_message(char *str);
++void	*safe_calloc(size_t count, size_t size);
++void	free_data(t_data *data);
++void	get_data(t_data *data, const char *file);
++char	*read_file(const char *file);
++void	validate_file(char *file_str);
++void	parse_data(t_data *data, char *file_str);
++void	init_data(t_data *data, char *file_str);
+ 
+ 
+ #endif
+\ No newline at end of file
+diff --git a/incl/macros.h b/incl/macros.h
+index 26dce0d..bf2db3b 100644
+--- a/incl/macros.h
++++ b/incl/macros.h
+@@ -6,7 +6,7 @@
+ 
+@@ -17,22 +17,16 @@
+ # define FAILURE 1
+ 
+ # define NORTH 1
+-# define SOUTH 2
+-# define WEST 3
+-# define EAST 4
++# define EAST 2
++# define SOUTH 3
++# define WEST 4
+ 
+ # define ARGS "This is an invalid number of arguments. Provide 1 map file!"
+ # define FILE "Incorrect file format. Provide a .cub file!"
+ # define TEXTURE "Incorrect format for textures. Provide a .xpm file!"
++# define MALLOC "Allocation failed =("
+ # define DUP_P "Map is not valid! Map has more than 1 player."
+-# define DUP_E "Map is not valid! Map has more than 1 exit."
+-# define DUP_P_E "Map is not valid! Map has player and exit duplicates."
+-# define DUP_NO_C "Map is not valid! Map has duplicates and no collectables."
+-# define NO_P "Map is not valid! We're missing a player."
+-# define NO_E "Map is not valid! There is no exit."
+-# define NO_C "Map is not valid! No collectables available."
++# define NO_P "Map is not valid! We're missing the player position."
+ # define NO_WALL "Map is not valid! Map is not surrounded by walls!"
+-# define MALLOC "Malloc failed."
+-
+ 
+ #endif
+\ No newline at end of file
+diff --git a/src/free_data.c b/src/free_data.c
+new file mode 100644
+index 0000000..fb5b79f
+--- /dev/null
++++ b/src/free_data.c
+@@ -0,0 +1,18 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        ::::::::            */
++/*   free_data.c                                        :+:    :+:            */
++/*                                                     +:+                    */
++#include "cub3d.h"
++
++void	free_data(t_data *data)
++{
++
++}
+diff --git a/src/get_data.c b/src/get_data.c
+new file mode 100644
+index 0000000..813cb86
+--- /dev/null
++++ b/src/get_data.c
+@@ -0,0 +1,23 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        ::::::::            */
++/*   get_data.c                                         :+:    :+:            */
++/*                                                     +:+                    */
++#include "cub3d.h"
++
++void	get_data(t_data *data, const char *file)
++{
++	char		*file_str;
++
++	file_str = read_file(file);
++	validate_file(file_str);
++	parse_data(data, file_str);
++	init_data(data, file_str);
++}
+diff --git a/src/main.c b/src/main.c
+index 665758d..b093e19 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -6,7 +6,7 @@
+ 
+@@ -15,15 +15,18 @@
+ int	main(int argc, char **argv)
+ {
+ 	const char	*file;
++	t_data		*data;
+ 	size_t		len;
+ 
+-
+ 	if (argc != 2)
+ 		error_message(ARGS);
+ 	file = argv[1];
+ 	len = ft_strlen(file);
+ 	if (len < 5 || (ft_strncmp(file + len - 4, ".cub", 4)))
+ 		error_message(FILE);
++	data = (t_data *)safe_calloc(1, sizeof(t_data));
++	get_data(data, file);
++
+ }
+ 
+ //gebruik gnl met strjoin om de hele file uit te lezen in 1 string.
+diff --git a/src/safe_calloc.c b/src/safe_calloc.c
+new file mode 100644
+index 0000000..dafdd8e
+--- /dev/null
++++ b/src/safe_calloc.c
+@@ -0,0 +1,23 @@
++/* ************************************************************************** */
++/*                                                                            */
++/*                                                        ::::::::            */
++/*   safe_calloc.c                                      :+:    :+:            */
++/*                                                     +:+                    */
++#include "cub3d.h"
++
++void	*safe_calloc(size_t count, size_t size)
++{
++	void	*ptr;
++
++	ptr = ft_calloc(count, size);
++	if (!ptr)
++		error_message(MALLOC);
++	return (ptr);
++}
