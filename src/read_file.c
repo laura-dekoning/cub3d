@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 18:29:30 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/06 20:21:13 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/07 15:51:10 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*read_file(const char *file)
 		line = get_next_line(fd);
 		if (line)
 		{
-			map_as_str = ft_gnl_strjoin(map_as_str, line);
+			file_str = ft_gnl_strjoin(file_str, line);
 			free(line);
 		}
 		else
@@ -38,3 +38,13 @@ char	*read_file(const char *file)
 	close(fd);
 	return (file_str);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	char *file;
+
+
+// 	file = read_file(argv[1]);
+// 	printf(B_R"FILE CONTENT:"DEF"\n%s\n", file);
+// 	return (0);	
+// }
