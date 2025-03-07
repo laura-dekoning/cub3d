@@ -6,15 +6,15 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/07 15:52:54 by livliege      ########   odam.nl          #
+#    Updated: 2025/03/07 16:47:16 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	cub3d
 
 CC			:=	cc -Ofast -g
-CFLAGS		:=	-Wall -Werror -Wextra -g 
-# -fsanitize=address
+CFLAGS		:=	-Wall -Wextra #-Werror
+# -g -fsanitize=address
 
 LIBFT_DIR	:=	lib/libft
 LIBFT_A		:=	$(LIBFT_DIR)/libft.a
@@ -48,6 +48,7 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src/liath_dev
 SRC_FILES	:=	error_clear_exit.c \
+				fake_parsing.c \
 				init_game.c \
 				keys.c \
 				main_liath.c

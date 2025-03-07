@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/07 15:24:38 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/07 17:09:34 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,33 @@ void	key_action(int key, t_data *data)
 	if (key == MLX_KEY_LEFT)
 		printf("left key!\n");
 	if (key == MLX_KEY_W)
-		printf("W key!\n");
+	{
+		data->player->y -= MOVING_SPEED;
+		// printf("y = %d\n", data->player->y);
+	}
 	if (key == MLX_KEY_S)
-		printf("S key!\n");
+	{
+		data->player->y += MOVING_SPEED;
+		// printf("y = %d\n", data->player->y);
+	}
 	if (key == MLX_KEY_A)
-		printf("A key!\n");
+	{
+		data->player->x -= MOVING_SPEED;
+		// printf("y = %d\n", data->player->y);
+	}
 	if (key == MLX_KEY_D)
-		printf("D key!\n");
+	{
+		data->player->x += MOVING_SPEED;
+		// printf("y = %d\n", data->player->y);
+	}
 }
 
 
 int	what_key(t_data *data)
 {
-	// close window 								-> escape
-	// look left and right in the maze				-> left and right key
-	// move the point of view through the maze		-> w, s, d, a
+	// close window 									-> escape
+	// look left and right in the maze					-> left and right key
+	// move the point of view through the maze (walk)	-> w, s, d, a
 	int			i;
 	const int	keys[] = {MLX_KEY_ESCAPE, MLX_KEY_LEFT, MLX_KEY_RIGHT, MLX_KEY_W, MLX_KEY_D, MLX_KEY_S, MLX_KEY_A, -1};
 

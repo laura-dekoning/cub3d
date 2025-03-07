@@ -4,6 +4,7 @@
 [Raycasting Docs](https://lodev.org/cgtutor/raycasting.html)
 
 [Raycasting Video](https://www.youtube.com/watch?v=gYRrGTC7GtA)
+[Raycasting Video Github](https://github.com/3DSage/OpenGL-Raycaster_v1/blob/master/3DSage_Raycaster_v1.c)
 
 youtube video summary:
 

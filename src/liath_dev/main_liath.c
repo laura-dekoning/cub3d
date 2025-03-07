@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   main_liath.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:27 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/07 15:10:25 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/07 16:48:04 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int	main(int argc, char **argv)
 	data = (t_data *)ft_calloc(sizeof(t_data), 1);
 	if (data == NULL)
 		error_and_exit("Malloc allocation failed\n");
-	// parsing
-	init_window(data);
-	printf("window done!!\n");
 
+	fake_parsing(data);	// replace with Laura's killer parser
+
+	// LIATHS JOB!
+	init_window(data);
 	clear_everything(data);
-	printf("DONE!\n");
+	printf("CLEAN EXIT!\n");
 }
