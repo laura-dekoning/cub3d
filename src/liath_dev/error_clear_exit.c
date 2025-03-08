@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:42:03 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/07 14:49:24 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/08 12:35:30 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,20 @@ void	error_and_exit(char *str)
 	exit(FAILURE);
 }
 
+void	free_fake_parsing(t_data *data)
+{
+	// free player
+	free(data->player);
+	
+	// free map
+    for (int i = 0; i < data->map->rows; i++)
+        free(data->map->map[i]);
+    free(data->map->map);
+	free(data->map);
+}
+
 void	clear_everything(t_data *data)
 {
+	free_fake_parsing(data);
 	free(data);
 }

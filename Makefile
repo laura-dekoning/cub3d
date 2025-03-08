@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/07 16:47:16 by livliege      ########   odam.nl          #
+#    Updated: 2025/03/08 10:42:37 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MLX_FLAGS	:=	-ldl -lglfw -pthread -lm
 # 				# get_data.c \
 #-----------------------------------------------------------------------------
 # # LIATH's MAKEFILE!
-INCLS_CUB3D	:=	incl/liath.h
+INCLS_CUB3D	:=	incl
 INCLS_LIBFT	:=	$(LIBFT_DIR)/incl
 INCLS_MLX42	:=	$(MLX_DIR)/include/MLX42
 INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)

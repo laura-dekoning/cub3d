@@ -39,19 +39,23 @@
 
 typedef struct s_map
 {
-	// char	**map;
-	int		*map;
+	char	**map;
 	int		rows;
 	int		cols;
 	int		size;
 
 } t_map;
 
+typedef struct s_vector
+{
+	int x;
+	int y;
+} t_vector;
+
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	dir;
+	t_vector	pos;
+	int			dir;
 } t_player;
 
 typedef struct s_data
