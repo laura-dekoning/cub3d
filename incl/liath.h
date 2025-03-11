@@ -2,6 +2,12 @@
 #ifndef LIATH_H
 # define LIATH_H
 
+# include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/libft/incl/libft.h"
+# include <math.h>
+# include <stdlib.h>
+# include <stdio.h>
+
 # define SUCCESS 		0
 # define FAILURE 		1
 
@@ -9,17 +15,17 @@
 # define WINDOW_HEIGHT	1750
 # define WINDOW_TITLE	"L&L Cub3d"
 
-# define PI				3.1415926535
+// # define PI				3.1415926535
 
 # define NORTH 			1
 # define EAST 			2
 # define SOUTH 			3
 # define WEST 			4
 
-# define DIR_NORTH 		(PI / 2)
-# define DIR_EAST 		0
-# define DIR_SOUTH 		PI
-# define DIR_WEST 		(3 * PI / 2)
+# define DIR_NORTH 		(3 * M_PI / 2)
+# define DIR_EAST 		(0)
+# define DIR_SOUTH 		(M_PI / 2)
+# define DIR_WEST 		(M_PI)
 
 # define MOVING_SPEED	5
 # define ROTATE_SPEED	5
@@ -29,9 +35,7 @@
 # define PLAYER_SIZE	8
 # define NOSE_LENGTH 	20
 
-
-
-# define COLOUR_PINK	0xCC99FFFF  // R=CC, G=99, B=FF, A=FF
+# define COLOUR_M_PINK	0xCC99FFFF  // R=CC, G=99, B=FF, A=FF
 # define COLOUR_YELLOW	0xFFFF66FF  // R=FF, G=FF, B=66, A=FF
 # define COLOUR_ORANGE	0xFF9933FF  // R=FF, G=99, B=33, A=FF
 # define COLOUR_MAGENTA	0x660033FF  // R=66, G=00, B=33, A=FF
@@ -44,12 +48,6 @@
 # define COLOUR_BLACK	0x000000FF  // R=00, G=00, B=00, A=FF
 # define COLOUR_WHITE	0xFFFFFFFF  // R=FF, G=FF, B=FF, A=FF
 
-# include "../lib/MLX42/include/MLX42/MLX42.h"
-# include "../lib/libft/incl/libft.h"
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-
 #endif
 
 typedef struct s_map
@@ -57,8 +55,6 @@ typedef struct s_map
 	char	**map;
 	int		rows;
 	int		cols;
-	int		grid_size;
-
 } t_map;
 
 typedef struct s_vector
@@ -71,7 +67,7 @@ typedef struct s_player
 {
 	t_vector	pos;
 	t_vector	dir;
-	float			angle;
+	float		angle;
 } t_player;
 
 typedef struct s_data

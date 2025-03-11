@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/11 23:20:02 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/11 23:56:13 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ void	draw_2D_map(t_data *data)
 		x = 0;
 		while (x < data->map->cols)
 		{
-			offset.x = (x * data->map->grid_size) + x;
-			offset.y = (y * data->map->grid_size) + y;
+			offset.x = (x * GRIDSIZE) + x;
+			offset.y = (y * GRIDSIZE) + y;
 			if (data->map->map[y][x] == '1')
 			{	
 				colour = COLOUR_WHITE;
@@ -152,7 +152,7 @@ void	draw_2D_map(t_data *data)
 			{	
 				colour = COLOUR_BLACK;
 			}
-			draw_filled_square(data, offset, data->map->grid_size, data->map->grid_size, colour);
+			draw_filled_square(data, offset, GRIDSIZE, GRIDSIZE, colour);
 			x++;
 		}
 		y++;

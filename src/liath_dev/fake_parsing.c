@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/11 23:19:16 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/12 00:11:29 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@
 	
 void fake_parsing(t_data *data)
 {
-	// MAP:
+
+	data->player = (t_player *)ft_calloc(sizeof(t_player), 1);
+	if (data->player == NULL)
+		error_and_exit("Malloc allocation failed\n");
+		
 	data->map = (t_map *)ft_calloc(sizeof(t_map), 1);
 	if (data->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
 
-	data->map->grid_size = GRIDSIZE;
+
 	data->map->rows = 5;	// y
 	data->map->cols = 6;	// x
 
@@ -44,6 +48,8 @@ void fake_parsing(t_data *data)
 		"1100N1",
 		"111111"};
 
+
+		
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
@@ -63,15 +69,46 @@ void fake_parsing(t_data *data)
 		}
 	}
 
-	// PLAYER:
-	data->player = (t_player *)ft_calloc(sizeof(t_player), 1);
-	if (data->player == NULL)
-		error_and_exit("Malloc allocation failed\n");
-
-	data->player->pos.x = 300;
-	data->player->pos.y = 300;
-
-	data->player->angle = 0;
+	int x;
+	int y;
+	
+	y = 0;
+	while (y < data->map->rows)
+	{
+		x = 0;
+		while (x < data->map->cols)
+		{
+			if (!ft_isdigit(data->map->map[y][x]))
+			{
+				if(data->map->map[y][x] == 'N')
+				{
+					data->player->angle = DIR_NORTH;
+					data->player->pos.x = (x + 0.5) * GRIDSIZE + x;
+					data->player->pos.y = (y + 0.5) * GRIDSIZE + y;
+				}
+				if(data->map->map[y][x] == 'S')
+				{
+					data->player->angle = DIR_SOUTH;
+					data->player->pos.x = (x + 0.5) * GRIDSIZE + x;
+					data->player->pos.y = (y + 0.5) * GRIDSIZE + y;
+				}
+				if(data->map->map[y][x] == 'E')
+				{
+					data->player->angle = DIR_EAST;
+					data->player->pos.x = (x + 0.5) * GRIDSIZE + x;
+					data->player->pos.y = (y + 0.5) * GRIDSIZE + y;
+				}
+				if(data->map->map[y][x] == 'W')
+				{
+					data->player->angle = DIR_WEST;
+					data->player->pos.x = (x + 0.5) * GRIDSIZE + x;
+					data->player->pos.y = (y + 0.5) * GRIDSIZE + y;
+				}
+			}
+			x++;
+		}
+		y++;
+	}
 	
 	data->player->dir.x = cos(data->player->angle);  
 	data->player->dir.y = sin(data->player->angle);  
