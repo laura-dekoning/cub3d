@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/11 18:30:30 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/11 20:05:25 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,18 @@ void	parse_validate_init_textures(t_data *data, char *line)
 
 	flag = parse_and_validate_textures(data, line);
 	init_texture_data(line, 1, data, flag);
+}
+
+bool	is_texture(char *line)
+{
+	if (ft_strncmp(line, "NO", 2) == 0)
+		return (true);
+	else if (ft_strncmp(line, "SO", 2) == 0)
+		return (true);
+	else if (ft_strncmp(line, "EA", 2) == 0)
+		return (true);
+	else if (ft_strncmp(line, "WE", 2) == 0)
+		return (true);
+	else
+		return (false);
 }
