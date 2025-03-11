@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/11 23:56:47 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/12 00:26:51 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	key_action(t_data *data)
 		data->player->angle -= 0.1;
 		if (data->player->angle < 0)
 		{			
-			data->player->angle += (2 * M_PI);
+			data->player->angle += (2 * PI);
 		}
 		data->player->dir.x = cos(data->player->angle); //  * ROTATE_SPEED;
 		data->player->dir.y = sin(data->player->angle); //  * ROTATE_SPEED;
@@ -38,9 +38,9 @@ void	key_action(t_data *data)
 	{
 		
 		data->player->angle += 0.1;
-		if (data->player->angle > (2 * M_PI))
+		if (data->player->angle > (2 * PI))
 		{
-			data->player->angle -= (2 * M_PI);
+			data->player->angle -= (2 * PI);
 		}
 		data->player->dir.x = cos(data->player->angle); //  * ROTATE_SPEED;
 		data->player->dir.y = sin(data->player->angle); //  * ROTATE_SPEED;

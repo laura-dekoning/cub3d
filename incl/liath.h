@@ -15,17 +15,17 @@
 # define WINDOW_HEIGHT	1750
 # define WINDOW_TITLE	"L&L Cub3d"
 
-// # define PI				3.1415926535
+# define PI				3.14159265359
 
 # define NORTH 			1
 # define EAST 			2
 # define SOUTH 			3
 # define WEST 			4
 
-# define DIR_NORTH 		(3 * M_PI / 2)
+# define DIR_NORTH 		(3 * PI / 2)
 # define DIR_EAST 		(0)
-# define DIR_SOUTH 		(M_PI / 2)
-# define DIR_WEST 		(M_PI)
+# define DIR_SOUTH 		(PI / 2)
+# define DIR_WEST 		(PI)
 
 # define MOVING_SPEED	5
 # define ROTATE_SPEED	5
@@ -53,8 +53,8 @@
 typedef struct s_map
 {
 	char	**map;
-	int		rows;
-	int		cols;
+	int		rows;	// y
+	int		cols;	// x
 } t_map;
 
 typedef struct s_vector
