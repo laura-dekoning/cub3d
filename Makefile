@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/06 20:18:01 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/11 19:05:30 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,15 @@ SRC_DIR		:=	src
 SRC_FILES	:=	\
 				string_to_rgb.c\
 				error.c \
-				# main.c \
+				main.c \
+				print_test.c \
+				parse_validate_init_textures.c \
+				get_data.c \
+				read_file.c \
 				# free_data.c \
 				# parse.c \
 				# check_map.c \
 				# safe_calloc \
-				# get_data.c \
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
