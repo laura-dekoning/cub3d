@@ -6,6 +6,15 @@
 [Raycasting Video](https://www.youtube.com/watch?v=gYRrGTC7GtA)
 [Raycasting Video Github](https://github.com/3DSage/OpenGL-Raycaster_v1/blob/master/3DSage_Raycaster_v1.c)
 
+
+
+TODO:
+[]	game() - Optimize Rendering
+		Currently, fill_canvas(data) is always called before game(), even if only a small change happened.
+		Instead, clear only the player's old position before redrawing.
+		If a full refresh is needed, consider double buffering to prevent flickering.
+
+
 youtube video summary:
 
 program your very own ray caster 
