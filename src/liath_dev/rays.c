@@ -51,7 +51,7 @@ void draw_rays2D(t_data *data)
 			m.x = (int)radius.x >> 6; // probably only works with gridsize 64
 			m.y = (int)radius.y >> 6; // probably only works with gridsize 64
 			mp = m.y * data->map->cols + m.x;
-			if (mp < data->map->cols * data->map->rows && data->map->map[mp][?] == '1') // hit wall
+			if (mp < data->map->cols * data->map->rows && data->map->map[mp][mp] == '1') // hit wall
 			{
 				dof = 8;	// probably only works with gridsize 64
 			}
@@ -65,6 +65,5 @@ void draw_rays2D(t_data *data)
 
 		rays++;
 	}
-
 
 }
