@@ -23,7 +23,7 @@ void	print_map(t_map *map)
 	i = 0;
 	printf(B_G"Map:\n"DEF);
 	printf("rows\t: %i\tcols\t: %i\n", map->rows, map->cols);
-	while (map->map[i] != '\0')
+	while (map->map[i] != NULL)
 	{
 		printf("%s", map->map[i]);
 		i++;

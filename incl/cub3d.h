@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/11 21:13:07 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 13:18:27 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	print_floor_and_ceiling(int *floor, int *ceiling);
 void	validate_file_and_init_data(t_data *data, char *file_as_str);
 bool	is_texture(char *line);
 void	set_default(t_data *data);
+void	get_data(t_data *data, const char *file);
 
 
 

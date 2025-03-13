@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/11 20:05:25 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 13:19:21 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	parse_and_validate_textures(t_data *data, char *line)
 
 	flag = 0;
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		flag == NORTH;
+		flag = NORTH;
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		flag == SOUTH;
+		flag = SOUTH;
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		flag == EAST;
+		flag = EAST;
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		flag == WEST;
+		flag = WEST;
 	else
 		error_message("Invalid texture\n");
 	return (flag);
