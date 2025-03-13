@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 18:08:18 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 19:46:00 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	init_rgb_data(t_data *data, char *line, size_t start, int flag)
 {
 	int	new_start;
 
+	new_start = 0;
 	if (flag == FLOOR)
 		new_start = set_rgb(data, data->floor, line, start);
 	else if (flag == CEILING)
@@ -55,6 +56,7 @@ int	parse_validate_init_rgb(t_data *data, char *line, size_t start)
 	int	flag;
 	int	new_start;
 
+	new_start = 0;
 	flag = validate_rgb_id(data, line, start);
 	new_start = init_rgb_data(data, line, start, flag);
 	return (new_start);

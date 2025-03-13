@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 17:58:13 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 20:30:09 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ int		parse_validate_init_textures(t_data *data, char *line, size_t start);
 void	validate_file_and_init_data(t_data *data, char *file_as_str);
 int		*string_to_rgb(t_data *data, char *str, int i);
 int		parse_validate_init_rgb(t_data *data, char *file_as_str, size_t start);
+bool	map_content_valid(t_data *data, char *line, size_t start);
+void	parse_validate_init_map(t_data *data, char *line, size_t start);
+
 
 // PRINTING //
 void	print_data(t_data *data);
 void	print_player(t_player *player);
 void	print_map(t_map *map);
 void	print_floor_and_ceiling(int *floor, int *ceiling);
+void	print_check(t_check *check);
 
 #endif

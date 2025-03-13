@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/13 14:32:08 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/13 19:53:37 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC_FILES	:=	\
 				free_data.c \
 				get_data.c \
 				main.c \
+				parse_validate_init_map.c \
+				parse_validate_init_rgb.c \
 				parse_validate_init_textures.c \
 				print_test.c \
 				read_file.c \
