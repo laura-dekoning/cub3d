@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 18:29:30 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 13:33:49 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 14:18:38 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*read_file(t_data *data, const char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_message(data, "File not found");
-	file_str = safe_calloc(1, 1);
+	file_str = safe_calloc(data, 1, 1);
 	if (!file_str)
 		error_message(data, MALLOC);
 	while (1)

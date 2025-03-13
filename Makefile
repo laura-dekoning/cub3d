@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/11 19:05:30 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/13 14:16:30 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,17 +28,18 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
 SRC_FILES	:=	\
-				string_to_rgb.c\
+				alloc_mem_for_data.c \
 				error.c \
-				main.c \
-				print_test.c \
-				parse_validate_init_textures.c \
+				free_data.c \
 				get_data.c \
+				main.c \
+				parse_validate_init_textures.c \
+				print_test.c \
 				read_file.c \
-				# free_data.c \
-				# parse.c \
-				# check_map.c \
-				# safe_calloc \
+				safe_calloc.c \
+				set_default.c \
+				string_to_rgb.c \
+				validate_file_and_init_data.c \
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

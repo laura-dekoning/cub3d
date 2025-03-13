@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 13:29:57 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 14:16:11 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int	main(int argc, char **argv)
 	len = ft_strlen(file);
 	if (len < 5 || (ft_strncmp(file + len - 4, ".cub", 4)))
 		error_message(NULL, FILE);
-	data = (t_data *)safe_calloc(1, sizeof(t_data));
+	data = (t_data *)alloc_mem_for_data();
 	set_default(data);
 	get_data(data, file);
-
+	print_data(data);
+	return (0);
 }
 
 //gebruik gnl met strjoin om de hele file uit te lezen in 1 string.

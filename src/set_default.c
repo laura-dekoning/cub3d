@@ -7,9 +7,9 @@ void	set_default(t_data *data)
 	data->south_texture = ft_strdup(DEF_SOUTH);
 	data->east_texture = ft_strdup(DEF_EAST);
 	data->west_texture = ft_strdup(DEF_WEST);
-	data->floor = string_to_rgb(DEF_FLOOR);
-	data->ceiling = string_to_rgb(DEF_CEILING);
-	data->map = ft_split(DEF_MAP, '\n');
+	data->floor = string_to_rgb(data, DEF_FLOOR, 0);
+	data->ceiling = string_to_rgb(data, DEF_CEILING, 0);
+	data->map->map = ft_split(DEF_MAP, '\n');
 	data->player->x = 5;
 	data->player->y = 2;
 	data->player->dir = SOUTH;

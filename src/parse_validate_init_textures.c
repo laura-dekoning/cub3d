@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 13:35:34 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 13:38:39 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_validate_init_textures(t_data *data, char *line)
 	int	flag;
 
 	flag = parse_and_validate_textures(data, line);
-	init_texture_data(line, 1, data, flag);
+	init_texture_data(data, line, 1, flag);
 }
 
 bool	is_texture(char *line)

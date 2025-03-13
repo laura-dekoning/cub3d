@@ -6,19 +6,20 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 13:32:18 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 14:08:47 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	*string_to_rgb(char *str, int i)
+int	*string_to_rgb(t_data *data, char *str, int i)
 {
 	int	*rgb;
 	int	n;
 
-	rgb = (int *)safe_calloc(3, sizeof(int));
+	rgb = (int *)safe_calloc(data, 3, sizeof(int));
 	n = 0;
+
 	while (n < 3)
 	{
 		while (!ft_isdigit(str[i]))
