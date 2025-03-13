@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   print_test.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/03/13 14:34:27 by lade-kon      #+#    #+#                 */
+/*   Updated: 2025/03/13 15:16:33 by lade-kon      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	print_player(t_player *player)
 {
@@ -29,10 +39,11 @@ void	print_map(t_map *map)
 		i++;
 	}
 }
+
 void	print_floor_and_ceiling(int *floor, int *ceiling)
 {
-	printf(B_W"Floor: "R"%i, "G"%i, "B"%i, \n"DEF, floor[0], floor[1], floor[2]);
-	printf(B_W"Ceiling: "R"%i, "G"%i, "B"%i, \n"DEF, ceiling[0], ceiling[1], ceiling[2]);
+	printf(B_W"Floor: "R"%i, "G"%i, "B"%i \n"DEF, floor[0], floor[1], floor[2]);
+	printf(B_W"Ceiling: "R"%i, "G"%i, "B"%i \n"DEF, ceiling[0], ceiling[1], ceiling[2]);
 }
 
 void	print_data(t_data *data)

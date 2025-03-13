@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 14:16:11 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 15:15:22 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	set_default(data);
 	get_data(data, file);
 	print_data(data);
+	free_data(data);
 	return (0);
 }
 

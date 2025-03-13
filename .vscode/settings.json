@@ -4,6 +4,7 @@
 		"string": "cpp",
 		"string_view": "cpp",
 		"ranges": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"cub3d.h": "c"
 	}
 }

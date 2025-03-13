@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/06 20:21:18 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 14:32:34 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	validate_map(char *map_as_str)
 {
-
+	return ();
 }
