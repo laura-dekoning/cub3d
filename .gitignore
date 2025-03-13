@@ -1,0 +1,4 @@
+*.o
+obj
+*.txt
+cub3d

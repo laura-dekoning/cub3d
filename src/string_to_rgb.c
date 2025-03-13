@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/06 20:44:36 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 13:32:18 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	*string_to_rgb(char *str, int i)
 		while (!ft_isdigit(str[i]))
 		{
 			if (str[i] == '-')
-				error_message(NEG); //Misschien even check of data meegegeven moet worden, zodat hier clean_exit gedaan kan worden. 
+				error_message(NULL, NEG); //Misschien even check of data meegegeven moet worden, zodat hier clean_exit gedaan kan worden. 
 			i++;
 		}
 		while (ft_isdigit(str[i]))

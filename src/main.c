@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/11 21:24:11 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 13:29:57 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	main(int argc, char **argv)
 	size_t		len;
 
 	if (argc != 2)
-		error_message(ARGS);
+		error_message(NULL, ARGS);
 	file = argv[1];
 	len = ft_strlen(file);
 	if (len < 5 || (ft_strncmp(file + len - 4, ".cub", 4)))
-		error_message(FILE);
+		error_message(NULL, FILE);
 	data = (t_data *)safe_calloc(1, sizeof(t_data));
 	set_default(data);
 	get_data(data, file);

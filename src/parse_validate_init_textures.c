@@ -6,13 +6,13 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 13:19:21 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 13:35:34 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_texture_data(char *line, int i, t_data *data, int flag)
+void	init_texture_data(t_data *data, char *line, int i, int flag)
 {
 	while (line[i] == ' ')
 		i++;
@@ -41,7 +41,7 @@ int	parse_and_validate_textures(t_data *data, char *line)
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		flag = WEST;
 	else
-		error_message("Invalid texture\n");
+		error_message(data, "Invalid texture\n");
 	return (flag);
 }
 
