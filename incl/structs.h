@@ -6,12 +6,28 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 15:51:30 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 18:41:22 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+//0: NORTH, 1: SOUTH, 2: EAST, 3: WEST, 4: FLOOR, 5: CEILING.
+typedef struct s_check
+{
+	bool	setting[6]; 
+}				t_check;
+
+typedef enum e_setting
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST,
+	FLOOR,
+	CEILING
+}			t_setting;
 
 typedef struct s_map
 {
@@ -22,11 +38,15 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	dir;
+	int		x;
+	int		y;
+	int		dir;
+	bool	pos;
 }				t_player;
 
+//0: NORTH, 1: SOUTH, 2: EAST, 3: WEST
+// maybe we can put the textures in an array as well like this:
+// char *textures[4]; // 0: NORTH, 1: SOUTH, 2: EAST, 3: WEST
 typedef struct s_data
 {
 	char		*north_texture;
@@ -37,6 +57,7 @@ typedef struct s_data
 	int			*ceiling;
 	t_map		*map;
 	t_player	*player;
+	t_check		*check;
 }				t_data;
 
 #endif

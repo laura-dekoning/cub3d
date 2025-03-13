@@ -6,20 +6,11 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 18:08:52 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 18:42:37 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-	Wat willen we doen met het inlezen van de map?
-	Stel iemand maakt een file die 2x een path voor SO heeft?
-	overwriten we dan een value? of geven we een error?
-	want we kunnen een bool in de struct toevoegen met bool south
-	en die op true zetten wanneer we een texture value hebben geset.
-	
-*/
 
 int	set_texture(char *target, char *line, size_t start)
 {
@@ -38,6 +29,8 @@ int	init_texture_data(t_data *data, char *line, size_t start, int flag)
 {
 	int	new_start;
 
+	if (data->check->setting[flag] == true)
+		error_message(data, DUP_TEXTURE);		
 	if (flag == NORTH)
 		new_start = set_texture(data->north_texture, line, start);
 	else if (flag == SOUTH)
@@ -46,6 +39,7 @@ int	init_texture_data(t_data *data, char *line, size_t start, int flag)
 		new_start = set_texture(data->east_texture, line, start);
 	else if (flag == WEST)
 		new_start = set_texture(data->west_texture, line, start);
+	data->check->setting[flag] = true;
 	return (new_start);
 }
 

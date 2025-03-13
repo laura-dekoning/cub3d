@@ -3,3 +3,4 @@ obj
 *.txt
 cub3d
 lib/libft/obj
+libft.a

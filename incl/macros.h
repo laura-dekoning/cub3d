@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 17:59:36 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/13 18:37:37 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 
 # define SUCCESS 0
 # define FAILURE 1
-
-# define NORTH 1
-# define EAST 2
-# define SOUTH 3
-# define WEST 4
-# define FLOOR 5
-# define CEILING 6
 
 # define NONE 0
 # define PATH 1
@@ -35,5 +28,7 @@
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define NO_P "Map is not valid! We're missing the player position."
 # define NO_WALL "Map is not valid! Map is not surrounded by walls!"
+# define DUP_TEXTURE "Map contains more than 1 path for one of the textures!"
+
 
 #endif
