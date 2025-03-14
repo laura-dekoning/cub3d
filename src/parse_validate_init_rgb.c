@@ -6,34 +6,44 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 19:46:00 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/14 18:09:27 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	set_rgb(t_data *data, int *target, char *line, size_t start)
+size_t	set_rgb(t_data *data, int **target, char *line, size_t start)
 {
-	int	len;
+	size_t	len;
+	int		komma;
 
+	komma = 0;
 	len = start;
-	while(line[len] != '\n' || line[len] != '\0')
+	while(line[len] != '\n' && line[len] != '\0')
+	{
+		if (line[len] == ',')
+			komma++;
 		len++;
-	if (target)
-		free(target);
-	target = string_to_rgb(data, line, start);
-	return (len + 1);
+	}
+	if (komma > 2)
+		error_message(data, "More then 3 colors in floor or ceiling");
+	*target = string_to_rgb(data, line, start);
+	//build in error check if something goes wrong. maybe do the same as textures (pass whole data struct through function)
+	while (line[len] == '\n' || line[len] == ' ')
+		len++;
+	return (len);
 }
 
-int	init_rgb_data(t_data *data, char *line, size_t start, int flag)
+size_t	init_rgb_data(t_data *data, char *line, size_t start, int flag)
 {
-	int	new_start;
+	size_t	new_start;
 
 	new_start = 0;
 	if (flag == FLOOR)
-		new_start = set_rgb(data, data->floor, line, start);
+		new_start = set_rgb(data, &data->floor, line, start + 2);
 	else if (flag == CEILING)
-		new_start = set_rgb(data, data->ceiling, line, start);
+		new_start = set_rgb(data, &data->ceiling, line, start + 2);
+	data->check->setting[flag] = true;
 	return (new_start);
 }
 
@@ -51,10 +61,10 @@ int	validate_rgb_id(t_data *data, char *line, size_t start)
 	return (flag);
 }
 
-int	parse_validate_init_rgb(t_data *data, char *line, size_t start)
+size_t	parse_validate_init_rgb(t_data *data, char *line, size_t start)
 {
-	int	flag;
-	int	new_start;
+	int		flag;
+	size_t	new_start;
 
 	new_start = 0;
 	flag = validate_rgb_id(data, line, start);
