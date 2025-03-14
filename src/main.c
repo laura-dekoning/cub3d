@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 15:15:22 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/14 16:04:35 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 	if (len < 5 || (ft_strncmp(file + len - 4, ".cub", 4)))
 		error_message(NULL, FILE);
 	data = (t_data *)alloc_mem_for_data();
-	set_default(data);
 	get_data(data, file);
+	set_default(data);
 	print_data(data);
 	free_data(data);
 	return (0);

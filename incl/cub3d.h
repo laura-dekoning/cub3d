@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 20:30:09 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/14 16:16:09 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	set_default(t_data *data);
 char	*read_file(t_data *data, const char *file);
 int		is_setting(char *line, size_t start);
 void	get_data(t_data *data, const char *file);
-int		init_texture_data(t_data *data, char *line, size_t start, int flag);
+size_t	init_texture_data(t_data *data, char *line, size_t start, int flag);
 int		validate_texture_id(t_data *data, char *line, size_t start);
-int		parse_validate_init_textures(t_data *data, char *line, size_t start);
+size_t	parse_validate_init_textures(t_data *data, char *line, size_t start);
 void	validate_file_and_init_data(t_data *data, char *file_as_str);
 int		*string_to_rgb(t_data *data, char *str, int i);
 int		parse_validate_init_rgb(t_data *data, char *file_as_str, size_t start);

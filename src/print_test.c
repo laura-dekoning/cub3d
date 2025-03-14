@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:34:27 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 20:22:04 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/14 16:28:27 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_check(t_check *check)
 
 	i = 0;
 	printf(B_Y"Settings:\n"DEF);
-	while (i < 6)
+	while (i < 7)
 	{
 		if (check->setting[i] == true)
 			printf("Setting[%i] == true\n", i);
@@ -65,10 +65,10 @@ void	print_floor_and_ceiling(int *floor, int *ceiling)
 void	print_data(t_data *data)
 {
 	printf(B_O"Data:\n"DEF);
-	printf(G"North texture:"DEF" %s\n", data->north_texture);
-	printf(Y"South texture:"DEF" %s\n", data->south_texture);
-	printf(O"East texture:"DEF" %s\n", data->east_texture);
-	printf(R"West texture:"DEF" %s\n", data->west_texture);
+	printf(G"North texture:"DEF" [%s]\n", data->north_texture);
+	printf(Y"South texture:"DEF" [%s]\n", data->south_texture);
+	printf(O"East texture:"DEF" [%s]\n", data->east_texture);
+	printf(R"West texture:"DEF" [%s]\n", data->west_texture);
 	print_floor_and_ceiling(data->floor, data->ceiling);
 	print_map(data->map);
 	print_player(data->player);
