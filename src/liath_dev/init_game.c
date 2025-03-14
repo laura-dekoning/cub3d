@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/13 23:31:09 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/14 09:38:55 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,8 @@ void	draw_2D_map(t_data *data)
 void	game(t_data *data)
 {
 	draw_2D_map(data);
-	draw_player(data);
 	raycasting(data);
+	draw_player(data);
 }
 
 void	init_window(t_data *data)

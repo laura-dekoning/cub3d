@@ -55,29 +55,29 @@ void get_ray_collision(t_ray *ray)
 	}
 }
 
-void init_ray(t_data *data, t_ray *ray)
-{
-	ray->ray_start = data->player->pos;
-	ray->ray_dir = data->player->dir;
-	ray->ray_unit_step_size.x = sqrt(1 + (ray->ray_dir.y / ray->ray_dir.x) * (ray->ray_dir.y / ray->ray_dir.x));
-	ray->ray_unit_step_size.y = sqrt(1 + (ray->ray_dir.x / ray->ray_dir.y) * (ray->ray_dir.x / ray->ray_dir.y));
-	ray->map_pos.x = (int)(data->player->pos.x);
-	ray->map_pos.y = (int)(data->player->pos.y);
-	ray->wall_hit = false;
-	ray->distance = 0.0;
-}
-
-// void init_ray(t_data *data, t_ray *ray, t_vector_f dir)
+// void init_ray(t_data *data, t_ray *ray)
 // {
 // 	ray->ray_start = data->player->pos;
-// 	ray->map_pos.x = (int)(data->player->pos.x);
-// 	ray->map_pos.y = (int)(data->player->pos.y);
-// 	ray->ray_dir = dir;
+// 	ray->ray_dir = data->player->dir;
 // 	ray->ray_unit_step_size.x = sqrt(1 + (ray->ray_dir.y / ray->ray_dir.x) * (ray->ray_dir.y / ray->ray_dir.x));
 // 	ray->ray_unit_step_size.y = sqrt(1 + (ray->ray_dir.x / ray->ray_dir.y) * (ray->ray_dir.x / ray->ray_dir.y));
+// 	ray->map_pos.x = (int)(data->player->pos.x);
+// 	ray->map_pos.y = (int)(data->player->pos.y);
 // 	ray->wall_hit = false;
 // 	ray->distance = 0.0;
 // }
+
+void init_ray(t_data *data, t_ray *ray, t_vector_f dir)
+{
+	ray->ray_start = data->player->pos;
+	ray->map_pos.x = (int)(data->player->pos.x);
+	ray->map_pos.y = (int)(data->player->pos.y);
+	ray->ray_dir = dir;
+	ray->ray_unit_step_size.x = sqrt(1 + (ray->ray_dir.y / ray->ray_dir.x) * (ray->ray_dir.y / ray->ray_dir.x));
+	ray->ray_unit_step_size.y = sqrt(1 + (ray->ray_dir.x / ray->ray_dir.y) * (ray->ray_dir.x / ray->ray_dir.y));
+	ray->wall_hit = false;
+	ray->distance = 0.0;
+}
 
 float normalize_angle(float a)
 {
@@ -95,33 +95,36 @@ float normalize_angle(float a)
 void raycasting(t_data *data)
 {
 
-	t_ray ray;
+	// t_ray ray;
 
-	init_ray(data, &ray);	
-	get_ray_collision(&ray);
-	draw_ray(data, &ray);
+	// init_ray(data, &ray);	
+	// get_ray_collision(&ray);
+	// draw_ray(data, &ray);
 
-	// t_ray ray[60];
-	// t_vector_f dir;
-	// float angle;
-	// int i;
+	t_ray ray[60];
+	t_vector_f dir;
+	float angle;
+	float angle_step;
+	float fov;
+	int i;
 
-
-	// angle = data->player->angle;
-	// i = 0;
-	// while (i < 60)
-	// {
+	fov = 60.0;
+	angle = data->player->angle - ((fov / 2) * ONE_DEGREE);
+	angle_step = (fov * ONE_DEGREE) / 60.0;
+	i = 0;
+	while (i < 60)
+	{
 		
-	// 	dir.x = normalize_angle(cos(angle - (30 * ONE_DEGREE))); // * ROTATE_SPEED;
-	// 	dir.y = normalize_angle(sin(angle - (30 * ONE_DEGREE))); // * ROTATE_SPEED;
+		dir.x = cos(angle); // * ROTATE_SPEED;
+		dir.y = sin(angle); // * ROTATE_SPEED;
 
-	// 	init_ray(data, &ray[i], dir);	
-	// 	get_ray_collision(&ray[i]);
-	// 	draw_ray(data, &ray[i]);
+		init_ray(data, &ray[i], dir);	
+		get_ray_collision(&ray[i]);
+		draw_ray(data, &ray[i]);
 
-	// 	angle += (30 * ONE_DEGREE);
-	// 	i++;
-	// }
+		angle += angle_step;
+		i++;
+	}
 }
 
 

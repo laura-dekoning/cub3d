@@ -87,7 +87,7 @@ typedef struct s_ray
 
 	bool	wall_hit;
 	float 	distance;
-	float 	max_distance;	
+	// float 	max_distance;	
 } t_ray ;
 
 

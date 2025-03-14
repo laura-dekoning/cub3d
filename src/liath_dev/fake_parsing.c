@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/14 00:21:35 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/14 09:43:59 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,37 @@ void fake_parsing(t_data *data)
 	if (data->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
 
-	data->map->rows = 5;   // y
-	data->map->cols = 6;   // x
+	// data->map->rows = 5;   // y
+	// data->map->cols = 6;   // x
 
-	char temp_map[5][6] = {
-		"111111",
-		"100101",
-		"101001",
-		"1000N1",
-		"111111"
+	// char temp_map[5][6] = {
+	// 	"111111",
+	// 	"100101",
+	// 	"101001",
+	// 	"1000N1",
+	// 	"111111"
+	// };
+
+
+	data->map->rows = 8;   // y
+	data->map->cols = 8;   // x
+	
+	char temp_map[8][8] =
+	{
+		"11111111",
+		"10100001",
+		"10100001",
+		"10100001",
+		"100S0001",
+		"10000101",
+		"10000001",
+		"11111111"
 	};
-
+	
+	
 	data->minimap_size.x = data->map->cols * GRIDSIZE;
 	data->minimap_size.y = data->map->rows * GRIDSIZE;
 
-	// data->map->rows = 8;   // y
-	// data->map->cols = 8;   // x
-	
-	// char temp_map[8][8] =
-	// {
-	// 	"11111111",
-	// 	"10100001",
-	// 	"10100001",
-	// 	"10100001",
-	// 	"100S0001",
-	// 	"10000101",
-	// 	"10000001",
-	// 	"11111111"
-	// };
-	
 	
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
