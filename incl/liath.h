@@ -38,8 +38,8 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		(PI)
 
-# define PLAYER_SIZE	(GRIDSIZE / 8)
-# define NOSE_LENGTH 	(PLAYER_SIZE * 2)
+# define PLAYER_SIZE	(GRIDSIZE / 8)		// this is the radius of the circle
+# define NOSE_LENGTH 	(PLAYER_SIZE * 3)
 
 # define COLOUR_M_PINK	0xCC99FFFF  // R=CC, G=99, B=FF, A=FF
 # define COLOUR_YELLOW	0xFFFF66FF  // R=FF, G=FF, B=66, A=FF
@@ -84,12 +84,11 @@ typedef struct s_ray
 
 	t_vector_i	map_pos;
 
-	t_vector_f	collision_point; // x will store length to collision with vertical grid_lines, y horizontally
+	t_vector_f	collision_point;
 	t_vector_i	step;
 
-	bool	wall_hit;
-	float 	distance;
-	// float 	max_distance;	
+	bool		wall_hit;
+	float 		distance;
 } t_ray ;
 
 
@@ -98,6 +97,7 @@ typedef struct s_player
 	t_vector_f	pos;
 	t_vector_f	dir;
 	float		angle;
+	bool		wall_hit;
 } t_player;
 
 typedef struct s_data
@@ -130,5 +130,6 @@ void	key_is_pressed(void *data);
 void	game(t_data *data);
 void 	raycasting(t_data *data);
 void	draw_line(t_data *data, t_vector_f start, t_vector_f end, uint64_t colour);
-
+float	get_max(float a, float b);
+float	get_min(float a, float b);
 

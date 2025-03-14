@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/14 09:38:55 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/14 17:18:18 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,6 @@ void draw_filled_circle(t_data *data, t_vector_f centre, int radius, int colour)
     }
 }
 
-float	get_max(float a, float b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
 void	draw_line(t_data *data, t_vector_f start, t_vector_f end, uint64_t colour)
 {
 	float	step_x;
@@ -101,14 +93,48 @@ void	draw_line(t_data *data, t_vector_f start, t_vector_f end, uint64_t colour)
 		start.y += step_y;
 	}
 }
+int message_i = 0;
 
 void	draw_player(t_data *data)
 {
 	t_vector_f start_pos;
 	t_vector_f end_pos;
+	t_vector_f player_pos_one;		// top-left courner of player
+	t_vector_f player_pos_two;		// bottom-right courner of player
+
+
+	player_pos_one.x = data->player->pos.x - PLAYER_SIZE;
+	player_pos_one.y = data->player->pos.y - PLAYER_SIZE;
+	player_pos_two.x = data->player->pos.x + PLAYER_SIZE;
+	player_pos_two.y = data->player->pos.y + PLAYER_SIZE;
+
 
 	start_pos.x = data->player->pos.x;
 	start_pos.y = data->player->pos.y;
+
+	if ((player_pos_one.x >= 0 && player_pos_one.y >= 0 && player_pos_one.x < data->minimap_size.x && player_pos_one.y < data->minimap_size.y) || \
+	(player_pos_two.x >= 0 && player_pos_two.y >= 0 && player_pos_two.x < data->minimap_size.x && player_pos_two.y < data->minimap_size.y))
+	{
+		if ((data->map->map[(int)(player_pos_one.y / GRIDSIZE)][(int)(player_pos_one.x / GRIDSIZE)] == '1') || \
+		(data->map->map[(int)(player_pos_two.y / GRIDSIZE)][(int)(player_pos_two.x / GRIDSIZE)] == '1'))
+		{
+			data->player->wall_hit = true;
+			printf("%d	Player hit wall!\n", message_i);
+			message_i++;
+		}
+		else
+		{
+			data->player->wall_hit = false;
+			printf("%d	Player is FREEEEE!\n", message_i);
+			message_i++;
+		}
+	}
+
+
+
+
+
+	
 	
 	end_pos.x = data->player->pos.x + data->player->dir.x * NOSE_LENGTH;
 	end_pos.y = data->player->pos.y + data->player->dir.y * NOSE_LENGTH;
@@ -130,8 +156,10 @@ void	draw_2D_map(t_data *data)
 		x = 0;
 		while (x < data->map->cols)
 		{
-			offset.x = (x * GRIDSIZE) + x;
-			offset.y = (y * GRIDSIZE) + y;
+			// offset.x = (x * GRIDSIZE) + x;
+			// offset.y = (y * GRIDSIZE) + y;
+			offset.x = x * GRIDSIZE;
+			offset.y = y * GRIDSIZE;
 			if (data->map->map[y][x] == '1')
 			{	
 				colour = COLOUR_WHITE;

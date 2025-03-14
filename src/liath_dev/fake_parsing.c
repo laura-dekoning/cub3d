@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/14 09:43:59 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/14 16:17:54 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void fake_parsing(t_data *data)
 	// 	"111111"
 	// };
 
-
 	data->map->rows = 8;   // y
 	data->map->cols = 8;   // x
 	
@@ -50,25 +49,35 @@ void fake_parsing(t_data *data)
 	};
 	
 	
-	data->minimap_size.x = data->map->cols * GRIDSIZE;
-	data->minimap_size.y = data->map->rows * GRIDSIZE;
+	data->minimap_size.x = (data->map->cols * GRIDSIZE) + data->map->cols;
+	data->minimap_size.y = (data->map->rows * GRIDSIZE) + data->map->rows;
+	
 
 	
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
-	for (int i = 0; i < data->map->rows; i++) 
+
+	int i;
+	int j;
+	i = 0;
+	while (i < data->map->rows) 
 	{
 		data->map->map[i] = malloc(data->map->cols * sizeof(char));
 		if (data->map->map[i] == NULL)
 			error_and_exit("Malloc allocation failed\n");
+		i++;
 	}
-	for (int i = 0; i < data->map->rows; i++) 
+	i = 0;
+	while (i < data->map->rows) 
 	{
-		for (int j = 0; j < data->map->cols; j++) 
+		j = 0;
+		while (j < data->map->cols) 
 		{
 			data->map->map[i][j] = temp_map[i][j];
+			j++;
 		}
+		i++;
 	}
 	
 	int x;
@@ -113,6 +122,7 @@ void fake_parsing(t_data *data)
 	}
 	data->player->dir.x = cos(data->player->angle);
 	data->player->dir.y = sin(data->player->angle);
+	data->player->wall_hit = false;
 }
 
 
