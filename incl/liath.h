@@ -19,12 +19,14 @@
 # define MOVING_SPEED	2
 # define ROTATE_SPEED	1
 
-# define GRIDSIZE		(64 * 2)
+# define GRIDSIZE		(64)
 // --------------
 
 
 # define PI				3.14159265359
 # define ONE_DEGREE		0.0174533
+
+# define NUMB_RAYS		120
 
 # define NORTH 			1
 # define EAST 			2

@@ -1,5 +1,46 @@
-
 # include "../../incl/liath.h"
+
+
+void draw_3d_wall(t_data *data, t_ray *ray, int ray_i, float angle)
+{
+	// float		line_hight;
+    float		proj_plane_dist;
+	float		corrected_distance;
+    float		wall_height;
+    int			wall_top;
+    int			wall_bottom;
+	t_vector_f 	start;
+	t_vector_f 	end;
+	int slice_width;
+	int screen_x;
+	int	i;
+
+	proj_plane_dist = (data->window->width / 2) / tan((90.0 * ONE_DEGREE) / 2);
+
+	corrected_distance = ray[ray_i].distance * cos(angle - data->player->angle);
+	wall_height = (GRIDSIZE * proj_plane_dist) / corrected_distance;
+	// wall_top = (data->window->height / 2) - (wall_height / 2);
+	// wall_bottom = (data->window->height / 2) + (wall_height / 2);
+
+	wall_top = max(0, (data->window->height / 2) - (wall_height / 2));
+	wall_bottom = min(data->window->height, (data->window->height / 2) + (wall_height / 2));
+	
+	slice_width = data->window->width / NUMB_RAYS;
+	i = 0;
+	while (i < slice_width)
+	{
+		screen_x = ray_i * slice_width + i;
+		if (screen_x >= data->window->width)
+			break;
+		start.x = ray_i * slice_width + i;
+		start.y = wall_top;
+		end.x = ray_i * slice_width + i;
+		end.y = wall_bottom;
+		draw_line(data, start, end, COLOUR_BLUE);
+		i++;
+	}
+}
+
 
 void draw_ray(t_data *data, t_ray *ray)
 {
@@ -31,8 +72,10 @@ void draw_ray(t_data *data, t_ray *ray)
 	}
 }
 
-void get_ray_collision(t_ray *ray)
+void get_ray_collision(t_data *data, t_ray *ray)
 {
+	if (ray->map_pos.x < 0 || ray->map_pos.x >= data->map->cols * GRIDSIZE || ray->map_pos.y < 0 || ray->map_pos.y >= data->map->rows * GRIDSIZE)
+    	return;
 	if (ray->ray_dir.x < 0)
 	{
 		ray->step.x = -1;
@@ -79,19 +122,6 @@ void init_ray(t_data *data, t_ray *ray, t_vector_f dir)
 	ray->distance = 0.0;
 }
 
-float normalize_angle(float a)
-{
-	if (a > 359.0)
-	{
-		a -= 360.0;
-	}
-	if ( a < 0.0)
-	{
-		a += 360.0;
-	}
-	return (a);
-}
-
 void raycasting(t_data *data)
 {
 
@@ -101,7 +131,7 @@ void raycasting(t_data *data)
 	// get_ray_collision(&ray);
 	// draw_ray(data, &ray);
 
-	t_ray ray[60];
+	t_ray ray[NUMB_RAYS];
 	t_vector_f dir;
 	float angle;
 	float angle_step;
@@ -110,22 +140,33 @@ void raycasting(t_data *data)
 
 	fov = 60.0;
 	angle = data->player->angle - ((fov / 2) * ONE_DEGREE);
-	angle_step = (fov * ONE_DEGREE) / 60.0;
+	angle_step = (fov * ONE_DEGREE) / NUMB_RAYS;
 	i = 0;
-	while (i < 60)
+	while (i < NUMB_RAYS)
 	{
-		
-		dir.x = cos(angle); // * ROTATE_SPEED;
-		dir.y = sin(angle); // * ROTATE_SPEED;
+		dir.x = cos(angle);
+		dir.y = sin(angle);
 
 		init_ray(data, &ray[i], dir);	
-		get_ray_collision(&ray[i]);
+		get_ray_collision(data, &ray[i]);
 		draw_ray(data, &ray[i]);
 
+		draw_3d_wall(data, &ray[i], i, angle);
+
 		angle += angle_step;
+		if (angle > (2 * PI))
+		{
+			angle -= (2 * PI);
+		}
+		if (angle < 0)
+		{			
+			angle += (2 * PI);
+		}
 		i++;
 	}
 }
+
+
 
 
 
