@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/12 00:26:51 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/13 23:28:44 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,38 @@ void	key_action(t_data *data)
 		{			
 			data->player->angle += (2 * PI);
 		}
-		data->player->dir.x = cos(data->player->angle); //  * ROTATE_SPEED;
-		data->player->dir.y = sin(data->player->angle); //  * ROTATE_SPEED;
+		data->player->dir.x = cos(data->player->angle); // * ROTATE_SPEED;
+		data->player->dir.y = sin(data->player->angle); // * ROTATE_SPEED;
 	}
 	if (mlx_is_key_down(data->window,MLX_KEY_RIGHT))
 	{
-		
 		data->player->angle += 0.1;
 		if (data->player->angle > (2 * PI))
 		{
 			data->player->angle -= (2 * PI);
 		}
-		data->player->dir.x = cos(data->player->angle); //  * ROTATE_SPEED;
-		data->player->dir.y = sin(data->player->angle); //  * ROTATE_SPEED;
+		data->player->dir.x = cos(data->player->angle); // * ROTATE_SPEED;
+		data->player->dir.y = sin(data->player->angle); // * ROTATE_SPEED;
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_W))
 	{
-		data->player->pos.x += data->player->dir.x;
-		data->player->pos.y += data->player->dir.y;
+		data->player->pos.x += data->player->dir.x * MOVING_SPEED;
+		data->player->pos.y += data->player->dir.y * MOVING_SPEED;
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_S))
 	{
-		data->player->pos.x -= data->player->dir.x;
-		data->player->pos.y -= data->player->dir.y;
+		data->player->pos.x -= data->player->dir.x * MOVING_SPEED;
+		data->player->pos.y -= data->player->dir.y * MOVING_SPEED;
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_A))
 	{
-		data->player->pos.x -= data->player->dir.y;
-		data->player->pos.y += data->player->dir.x;
+		data->player->pos.x -= data->player->dir.y * MOVING_SPEED;
+		data->player->pos.y += data->player->dir.x * MOVING_SPEED;
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_D))
 	{
-		data->player->pos.x += data->player->dir.y;
-		data->player->pos.y -= data->player->dir.x;
+		data->player->pos.x += data->player->dir.y * MOVING_SPEED;
+		data->player->pos.y -= data->player->dir.x * MOVING_SPEED;
 	}
 }
 
@@ -71,8 +70,8 @@ void	key_action(t_data *data)
 void	key_is_pressed(void *game_data)
 {
 	t_data	*data;
-	t_vector player_pos;
-	t_vector player_dir;
+	t_vector_f player_pos;
+	t_vector_f player_dir;
 	int		player_moved;
 	int		player_rotated;
 
@@ -84,10 +83,8 @@ void	key_is_pressed(void *game_data)
 	
 	key_action(data);
 	
-	player_moved = ft_memcmp(&player_pos, &data->player->pos, sizeof(t_vector));
-	player_rotated = ft_memcmp(&player_dir, &data->player->dir, sizeof(t_vector));
-	// This will be changleed to a function that compares two structs with memcmp. 
-	// if ((player_pos.x != data->player->pos.x) || (player_pos.y != data->player->pos.y))
+	player_moved = ft_memcmp(&player_pos, &data->player->pos, sizeof(t_vector_f));
+	player_rotated = ft_memcmp(&player_dir, &data->player->dir, sizeof(t_vector_f));
 	if (player_moved != 0 || player_rotated != 0)
 	{
 		fill_canvas(data);

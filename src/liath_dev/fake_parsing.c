@@ -6,27 +6,12 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/12 18:58:45 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/14 00:21:35 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incl/liath.h"
-
-
 	
-// 	// char temp_map[8][8] =
-// 	// {
-// 	// 	"11111111",
-// 	// 	"10100001",
-// 	// 	"10100001",
-// 	// 	"10100001",
-// 	// 	"10000001",
-// 	// 	"10000101",
-// 	// 	"10000001",
-// 	// 	"11111111"};
-
-	
-
 void fake_parsing(t_data *data)
 {
 	data->player = (t_player *)ft_calloc(sizeof(t_player), 1);
@@ -44,14 +29,34 @@ void fake_parsing(t_data *data)
 		"111111",
 		"100101",
 		"101001",
-		"1100N1",
+		"1000N1",
 		"111111"
 	};
+
+	data->minimap_size.x = data->map->cols * GRIDSIZE;
+	data->minimap_size.y = data->map->rows * GRIDSIZE;
+
+	// data->map->rows = 8;   // y
+	// data->map->cols = 8;   // x
+	
+	// char temp_map[8][8] =
+	// {
+	// 	"11111111",
+	// 	"10100001",
+	// 	"10100001",
+	// 	"10100001",
+	// 	"100S0001",
+	// 	"10000101",
+	// 	"10000001",
+	// 	"11111111"
+	// };
+	
 	
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
-	for (int i = 0; i < data->map->rows; i++) {
+	for (int i = 0; i < data->map->rows; i++) 
+	{
 		data->map->map[i] = malloc(data->map->cols * sizeof(char));
 		if (data->map->map[i] == NULL)
 			error_and_exit("Malloc allocation failed\n");
@@ -63,7 +68,6 @@ void fake_parsing(t_data *data)
 			data->map->map[i][j] = temp_map[i][j];
 		}
 	}
-	
 	
 	int x;
 	int y;
@@ -79,26 +83,26 @@ void fake_parsing(t_data *data)
 				if (data->map->map[y][x] == 'N') 
 				{
 					data->player->angle = DIR_NORTH;
-					data->player->pos.x = x * GRIDSIZE;
-					data->player->pos.y = y * GRIDSIZE;
+					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
 				}
 				if (data->map->map[y][x] == 'S')
 				{
 					data->player->angle = DIR_SOUTH;
-					data->player->pos.x = x * GRIDSIZE;
-					data->player->pos.y = y * GRIDSIZE;
+					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
 				}
 				if (data->map->map[y][x] == 'E') 
 				{
 					data->player->angle = DIR_EAST;
-					data->player->pos.x = x * GRIDSIZE;
-					data->player->pos.y = y * GRIDSIZE;
+					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
 				}
 				if (data->map->map[y][x] == 'W')
 				{
 					data->player->angle = DIR_WEST;
-					data->player->pos.x = x * GRIDSIZE;
-					data->player->pos.y = y * GRIDSIZE;
+					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
 				}
 			}
 			x++;

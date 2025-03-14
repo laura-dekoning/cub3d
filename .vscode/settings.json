@@ -5,6 +5,7 @@
 		"string_view": "cpp",
 		"ranges": "cpp",
 		"span": "cpp",
-		"liath.h": "c"
+		"liath.h": "c",
+		"cmath": "c"
 	}
 }

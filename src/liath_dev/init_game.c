@@ -6,12 +6,11 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/11 23:56:13 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/13 23:31:09 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../incl/liath.h"
-
 
 void	fill_canvas(t_data *data)
 {
@@ -31,8 +30,7 @@ void	fill_canvas(t_data *data)
 	}
 }
 
-
-void	draw_filled_square(t_data *data, t_vector start_pos, uint32_t width, uint32_t height, uint64_t colour)
+void	draw_filled_square(t_data *data, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour)
 {
 	uint32_t	x;
 	uint32_t	y;
@@ -51,10 +49,7 @@ void	draw_filled_square(t_data *data, t_vector start_pos, uint32_t width, uint32
 	}
 }
 
-
-
-
-void draw_filled_circle(t_data *data, t_vector centre, int radius, int colour) 
+void draw_filled_circle(t_data *data, t_vector_f centre, int radius, int colour) 
 {
     int x;
 	int y;
@@ -65,7 +60,7 @@ void draw_filled_circle(t_data *data, t_vector centre, int radius, int colour)
 		x = -radius;
         while (x <= radius) 
         {
-            if (x * x + y * y <= radius * radius) // Check if the point is inside the circle
+            if ((centre.x + x >= 0 && centre.y + y >= 0 && centre.x + x < (int)data->image->width && centre.y + y < (int)data->image->height) && (x * x + y * y <= radius * radius)) // Check if the point is inside the circle
             {
                 mlx_put_pixel(data->image, centre.x + x, centre.y + y, colour);
             }
@@ -75,7 +70,6 @@ void draw_filled_circle(t_data *data, t_vector centre, int radius, int colour)
     }
 }
 
-
 float	get_max(float a, float b)
 {
 	if (a > b)
@@ -84,27 +78,21 @@ float	get_max(float a, float b)
 		return (b);
 }
 
-float	get_mod(float a)
-{
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
-}
-
-
-void	draw_line(t_data *data, t_vector start, t_vector end, uint64_t colour)
+void	draw_line(t_data *data, t_vector_f start, t_vector_f end, uint64_t colour)
 {
 	float	step_x;
 	float	step_y;
 	float	max;
 
-	// init_point_values(&start, &end, map);
+	//get total length
 	step_x = end.x - start.x;
 	step_y = end.y - start.y;
-	max = get_max(get_mod(step_x), get_mod(step_y));
+	//get amount of steps
+	max = get_max(fabsf(step_x), fabsf(step_y));	// fabsf() returns the absolute value of a float
+	// get step length for x and y
 	step_x /= max;
 	step_y /= max;
+	// compare ints because floats are unreliable
 	while ((int)(start.x - end.x) || (int)(start.y - end.y))
 	{
 		if (start.x >= 0 && start.y >= 0 && start.x < (int)data->image->width && start.y < (int)data->image->height)
@@ -116,8 +104,8 @@ void	draw_line(t_data *data, t_vector start, t_vector end, uint64_t colour)
 
 void	draw_player(t_data *data)
 {
-	t_vector start_pos;
-	t_vector end_pos;
+	t_vector_f start_pos;
+	t_vector_f end_pos;
 
 	start_pos.x = data->player->pos.x;
 	start_pos.y = data->player->pos.y;
@@ -133,7 +121,7 @@ void	draw_2D_map(t_data *data)
 {
 	int x;
 	int y;
-	t_vector offset;
+	t_vector_f offset;
 	uint64_t colour;
 	
 	y = 0;
@@ -163,6 +151,7 @@ void	game(t_data *data)
 {
 	draw_2D_map(data);
 	draw_player(data);
+	raycasting(data);
 }
 
 void	init_window(t_data *data)

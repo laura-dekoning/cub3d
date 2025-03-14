@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:42:03 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/11 21:31:20 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/13 20:54:22 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void	error_and_exit(char *str)
 
 void	free_fake_parsing(t_data *data)
 {
+	int i;
 	// free player
 	free(data->player);
 	
 	// free map
-    for (int i = 0; i < data->map->rows; i++)
+    i = 0; 
+	while (i < data->map->rows)
+	{
         free(data->map->map[i]);
+		i++;
+	}
     free(data->map->map);
 	free(data->map);
 }

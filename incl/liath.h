@@ -11,11 +11,20 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
+// adjusable:
 # define WINDOW_WIDTH	1750
 # define WINDOW_HEIGHT	1750
 # define WINDOW_TITLE	"L&L Cub3d"
 
+# define MOVING_SPEED	2
+# define ROTATE_SPEED	1
+
+# define GRIDSIZE		(64 * 2)
+// --------------
+
+
 # define PI				3.14159265359
+# define ONE_DEGREE		0.0174533
 
 # define NORTH 			1
 # define EAST 			2
@@ -27,13 +36,8 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		(PI)
 
-# define MOVING_SPEED	5
-# define ROTATE_SPEED	5
-
-# define GRIDSIZE		64
-
-# define PLAYER_SIZE	8
-# define NOSE_LENGTH 	20
+# define PLAYER_SIZE	(GRIDSIZE / 8)
+# define NOSE_LENGTH 	(PLAYER_SIZE * 2)
 
 # define COLOUR_M_PINK	0xCC99FFFF  // R=CC, G=99, B=FF, A=FF
 # define COLOUR_YELLOW	0xFFFF66FF  // R=FF, G=FF, B=66, A=FF
@@ -57,16 +61,40 @@ typedef struct s_map
 	int		cols;	// x
 } t_map;
 
-typedef struct s_vector
+typedef struct s_vector_f
 {
 	float x;
 	float y;
-} t_vector;
+} t_vector_f;
+
+typedef struct s_vector_i
+{
+	int x;
+	int y;
+} t_vector_i;
+
+typedef struct s_ray 
+{
+	t_vector_f	ray_start;
+	t_vector_f	ray_end;
+	t_vector_f	ray_dir;
+	t_vector_f	ray_unit_step_size;
+
+	t_vector_i	map_pos;
+
+	t_vector_f	collision_point; // x will store length to collision with vertical grid_lines, y horizontally
+	t_vector_i	step;
+
+	bool	wall_hit;
+	float 	distance;
+	float 	max_distance;	
+} t_ray ;
+
 
 typedef struct s_player
 {
-	t_vector	pos;
-	t_vector	dir;
+	t_vector_f	pos;
+	t_vector_f	dir;
 	float		angle;
 } t_player;
 
@@ -77,6 +105,8 @@ typedef struct s_data
 
 	t_map		*map;
 	t_player	*player;
+	t_vector_i	minimap_size;
+
 
 	char		*north_texture;
 	char		*south_texture;
@@ -96,4 +126,7 @@ void	init_window(t_data *data);
 void	fill_canvas(t_data *data);
 void	key_is_pressed(void *data);
 void	game(t_data *data);
+void 	raycasting(t_data *data);
+void	draw_line(t_data *data, t_vector_f start, t_vector_f end, uint64_t colour);
+
 

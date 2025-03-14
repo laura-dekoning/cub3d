@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:27 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/07 16:48:04 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/13 20:51:54 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 
 	fake_parsing(data);	// replace with Laura's killer parser
 
-	// LIATHS JOB!
 	init_window(data);
 	clear_everything(data);
 	printf("CLEAN EXIT!\n");

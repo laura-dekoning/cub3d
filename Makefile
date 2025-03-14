@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/08 10:42:37 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/13 23:24:18 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MLX_FLAGS	:=	-ldl -lglfw -pthread -lm
 # 				# safe_calloc \
 # 				# get_data.c \
 #-----------------------------------------------------------------------------
-# # LIATH's MAKEFILE!
+# LIATH's MAKEFILE!
 INCLS_CUB3D	:=	incl
 INCLS_LIBFT	:=	$(LIBFT_DIR)/incl
 INCLS_MLX42	:=	$(MLX_DIR)/include/MLX42
@@ -51,7 +51,8 @@ SRC_FILES	:=	error_clear_exit.c \
 				fake_parsing.c \
 				init_game.c \
 				keys.c \
-				main_liath.c
+				main_liath.c \
+				rays.c
 #-----------------------------------------------------------------------------
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
