@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:34:27 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/14 16:28:27 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/14 18:33:03 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	print_player(t_player *player)
 	printf("x = %i\ty = %i\n", player->x, player->y);
 	if (player->dir == NORTH)
 		printf("dir = north\n");
-	else if (player->dir == SOUTH)
-		printf("dir = south\n");
 	else if (player->dir == EAST)
 		printf("dir = east\n");
+	else if (player->dir == SOUTH)
+		printf("dir = south\n");
 	else if (player->dir == WEST)
 		printf("dir = west\n");
 }
@@ -66,8 +66,8 @@ void	print_data(t_data *data)
 {
 	printf(B_O"Data:\n"DEF);
 	printf(G"North texture:"DEF" [%s]\n", data->north_texture);
-	printf(Y"South texture:"DEF" [%s]\n", data->south_texture);
-	printf(O"East texture:"DEF" [%s]\n", data->east_texture);
+	printf(Y"East texture:"DEF" [%s]\n", data->east_texture);
+	printf(O"South texture:"DEF" [%s]\n", data->south_texture);
 	printf(R"West texture:"DEF" [%s]\n", data->west_texture);
 	print_floor_and_ceiling(data->floor, data->ceiling);
 	print_map(data->map);

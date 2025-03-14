@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/14 16:44:44 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/14 18:33:41 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 		error_message(NULL, FILE);
 	data = (t_data *)alloc_mem_for_data();
 	get_data(data, file);
-	printf("I GET HERE\n");
 	set_default(data);
 	print_data(data);
 	free_data(data);
