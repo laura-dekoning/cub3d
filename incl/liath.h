@@ -19,8 +19,8 @@
 # define MOVING_SPEED	2
 # define ROTATE_SPEED	1
 
-# define MINIMAP_WIDTH	(WINDOW_WIDTH / 3)
-# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 3)
+# define MINIMAP_WIDTH	(WINDOW_WIDTH / 4)
+# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 4)
 # define GRIDSIZE		(64)
 // --------------
 
