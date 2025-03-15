@@ -12,14 +12,16 @@
 # define FAILURE 		1
 
 // adjusable:
-# define WINDOW_WIDTH	1000
-# define WINDOW_HEIGHT	1000
+# define WINDOW_WIDTH	1800
+# define WINDOW_HEIGHT	1800
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define MOVING_SPEED	2
 # define ROTATE_SPEED	1
 
-# define GRIDSIZE		(64 / 2)
+# define MINIMAP_WIDTH	(WINDOW_WIDTH / 3)
+# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 3)
+# define GRIDSIZE		(64)
 // --------------
 
 
@@ -41,18 +43,54 @@
 # define PLAYER_SIZE	(GRIDSIZE / 8)		// this is the radius of the circle
 # define NOSE_LENGTH 	(PLAYER_SIZE * 3)
 
-# define COLOUR_M_PINK	0xCC99FFFF  // R=CC, G=99, B=FF, A=FF
-# define COLOUR_YELLOW	0xFFFF66FF  // R=FF, G=FF, B=66, A=FF
-# define COLOUR_ORANGE	0xFF9933FF  // R=FF, G=99, B=33, A=FF
-# define COLOUR_MAGENTA	0x660033FF  // R=66, G=00, B=33, A=FF
-# define COLOUR_RED		0xFF0000FF  // R=FF, G=00, B=00, A=FF
-# define COLOUR_GREEN	0x00CC00FF  // R=00, G=CC, B=00, A=FF
-# define COLOUR_CYAN	0x00FFFFFF  // R=00, G=FF, B=FF, A=FF
-# define COLOUR_PURPLE	0x6600FFFF  // R=66, G=00, B=FF, A=FF
-# define COLOUR_BLUE	0x0099CCFF  // R=00, G=99, B=CC, A=FF
-# define COLOUR_GRAY	0x333333FF  // R=33, G=33, B=33, A=FF
-# define COLOUR_BLACK	0x000000FF  // R=00, G=00, B=00, A=FF
-# define COLOUR_WHITE	0xFFFFFFFF  // R=FF, G=FF, B=FF, A=FF
+// ===== COLOURS FOR PIXELS =====
+# define COLOUR_BLACK			0x000000FF	// R=00, G=00, B=00, A=FF
+# define COLOUR_WHITE			0xFFFFFFFF	// R=FF, G=FF, B=FF, A=FF
+# define COLOUR_GRAY			0x808080FF	// R=80, G=80, B=80, A=FF
+# define COLOUR_LIGHT_GRAY		0xD3D3D3FF	// R=D3, G=D3, B=D3, A=FF
+# define COLOUR_DARK_GRAY		0x404040FF	// R=40, G=40, B=40, A=FF
+
+# define COLOUR_RED				0xFF0000FF	// R=FF, G=00, B=00, A=FF
+# define COLOUR_LIGHT_RED		0xFF6666FF	// R=FF, G=66, B=66, A=FF
+# define COLOUR_DARK_RED		0x8B0000FF	// R=8B, G=00, B=00, A=FF
+
+# define COLOUR_GREEN			0x00FF00FF	// R=00, G=FF, B=00, A=FF
+# define COLOUR_LIGHT_GREEN		0x66FF66FF	// R=66, G=FF, B=66, A=FF
+# define COLOUR_DARK_GREEN		0x006400FF	// R=00, G=64, B=00, A=FF
+
+# define COLOUR_BLUE			0x0000FFFF	// R=00, G=00, B=FF, A=FF
+# define COLOUR_LIGHT_BLUE		0x6699FFFF	// R=66, G=99, B=FF, A=FF
+# define COLOUR_DARK_BLUE		0x00008BFF	// R=00, G=00, B=8B, A=FF
+
+# define COLOUR_YELLOW			0xFFFF00FF	// R=FF, G=FF, B=00, A=FF
+# define COLOUR_LIGHT_YELLOW	0xFFFF99FF	// R=FF, G=FF, B=99, A=FF
+# define COLOUR_DARK_YELLOW		0xCCCC00FF	// R=CC, G=CC, B=00, A=FF
+
+# define COLOUR_ORANGE			0xFFA500FF	// R=FF, G=A5, B=00, A=FF
+# define COLOUR_LIGHT_ORANGE	0xFFCC66FF	// R=FF, G=CC, B=66, A=FF
+# define COLOUR_DARK_ORANGE		0xCC5500FF	// R=CC, G=55, B=00, A=FF
+
+# define COLOUR_PURPLE			0x800080FF	// R=80, G=00, B=80, A=FF
+# define COLOUR_LIGHT_PURPLE	0xDDA0DDFF	// R=DD, G=A0, B=DD, A=FF
+# define COLOUR_DARK_PURPLE		0x4B0082FF	// R=4B, G=00, B=82, A=FF
+
+# define COLOUR_PINK			0xFF69B4FF	// R=FF, G=69, B=B4, A=FF
+# define COLOUR_LIGHT_PINK		0xFFB6C1FF	// R=FF, G=B6, B=C1, A=FF
+# define COLOUR_DARK_PINK		0xC71585FF	// R=C7, G=15, B=85, A=FF
+
+# define COLOUR_TURQUOISE		0x40E0D0FF	// R=40, G=E0, B=D0, A=FF
+# define COLOUR_LIGHT_TURQUOISE	0xAFEEEEFF	// R=AF, G=EE, B=EE, A=FF
+# define COLOUR_DARK_TURQUOISE	0x008B8BFF	// R=00, G=8B, B=8B, A=FF
+
+# define COLOUR_AQUA			0x00FFFFFF	// R=00, G=FF, B=FF, A=FF
+# define COLOUR_TEAL			0x008080FF	// R=00, G=80, B=80, A=FF
+
+# define COLOUR_MAGENTA			0xFF00FFFF	// R=FF, G=00, B=FF, A=FF
+# define COLOUR_LAVENDER		0xE6E6FAFF	// R=E6, G=E6, B=FA, A=FF
+
+# define COLOUR_GOLD			0xFFD700FF	// R=FF, G=D7, B=00, A=FF
+# define COLOUR_SILVER			0xC0C0C0FF	// R=C0, G=C0, B=C0, A=FF
+# define COLOUR_BRONZE			0xCD7F32FF	// R=CD, G=7F, B=32, A=FF
 
 #endif
 
@@ -103,7 +141,8 @@ typedef struct s_player
 typedef struct s_data
 {
 	mlx_t		*window;
-	mlx_image_t	*image;
+	mlx_image_t	*window_image;
+	mlx_image_t	*minimap_image;
 
 	t_map		*map;
 	t_player	*player;
@@ -129,7 +168,7 @@ void	fill_canvas(t_data *data);
 void	key_is_pressed(void *data);
 void	game(t_data *data);
 void 	raycasting(t_data *data);
-void	draw_line(t_data *data, t_vector_f start, t_vector_f end, uint64_t colour);
+void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
 float	get_max(float a, float b);
 float	get_min(float a, float b);
 

@@ -33,7 +33,7 @@ void draw_3d_wall(t_data *data, t_ray *ray, int ray_i, float angle)
 		start.y = wall_top;
 		end.x = ray_i * slice_width + i;
 		end.y = wall_bottom;
-		draw_line(data, start, end, COLOUR_BLUE);
+		draw_line(data->window_image, start, end, COLOUR_BLUE);
 		i++;
 	}
 }
@@ -65,7 +65,7 @@ void draw_ray(t_data *data, t_ray *ray)
 	{
 		ray->ray_end.x = ray->ray_start.x + ray->ray_dir.x * ray->distance;
 		ray->ray_end.y = ray->ray_start.y + ray->ray_dir.y * ray->distance;
-		draw_line(data, ray->ray_start, ray->ray_end, COLOUR_RED);
+		draw_line(data->minimap_image, ray->ray_start, ray->ray_end, COLOUR_RED);
 	}
 }
 
