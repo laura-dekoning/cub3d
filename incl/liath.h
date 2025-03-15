@@ -12,14 +12,14 @@
 # define FAILURE 		1
 
 // adjusable:
-# define WINDOW_WIDTH	1750
-# define WINDOW_HEIGHT	1750
+# define WINDOW_WIDTH	1000
+# define WINDOW_HEIGHT	1000
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define MOVING_SPEED	2
 # define ROTATE_SPEED	1
 
-# define GRIDSIZE		(64)
+# define GRIDSIZE		(64 / 2)
 // --------------
 
 
