@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/15 16:07:11 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/15 20:35:23 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ bool check_collision(t_data *data, float next_x, float next_y)
 	int map_pos_x;
 	int map_pos_y;
 	
-	// Top-left
+	// top-left
 	corners[0].x = next_x - PLAYER_SIZE;
 	corners[0].y = next_y - PLAYER_SIZE;
-	// Top-right
+	// top-right
 	corners[1].x = next_x + PLAYER_SIZE;
 	corners[1].y = next_y - PLAYER_SIZE;
-	// Bottom-left
+	// bottom-left
 	corners[2].x = next_x - PLAYER_SIZE;
 	corners[2].y = next_y + PLAYER_SIZE;
-	// Bottom-right
+	// bottom-right
 	corners[3].x = next_x + PLAYER_SIZE;
 	corners[3].y = next_y + PLAYER_SIZE;
 	i = 0; 
@@ -80,7 +80,6 @@ void movement_keys(t_data *data, float *next_x, float *next_y)
 	float step_x;
 	float step_y;
 	
-	// Calculate Movement
 	step_x = 0.0;
 	step_y = 0.0;
 	if (mlx_is_key_down(data->window, MLX_KEY_W))
@@ -103,8 +102,7 @@ void movement_keys(t_data *data, float *next_x, float *next_y)
 		step_x -= data->player->dir.y;
 		step_y += data->player->dir.x;
 	}
-	
-	// Calculate New Position
+
 	*next_x = data->player->pos.x + step_x * MOVING_SPEED;
 	*next_y = data->player->pos.y + step_y * MOVING_SPEED;
 }
@@ -114,7 +112,7 @@ void key_action(t_data *data)
 	float next_x;
 	float next_y;
 
-	// Exit Program
+	// exit Program
 	if (mlx_is_key_down(data->window, MLX_KEY_ESCAPE))
 		mlx_close_window(data->window);
 
@@ -126,7 +124,6 @@ void key_action(t_data *data)
 	if (!check_collision(data, data->player->pos.x, next_y))
 		data->player->pos.y = next_y;
 }
-
 
 void	key_is_pressed(void *game_data)
 {
