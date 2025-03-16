@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/14 18:07:41 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/16 09:30:43 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ size_t	parse_validate_init_textures(t_data *data, char *line, size_t start)
 	int		flag;
 	size_t	new_start;
 
+	if (data->check->setting[MAP] == true)
+		error_message(data, "File should end with map content!");
 	new_start = 0;
 	flag = validate_texture_id(data, line, start);
 	new_start = init_texture_data(data, line, start, flag);
