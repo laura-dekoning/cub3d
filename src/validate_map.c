@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/16 16:37:24 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/16 16:47:29 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,58 @@
 // 	}
 // }
 
-// char	*fill_empty(char *temp, char *map)
-// {
-
-// }
-
-char	*replace_tab(char *temp, char *map)
+char	*fill_empty(char *temp, char *map, int len)
 {
-	int	y;
 	int	i;
-	int	spaces;
+	int	y;
+	int	end;
 
-	y = 0;
 	i = 0;
-	spaces = 4;
-	while (map[y] != '\0')
+	y = 0;
+	end = 0;
+	while (end < len)
 	{
-		if (map[y] == '\t')
+		while (map[y] != '\0')
 		{
-			while (spaces-- != 0)
-			{
-				temp[i] = ' ';
-				i++;
-			}
+			temp[i] = map[y];
+			i++;
 			y++;
+			end++;
+
 		}
-		temp[i] = map[y];
+		temp[i] = ' ';
 		i++;
-		y++;
+		end++;
 	}
 	return (temp);
 }
+
+// char	*replace_tab(char *temp, char *map)
+// {
+// 	int	i;
+// 	int	y;
+// 	int	spaces;
+
+// 	i = 0;
+// 	y = 0;
+// 	spaces = 4;
+// 	while (map[y] != '\0')
+// 	{
+// 		if (map[y] == '\t')
+// 		{
+// 			while (spaces-- != 0)
+// 			{
+// 				temp[i] = ' ';
+// 				i++;
+// 			}
+// 			y++;
+// 		}
+// 		temp[i] = map[y];
+// 		i++;
+// 		y++;
+// 	}
+// 	return (temp);
+// }
 
 // void	fill_and_replace(t_data *data)
 // {
@@ -74,7 +95,7 @@ char	*replace_tab(char *temp, char *map)
 // 		if (ft_strlen(data->map->map[x]) < data->map->cols)
 // 		{
 // 			temp = replace_tab(temp, data->map->map[x]);
-// 			temp = fill_empty(temp, data->map->map[x]);
+// 			temp = fill_empty(temp, data->map->map[x], data->map->cols);
 // 			free(data->map->map[x]);
 // 			data->map->map[x] = temp;
 // 		}
@@ -92,12 +113,12 @@ char	*replace_tab(char *temp, char *map)
 
 int	main()
 {
-	char	*map = "11	123 ";
+	char	*map = "11123";
 	char	*temp;
 	int		i;
 
 	temp = ft_calloc(10, sizeof(char));
-	temp = replace_tab(temp, map);
+	temp = fill_empty(temp, map, 9);
 	i = 0;
 	while (temp[i] != '\0')
 	{
