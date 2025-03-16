@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/14 18:31:20 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/16 15:52:34 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ size_t	parse_validate_init_map(t_data *data, char *line, size_t start)
 	}
 	set_rows_and_cols(data, data->map->map);
 	set_player(data, data->map->map);
+	validate_map(data);
 	free (map_as_str);
 	while (line[new_start] != '\0')
 		new_start++;

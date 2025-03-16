@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/13 14:35:58 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/16 09:54:30 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ int	check_rgb(t_data *data)
 		return (FAILURE);
 	while (i < 3)
 	{
-		if (data->floor[i] < 0 || data->floor[i] > 255)
-			return (FAILURE);
-		if (data->ceiling[i] < 0 || data->ceiling[i] > 255)
-			return (FAILURE);
+		if (data->floor[i] > 255 || data->ceiling[i] > 255)
+			error_message(data, BIG);
 		i++;
 	}
 }
