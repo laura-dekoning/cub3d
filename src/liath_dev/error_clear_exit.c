@@ -6,11 +6,11 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:42:03 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/13 20:54:22 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/17 13:59:21 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incl/liath.h"
+#include "../../incl/liath.h"
 
 void	error_and_exit(char *str)
 {

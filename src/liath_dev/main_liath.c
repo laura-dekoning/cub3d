@@ -6,11 +6,11 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:27 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/13 20:51:54 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/17 13:59:38 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incl/liath.h"
+#include "../../incl/liath.h"
 
 int	main(int argc, char **argv)
 {

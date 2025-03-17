@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/15 20:35:35 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/17 13:24:36 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ void fake_parsing(t_data *data)
 	
 	int x;
 	int y;
+	float offset;
 	
+	offset = GRIDSIZE / 2;
 	y = 0;
 	while (y < data->map->rows) 
 	{
@@ -94,26 +96,26 @@ void fake_parsing(t_data *data)
 				if (data->map->map[y][x] == 'N') 
 				{
 					data->player->angle = DIR_NORTH;
-					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
-					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.x = (x * GRIDSIZE) + offset;
+					data->player->pos.y = (y * GRIDSIZE) + offset;
 				}
 				if (data->map->map[y][x] == 'S')
 				{
 					data->player->angle = DIR_SOUTH;
-					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
-					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.x = (x * GRIDSIZE) + offset;
+					data->player->pos.y = (y * GRIDSIZE) + offset;
 				}
 				if (data->map->map[y][x] == 'E') 
 				{
 					data->player->angle = DIR_EAST;
-					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
-					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.x = (x * GRIDSIZE) + offset;
+					data->player->pos.y = (y * GRIDSIZE) + offset;
 				}
 				if (data->map->map[y][x] == 'W')
 				{
 					data->player->angle = DIR_WEST;
-					data->player->pos.x = (x * GRIDSIZE) + (GRIDSIZE / 2);
-					data->player->pos.y = (y * GRIDSIZE) + (GRIDSIZE / 2);
+					data->player->pos.x = (x * GRIDSIZE) + offset;
+					data->player->pos.y = (y * GRIDSIZE) + offset;
 				}
 			}
 			x++;

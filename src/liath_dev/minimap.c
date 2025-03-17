@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/15 20:25:34 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/17 14:48:02 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,3 +217,8 @@
 // 	mlx_loop(data->window);
 // 	mlx_terminate(data->window);
 // }
+
+
+
+
+// KEYS:

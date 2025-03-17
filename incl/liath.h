@@ -12,16 +12,16 @@
 # define FAILURE 		1
 
 // adjusable:
-# define WINDOW_WIDTH	1800
-# define WINDOW_HEIGHT	1800
+# define WINDOW_WIDTH	1200
+# define WINDOW_HEIGHT	1200
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define MOVING_SPEED	2
-# define ROTATE_SPEED	1
+# define ROTATE_SPEED	2
 
-# define MINIMAP_WIDTH	(WINDOW_WIDTH / 3)
-# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 3)
-# define GRIDSIZE		(64)
+# define MINIMAP_WIDTH	(WINDOW_WIDTH)
+# define MINIMAP_HEIGHT	(WINDOW_HEIGHT)
+# define GRIDSIZE		(64 * 2)
 // --------------
 
 
@@ -159,16 +159,38 @@ typedef struct s_data
 } t_data;
 
 
-void	fake_parsing(t_data *data); // TAKE OUT
 
+// draw_2D.c
+void	draw_2D_map(t_data *data, mlx_image_t *image);
+void	draw_player(t_data *data, mlx_image_t *image);
+void	draw_ray(t_data *data, t_ray *ray);
+
+// draw_3D.c
+void	draw_3d_wall(t_data *data, t_ray *ray, int ray_i, float angle);
+
+// draw_shapes.c
+void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
+void	draw_filled_square(mlx_image_t *image, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour);
+void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour);
+
+// error_clear_exit.c    
 void	error_and_exit(char *str);
 void	clear_everything(t_data *data);
+// fake_parsing.c        
+void	fake_parsing(t_data *data); // TAKE OUT
+// init_game.c           
 void	init_window(t_data *data);
 void	fill_canvas(t_data *data);
-void	key_is_pressed(void *data);
 void	game(t_data *data);
-void 	raycasting(t_data *data);
-void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-float	get_max(float a, float b);
-float	get_min(float a, float b);
+// keys.c                
+void	key_is_pressed(void *data);
 
+
+// minimap.c
+// player_collision.c
+void	check_collision(t_data *data, t_vector_f step);
+// rays.c
+void 	raycasting(t_data *data);
+// utils
+float	get_min(float a, float b);
+float	get_max(float a, float b);
