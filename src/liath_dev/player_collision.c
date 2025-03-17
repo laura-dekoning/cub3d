@@ -46,17 +46,12 @@ void	check_collision(t_data *data, t_vector_f step)
 
 	next_pos.x = data->player->pos.x + step.x * MOVING_SPEED;
 	next_pos.y = data->player->pos.y + step.y * MOVING_SPEED;
-	if (!hit_wall(data, next_pos.x, next_pos.y))
+	if (!hit_wall(data, next_pos.x, data->player->pos.y))
 	{
 		data->player->pos.x = next_pos.x;
+	}
+	if (!hit_wall(data, data->player->pos.x, next_pos.y))
+	{
 		data->player->pos.y = next_pos.y;
 	}
-	// if (!hit_wall(data, next_pos.x, data->player->pos.y))
-	// {
-	// 	data->player->pos.x = next_pos.x;
-	// }
-	// if (!hit_wall(data, data->player->pos.x, next_pos.y))
-	// {
-	// 	data->player->pos.y = next_pos.y;
-	// }
 }

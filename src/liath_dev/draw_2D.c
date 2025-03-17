@@ -12,54 +12,66 @@
 
 #include "../../incl/liath.h"
 
-t_ray ray[NUMB_RAYS];
-t_vector_f dir;
-float angle;
-float angle_step;
-float fov;
-int i;
 
-fov = 60.0;
-angle = data->player->angle - ((fov / 2) * ONE_DEGREE);
-angle_step = (fov * ONE_DEGREE) / NUMB_RAYS;
-i = 0;
-while (i < NUMB_RAYS)
+void	draw_eye(t_data *data, mlx_image_t *image, t_vector_f player_centre, int colour)
 {
+	t_vector_f	eye_centre;
+	t_vector_f	dir;
+	float		angle;
+
+	angle = data->player->angle - (70.0 * ONE_DEGREE);
 	dir.x = cos(angle);
 	dir.y = sin(angle);
+	eye_centre.x = player_centre.x + dir.x * (PLAYER_SIZE / 1.8);
+	eye_centre.y = player_centre.y + dir.y * (PLAYER_SIZE / 1.8);
+	draw_filled_circle(image, eye_centre, (PLAYER_SIZE / 5), colour);
+}
 
-	init_ray(data, &ray[i], dir);	
-	get_ray_collision(data, &ray[i]);
-	draw_ray(data, &ray[i]);
 
-	draw_3d_wall(data, &ray[i], i, angle);
+void	draw_mouth(t_data *data, mlx_image_t *image, t_vector_f start_pos, int colour)
+{
+	t_vector_f end_pos;
+	t_vector_f dir;
+	float angle;
+	float angle_step;
+	float fov;
+	int i;
 
-	angle += angle_step;
-	if (angle > (2 * PI))
+	fov = 60.0;
+	angle = data->player->angle - ((fov / 2) * ONE_DEGREE);
+	angle_step = (fov * ONE_DEGREE) / NUMB_RAYS;
+	i = 0;
+	while (i < NUMB_RAYS)
 	{
-		angle -= (2 * PI);
+		dir.x = cos(angle);
+		dir.y = sin(angle);
+		end_pos.x = start_pos.x + dir.x * (PLAYER_SIZE + 1);
+		end_pos.y = start_pos.y + dir.y * (PLAYER_SIZE + 1);
+		draw_line(image, start_pos, end_pos, colour);
+		angle += angle_step;
+		if (angle > (2 * PI))
+			angle -= (2 * PI);
+		if (angle < 0)		
+			angle += (2 * PI);
+		i++;
 	}
-	if (angle < 0)
-	{			
-		angle += (2 * PI);
-	}
-	i++;
+
+
+// i need to figure out how to open and close the mouth hihi
+	// draw_filled_circle(image, data->player->pos, PLAYER_SIZE, COLOUR_YELLOW);
+
+	// end_pos.x = start_pos.x + data->player->dir.x * ((PLAYER_SIZE / 2) + 1);
+	// end_pos.y = start_pos.y + data->player->dir.y * ((PLAYER_SIZE / 2) + 1);
+	// draw_line(image, start_pos, end_pos, COLOUR_AQUA);
 }
 
 void	draw_player(t_data *data, mlx_image_t *image)
-{
-	t_vector_f start_pos;
-	t_vector_f end_pos;
-
-	start_pos.x = data->player->pos.x;
-	start_pos.y = data->player->pos.y;
-	
-	end_pos.x = data->player->pos.x + data->player->dir.x * NOSE_LENGTH;
-	end_pos.y = data->player->pos.y + data->player->dir.y * NOSE_LENGTH;
-	
-	draw_filled_circle(image, start_pos, PLAYER_SIZE, COLOUR_YELLOW);
-	draw_line(image, start_pos, end_pos, COLOUR_GREEN);
-	// draw_mouth()
+{	
+	draw_filled_circle(image, data->player->pos, PLAYER_SIZE, COLOUR_YELLOW);
+	draw_circle(image, data->player->pos, PLAYER_SIZE, COLOUR_BLACK);
+	draw_circle(image, data->player->pos, PLAYER_SIZE + 1, COLOUR_BLACK);
+	draw_mouth(data, image, data->player->pos, COLOUR_BLACK);
+	draw_eye(data, image, data->player->pos, COLOUR_BLACK);
 }
 
 void	draw_2D_map(t_data *data, mlx_image_t *image)

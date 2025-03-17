@@ -40,8 +40,7 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		(PI)
 
-# define PLAYER_SIZE	(GRIDSIZE / 8)		// this is the radius of the circle
-# define NOSE_LENGTH 	(PLAYER_SIZE * 3)
+# define PLAYER_SIZE	(GRIDSIZE / 4)		// this is the radius of the circle
 
 // ===== COLOURS FOR PIXELS =====
 # define COLOUR_BLACK			0x000000FF	// R=00, G=00, B=00, A=FF
@@ -172,6 +171,7 @@ void	draw_3d_wall(t_data *data, t_ray *ray, int ray_i, float angle);
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
 void	draw_filled_square(mlx_image_t *image, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour);
 void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour);
+void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 
 // error_clear_exit.c    
 void	error_and_exit(char *str);

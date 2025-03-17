@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/17 14:48:02 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/17 16:49:34 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@
 
 // 	// start_pos.x = data->player->pos.x;
 // 	// start_pos.y = data->player->pos.y;
-// 	// end_pos.x = data->player->pos.x + data->player->dir.x * NOSE_LENGTH;
-// 	// end_pos.y = data->player->pos.y + data->player->dir.y * NOSE_LENGTH;
+// 	// end_pos.x = data->player->pos.x + data->player->dir.x * (PLAYER_SIZE * 3);
+// 	// end_pos.y = data->player->pos.y + data->player->dir.y * (PLAYER_SIZE * 3);
 // 	// draw_filled_circle(data->minimap_image, start_pos, PLAYER_SIZE, COLOUR_YELLOW);
 // 	// draw_line(data->minimap_image, start_pos, end_pos, COLOUR_GREEN);
 	
@@ -115,8 +115,8 @@
 // 	// Center player in minimap
 // 	player_centre.x = MINIMAP_WIDTH / 2;
 // 	player_centre.y = MINIMAP_HEIGHT / 2;
-// 	nose_end_pos.x = player_centre.x + data->player->dir.x * NOSE_LENGTH;
-// 	nose_end_pos.y = player_centre.y + data->player->dir.y * NOSE_LENGTH;
+// 	nose_end_pos.x = player_centre.x + data->player->dir.x * (PLAYER_SIZE * 3);
+// 	nose_end_pos.y = player_centre.y + data->player->dir.y * (PLAYER_SIZE * 3);
 
 // 	draw_filled_circle(data->minimap_image, player_centre, PLAYER_SIZE, COLOUR_YELLOW);
 // 	draw_line(data->minimap_image, player_centre, nose_end_pos, COLOUR_GREEN);
