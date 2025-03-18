@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/17 13:24:36 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/18 11:34:46 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void fake_parsing(t_data *data)
 	data->minimap_size.y = (data->map->rows * GRIDSIZE) + data->map->rows;
 	
 
-	
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
 		error_and_exit("Malloc allocation failed\n");

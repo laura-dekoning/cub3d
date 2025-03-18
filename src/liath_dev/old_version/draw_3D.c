@@ -48,3 +48,26 @@ void draw_3d_wall(t_data *data, t_ray *ray, int ray_i, float angle)
 		i++;
 	}
 }
+
+// void render_3d_game(t_data *data)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (i < NUMB_RAYS)
+// 	{
+// 		dir.x = cos(angle);
+// 		dir.y = sin(angle);
+// 		draw_3d_wall(data, &data->ray[i], i, angle);
+// 		angle += angle_step;
+// 		if (angle > (2 * PI))
+// 		{
+// 			angle -= (2 * PI);
+// 		}
+// 		if (angle < 0)
+// 		{			
+// 			angle += (2 * PI);
+// 		}
+// 		i++;
+// 	}
+// }

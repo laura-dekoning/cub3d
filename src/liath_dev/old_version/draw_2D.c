@@ -19,7 +19,7 @@ void	draw_eye(t_data *data, mlx_image_t *image, t_vector_f player_centre, int co
 	t_vector_f	dir;
 	float		angle;
 
-	angle = data->player->angle - (70.0 * ONE_DEGREE);
+	angle = data->player->angle - (80.0 * ONE_DEGREE);
 	dir.x = cos(angle);
 	dir.y = sin(angle);
 	eye_centre.x = player_centre.x + dir.x * (PLAYER_SIZE / 1.8);
@@ -69,7 +69,7 @@ void	draw_player(t_data *data, mlx_image_t *image)
 {	
 	draw_filled_circle(image, data->player->pos, PLAYER_SIZE, COLOUR_YELLOW);
 	draw_circle(image, data->player->pos, PLAYER_SIZE, COLOUR_BLACK);
-	draw_circle(image, data->player->pos, PLAYER_SIZE + 1, COLOUR_BLACK);
+	// draw_circle(image, data->player->pos, PLAYER_SIZE + 1, COLOUR_BLACK);
 	draw_mouth(data, image, data->player->pos, COLOUR_BLACK);
 	draw_eye(data, image, data->player->pos, COLOUR_BLACK);
 }
