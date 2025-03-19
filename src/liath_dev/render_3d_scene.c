@@ -12,24 +12,34 @@
 
 #include "../../incl/liath.h"
 
-void render_3d_scene(t_data *data, int ray_i, int wall_top, int wall_bottom)
+void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
 {
-	// t_vector_i 	line_start;
-	// int 		line_height;
-	// int 		line_width;
-
-	// line_width = data->window->width / NUMB_RAYS;
-	// line_height = wall_bottom - wall_top;
-
-	// line_start.x = ray_i * line_width;
-	// line_start.y = wall_top;
-
-	// draw_filled_square(data->window_image, line_start, line_width, line_height, COLOUR_DARK_GREEN);
-
 	int 		line_width;
 	int			i;
 	t_vector_f 	start;
 	t_vector_f 	end;
+	uint64_t colour;
+
+	if (ray->N_S_wall == true)
+		colour = COLOUR_YELLOW;
+	else 
+		colour = darken_colour(COLOUR_YELLOW, 1);
+	// if (wall_side == NORTH)
+	// {
+	// 	colour = COLOUR_BLUE;
+	// }
+	// else if (wall_side == EAST)
+	// {
+	// 	colour = COLOUR_GREEN;
+	// }
+	// else if (wall_side == SOUTH)
+	// {
+	// 	colour = COLOUR_RED;
+	// }
+	// else // wall_side == WEST
+	// {
+	// 	colour = COLOUR_YELLOW;
+	// }
 
 	line_width = data->window->width / NUMB_RAYS;
 	i = 0;
@@ -41,7 +51,7 @@ void render_3d_scene(t_data *data, int ray_i, int wall_top, int wall_bottom)
 		start.y = wall_top;
 		end.x = line_width * ray_i + i;
 		end.y = wall_bottom;
-		draw_line(data->window_image, start, end, data->walls_colour);
+		draw_line(data->window_image, start, end, colour);
 		i++;
 	}
 }
@@ -63,7 +73,7 @@ void cast_ray(t_data *data, t_ray *ray, int ray_i, float angle)
 
 	wall_top = get_max(0, (data->window->height / 2) - (wall_height / 2));
 	wall_bottom = get_min(data->window->height, (data->window->height / 2) + (wall_height / 2));
-	render_3d_scene(data, ray_i, wall_top, wall_bottom);
+	render_3d_scene(data, ray, ray_i, wall_top, wall_bottom);
 }
 
 

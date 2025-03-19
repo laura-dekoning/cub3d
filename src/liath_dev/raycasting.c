@@ -12,6 +12,7 @@
 
 #include "../../incl/liath.h"
 
+// DDA algorithm
 void get_ray_distance(t_data *data, t_ray *ray, t_vector_f *current_map_pos)
 {
 	while (!ray->wall_hit)
@@ -21,12 +22,14 @@ void get_ray_distance(t_data *data, t_ray *ray, t_vector_f *current_map_pos)
 			current_map_pos->x += ray->step_dir.x;
 			ray->distance = ray->collision_point.x;
 			ray->collision_point.x += ray->step_size.x;
+			ray->N_S_wall = false;		
 		}
 		else
 		{
 			current_map_pos->y += ray->step_dir.y;
 			ray->distance = ray->collision_point.y;
 			ray->collision_point.y += ray->step_size.y;
+			ray->N_S_wall = true;
 		}
 		if (current_map_pos->x >= 0 && current_map_pos->y >= 0 && current_map_pos->x < data->map->map_width_px && current_map_pos->y < data->map->map_height_px)
 		{
@@ -36,8 +39,35 @@ void get_ray_distance(t_data *data, t_ray *ray, t_vector_f *current_map_pos)
 	}
 	if (ray->wall_hit)
 	{
+		// for the minimap:
 		ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
 		ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
+		
+
+
+		// if (ray->horiztonal_wall == true)
+		// {
+		// 	if (ray->step_dir.y < 0)
+		// 	{
+		// 		ray->wall_side = NORTH;
+		// 	}
+		// 	else
+		// 	{
+		// 		ray->wall_side = SOUTH;
+		// 	}
+		// }
+		// else
+		// {
+		// 	if (ray->step_dir.x < 0)
+		// 	{
+		// 		ray->wall_side = WEST;
+		// 	}
+		// 	else
+		// 	{
+		// 		ray->wall_side = EAST;
+		// 	}
+		// }
+	
 	}
 }
 

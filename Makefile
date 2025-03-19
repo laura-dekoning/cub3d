@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/19 18:36:44 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/19 19:33:31 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,6 +118,7 @@ HEADERS		:=	incl/liath.h
 
 SRC_DIR		:=	src/liath_dev
 SRC_FILES	:=	\
+				colours.c \
 				draw_shapes.c \
 				error_clear_exit.c \
 				fake_parsing.c \

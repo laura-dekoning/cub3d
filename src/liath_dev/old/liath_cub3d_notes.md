@@ -9,10 +9,11 @@
 
 
 TODO:
-[]	game() - Optimize Rendering
-		Currently, fill_canvas(data) is always called before game(), even if only a small change happened.
-		Instead, clear only the player's old position before redrawing.
-		If a full refresh is needed, consider double buffering to prevent flickering.
+[]	add framerate
+
+TODO BONUS:
+[]	add mouse-rotation
+[]  add compass
 
 
 youtube video summary:

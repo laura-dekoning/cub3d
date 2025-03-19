@@ -32,10 +32,10 @@
 # define FOV			60.0
 # define NUMB_RAYS		(120 * 2)
 
-// # define NORTH 			1
-// # define EAST 			2
-// # define SOUTH 			3
-// # define WEST 			4
+# define NORTH 			1
+# define EAST 			2
+# define SOUTH 			3
+# define WEST 			4
 
 # define DIR_NORTH 		(3 * (PI / 2))
 # define DIR_EAST 		(0)
@@ -120,15 +120,16 @@ typedef struct s_ray
 {
 	t_vector_f	start_pos;
 	t_vector_f	end_pos;
-	t_vector_f	direction;
 	float		angle;
+	t_vector_f	direction;
 	t_vector_i	step_dir;
 	t_vector_f	step_size;
 	t_vector_f	collision_point;
-	
-	// t_vector_i	current_map_pos;
-	bool		wall_hit;
 	float 		distance;
+	bool		wall_hit;
+	// bool		horizontal_wall;
+	bool		N_S_wall;
+	int			wall_side;
 } t_ray ;
 
 
@@ -155,10 +156,9 @@ typedef struct s_data
 	char		*west_texture;
 	char		*east_texture;
 	
-	uint32_t	floor_colour;
-	uint32_t	ceiling_colour;
-	uint32_t	walls_colour;
-
+	uint64_t	floor_colour;
+	uint64_t	ceiling_colour;
+	uint64_t	walls_colour;
 
 	t_vector_i	minimap_size;
 } t_data;
@@ -169,42 +169,44 @@ typedef struct s_data
 // void	draw_2D_map(t_data *data, mlx_image_t *image);
 // void	draw_player(t_data *data, mlx_image_t *image);
 
+// colours.c
+uint64_t	darken_colour(uint64_t colour, int shift);
 
 // draw_shapes.c
-void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-void	draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour);
-// void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour);
+void		draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
+void		draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour);
+// void		draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
 // void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 
 // error_clear_exit.c    
-void	error_and_exit(char *str);
-void	clear_everything(t_data *data);
+void		error_and_exit(char *str);
+void		clear_everything(t_data *data);
 
 // fake_parsing.c        
-void	fake_parsing(t_data *data); // TAKE OUT
+void		fake_parsing(t_data *data); // TAKE OUT
 
 // fill_canvas.c
-void	fill_canvas(t_data *data);
+void		fill_canvas(t_data *data);
 
 // init_game.c           
-void	game(t_data *data);
-void	cub3d(t_data *data);
+void		game(t_data *data);
+void		cub3d(t_data *data);
 
 // keys.c                
-void	is_key_pressed(void *data);
+void		is_key_pressed(void *data);
 
 // // minimap.c
 
 // player_collision.c
-void	check_collision(t_data *data, t_vector_f step);
+void		check_collision(t_data *data, t_vector_f step);
 
 // raycasting.c
-void 	raycasting(t_data *data);
+void 		raycasting(t_data *data);
 
 // render_3d_scene.c
-void cast_ray(t_data *data, t_ray *ray, int ray_i, float angle);
+void		cast_ray(t_data *data, t_ray *ray, int ray_i, float angle);
 
 
 // utils
-float	get_min(float a, float b);
-float	get_max(float a, float b);
+float		get_min(float a, float b);
+float		get_max(float a, float b);
