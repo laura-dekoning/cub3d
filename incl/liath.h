@@ -22,9 +22,9 @@
 # define MOVING_SPEED	1.5
  # define ROTATE_SPEED	0.1
 
-# define MINIMAP_WIDTH	(WINDOW_WIDTH / 3)
-# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 3)
-# define GRIDSIZE		(64 / 2)
+# define MINIMAP_WIDTH	(WINDOW_WIDTH / 5)
+# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 5)
+# define GRIDSIZE		(64 / 8)
 
 # define PI				3.14159265359
 # define ONE_D_RADIAN	0.0174533		// 1 degree = 0.0174533 radians
@@ -195,7 +195,8 @@ void		cub3d(t_data *data);
 // keys.c                
 void		is_key_pressed(void *data);
 
-// // minimap.c
+// minimap.c
+void		minimap(t_data *data);
 
 // player_collision.c
 void		check_collision(t_data *data, t_vector_f step);

@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/19 15:39:06 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/19 22:35:23 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	game(t_data *data)
 {
 	fill_canvas(data);
 	raycasting(data);
+	minimap(data);
 }
 
 void	images_to_window(t_data *data)
@@ -26,12 +27,12 @@ void	images_to_window(t_data *data)
 		mlx_terminate(data->window);
 		error_and_exit("Image could not be displayed on the window\n");
 	}
-	// if (mlx_image_to_window(data->window, data->minimap_image, 0, 0) < 0)
-	// {
-	// 	mlx_delete_image(data->window, data->window_image);
-	// 	mlx_terminate(data->window);
-	// 	error_and_exit("Image could not be displayed on the window\n");
-	// }
+	if (mlx_image_to_window(data->window, data->minimap_image, 0, 0) < 0)
+	{
+		mlx_delete_image(data->window, data->window_image);
+		mlx_terminate(data->window);
+		error_and_exit("Image could not be displayed on the window\n");
+	}
 }
 
 void	init_window_and_images(t_data *data)
@@ -47,12 +48,12 @@ void	init_window_and_images(t_data *data)
 		mlx_terminate(data->window);
 		error_and_exit("Image could not be created\n");
 	}
-	// data->minimap_image = mlx_new_image(data->window, MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	// if (data->minimap_image == NULL)
-	// {
-	// 	mlx_terminate(data->window);
-	// 	error_and_exit("Image could not be created\n");
-	// }
+	data->minimap_image = mlx_new_image(data->window, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	if (data->minimap_image == NULL)
+	{
+		mlx_terminate(data->window);
+		error_and_exit("Image could not be created\n");
+	}
 }
 
 

@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/19 19:33:31 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/19 22:33:57 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRC_FILES	:=	\
 				init_game.c \
 				keys.c \
 				main_liath.c \
+				minimap.c \
 				player_collision.c \
 				raycasting.c \
 				render_3d_scene.c \
