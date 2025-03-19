@@ -33,48 +33,48 @@ void	draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width
 	}
 }
 
-// void draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour) 
-// {
-// 	int x;
-// 	int y;
+void draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour) 
+{
+	int x;
+	int y;
 	
-// 	y = -radius;
-// 	while (y <= radius) 
-// 	{
-// 		x = -radius;
-// 		while (x <= radius) 
-// 		{
-// 			if ((centre.x + x >= 0 && centre.y + y >= 0 && centre.x + x < (int)image->width && centre.y + y < (int)image->height) && (x * x + y * y <= radius * radius))
-// 			{
-// 				mlx_put_pixel(image, centre.x + x, centre.y + y, colour);
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+	y = -radius;
+	while (y <= radius) 
+	{
+		x = -radius;
+		while (x <= radius) 
+		{
+			if ((centre.x + x >= 0 && centre.y + y >= 0 && centre.x + x < (int)image->width && centre.y + y < (int)image->height) && (x * x + y * y <= radius * radius))
+			{
+				mlx_put_pixel(image, centre.x + x, centre.y + y, colour);
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
-// void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
-// {
-// 	int x;
-// 	int y;
-// 	double angle_step;
-// 	double angle;
+void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
+{
+	int x;
+	int y;
+	double angle_step;
+	double angle;
 
-// 	angle_step = 1.0 / radius;
-// 	angle = 0;
+	angle_step = 1.0 / radius;
+	angle = 0;
 
-// 	while (angle < 2 * PI)
-// 	{
-// 		x = (int)(centre.x + cos(angle) * radius);
-// 		y = (int)(centre.y + sin(angle) * radius);
-// 		if (x >= 0 && y >= 0 && x < (int)image->width && y < (int)image->height)
-// 		{
-// 			mlx_put_pixel(image, x, y, colour);
-// 		}
-// 		angle += angle_step;
-// 	}
-// }
+	while (angle < 2 * PI)
+	{
+		x = (int)(centre.x + cos(angle) * radius);
+		y = (int)(centre.y + sin(angle) * radius);
+		if (x >= 0 && y >= 0 && x < (int)image->width && y < (int)image->height)
+		{
+			mlx_put_pixel(image, x, y, colour);
+		}
+		angle += angle_step;
+	}
+}
 
 
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour)

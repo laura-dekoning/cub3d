@@ -56,7 +56,7 @@ void DDA_aggorithm(t_data *data, t_ray *ray, t_vector_f *map_pos)
 		}
 		if (map_pos->x >= 0 && map_pos->y >= 0 && map_pos->x < data->map->map_width_px && map_pos->y < data->map->map_height_px)
 		{
-			if (data->map->map[(int)(map_pos->y / GRIDSIZE)][(int)(map_pos->x / GRIDSIZE)] == '1')
+			if (data->map->map[(int)(map_pos->y / GRIDSIZE_3D)][(int)(map_pos->x / GRIDSIZE_3D)] == '1')
 			ray->wall_hit = true;
 		}
 	}
@@ -66,13 +66,13 @@ void get_ray_distance(t_data *data, t_ray *ray, t_vector_f *map_pos)
 {
 
 	DDA_aggorithm(data, ray, map_pos);
-	// if (ray->wall_hit)
-	// {
-	// 	// for the minimap:
-	// 	// ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
-	// 	// ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
+	if (ray->wall_hit)
+	{
+		// for the minimap:
+		ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
+		ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
 		
-	// }
+	}
 }
 
 // get ray step direction and collision point with the next horixontal or vertical line

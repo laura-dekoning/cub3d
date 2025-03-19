@@ -87,10 +87,10 @@
 // 		x = 0;
 // 		while (x < data->map->cols)
 // 		{
-// 			// offset.x = (x * GRIDSIZE) + x;
-// 			// offset.y = (y * GRIDSIZE) + y;
-// 			offset.x = x * GRIDSIZE;
-// 			offset.y = y * GRIDSIZE;
+// 			// offset.x = (x * GRIDSIZE_3D) + x;
+// 			// offset.y = (y * GRIDSIZE_3D) + y;
+// 			offset.x = x * GRIDSIZE_3D;
+// 			offset.y = y * GRIDSIZE_3D;
 // 			if (data->map->map[y][x] == '1')
 // 			{	
 // 				colour = COLOUR_BLACK;
@@ -99,7 +99,7 @@
 // 			{	
 // 				colour = COLOUR_LIGHT_GRAY;
 // 			}
-// 			draw_filled_square(image, offset, GRIDSIZE, GRIDSIZE, colour);
+// 			draw_filled_square(image, offset, GRIDSIZE_3D, GRIDSIZE_3D, colour);
 // 			x++;
 // 		}
 // 		y++;
@@ -239,13 +239,13 @@
 // 		while (x < data->map->cols)
 // 		{
 // 		// to draw minimap with gridlines (but this causes problems with the rays):
-// 			// offset.x = (x * GRIDSIZE) + x;
-// 			// offset.y = (y * GRIDSIZE) + y;
-// 			offset.x = (x * GRIDSIZE) - minimap_offset.x;
-// 			offset.y = (y * GRIDSIZE) - minimap_offset.y;
+// 			// offset.x = (x * GRIDSIZE_3D) + x;
+// 			// offset.y = (y * GRIDSIZE_3D) + y;
+// 			offset.x = (x * GRIDSIZE_3D) - minimap_offset.x;
+// 			offset.y = (y * GRIDSIZE_3D) - minimap_offset.y;
 
-// 			// if (offset.x + GRIDSIZE > 0 && offset.y + GRIDSIZE > 0 && offset.x < MINIMAP_WIDTH && offset.y < MINIMAP_HEIGHT)
-// 			if (offset.x + GRIDSIZE > -GRIDSIZE && offset.y + GRIDSIZE > -GRIDSIZE && offset.x < MINIMAP_WIDTH + GRIDSIZE && offset.y < MINIMAP_HEIGHT + GRIDSIZE)
+// 			// if (offset.x + GRIDSIZE_3D > 0 && offset.y + GRIDSIZE_3D > 0 && offset.x < MINIMAP_WIDTH && offset.y < MINIMAP_HEIGHT)
+// 			if (offset.x + GRIDSIZE_3D > -GRIDSIZE_3D && offset.y + GRIDSIZE_3D > -GRIDSIZE_3D && offset.x < MINIMAP_WIDTH + GRIDSIZE_3D && offset.y < MINIMAP_HEIGHT + GRIDSIZE_3D)
 // 			{
 // 				if (data->map->map[y][x] == '1')
 // 				{	
@@ -255,7 +255,7 @@
 // 				{	
 // 					colour = COLOUR_LIGHT_GRAY;
 // 				}
-// 				draw_filled_square(data->minimap_image, offset, GRIDSIZE, GRIDSIZE, colour);
+// 				draw_filled_square(data->minimap_image, offset, GRIDSIZE_3D, GRIDSIZE_3D, colour);
 // 			}
 // 			x++;
 // 		}

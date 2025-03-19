@@ -73,8 +73,8 @@ void cast_ray(t_data *data, t_ray *ray, int ray_i)
 	wall_distance = (data->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
 	corrected_distance = ray->distance * cos(ray->angle - data->player.angle);
 
-	wall_height = (wall_distance * GRIDSIZE) / corrected_distance;
-	// wall_height = (wall_distance * GRIDSIZE) / ray->distance;
+	wall_height = (wall_distance * GRIDSIZE_3D) / corrected_distance;
+	// wall_height = (wall_distance * GRIDSIZE_3D) / ray->distance;
 
 	wall_top = get_max(0, (data->window->height / 2) - (wall_height / 2));
 	wall_bottom = get_min(data->window->height, (data->window->height / 2) + (wall_height / 2));

@@ -15,22 +15,11 @@
 # define WINDOW_HEIGHT	1200
 # define WINDOW_TITLE	"L&L Cub3d"
 
-// these are good for gameplay
-	// # define MOVING_SPEED	0.7
-	// # define ROTATE_SPEED	0.03
-// for te devs:
-# define MOVING_SPEED	1.5
- # define ROTATE_SPEED	0.1
-
-# define MINIMAP_WIDTH	(WINDOW_WIDTH / 5)
-# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 5)
-# define GRIDSIZE		(64 / 8)
-
 # define PI				3.14159265359
 # define ONE_D_RADIAN	0.0174533		// 1 degree = 0.0174533 radians
 
 # define FOV			60.0
-# define NUMB_RAYS		(120 * 2)
+# define NUMB_RAYS		120
 
 # define NORTH 			1
 # define EAST 			2
@@ -38,11 +27,19 @@
 # define WEST 			4
 
 # define DIR_NORTH 		(3 * (PI / 2))
-# define DIR_EAST 		(0)
+# define DIR_EAST 		0
 # define DIR_SOUTH 		(PI / 2)
-# define DIR_WEST 		(PI)
+# define DIR_WEST 		PI
 
-# define PLAYER_SIZE	(GRIDSIZE / 4)
+# define MOVING_SPEED	1.1
+# define ROTATE_SPEED	0.03
+
+# define MINIMAP_WIDTH	(WINDOW_WIDTH / 5)
+# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 5)
+# define GRIDSIZE_3D	64
+# define GRIDSIZE_MM	16
+# define PLAYER_SIZE	(GRIDSIZE_MM / 4)
+
 
 // ==== COLOURS FOR PIXELS ==== 0xRRGGBBAA
 # define COLOUR_BLACK			0x000000FF
@@ -141,6 +138,19 @@ typedef struct s_player
 	bool		wall_hit;
 } t_player;
 
+
+typedef struct s_minimap
+{
+	uint64_t	wall_colour;
+	uint64_t	floor_colour;
+	uint64_t	player_colour;
+	uint64_t	border_colour;
+	uint64_t	ray_colour;
+	// t_vector_i	minimap_size;
+
+} t_minimap;
+
+
 typedef struct s_data
 {
 	mlx_t		*window;
@@ -148,9 +158,12 @@ typedef struct s_data
 	mlx_image_t	*minimap_image;
 
 	t_map		*map;
+
 	t_player	player;
 	t_ray 		ray[NUMB_RAYS];
 	
+	t_minimap	minimap;
+
 	char		*north_texture;
 	char		*south_texture;
 	char		*west_texture;
@@ -159,11 +172,7 @@ typedef struct s_data
 	uint64_t	floor_colour;
 	uint64_t	ceiling_colour;
 	uint64_t	walls_colour;
-
-	t_vector_i	minimap_size;
 } t_data;
-
-
 
 // // draw_2D.c
 // void	draw_2D_map(t_data *data, mlx_image_t *image);
@@ -175,8 +184,8 @@ uint64_t	darken_colour(uint64_t colour, int shift);
 // draw_shapes.c
 void		draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
 void		draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour);
-// void		draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
-// void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
+void		draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
+void		draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 
 // error_clear_exit.c    
 void		error_and_exit(char *str);

@@ -19,14 +19,14 @@ bool	hit_wall(t_data *data, float player_x, float player_y)
 	t_vector_i	bottom_left;
 	t_vector_i	bottom_right;
 
-	top_left.x = ((int)player_x - PLAYER_SIZE) / GRIDSIZE;
-	top_left.y = ((int)player_y - PLAYER_SIZE) / GRIDSIZE;
-	top_right.x = ((int)player_x + PLAYER_SIZE) / GRIDSIZE;
-	top_right.y = ((int)player_y - PLAYER_SIZE) / GRIDSIZE;
-	bottom_left.x = ((int)player_x - PLAYER_SIZE) / GRIDSIZE;
-	bottom_left.y = ((int)player_y + PLAYER_SIZE) / GRIDSIZE;
-	bottom_right.x = ((int)player_x + PLAYER_SIZE) / GRIDSIZE;
-	bottom_right.y = ((int)player_y + PLAYER_SIZE) / GRIDSIZE;
+	top_left.x = ((int)player_x - PLAYER_SIZE) / GRIDSIZE_3D;
+	top_left.y = ((int)player_y - PLAYER_SIZE) / GRIDSIZE_3D;
+	top_right.x = ((int)player_x + PLAYER_SIZE) / GRIDSIZE_3D;
+	top_right.y = ((int)player_y - PLAYER_SIZE) / GRIDSIZE_3D;
+	bottom_left.x = ((int)player_x - PLAYER_SIZE) / GRIDSIZE_3D;
+	bottom_left.y = ((int)player_y + PLAYER_SIZE) / GRIDSIZE_3D;
+	bottom_right.x = ((int)player_x + PLAYER_SIZE) / GRIDSIZE_3D;
+	bottom_right.y = ((int)player_y + PLAYER_SIZE) / GRIDSIZE_3D;
 	if (data->map->map[top_left.y][top_left.x] == '1' || data->map->map[top_right.y][top_right.x] == '1' || data->map->map[bottom_left.y][bottom_left.x] == '1' || data->map->map[bottom_right.y][bottom_right.x] == '1')
 	{
 		return (true);

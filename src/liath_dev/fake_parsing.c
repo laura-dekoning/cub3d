@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/19 19:08:03 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/19 23:12:24 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void parse_map(t_data *data)
 	data->map->rows = 20;   // y
 	data->map->cols = 20;   // x
 // =================================
-	data->map->map_width_px = data->map->cols * GRIDSIZE;
-	data->map->map_height_px = data->map->rows * GRIDSIZE;
+	data->map->map_width_px = data->map->cols * GRIDSIZE_3D;
+	data->map->map_height_px = data->map->rows * GRIDSIZE_3D;
 	
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
@@ -91,7 +91,7 @@ void parse_player(t_data *data)
 	int y;
 	float offset;
 	
-	offset = GRIDSIZE / 2;
+	offset = GRIDSIZE_3D / 2;
 	y = 0;
 	while (y < data->map->rows) 
 	{
@@ -103,26 +103,26 @@ void parse_player(t_data *data)
 				if (data->map->map[y][x] == 'N') 
 				{
 					data->player.angle = DIR_NORTH;
-					data->player.pos.x = (x * GRIDSIZE) + offset;
-					data->player.pos.y = (y * GRIDSIZE) + offset;
+					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
+					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
 				}
 				if (data->map->map[y][x] == 'S')
 				{
 					data->player.angle = DIR_SOUTH;
-					data->player.pos.x = (x * GRIDSIZE) + offset;
-					data->player.pos.y = (y * GRIDSIZE) + offset;
+					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
+					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
 				}
 				if (data->map->map[y][x] == 'E') 
 				{
 					data->player.angle = DIR_EAST;
-					data->player.pos.x = (x * GRIDSIZE) + offset;
-					data->player.pos.y = (y * GRIDSIZE) + offset;
+					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
+					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
 				}
 				if (data->map->map[y][x] == 'W')
 				{
 					data->player.angle = DIR_WEST;
-					data->player.pos.x = (x * GRIDSIZE) + offset;
-					data->player.pos.y = (y * GRIDSIZE) + offset;
+					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
+					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
 				}
 			}
 			x++;
