@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:34:27 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 14:49:22 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 15:33:12 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,16 @@ void	print_map(t_map *map)
 	printf("rows\t: %zu\tcols\t: %zu\n", map->rows, map->cols);
 	while (map->map[i] != NULL)
 	{
-		printf("%s\n", map->map[i]);
+		printf(B_W"%s\n"DEF, map->map[i]);
 		i++;
 	}
+	print_array_with_values(map->map);
 }
 
 void	print_floor_and_ceiling(int *floor, int *ceiling)
 {
 	printf(B_W"Floor: "R"%i, "G"%i, "B"%i \n"DEF, floor[0], floor[1], floor[2]);
 	printf(B_W"Ceiling: "R"%i, "G"%i, "B"%i \n"DEF, ceiling[0], ceiling[1], ceiling[2]);
-}
-
-void	print_data(t_data *data)
-{
-	printf(B_O"Data:\n"DEF);
-	printf(G"North texture:"DEF" [%s]\n", data->north_texture);
-	printf(Y"East texture:"DEF" [%s]\n", data->east_texture);
-	printf(O"South texture:"DEF" [%s]\n", data->south_texture);
-	printf(R"West texture:"DEF" [%s]\n", data->west_texture);
-	print_floor_and_ceiling(data->floor, data->ceiling);
-	print_map(data->map);
-	print_player(data->player);
-	print_check(data->check);
 }
 
 void	print_array_with_values(char **map)
@@ -121,6 +109,36 @@ void	print_string_with_values(char *str)
 			i++;			
 		}
 		printf("\n"DEF);
-
 	}
+}
+
+void	print_adjacent(char **map, int row, int col)
+{
+	int r = -1;
+	int c;
+
+	while (r <= 1)
+	{
+		c = -1;
+		while (c <= 1)
+		{
+			printf("%c ", map[row + r][col + c]);
+			c++;
+		}
+		printf("\n"); // Move to next line for square format
+		r++;
+	}
+}
+
+void	print_data(t_data *data)
+{
+	printf(B_O"Data:\n"DEF);
+	printf(G"North texture:"DEF" [%s]\n", data->north_texture);
+	printf(Y"East texture:"DEF" [%s]\n", data->east_texture);
+	printf(O"South texture:"DEF" [%s]\n", data->south_texture);
+	printf(R"West texture:"DEF" [%s]\n", data->west_texture);
+	print_floor_and_ceiling(data->floor, data->ceiling);
+	print_map(data->map);
+	print_player(data->player);
+	print_check(data->check);
 }
