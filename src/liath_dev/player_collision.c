@@ -27,10 +27,7 @@ bool	hit_wall(t_data *data, float player_x, float player_y)
 	bottom_left.y = ((int)player_y + PLAYER_SIZE) / GRIDSIZE;
 	bottom_right.x = ((int)player_x + PLAYER_SIZE) / GRIDSIZE;
 	bottom_right.y = ((int)player_y + PLAYER_SIZE) / GRIDSIZE;
-	if (data->map->map[top_left.y][top_left.x] == '1' || \
-		data->map->map[top_right.y][top_right.x] == '1' || \
-		data->map->map[bottom_left.y][bottom_left.x] == '1' || \
-		data->map->map[bottom_right.y][bottom_right.x] == '1')
+	if (data->map->map[top_left.y][top_left.x] == '1' || data->map->map[top_right.y][top_right.x] == '1' || data->map->map[bottom_left.y][bottom_left.x] == '1' || data->map->map[bottom_right.y][bottom_right.x] == '1')
 	{
 		return (true);
 	}
@@ -44,14 +41,14 @@ void	check_collision(t_data *data, t_vector_f step)
 {
 	t_vector_f	next_pos;
 
-	next_pos.x = data->player->pos.x + step.x * MOVING_SPEED;
-	next_pos.y = data->player->pos.y + step.y * MOVING_SPEED;
-	if (!hit_wall(data, next_pos.x, data->player->pos.y))
+	next_pos.x = data->player.pos.x + step.x * MOVING_SPEED;
+	next_pos.y = data->player.pos.y + step.y * MOVING_SPEED;
+	if (!hit_wall(data, next_pos.x, data->player.pos.y))
 	{
-		data->player->pos.x = next_pos.x;
+		data->player.pos.x = next_pos.x;
 	}
-	if (!hit_wall(data, data->player->pos.x, next_pos.y))
+	if (!hit_wall(data, data->player.pos.x, next_pos.y))
 	{
-		data->player->pos.y = next_pos.y;
+		data->player.pos.y = next_pos.y;
 	}
 }

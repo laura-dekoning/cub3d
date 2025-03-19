@@ -10,29 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../../incl/liath.h"
 
-void get_ray_distance(t_data *data, t_ray *ray)
+void get_ray_distance(t_data *data, t_ray *ray, t_vector_f *current_map_pos)
 {
 	while (!ray->wall_hit)
 	{
 		if (ray->collision_point.x < ray->collision_point.y)
 		{
-			ray->map_pos.x += ray->step.x;
+			current_map_pos->x += ray->step_dir.x;
 			ray->distance = ray->collision_point.x;
 			ray->collision_point.x += ray->step_size.x;
 		}
 		else
 		{
-			ray->map_pos.y += ray->step.y;
+			current_map_pos->y += ray->step_dir.y;
 			ray->distance = ray->collision_point.y;
 			ray->collision_point.y += ray->step_size.y;
 		}
-		if (ray->map_pos.x >= 0 && ray->map_pos.y >= 0 && ray->map_pos.x < data->minimap_size.x && ray->map_pos.y < data->minimap_size.y)
+		if (current_map_pos->x >= 0 && current_map_pos->y >= 0 && current_map_pos->x < data->map->map_width_px && current_map_pos->y < data->map->map_height_px)
 		{
-			if (data->map->map[(int)(ray->map_pos.y / GRIDSIZE)][(int)(ray->map_pos.x / GRIDSIZE)] == '1')
+			if (data->map->map[(int)(current_map_pos->y / GRIDSIZE)][(int)(current_map_pos->x / GRIDSIZE)] == '1')
 				ray->wall_hit = true;
 		}
 	}
@@ -40,42 +38,42 @@ void get_ray_distance(t_data *data, t_ray *ray)
 	{
 		ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
 		ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
-		draw_line(data->minimap_image, ray->start_pos, ray->end_pos, COLOUR_RED);
 	}
 }
 
-void get_ray_collision(t_data *data, t_ray *ray)
+void get_ray_collision(t_data *data, t_ray *ray, t_vector_f *current_map_pos)
 {
-	if (ray->map_pos.x < 0 || ray->map_pos.x >= data->map->cols * GRIDSIZE || ray->map_pos.y < 0 || ray->map_pos.y >= data->map->rows * GRIDSIZE)
+	if (current_map_pos->x < 0 || current_map_pos->x >= data->map->map_width_px || current_map_pos->y < 0 || current_map_pos->y >= data->map->map_height_px)
     	return;
 	if (ray->direction.x < 0)
 	{
-		ray->step.x = -1;
-		ray->collision_point.x = (ray->start_pos.x - (float)(ray->map_pos.x)) * ray->step_size.x;
+		ray->step_dir.x = -1;
+		ray->collision_point.x = (ray->start_pos.x - (float)current_map_pos->x) * ray->step_size.x;
 	}
 	else 
 	{
-		ray->step.x = 1;
-		ray->collision_point.x = (float)((ray->map_pos.x + 1.0) - ray->start_pos.x) * ray->step_size.x;
+		ray->step_dir.x = 1;
+		ray->collision_point.x = (((float)current_map_pos->x + 1.0) - ray->start_pos.x) * ray->step_size.x;
 	}
 	if (ray->direction.y < 0)
 	{
-		ray->step.y = -1;
-		ray->collision_point.y = (ray->start_pos.y - (float)(ray->map_pos.y)) * ray->step_size.y;
+		ray->step_dir.y = -1;
+		ray->collision_point.y = (ray->start_pos.y - (float)current_map_pos->y) * ray->step_size.y;
 	}
 	else 
 	{
-		ray->step.y = 1;
-		ray->collision_point.y = (float)((ray->map_pos.y + 1.0) - ray->start_pos.y) * ray->step_size.y;
+		ray->step_dir.y = 1;
+		ray->collision_point.y = (((float)current_map_pos->y + 1.0) - ray->start_pos.y) * ray->step_size.y;
 	}
 }
 
-void init_ray(t_data *data, t_ray *ray, t_vector_f dir)
+void init_ray(t_data *data, t_ray *ray, t_vector_f dir, float ang, t_vector_f *current_map_pos)
 {
-	ray->start_pos = data->player->pos;
-	ray->map_pos.x = (int)(data->player->pos.x);
-	ray->map_pos.y = (int)(data->player->pos.y);
+	current_map_pos->x = (int)(data->player.pos.x);
+	current_map_pos->y = (int)(data->player.pos.y);
+	ray->start_pos = data->player.pos;
 	ray->direction = dir;
+	ray->angle = ang;
 	if (ray->direction.x == 0)
 		ray->step_size.x = 1.0e30;
 	else
@@ -90,36 +88,28 @@ void init_ray(t_data *data, t_ray *ray, t_vector_f dir)
 
 void raycasting(t_data *data)
 {
-	t_ray ray[NUMB_RAYS];
+	t_vector_f current_map_pos;
 	t_vector_f dir;
 	float angle;
 	float angle_step;
-	float fov;
 	int i;
 
-	fov = 60.0;
-	angle = data->player->angle - ((fov / 2) * ONE_DEGREE);
-	angle_step = (fov * ONE_DEGREE) / NUMB_RAYS;
+	angle = data->player.angle - ((FOV / 2) * ONE_D_RADIAN);
+	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
 	i = 0;
 	while (i < NUMB_RAYS)
 	{
 		dir.x = cos(angle);
 		dir.y = sin(angle);
-		init_ray(data, &data->ray[i], dir);	
-		get_ray_collision(data, &data->ray[i]);
-		get_ray_distance(data, &data->ray[i]);
-		draw_3d_wall(data, &data->ray[i], i, angle);
+		init_ray(data, &data->ray[i], dir, angle, &current_map_pos);
+		get_ray_collision(data, &data->ray[i], &current_map_pos);
+		get_ray_distance(data, &data->ray[i], &current_map_pos);
+		cast_ray(data, &data->ray[i], i, angle);
 		angle += angle_step;
 		if (angle > (2 * PI))
-		{
 			angle -= (2 * PI);
-		}
 		if (angle < 0)
-		{			
 			angle += (2 * PI);
-		}
 		i++;
 	}
 }
-
-

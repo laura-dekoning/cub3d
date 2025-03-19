@@ -11,7 +11,6 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
-// adjusable:
 # define WINDOW_WIDTH	1200
 # define WINDOW_HEIGHT	1200
 # define WINDOW_TITLE	"L&L Cub3d"
@@ -25,18 +24,18 @@
 
 # define MINIMAP_WIDTH	(WINDOW_WIDTH / 3)
 # define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 3)
-# define GRIDSIZE		32
-// --------------
+# define GRIDSIZE		(64 / 2)
 
 # define PI				3.14159265359
-# define ONE_DEGREE		0.0174533
+# define ONE_D_RADIAN	0.0174533		// 1 degree = 0.0174533 radians
 
-# define NUMB_RAYS		120
+# define FOV			60.0
+# define NUMB_RAYS		(120 * 2)
 
-# define NORTH 			1
-# define EAST 			2
-# define SOUTH 			3
-# define WEST 			4
+// # define NORTH 			1
+// # define EAST 			2
+// # define SOUTH 			3
+// # define WEST 			4
 
 # define DIR_NORTH 		(3 * (PI / 2))
 # define DIR_EAST 		(0)
@@ -101,6 +100,8 @@ typedef struct s_map
 	char	**map;
 	int		rows;	// y
 	int		cols;	// x
+	int		map_width_px;
+	int		map_height_px;
 } t_map;
 
 typedef struct s_vector_f
@@ -120,13 +121,12 @@ typedef struct s_ray
 	t_vector_f	start_pos;
 	t_vector_f	end_pos;
 	t_vector_f	direction;
+	float		angle;
+	t_vector_i	step_dir;
 	t_vector_f	step_size;
-
-	t_vector_i	map_pos;
-
 	t_vector_f	collision_point;
-	t_vector_i	step;
-
+	
+	// t_vector_i	current_map_pos;
 	bool		wall_hit;
 	float 		distance;
 } t_ray ;
@@ -147,8 +147,7 @@ typedef struct s_data
 	mlx_image_t	*minimap_image;
 
 	t_map		*map;
-	t_player	*player;
-
+	t_player	player;
 	t_ray 		ray[NUMB_RAYS];
 	
 	char		*north_texture;
@@ -164,37 +163,44 @@ typedef struct s_data
 
 
 
-// draw_2D.c
-void	draw_2D_map(t_data *data, mlx_image_t *image);
-void	draw_player(t_data *data, mlx_image_t *image);
+// // draw_2D.c
+// void	draw_2D_map(t_data *data, mlx_image_t *image);
+// void	draw_player(t_data *data, mlx_image_t *image);
 
-// draw_3D.c
-void	draw_3d_wall(t_data *data, t_ray *ray, int ray_i, float angle);
 
 // draw_shapes.c
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-void	draw_filled_square(mlx_image_t *image, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour);
-void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour);
-void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
+void	fill_canvas(t_data *data);
+// void	draw_filled_square(mlx_image_t *image, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour);
+// void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour);
+// void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 
 // error_clear_exit.c    
 void	error_and_exit(char *str);
 void	clear_everything(t_data *data);
+
 // fake_parsing.c        
 void	fake_parsing(t_data *data); // TAKE OUT
+
 // init_game.c           
-void	init_window(t_data *data);
-void	fill_canvas(t_data *data);
 void	game(t_data *data);
+void	cub3d(t_data *data);
+
 // keys.c                
-void	key_is_pressed(void *data);
+void	is_key_pressed(void *data);
 
+// // minimap.c
 
-// minimap.c
 // player_collision.c
 void	check_collision(t_data *data, t_vector_f step);
-// rays.c
+
+// raycasting.c
 void 	raycasting(t_data *data);
+
+// render_3d_scene.c
+void cast_ray(t_data *data, t_ray *ray, int ray_i, float angle);
+
+
 // utils
 float	get_min(float a, float b);
 float	get_max(float a, float b);

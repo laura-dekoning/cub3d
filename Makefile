@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/17 14:23:41 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/19 15:41:08 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,17 +117,16 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 HEADERS		:=	incl/liath.h
 
 SRC_DIR		:=	src/liath_dev
-SRC_FILES	:=	draw_2D.c \
-				draw_3D.c \
+SRC_FILES	:=	\
 				draw_shapes.c \
 				error_clear_exit.c \
 				fake_parsing.c \
 				init_game.c \
 				keys.c \
 				main_liath.c \
-				minimap.c \
 				player_collision.c \
-				rays.c \
+				raycasting.c \
+				render_3d_scene.c \
 				utils.c
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))

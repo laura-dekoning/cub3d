@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+// #include "../../incl/liath.h"
 
 
 // void	draw_eye(t_data *data, mlx_image_t *image, t_vector_f player_centre, int colour)
@@ -19,7 +19,7 @@
 // 	t_vector_f	dir;
 // 	float		angle;
 
-// 	angle = data->player->angle - (80.0 * ONE_DEGREE);
+// 	angle = data->player->angle - (80.0 * ONE_D_RADIAN);
 // 	dir.x = cos(angle);
 // 	dir.y = sin(angle);
 // 	eye_centre.x = player_centre.x + dir.x * (PLAYER_SIZE / 1.8);
@@ -38,8 +38,8 @@
 // 	int i;
 
 // 	fov = 60.0;
-// 	angle = data->player->angle - ((fov / 2) * ONE_DEGREE);
-// 	angle_step = (fov * ONE_DEGREE) / NUMB_RAYS;
+// 	angle = data->player->angle - ((fov / 2) * ONE_D_RADIAN);
+// 	angle_step = (fov * ONE_D_RADIAN) / NUMB_RAYS;
 // 	i = 0;
 // 	while (i < NUMB_RAYS)
 // 	{
