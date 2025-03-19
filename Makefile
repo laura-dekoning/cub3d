@@ -6,14 +6,14 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/14 18:34:05 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/19 14:26:13 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	cub3d
 
 CC			:=	cc -Ofast -g
-CFLAGS		:=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		:=	-Wall -Werror -Wextra# -g -fsanitize=address
 
 LIBFT_DIR	:=	lib/libft
 LIBFT_A		:=	$(LIBFT_DIR)/libft.a
@@ -30,6 +30,7 @@ SRC_DIR		:=	src
 SRC_FILES	:=	\
 				alloc_mem_for_data.c \
 				error.c \
+				fill_and_replace.c \
 				free_data.c \
 				get_data.c \
 				main.c \
@@ -42,6 +43,7 @@ SRC_FILES	:=	\
 				set_default.c \
 				string_to_rgb.c \
 				validate_file_and_init_data.c \
+				validate_map.c \
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

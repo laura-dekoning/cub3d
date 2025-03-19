@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/14 16:01:59 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 14:08:16 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef enum e_setting
 typedef struct s_map
 {
 	char	**map;
-	int		rows; //rows = if (ft_strlen(map[x][y] > rows) rows = y;
-	int		cols;
+	size_t	rows; //rows = if (ft_strlen(map[x][y] > rows) rows = y;
+	size_t	cols;
 }				t_map;
 
 typedef struct s_player

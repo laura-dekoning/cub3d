@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/11 18:22:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/16 09:32:51 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 14:23:34 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,5 @@ void	validate_file_and_init_data(t_data *data, char *file_as_str)
 			start = parse_validate_init_map(data, file_as_str, start);
 			map = true;
 		}
-		if (file_as_str[start] != '\n' && file_as_str[start] != ' ' && file_as_str[start] != '\t')
-			error_message(data, "File contains weird content, mate!");
-		start++;
 	}
 }

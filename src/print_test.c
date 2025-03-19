@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:34:27 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/14 18:33:03 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 14:49:22 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_map(t_map *map)
 
 	i = 0;
 	printf(B_G"Map:\n"DEF);
-	printf("rows\t: %i\tcols\t: %i\n", map->rows, map->cols);
+	printf("rows\t: %zu\tcols\t: %zu\n", map->rows, map->cols);
 	while (map->map[i] != NULL)
 	{
 		printf("%s\n", map->map[i]);
@@ -73,4 +73,54 @@ void	print_data(t_data *data)
 	print_map(data->map);
 	print_player(data->player);
 	print_check(data->check);
+}
+
+void	print_array_with_values(char **map)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (map[x] != NULL)
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			printf("|%c |", map[x][y]);
+			y++;			
+		}
+		printf("\n");
+		y = 0;
+		while (map[x][y])
+		{
+			printf("|%i|", map[x][y]);
+			y++;			
+		}
+		printf("\n");
+		x++;
+	}
+}
+
+void	print_string_with_values(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i])
+		{
+			printf(B_G"|%c |", str[i]);
+			i++;			
+		}
+		printf("\n");
+		i = 0;
+		while (str[i])
+		{
+			printf("|%i|", str[i]);
+			i++;			
+		}
+		printf("\n"DEF);
+
+	}
 }

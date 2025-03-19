@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/16 15:52:34 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 14:23:58 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	set_player(t_data *data, char **map)
 
 void	set_rows_and_cols(t_data *data, char **map)
 {
-	int	rows;
-	int	cols;
+	size_t	rows;
+	size_t	cols;
 
 	rows = 0;
 	while (map[rows])

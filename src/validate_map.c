@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/16 18:52:06 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 14:42:23 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ static void	check_zero(t_data *data, char **map)
 		i++;
 	}
 	i = 0;
-	while (map[i][0] != NULL)
+	while (map[i][0] != '\0')
 	{
 		if (map[i][0] != '1' || map[i][0] != ' ')
 			error_message(data, NO_WALL);
 		i++;
 	}
 }
-
 
 void	surrounded_by_walls(t_data *data)
 {
@@ -80,7 +79,11 @@ void	surrounded_by_walls(t_data *data)
 
 void	validate_map(t_data *data)
 {
+	print_array_with_values(data->map->map);
+	printf(B_P"-----------------------------------------------------------------------------------\n"DEF);
+	printf(B_P"-----------------------------------------------------------------------------------\n"DEF);
 	fill_and_replace(data);
+	print_array_with_values(data->map->map);
 	surrounded_by_walls(data);
 }
 
