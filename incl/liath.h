@@ -204,7 +204,7 @@ void		check_collision(t_data *data, t_vector_f step);
 void 		raycasting(t_data *data);
 
 // render_3d_scene.c
-void		cast_ray(t_data *data, t_ray *ray, int ray_i, float angle);
+void		cast_ray(t_data *data, t_ray *ray, int ray_i);
 
 
 // utils

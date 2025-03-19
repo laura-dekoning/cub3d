@@ -16,30 +16,32 @@ void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall
 {
 	int 		line_width;
 	int			i;
+	// float		shade_shift;
 	t_vector_f 	start;
 	t_vector_f 	end;
 	uint64_t colour;
+	
+	// shade_shift= ray->distance;
 
-	if (ray->N_S_wall == true)
+	// colour = darken_colour(COLOUR_YELLOW, (int)shade_shift);
+
+
+	if (ray->wall_side == NORTH)
+	{
+		colour = COLOUR_BLUE;
+	}
+	else if (ray->wall_side == EAST)
+	{
+		colour = COLOUR_GREEN;
+	}
+	else if (ray->wall_side == SOUTH)
+	{
+		colour = COLOUR_RED;
+	}
+	else // ray->wall_side == WEST
+	{
 		colour = COLOUR_YELLOW;
-	else 
-		colour = darken_colour(COLOUR_YELLOW, 1);
-	// if (wall_side == NORTH)
-	// {
-	// 	colour = COLOUR_BLUE;
-	// }
-	// else if (wall_side == EAST)
-	// {
-	// 	colour = COLOUR_GREEN;
-	// }
-	// else if (wall_side == SOUTH)
-	// {
-	// 	colour = COLOUR_RED;
-	// }
-	// else // wall_side == WEST
-	// {
-	// 	colour = COLOUR_YELLOW;
-	// }
+	}
 
 	line_width = data->window->width / NUMB_RAYS;
 	i = 0;
@@ -51,13 +53,16 @@ void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall
 		start.y = wall_top;
 		end.x = line_width * ray_i + i;
 		end.y = wall_bottom;
+	
+		// colour = darken_colour(colour, ray_i / 3);
+
 		draw_line(data->window_image, start, end, colour);
 		i++;
 	}
 }
 
 
-void cast_ray(t_data *data, t_ray *ray, int ray_i, float angle)
+void cast_ray(t_data *data, t_ray *ray, int ray_i)
 {
 	float		wall_height;
     int			wall_top;
@@ -66,7 +71,7 @@ void cast_ray(t_data *data, t_ray *ray, int ray_i, float angle)
 	float		corrected_distance;
 
 	wall_distance = (data->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
-	corrected_distance = ray->distance * cos(angle - data->player.angle);
+	corrected_distance = ray->distance * cos(ray->angle - data->player.angle);
 
 	wall_height = (wall_distance * GRIDSIZE) / corrected_distance;
 	// wall_height = (wall_distance * GRIDSIZE) / ray->distance;
