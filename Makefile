@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/19 14:26:13 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/19 17:10:14 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ INCLS_MLX42	:=	$(MLX_DIR)/include/MLX42
 INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
-SRC_FILES	:=	\
-				alloc_mem_for_data.c \
+SRC_PRINT	:=	printing
+SRC_FILES	:=	alloc_mem_for_data.c \
 				error.c \
 				fill_and_replace.c \
 				free_data.c \
@@ -37,13 +37,21 @@ SRC_FILES	:=	\
 				parse_validate_init_map.c \
 				parse_validate_init_rgb.c \
 				parse_validate_init_textures.c \
-				print_test.c \
 				read_file.c \
 				safe_calloc.c \
 				set_default.c \
 				string_to_rgb.c \
 				validate_file_and_init_data.c \
 				validate_map.c \
+				$(addprefix $(SRC_PRINT)/, \
+				print_adjacent.c \
+				print_array_with_values.c \
+				print_check.c \
+				print_data.c \
+				print_floor_and_ceiling.c \
+				print_map.c \
+				print_player.c \
+				print_string_with_values.c ) \
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -56,36 +64,39 @@ OBJ			:=	$(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
 all: $(NAME)
 
 $(MLX42_A):
-	@git submodule update --init --recursive --remote
-	@cmake $(MLX_DIR) -B $(MLX_DIR)/build > /dev/null
-	@make -C $(MLX_DIR)/build -j4 > /dev/null
+	git submodule update --init --recursive --remote
+	cmake $(MLX_DIR) -B $(MLX_DIR)/build > /dev/null
+	make -C $(MLX_DIR)/build -j4 > /dev/null
 
 $(LIBFT_A):
-	@git submodule update --init --recursive --remote
-	@make -C $(LIBFT_DIR) > /dev/null
+	git submodule update --init --recursive --remote
+	make -C $(LIBFT_DIR) > /dev/null
 
-$(NAME) : $(OBJ) $(MLX42_A) $(LIBFT_A)
-	@$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(MLX42_A) $(LIBFT_A) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(OBJ_DIR) $(OBJ) $(MLX42_A) $(LIBFT_A)
+	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(MLX42_A) $(LIBFT_A) $(MLX_FLAGS) -o $(NAME)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(SRC_PRINT)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 norminette:
-	@echo "${CYAN}🧐 Checking the Norm...${RESET}"
-	@norminette -R CheckForbiddenSourceHeader
-	@echo "${GREEN} Norm-i-netting complete. Files are NORM PROOF!${RESET}" 
+	echo "${CYAN}🧐 Checking the Norm...${RESET}"
+	norminette -R CheckForbiddenSourceHeader
+	echo "${GREEN} Norm-i-netting complete. Files are NORM PROOF!${RESET}" 
 
 update:
-	@git submodule update --init --recursive --remote
+	git submodule update --init --recursive --remote
 	
 clean:
-	@rm -rf $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) clean > /dev/null
+	rm -rf $(OBJ_DIR)
+	make -C $(LIBFT_DIR) clean > /dev/null
 
 fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean > /dev/null
+	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean > /dev/null
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 14:23:43 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/19 18:02:52 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	set_texture(char **target, char *line, size_t start)
 	size_t	len;
 
 	len = start;
-	while(line[len] != '\n' && line[len] != '\0')
+	while(line[len] != '\n' && line[len] != '\0' && line[len] != ' ')
 		len++;
 	if (*target)
 		free(*target);
