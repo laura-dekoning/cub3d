@@ -14,24 +14,24 @@
 
 
 
-// void	draw_filled_square(mlx_image_t *image, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour)
-// {
-// 	uint32_t	x;
-// 	uint32_t	y;
+void	draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour)
+{
+	uint32_t	x;
+	uint32_t	y;
 
-// 	y = start_pos.y;
-// 	while (y < start_pos.y + height)
-// 	{
-// 		x = start_pos.x;
-// 		while (x < start_pos.x + width)
-// 		{
-// 			if (x < image->width && y < image->height)
-// 				mlx_put_pixel(image, x, y, colour);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+	y = start_pos.y;
+	while (y < start_pos.y + height)
+	{
+		x = start_pos.x;
+		while (x < start_pos.x + width)
+		{
+			if (x > 0 && y > 0 && x < image->width && y < image->height)
+				mlx_put_pixel(image, x, y, colour);
+			x++;
+		}
+		y++;
+	}
+}
 
 // void draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour) 
 // {
@@ -101,20 +101,3 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 	}
 }
 
-void	fill_canvas(t_data *data)
-{
-	uint32_t	x;
-	uint32_t	y;
-
-	y = 0;
-	while (y < data->window_image->height)
-	{
-		x = 0;
-		while (x < data->window_image->width)
-		{
-			mlx_put_pixel(data->window_image, x, y, COLOUR_GRAY);
-			x++;
-		}
-		y++;
-	}
-}

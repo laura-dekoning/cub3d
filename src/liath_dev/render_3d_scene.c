@@ -14,24 +14,34 @@
 
 void render_3d_scene(t_data *data, int ray_i, int wall_top, int wall_bottom)
 {
-	int 		slice_width;
-	int 		screen_x;
+	// t_vector_i 	line_start;
+	// int 		line_height;
+	// int 		line_width;
+
+	// line_width = data->window->width / NUMB_RAYS;
+	// line_height = wall_bottom - wall_top;
+
+	// line_start.x = ray_i * line_width;
+	// line_start.y = wall_top;
+
+	// draw_filled_square(data->window_image, line_start, line_width, line_height, COLOUR_DARK_GREEN);
+
+	int 		line_width;
 	int			i;
 	t_vector_f 	start;
 	t_vector_f 	end;
 
-	slice_width = data->window->width / NUMB_RAYS;
+	line_width = data->window->width / NUMB_RAYS;
 	i = 0;
-	while (i < slice_width)
-	{
-		screen_x = ray_i * slice_width + i;
-		if (screen_x >= data->window->width)
+	while (i < line_width)
+	{	
+		start.x = line_width * ray_i + i;
+		if (start.x >= data->window->width)
 			break;
-		start.x = ray_i * slice_width + i;
 		start.y = wall_top;
-		end.x = ray_i * slice_width + i;
+		end.x = line_width * ray_i + i;
 		end.y = wall_bottom;
-		draw_line(data->window_image, start, end, COLOUR_BLUE);
+		draw_line(data->window_image, start, end, data->walls_colour);
 		i++;
 	}
 }

@@ -155,8 +155,10 @@ typedef struct s_data
 	char		*west_texture;
 	char		*east_texture;
 	
-	int			*floor;
-	int			*ceiling;
+	uint32_t	floor_colour;
+	uint32_t	ceiling_colour;
+	uint32_t	walls_colour;
+
 
 	t_vector_i	minimap_size;
 } t_data;
@@ -170,8 +172,7 @@ typedef struct s_data
 
 // draw_shapes.c
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-void	fill_canvas(t_data *data);
-// void	draw_filled_square(mlx_image_t *image, t_vector_f start_pos, uint32_t width, uint32_t height, uint64_t colour);
+void	draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour);
 // void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour);
 // void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 
@@ -181,6 +182,9 @@ void	clear_everything(t_data *data);
 
 // fake_parsing.c        
 void	fake_parsing(t_data *data); // TAKE OUT
+
+// fill_canvas.c
+void	fill_canvas(t_data *data);
 
 // init_game.c           
 void	game(t_data *data);
