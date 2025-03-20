@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/16 09:54:30 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 15:14:26 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_images(t_data *data)
 		|| !data->west_texture || !data->east_texture)
 		return (FAILURE);
 	if (ft_strncmp(data->north_texture + ft_strlen(data->north_texture) - 4,
-			".xpm", 4))
+			".png", 4))
 		error_message(data, TEXTURE);
 	return (SUCCESS);
 }

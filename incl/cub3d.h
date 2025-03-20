@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 15:26:47 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 13:57:45 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ bool	map_content_valid(t_data *data, char *line, size_t start);
 size_t	parse_validate_init_map(t_data *data, char *line, size_t start);
 void	validate_map(t_data *data);
 void	fill_and_replace(t_data *data);
+bool	is_map_content(char *str, int start);
 
 
 // PRINTING //

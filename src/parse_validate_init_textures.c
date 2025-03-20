@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 18:36:33 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 15:32:01 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	is_setting(char *line, size_t start)
 		return (RGB);
 	else if (ft_strncmp(&line[start], "C", 1) == 0)
 		return (RGB);
+	else if (is_map_content(line, start) == true)
+		return (MAP);
 	else
 		return (NONE);
 }
