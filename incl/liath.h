@@ -7,6 +7,8 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <sys/time.h>
+
 
 # define SUCCESS 		0
 # define FAILURE 		1
@@ -19,7 +21,7 @@
 # define ONE_D_RADIAN	0.0174533		// 1 degree = 0.0174533 radians
 
 # define FOV			60.0
-# define NUMB_RAYS		120
+# define NUMB_RAYS		(120)
 
 # define NORTH 			1
 # define EAST 			2
@@ -31,8 +33,13 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		PI
 
+// without fps implemented:
 # define MOVING_SPEED	1.8
-# define ROTATE_SPEED	0.03
+# define ROTATING_SPEED	0.03
+
+// // with fps implemented:
+// # define MOVING_SPEED	5.0
+// # define ROTATING_SPEED	3.0
 
 # define MINIMAP_WIDTH	(WINDOW_WIDTH / 5)
 # define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 5)
@@ -124,7 +131,6 @@ typedef struct s_ray
 	t_vector_f	collision_point;
 	float 		distance;
 	bool		wall_hit;
-	// bool		horizontal_wall;
 	bool		N_S_wall;
 	int			wall_side;
 } t_ray ;
@@ -136,6 +142,9 @@ typedef struct s_player
 	t_vector_f	dir;
 	float		angle;
 	bool		wall_hit;
+
+	// double		moving_speed;
+	// double		rotating_speed;
 } t_player;
 
 
@@ -147,11 +156,15 @@ typedef struct s_minimap
 	uint64_t	player_colour;
 	uint64_t	border_colour;
 	uint64_t	ray_colour;
-	// t_vector_i	minimap_size;
-
 } t_minimap;
 
+typedef struct s_fps_counter
+{
+	double		time;
+	double		old_time;
+	double		frame_time;
 
+} t_fps_counter;
 typedef struct s_data
 {
 	mlx_t		*window;
@@ -173,11 +186,9 @@ typedef struct s_data
 	uint64_t	floor_colour;
 	uint64_t	ceiling_colour;
 	uint64_t	walls_colour;
-} t_data;
 
-// // draw_2D.c
-// void	draw_2D_map(t_data *data, mlx_image_t *image);
-// void	draw_player(t_data *data, mlx_image_t *image);
+	// t_fps_counter	fps_counter;
+} t_data;
 
 // colours.c
 uint64_t	darken_colour(uint64_t colour, int shift);
@@ -194,10 +205,6 @@ void		clear_everything(t_data *data);
 
 // fake_parsing.c        
 void		fake_parsing(t_data *data); // TAKE OUT
-
-// fill_canvas.c
-void	fill_canvas(t_data *data, uint32_t colour);
-
 
 // init_game.c           
 void		game(t_data *data);

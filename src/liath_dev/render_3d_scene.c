@@ -51,7 +51,7 @@ void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall
 
 
 
-	line_width = data->window->width / NUMB_RAYS;
+	line_width = data->window->width / (NUMB_RAYS);
 	i = 0;
 	while (i < line_width)
 	{	

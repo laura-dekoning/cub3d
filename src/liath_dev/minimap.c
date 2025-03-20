@@ -6,13 +6,11 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/20 16:12:04 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/20 16:51:43 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../incl/liath.h"
-
-
 
 void	draw_border(t_data *data)
 {
@@ -110,15 +108,14 @@ void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 void	draw_player(t_data *data)
 {	
 	draw_rays(data, data->minimap.ray_colour);
-	
 	draw_filled_circle(data->minimap_image, data->player.pos, PLAYER_SIZE, data->minimap.player_colour);
 	draw_mouth(data, data->player.pos, COLOUR_BLACK);
 	draw_eye(data, data->player.pos, COLOUR_BLACK);
 	draw_circle(data->minimap_image, data->player.pos, PLAYER_SIZE, COLOUR_BLACK);
-	
-	
 }
 
+// this version the map gets drawn sort of how i want it, but the player collision is very off (player runs into a wall while on the minimap it looks like we still have space.)
+// also the map blocks only get drawn nce the whole block will fit in the screen, i want half of te block drawn as well.
 // void	draw_2D_map(t_data *data)
 // {
 // 	int x;
@@ -170,19 +167,62 @@ void	draw_player(t_data *data)
 // 	}
 // }
 
+// // this version the walls and floor are the same colour, but the walls (player collision) is on the right track.
+// void draw_2D_map(t_data *data)
+// {
+//	int x;
+//	int y;
+//	t_vector_i offset;
+//	uint64_t colour;
+
+//	// Calculate dynamic tile size to fit 8x8 grid or smaller
+//	int max_tiles = 8;
+//	int grid_size = GRIDSIZE_MM;
+//	if (data->map->cols > max_tiles || data->map->rows > max_tiles)
+//		grid_size = MINIMAP_WIDTH / max_tiles;
+//	else
+//		grid_size = MINIMAP_WIDTH / data->map->cols;
+
+//	// Center the map around the player
+//	int map_width_px = data->map->cols * grid_size;
+//	int map_height_px = data->map->rows * grid_size;
+//	int offset_x = (MINIMAP_WIDTH - map_width_px) / 2 - (data->player.pos.x * grid_size - MINIMAP_WIDTH / 2);
+//	int offset_y = (MINIMAP_HEIGHT - map_height_px) / 2 - (data->player.pos.y * grid_size - MINIMAP_HEIGHT / 2);
+
+//	y = 0;
+//	while (y < data->map->rows)
+//	{
+//		x = 0;
+//		while (x < data->map->cols)
+//		{
+//			offset.x = x * grid_size + offset_x;
+//			offset.y = y * grid_size + offset_y;
+
+//			if (offset.x + grid_size > 0 && offset.y + grid_size > 0 && offset.x < MINIMAP_WIDTH && offset.y < MINIMAP_HEIGHT)
+//			{
+//				if (data->map->map[y][x] == '1')
+//				{
+//					colour = data->minimap.wall_colour;
+//				}
+//				else
+//				{
+//					colour = data->minimap.floor_colour;
+//				}
+//				draw_filled_square(data->minimap_image, offset, grid_size, grid_size, colour);
+//			}
+//			x++;
+//		}
+//		y++;
+//	}
+// }
+
+// this version works but only draws the top right part of the map and the player moves "out of the map"
 void	draw_2D_map(t_data *data)
 {
 	int x;
 	int y;
 	t_vector_i offset;
-	// t_vector_i minimap_offset;
 	uint64_t colour;
-	
-	// minimap_offset.x = data->player.pos.x - MINIMAP_WIDTH / 2;
-	// minimap_offset.y = data->player.pos.y - MINIMAP_HEIGHT / 2;
-	
-	// minimap_offset.x = (int)(data->player.pos.x * GRIDSIZE_MM / GRIDSIZE_3D) - (MINIMAP_WIDTH / 2);
-	// minimap_offset.y = (int)(data->player.pos.y * GRIDSIZE_MM / GRIDSIZE_3D) - (MINIMAP_WIDTH / 2);
 
 	y = 0;
 	while (y < data->map->rows)
@@ -193,10 +233,9 @@ void	draw_2D_map(t_data *data)
 		// to draw minimap with gridlines (but this causes problems with the rays):
 			// offset.x = (x * GRIDSIZE_MM) + x;
 			// offset.y = (y * GRIDSIZE_MM) + y;
-			offset.x = (x * GRIDSIZE_MM); // - minimap_offset.x;
-			offset.y = (y * GRIDSIZE_MM); // - minimap_offset.y;
+			offset.x = (x * GRIDSIZE_MM);
+			offset.y = (y * GRIDSIZE_MM);
 
-			// if (offset.x + GRIDSIZE_MM > -GRIDSIZE_MM && offset.y + GRIDSIZE_MM > -GRIDSIZE_MM && offset.x < MINIMAP_WIDTH + GRIDSIZE_MM && offset.y < MINIMAP_HEIGHT + GRIDSIZE_MM)
 			if (offset.x + GRIDSIZE_MM > 0 && offset.y + GRIDSIZE_MM > 0 && offset.x < MINIMAP_WIDTH && offset.y < MINIMAP_HEIGHT)
 			{
 				if (data->map->map[y][x] == '1')
@@ -218,11 +257,9 @@ void	draw_2D_map(t_data *data)
 
 void	minimap(t_data *data)
 {
-	
 	draw_filled_square(data->minimap_image, (t_vector_i){0, 0}, MINIMAP_WIDTH, MINIMAP_HEIGHT, data->minimap.back_ground_colour);
 	
 	draw_2D_map(data);
 	draw_player(data);
-	// draw_border(data);
-
+	draw_border(data);
 }

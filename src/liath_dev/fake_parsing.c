@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/20 15:51:10 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/20 17:34:04 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void parse_player(t_data *data)
 	data->player.dir.x = cos(data->player.angle);
 	data->player.dir.y = sin(data->player.angle);
 	data->player.wall_hit = false;
+	// data->player.moving_speed = MOVING_SPEED;
+	// data->player.rotating_speed = ROTATING_SPEED;
 	
 	printf("player pos.x	: %f\n", data->player.pos.x);  		//    === TAKEOUT ===
 	printf("player pos.y	: %f\n", data->player.pos.y);  		//    === TAKEOUT ===
@@ -127,6 +129,14 @@ void parse_player(t_data *data)
 	printf("player dir.y	: %f\n", data->player.dir.y);  		//    === TAKEOUT ===
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
+
+// void parse_fps(t_data *data)
+// {
+// 	data->fps_counter.time = 0;
+// 	data->fps_counter.old_time = 0;
+// 	data->fps_counter.frame_time = 0;
+// }
+
 void parse_environment_colours(t_data *data)
 {
 	data->ceiling_colour = COLOUR_AQUA;
@@ -140,16 +150,15 @@ void	set_minimap_colours(t_data *data)
 	data->minimap.wall_colour = COLOUR_DARK_GRAY;
 	data->minimap.floor_colour = COLOUR_GRAY;
 	data->minimap.player_colour = COLOUR_YELLOW;
-	data->minimap.border_colour = COLOUR_WHITE;
-	data->minimap.ray_colour = COLOUR_RED; 	// turn this off of a cool effect
-	// the rays will be the colour of the wall its looking at, or the sky haha, no idea how this happened..
-	// i just forgot to initialize the ray colour ant it was like that! 
+	data->minimap.border_colour = COLOUR_BLACK;
+	data->minimap.ray_colour = COLOUR_RED; 	// i you make this a colour with alpha turned off, the rays will look like they are shining trough the minimap hihi
 }
 
 void fake_parsing(t_data *data)
 {
 	parse_map(data);
 	parse_player(data);
+	// parse_fps(data);
 	parse_environment_colours(data);
 	set_minimap_colours(data);
 }
