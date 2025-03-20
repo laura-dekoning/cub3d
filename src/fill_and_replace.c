@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 17:54:12 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 18:01:56 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	fill_and_replace(t_data *data)
 			fill_empty(temp, data->map->map[x], data->map->cols);
 			free(data->map->map[x]);
 			data->map->map[x] = ft_substr(temp, 0, data->map->cols + 1);
-			print_string_with_values(data->map->map[x]);
+			// print_string_with_values(data->map->map[x]);
 			free(temp);
 		}
 		x++;
