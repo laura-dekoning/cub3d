@@ -6,20 +6,20 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 15:12:56 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 17:08:41 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*fill_empty(char *temp, char *map, size_t len)
+void	fill_empty(char *temp, char *map, size_t len)
 {
 	size_t	i;
 	size_t	y;
 
 	i = 0;
 	y = 0;
-	while (i <= len)
+	while (i < len)
 	{
 		while (map[y] != '\0')
 		{
@@ -31,10 +31,11 @@ char	*fill_empty(char *temp, char *map, size_t len)
 		temp[i] = ' ';
 		i++;
 	}
-	return (temp);
+	printf("LEN in fill_empty = %zu\n", len);
+	printf("I in fill_empty = %zu\n", i);
 }
 
-char	*replace_tab(char *temp, char *map)
+void	replace_tab(char *temp, char *map)
 {
 	int	i;
 	int	y;
@@ -60,7 +61,6 @@ char	*replace_tab(char *temp, char *map)
 		}
 		y++;
 	}
-	return (temp);
 }
 
 void	fill_and_replace(t_data *data)
@@ -72,18 +72,27 @@ void	fill_and_replace(t_data *data)
 	while (data->map->map[x] != NULL)
 	{
 		temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
-		if (ft_strlen(data->map->map[x]) < data->map->cols)
+		printf(B_P"cols = %zu\tstrlen map[%i] = %zu\n"DEF, data->map->cols, x, ft_strlen(data->map->map[x]));
+		if (ft_strchr(data->map->map[x], '\t') != NULL)
 		{
-			temp = replace_tab(temp, data->map->map[x]);
+			replace_tab(temp, data->map->map[x]);
 			free(data->map->map[x]);
 			data->map->map[x] = ft_substr(temp, 0, ft_strlen(temp));
-			temp = fill_empty(temp, data->map->map[x], data->map->cols);
+			free(temp);
+		}
+		temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
+		if (ft_strlen(data->map->map[x]) < data->map->cols)
+		{
+			fill_empty(temp, data->map->map[x], data->map->cols);
 			free(data->map->map[x]);
 			data->map->map[x] = ft_substr(temp, 0, data->map->cols + 1);
+			print_string_with_values(data->map->map[x]);
+			free(temp);
 		}
-		free(temp);
 		x++;
+		printf("-----------------------------------------------------------------------------------\n");
 	}
+	print_array_with_values(data->map->map);
 }
 
 // int	main()

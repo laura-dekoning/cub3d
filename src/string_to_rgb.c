@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 15:36:23 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 15:41:57 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	is_correct_rgb(t_data *data, char c)
 	if (c == '-')
 		error_message(data, NEG);
 }
-
 
 int	*string_to_rgb(t_data *data, char *str, int i)
 {

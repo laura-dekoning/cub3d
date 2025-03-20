@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 15:38:49 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 15:40:40 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,3 @@ size_t	parse_validate_init_textures(t_data *data, char *line, size_t start)
 	new_start = init_texture_data(data, line, start, flag);
 	return (new_start);
 }
-
-
