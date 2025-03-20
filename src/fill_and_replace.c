@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 17:08:41 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 17:54:12 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	fill_empty(char *temp, char *map, size_t len)
 		temp[i] = ' ';
 		i++;
 	}
-	printf("LEN in fill_empty = %zu\n", len);
-	printf("I in fill_empty = %zu\n", i);
 }
 
 void	replace_tab(char *temp, char *map)
@@ -71,18 +69,17 @@ void	fill_and_replace(t_data *data)
 	x = 0;
 	while (data->map->map[x] != NULL)
 	{
-		temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
-		printf(B_P"cols = %zu\tstrlen map[%i] = %zu\n"DEF, data->map->cols, x, ft_strlen(data->map->map[x]));
 		if (ft_strchr(data->map->map[x], '\t') != NULL)
 		{
+			temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
 			replace_tab(temp, data->map->map[x]);
 			free(data->map->map[x]);
 			data->map->map[x] = ft_substr(temp, 0, ft_strlen(temp));
 			free(temp);
 		}
-		temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
 		if (ft_strlen(data->map->map[x]) < data->map->cols)
 		{
+			temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
 			fill_empty(temp, data->map->map[x], data->map->cols);
 			free(data->map->map[x]);
 			data->map->map[x] = ft_substr(temp, 0, data->map->cols + 1);
@@ -90,9 +87,7 @@ void	fill_and_replace(t_data *data)
 			free(temp);
 		}
 		x++;
-		printf("-----------------------------------------------------------------------------------\n");
 	}
-	print_array_with_values(data->map->map);
 }
 
 // int	main()

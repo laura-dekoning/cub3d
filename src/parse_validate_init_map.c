@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 16:51:03 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/20 17:54:33 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,11 @@ void	set_rows_and_cols(t_data *data, char **map)
 				count++;
 			if (data->map->cols < count)
 				data->map->cols = count;
-			// printf(B_R"data->map->cols = %zu\tcount = %zu\tcols = %zu\n"DEF, data->map->cols, count, cols);
 			cols++;
 		}
-		// printf(B_G"strlen map[%zu] = %zu\n"DEF, rows, count);
 		rows++;
 	}
 	data->map->rows = rows;
-	// printf("data->map->cols = %zu\n", data->map->cols);
 }
 
 bool	map_content_valid(t_data *data, char *line, size_t start)
@@ -104,5 +101,5 @@ size_t	parse_validate_init_map(t_data *data, char *line, size_t start)
 	free (map_as_str);
 	while (line[new_start] != '\0')
 		new_start++;
-	return (new_start + 1);
+	return (new_start);
 }
