@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/19 22:35:23 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/20 15:39:27 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	game(t_data *data)
 {
-	fill_canvas(data);
+	// fill_canvas(data, COLOUR_DARK_GRAY);
+	draw_ceiling_and_floor(data);
 	raycasting(data);
 	minimap(data);
 }

@@ -12,19 +12,9 @@
 
 #include "../../incl/liath.h"
 
-void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
+uint64_t	parse_wall_colours(t_ray *ray)
 {
-	int 		line_width;
-	int			i;
-	// float		shade_shift;
-	t_vector_f 	start;
-	t_vector_f 	end;
 	uint64_t colour;
-	
-	// shade_shift= ray->distance;
-
-	// colour = darken_colour(COLOUR_YELLOW, (int)shade_shift);
-
 
 	if (ray->wall_side == NORTH)
 	{
@@ -42,6 +32,24 @@ void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall
 	{
 		colour = COLOUR_YELLOW;
 	}
+	return (colour);
+}
+
+void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
+{
+	int 		line_width;
+	int			i;
+	// float		shade_shift;
+	t_vector_f 	start;
+	t_vector_f 	end;
+	uint64_t colour;
+	
+	// shade_shift= ray->distance;
+
+	// colour = darken_colour(COLOUR_YELLOW, (int)shade_shift);
+	colour = parse_wall_colours(ray);
+
+
 
 	line_width = data->window->width / NUMB_RAYS;
 	i = 0;
@@ -79,6 +87,30 @@ void cast_ray(t_data *data, t_ray *ray, int ray_i)
 	wall_top = get_max(0, (data->window->height / 2) - (wall_height / 2));
 	wall_bottom = get_min(data->window->height, (data->window->height / 2) + (wall_height / 2));
 	render_3d_scene(data, ray, ray_i, wall_top, wall_bottom);
+}
+
+void	draw_ceiling_and_floor(t_data *data)
+{
+	t_vector_i	floor_start;
+	t_vector_i	ceiling_start;
+	uint32_t	width;
+	uint32_t	height;
+	uint32_t	c_col;
+	uint32_t	f_col;
+
+	c_col = data->ceiling_colour;
+	f_col = data->floor_colour;
+
+	width = data->window_image->width;
+	height = data->window_image->height / 2;
+
+	ceiling_start.x = 0;
+	ceiling_start.y = 0;
+	floor_start.x = 0;
+	floor_start.y = height;
+
+	draw_filled_square(data->window_image, ceiling_start, width, height, c_col);
+	draw_filled_square(data->window_image, floor_start, width, height, f_col);
 }
 
 

@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/19 22:33:57 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/20 15:53:41 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,6 @@ SRC_FILES	:=	\
 				draw_shapes.c \
 				error_clear_exit.c \
 				fake_parsing.c \
-				fill_canvas.c \
 				init_game.c \
 				keys.c \
 				main_liath.c \

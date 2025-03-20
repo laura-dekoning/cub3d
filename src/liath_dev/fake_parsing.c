@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/19 23:12:24 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/20 15:51:10 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void parse_map(t_data *data)
 	if (data->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
 // =================================
-	data->map->rows = 20;   // y
-	data->map->cols = 20;   // x
+	data->map->rows = 8;   // y
+	data->map->cols = 8;   // x
 // =================================
 	data->map->map_width_px = data->map->cols * GRIDSIZE_3D;
 	data->map->map_height_px = data->map->rows * GRIDSIZE_3D;
@@ -39,28 +39,16 @@ void parse_map(t_data *data)
 		i++;
 	}
 // =========== THE MAP ============	
-	char temp_map[20][20] =
+	char temp_map[8][8] =
 	{
-		"11111111111111111111",
-		"10000001000000000001",
-		"10000001000000000001",
-		"10000001000000000001",
-		"11111001111111110001",
-		"10000000000000000001",
-		"10000000000000000001",
-		"10000000000000000001",
-		"10011111111100000001",
-		"10010000000000000001",
-		"10010000000000000001",
-		"10010000000100000001",
-		"10010000000100000001",
-		"100100000001000N0001",
-		"10010000000100000001",
-		"10010000000111111111",
-		"10010000000000000001",
-		"10010000000000000001",
-		"10000000000000000001",
-		"11111111111111111111"
+		"11111111",
+		"10100001",
+		"10100001",
+		"10110001",
+		"100S0001",
+		"10000101",
+		"10000001",
+		"11111111"
 	};
 // =================================
 	i = 0;
@@ -139,16 +127,29 @@ void parse_player(t_data *data)
 	printf("player dir.y	: %f\n", data->player.dir.y);  		//    === TAKEOUT ===
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
-void parse_environment(t_data *data)
+void parse_environment_colours(t_data *data)
 {
 	data->ceiling_colour = COLOUR_AQUA;
 	data->floor_colour = COLOUR_DARK_GREEN;
 	data->walls_colour = COLOUR_DARK_TURQUOISE;
 }
 
+void	set_minimap_colours(t_data *data)
+{
+	data->minimap.back_ground_colour = COLOUR_DARK_GRAY;
+	data->minimap.wall_colour = COLOUR_DARK_GRAY;
+	data->minimap.floor_colour = COLOUR_GRAY;
+	data->minimap.player_colour = COLOUR_YELLOW;
+	data->minimap.border_colour = COLOUR_WHITE;
+	data->minimap.ray_colour = COLOUR_RED; 	// turn this off of a cool effect
+	// the rays will be the colour of the wall its looking at, or the sky haha, no idea how this happened..
+	// i just forgot to initialize the ray colour ant it was like that! 
+}
+
 void fake_parsing(t_data *data)
 {
 	parse_map(data);
 	parse_player(data);
-	parse_environment(data);
+	parse_environment_colours(data);
+	set_minimap_colours(data);
 }

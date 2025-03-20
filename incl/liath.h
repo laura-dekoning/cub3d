@@ -11,8 +11,8 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
-# define WINDOW_WIDTH	1200
-# define WINDOW_HEIGHT	1200
+# define WINDOW_WIDTH	1800
+# define WINDOW_HEIGHT	1800
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define PI				3.14159265359
@@ -31,13 +31,13 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		PI
 
-# define MOVING_SPEED	1.1
+# define MOVING_SPEED	1.8
 # define ROTATE_SPEED	0.03
 
 # define MINIMAP_WIDTH	(WINDOW_WIDTH / 5)
 # define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 5)
 # define GRIDSIZE_3D	64
-# define GRIDSIZE_MM	16
+# define GRIDSIZE_MM	64
 # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
 
 
@@ -141,6 +141,7 @@ typedef struct s_player
 
 typedef struct s_minimap
 {
+	uint64_t	back_ground_colour;
 	uint64_t	wall_colour;
 	uint64_t	floor_colour;
 	uint64_t	player_colour;
@@ -195,7 +196,8 @@ void		clear_everything(t_data *data);
 void		fake_parsing(t_data *data); // TAKE OUT
 
 // fill_canvas.c
-void		fill_canvas(t_data *data);
+void	fill_canvas(t_data *data, uint32_t colour);
+
 
 // init_game.c           
 void		game(t_data *data);
@@ -215,6 +217,7 @@ void 		raycasting(t_data *data);
 
 // render_3d_scene.c
 void		cast_ray(t_data *data, t_ray *ray, int ray_i);
+void		draw_ceiling_and_floor(t_data *data);
 
 
 // utils

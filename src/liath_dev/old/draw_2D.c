@@ -12,6 +12,23 @@
 
 // #include "../../incl/liath.h"
 
+// void	fill_canvas(t_data *data, uint32_t colour)
+// {
+// 	uint32_t	x;
+// 	uint32_t	y;
+
+// 	y = 0;
+// 	while (y < data->window_image->height)
+// 	{
+// 		x = 0;
+// 		while (x < data->window_image->width)
+// 		{
+// 			mlx_put_pixel(data->window_image, x, y, colour);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 // void	draw_eye(t_data *data, mlx_image_t *image, t_vector_f player_centre, int colour)
 // {
