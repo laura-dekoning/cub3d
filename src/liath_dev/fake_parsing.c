@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/20 17:34:04 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/21 12:43:43 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void parse_map(t_data *data)
 	if (data->map == NULL)
 		error_and_exit("Malloc allocation failed\n");
 // =================================
-	data->map->rows = 8;   // y
-	data->map->cols = 8;   // x
+	data->map->rows = 20;   // y
+	data->map->cols = 20;   // x
 // =================================
 	data->map->map_width_px = data->map->cols * GRIDSIZE_3D;
 	data->map->map_height_px = data->map->rows * GRIDSIZE_3D;
@@ -39,17 +39,30 @@ void parse_map(t_data *data)
 		i++;
 	}
 // =========== THE MAP ============	
-	char temp_map[8][8] =
-	{
-		"11111111",
-		"10100001",
-		"10100001",
-		"10110001",
-		"100S0001",
-		"10000101",
-		"10000001",
-		"11111111"
-	};
+	char temp_map[20][20] =
+{
+	"11111111111111111111",
+	"10000001000000000001",
+	"10000001000000000001",
+	"10000001000000000001",
+	"11111001111111110001",
+	"10000000000000000001",
+	"10000000000000000001",
+	"10000000000000000001",
+	"10011111111100000001",
+	"10010000000000000001",
+	"10010000000000000001",
+	"10010000000100000001",
+	"10010000000100000001",
+	"100100000001000W0001",
+	"10010000000100000001",
+	"10010000000111111111",
+	"10010000000000000001",
+	"10010000000000000001",
+	"10000000000000000001",
+	"11111111111111111111"
+};
+
 // =================================
 	i = 0;
 	while (i < data->map->rows) 
@@ -130,12 +143,17 @@ void parse_player(t_data *data)
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
 
-// void parse_fps(t_data *data)
-// {
-// 	data->fps_counter.time = 0;
-// 	data->fps_counter.old_time = 0;
-// 	data->fps_counter.frame_time = 0;
-// }
+void	get_minimap_size(t_data *data)
+{
+	if (WINDOW_HEIGHT > WINDOW_WIDTH)
+	{
+		data->minimap.size =  WINDOW_WIDTH / 5;
+	}
+	else 
+	{
+		data->minimap.size =  WINDOW_HEIGHT / 5;
+	}
+}
 
 void parse_environment_colours(t_data *data)
 {
@@ -158,7 +176,9 @@ void fake_parsing(t_data *data)
 {
 	parse_map(data);
 	parse_player(data);
-	// parse_fps(data);
+	
 	parse_environment_colours(data);
+	
+	get_minimap_size(data);
 	set_minimap_colours(data);
 }

@@ -227,8 +227,8 @@
 // 	t_vector_f nose_end_pos;
 
 // 	// Center player in minimap
-// 	player_centre.x = MINIMAP_WIDTH / 2;
-// 	player_centre.y = MINIMAP_HEIGHT / 2;
+// 	player_centre.x = data->minimap.size / 2;
+// 	player_centre.y = data->minimap.size / 2;
 // 	nose_end_pos.x = player_centre.x + data->player->dir.x * (PLAYER_SIZE * 3);
 // 	nose_end_pos.y = player_centre.y + data->player->dir.y * (PLAYER_SIZE * 3);
 
@@ -244,10 +244,10 @@
 // 	t_vector_f minimap_offset;
 // 	uint64_t colour;
 	
-// 	minimap_offset.x = data->player->pos.x - MINIMAP_WIDTH / 2;
-// 	minimap_offset.y = data->player->pos.y - MINIMAP_HEIGHT / 2;
+// 	minimap_offset.x = data->player->pos.x - data->minimap.size / 2;
+// 	minimap_offset.y = data->player->pos.y - data->minimap.size / 2;
 	
-// 	draw_filled_square(data->minimap_image, (t_vector_f){0, 0}, MINIMAP_WIDTH, MINIMAP_HEIGHT, COLOUR_DARK_GRAY);
+// 	draw_filled_square(data->minimap_image, (t_vector_f){0, 0}, data->minimap.size, data->minimap.size, COLOUR_DARK_GRAY);
 
 // 	y = 0;
 // 	while (y < data->map->rows)
@@ -261,8 +261,8 @@
 // 			offset.x = (x * GRIDSIZE_3D) - minimap_offset.x;
 // 			offset.y = (y * GRIDSIZE_3D) - minimap_offset.y;
 
-// 			// if (offset.x + GRIDSIZE_3D > 0 && offset.y + GRIDSIZE_3D > 0 && offset.x < MINIMAP_WIDTH && offset.y < MINIMAP_HEIGHT)
-// 			if (offset.x + GRIDSIZE_3D > -GRIDSIZE_3D && offset.y + GRIDSIZE_3D > -GRIDSIZE_3D && offset.x < MINIMAP_WIDTH + GRIDSIZE_3D && offset.y < MINIMAP_HEIGHT + GRIDSIZE_3D)
+// 			// if (offset.x + GRIDSIZE_3D > 0 && offset.y + GRIDSIZE_3D > 0 && offset.x < data->minimap.size && offset.y < data->minimap.size)
+// 			if (offset.x + GRIDSIZE_3D > -GRIDSIZE_3D && offset.y + GRIDSIZE_3D > -GRIDSIZE_3D && offset.x < data->minimap.size + GRIDSIZE_3D && offset.y < data->minimap.size + GRIDSIZE_3D)
 // 			{
 // 				if (data->map->map[y][x] == '1')
 // 				{	
@@ -280,10 +280,10 @@
 // 	}
 // 	// Draw border
 // 	colour = COLOUR_WHITE;
-// 	draw_filled_square(data->minimap_image, (t_vector_f){0, 0}, MINIMAP_WIDTH, 2, colour);
-// 	draw_filled_square(data->minimap_image, (t_vector_f){0, MINIMAP_HEIGHT - 2}, MINIMAP_WIDTH, 2, colour);
-// 	draw_filled_square(data->minimap_image, (t_vector_f){0, 0}, 2, MINIMAP_HEIGHT, colour);
-// 	draw_filled_square(data->minimap_image, (t_vector_f){MINIMAP_WIDTH - 2, 0}, 2, MINIMAP_HEIGHT, colour);
+// 	draw_filled_square(data->minimap_image, (t_vector_f){0, 0}, data->minimap.size, 2, colour);
+// 	draw_filled_square(data->minimap_image, (t_vector_f){0, data->minimap.size - 2}, data->minimap.size, 2, colour);
+// 	draw_filled_square(data->minimap_image, (t_vector_f){0, 0}, 2, data->minimap.size, colour);
+// 	draw_filled_square(data->minimap_image, (t_vector_f){data->minimap.size - 2, 0}, 2, data->minimap.size, colour);
 // }
 
 // void	game(t_data *data)
@@ -306,7 +306,7 @@
 // 		mlx_terminate(data->window);
 // 		error_and_exit("Image could not be created\n");
 // 	}
-// 	data->minimap_image = mlx_new_image(data->window, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+// 	data->minimap_image = mlx_new_image(data->window, data->minimap.size, data->minimap.size);
 // 	if (data->minimap_image == NULL)
 // 	{
 // 		mlx_terminate(data->window);

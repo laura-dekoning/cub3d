@@ -13,15 +13,15 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
-# define WINDOW_WIDTH	1800
-# define WINDOW_HEIGHT	1800
+# define WINDOW_WIDTH	1200
+# define WINDOW_HEIGHT	1200
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define PI				3.14159265359
 # define ONE_D_RADIAN	0.0174533		// 1 degree = 0.0174533 radians
 
 # define FOV			60.0
-# define NUMB_RAYS		(120)
+# define NUMB_RAYS		(WINDOW_WIDTH / 2)
 
 # define NORTH 			1
 # define EAST 			2
@@ -33,16 +33,9 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		PI
 
-// without fps implemented:
 # define MOVING_SPEED	1.8
 # define ROTATING_SPEED	0.03
 
-// // with fps implemented:
-// # define MOVING_SPEED	5.0
-// # define ROTATING_SPEED	3.0
-
-# define MINIMAP_WIDTH	(WINDOW_WIDTH / 5)
-# define MINIMAP_HEIGHT	(WINDOW_HEIGHT / 5)
 # define GRIDSIZE_3D	64
 # define GRIDSIZE_MM	64
 # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
@@ -156,6 +149,9 @@ typedef struct s_minimap
 	uint64_t	player_colour;
 	uint64_t	border_colour;
 	uint64_t	ray_colour;
+
+	uint16_t	size;
+
 } t_minimap;
 
 typedef struct s_fps_counter

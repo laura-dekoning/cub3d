@@ -49,8 +49,6 @@ void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall
 	// colour = darken_colour(COLOUR_YELLOW, (int)shade_shift);
 	colour = parse_wall_colours(ray);
 
-
-
 	line_width = data->window->width / (NUMB_RAYS);
 	i = 0;
 	while (i < line_width)
