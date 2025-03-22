@@ -12,8 +12,6 @@
 
 #include "../../incl/liath.h"
 
-
-
 void	draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour)
 {
 	uint32_t	x;

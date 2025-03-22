@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/21 12:49:30 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/22 09:12:59 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,30 @@ void	init_window_and_images(t_data *data)
 	}
 }
 
+void init_wall_textures(t_walls *walls)
+{
+	walls->north_texture = mlx_load_png(walls->path_to_north_texture);
+	if (!walls->north_texture)
+		error_and_exit("Loading north wall failed\n");
+	
+	// walls->east_texture = mlx_load_png(walls->path_to_east_texture);
+	// if (!walls->east_texture)
+	// 	error_and_exit("Loading east wall failed\n");
+	// walls->south_texture = mlx_load_png(walls->path_to_south_texture);
+	// if (!walls->south_texture)
+	// 	error_and_exit("Loading south wall failed\n");
+	// walls->west_texture = mlx_load_png(walls->path_to_west_texture);
+	// if (!walls->west_texture)
+	// 	error_and_exit("Loading west wall failed\n");
+}
+
 
 void cub3d(t_data *data)
 {
 	init_window_and_images(data);
 	images_to_window(data);	
-	
+	init_wall_textures(&data->walls);
+
 	game(data);
 	
 	mlx_loop_hook(data->window, is_key_pressed, data);

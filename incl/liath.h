@@ -37,7 +37,7 @@
 # define ROTATING_SPEED	0.03
 
 # define GRIDSIZE_3D	64
-# define GRIDSIZE_MM	64
+# define GRIDSIZE_MM	(64 / 4)
 # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
 
 
@@ -154,13 +154,28 @@ typedef struct s_minimap
 
 } t_minimap;
 
-typedef struct s_fps_counter
-{
-	double		time;
-	double		old_time;
-	double		frame_time;
+// typedef struct s_fps_counter
+// {
+// 	double		time;
+// 	double		old_time;
+// 	double		frame_time;
 
-} t_fps_counter;
+// } t_fps_counter;
+
+typedef struct s_walls
+{
+	char			*path_to_north_texture;
+	char			*path_to_south_texture;
+	char			*path_to_west_texture;
+	char			*path_to_east_texture;
+
+	mlx_texture_t	*north_texture;
+	mlx_texture_t	*south_texture;
+	mlx_texture_t	*west_texture;
+	mlx_texture_t	*east_texture;
+
+} t_walls;
+
 typedef struct s_data
 {
 	mlx_t		*window;
@@ -174,20 +189,15 @@ typedef struct s_data
 	
 	t_minimap	minimap;
 
-	char		*north_texture;
-	char		*south_texture;
-	char		*west_texture;
-	char		*east_texture;
-	
+	t_walls		walls;
+
 	uint64_t	floor_colour;
 	uint64_t	ceiling_colour;
 	uint64_t	walls_colour;
 
 	// t_fps_counter	fps_counter;
-} t_data;
 
-// colours.c
-uint64_t	darken_colour(uint64_t colour, int shift);
+} t_data;
 
 // draw_shapes.c
 void		draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);

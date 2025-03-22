@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/21 12:43:43 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/22 11:57:29 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void parse_map(t_data *data)
 	"10011111111100000001",
 	"10010000000000000001",
 	"10010000000000000001",
+	"10010000000111111111",
 	"10010000000100000001",
-	"10010000000100000001",
-	"100100000001000W0001",
+	"100100000001000N0001",
 	"10010000000100000001",
 	"10010000000111111111",
 	"10010000000000000001",
@@ -155,11 +155,16 @@ void	get_minimap_size(t_data *data)
 	}
 }
 
-void parse_environment_colours(t_data *data)
+void parse_environment(t_data *data)
 {
 	data->ceiling_colour = COLOUR_AQUA;
 	data->floor_colour = COLOUR_DARK_GREEN;
-	data->walls_colour = COLOUR_DARK_TURQUOISE;
+	// data->walls_colour = COLOUR_DARK_GRAY;
+	
+	data->walls.path_to_north_texture = "./textures/fun_wall.png";
+	// data->path_to_south_texture = "";
+	// data->path_to_west_texture = "";
+	// data->path_to_east_texture = "";
 }
 
 void	set_minimap_colours(t_data *data)
@@ -177,7 +182,7 @@ void fake_parsing(t_data *data)
 	parse_map(data);
 	parse_player(data);
 	
-	parse_environment_colours(data);
+	parse_environment(data);
 	
 	get_minimap_size(data);
 	set_minimap_colours(data);

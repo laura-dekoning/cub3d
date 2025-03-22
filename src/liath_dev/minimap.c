@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/21 09:53:12 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/21 20:27:57 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,15 @@ void	draw_player(t_data *data)
 // }
 
 // this version works but only draws the top right part of the map and the player moves "out of the map"
+
+/*
+plan:
+- get location on the map of the player.
+- draw x amount of wall or floor blocks around the player
+- easy peasy 
+
+- also GRIDSIZE_MM moet waarschijnlijk afhangen van de size of the minimap en dat kan geen define zijn.
+*/
 void	draw_2D_map(t_data *data)
 {
 	int x;
@@ -230,13 +239,9 @@ void	draw_2D_map(t_data *data)
 		x = 0;
 		while (x < data->map->cols)
 		{
-		// to draw minimap with gridlines (but this causes problems with the rays):
-			// offset.x = (x * GRIDSIZE_MM) + x;
-			// offset.y = (y * GRIDSIZE_MM) + y;
-			offset.x = (x * (GRIDSIZE_MM));
-			offset.y = (y * (GRIDSIZE_MM));
-
-			if (offset.x + (GRIDSIZE_MM) > 0 && offset.y + (GRIDSIZE_MM) > 0 && offset.x < data->minimap.size && offset.y < data->minimap.size)
+			offset.x = (x * GRIDSIZE_MM); // + x; 	(to draw minimap with gridlines (skips a pixel every row and col))
+			offset.y = (y * GRIDSIZE_MM); // + y; 	(but this causes problems with the rays) (i can do it later on top of the map if i want to)
+			if (offset.x + GRIDSIZE_MM > 0 && offset.y + GRIDSIZE_MM > 0 && offset.x < data->minimap.size && offset.y < data->minimap.size)
 			{
 				if (data->map->map[y][x] == '1')
 				{	
@@ -246,7 +251,7 @@ void	draw_2D_map(t_data *data)
 				{	
 					colour = data->minimap.floor_colour;
 				}
-				draw_filled_square(data->minimap_image, offset, (GRIDSIZE_MM), (GRIDSIZE_MM), colour);
+				draw_filled_square(data->minimap_image, offset, GRIDSIZE_MM, GRIDSIZE_MM, colour);
 			}
 			x++;
 		}
