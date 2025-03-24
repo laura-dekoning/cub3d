@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 14:36:59 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 20:26:10 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void parse_map(t_data *data)
 	data->map->rows = 20;   // y
 	data->map->cols = 20;   // x
 // =================================
-	data->map->map_width_px = data->map->cols * GRIDSIZE_3D;
-	data->map->map_height_px = data->map->rows * GRIDSIZE_3D;
+	data->map->map_width_px = data->map->cols * GRIDSIZE;
+	data->map->map_height_px = data->map->rows * GRIDSIZE;
 	
 	data->map->map = (char **)malloc(data->map->rows * sizeof(char *));
 	if (data->map->map == NULL)
@@ -92,7 +92,7 @@ void parse_player(t_data *data)
 	int y;
 	float offset;
 	
-	offset = GRIDSIZE_3D / 2;
+	offset = GRIDSIZE / 2;
 	y = 0;
 	while (y < data->map->rows) 
 	{
@@ -104,26 +104,26 @@ void parse_player(t_data *data)
 				if (data->map->map[y][x] == 'N') 
 				{
 					data->player.angle = DIR_NORTH;
-					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
-					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
+					data->player.pos.x = (x * GRIDSIZE) + offset;
+					data->player.pos.y = (y * GRIDSIZE) + offset;
 				}
 				if (data->map->map[y][x] == 'S')
 				{
 					data->player.angle = DIR_SOUTH;
-					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
-					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
+					data->player.pos.x = (x * GRIDSIZE) + offset;
+					data->player.pos.y = (y * GRIDSIZE) + offset;
 				}
 				if (data->map->map[y][x] == 'E') 
 				{
 					data->player.angle = DIR_EAST;
-					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
-					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
+					data->player.pos.x = (x * GRIDSIZE) + offset;
+					data->player.pos.y = (y * GRIDSIZE) + offset;
 				}
 				if (data->map->map[y][x] == 'W')
 				{
 					data->player.angle = DIR_WEST;
-					data->player.pos.x = (x * GRIDSIZE_3D) + offset;
-					data->player.pos.y = (y * GRIDSIZE_3D) + offset;
+					data->player.pos.x = (x * GRIDSIZE) + offset;
+					data->player.pos.y = (y * GRIDSIZE) + offset;
 				}
 			}
 			x++;
@@ -141,22 +141,12 @@ void parse_player(t_data *data)
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
 
-void	get_minimap_size(t_data *data)
-{
-	if (WINDOW_HEIGHT > WINDOW_WIDTH)
-	{
-		data->minimap.minimap_size =  WINDOW_WIDTH / 5;
-	}
-	else 
-	{
-		data->minimap.minimap_size =  WINDOW_HEIGHT / 5;
-	}
-}
 
 void parse_environment(t_data *data)
 {
 	data->ceiling_colour = COLOUR_AQUA;
 	data->floor_colour = COLOUR_DARK_GREEN;
+
 	data->walls_colour = COLOUR_DARK_GRAY; // shadow
 	
 	data->textures.path_to_north_texture = "./textures/IMG_2709.png";
@@ -165,16 +155,7 @@ void parse_environment(t_data *data)
 	data->textures.path_to_west_texture = "./textures/fun_wall.png";
 }
 
-void	init_minimap(t_data *data)
-{
-	data->minimap.back_ground_colour = COLOUR_DARK_GRAY;
-	data->minimap.wall_colour = COLOUR_DARK_GRAY;
-	data->minimap.floor_colour = COLOUR_GRAY;
-	data->minimap.player_colour = COLOUR_YELLOW;
-	data->minimap.ray_colour = COLOUR_RED; 	// i you make this a colour with alpha turned off, the rays will look like they are shining trough the minimap hihi
-	data->minimap.border_colour = COLOUR_BLACK;
-	data->minimap.border_size = 10;
-}
+
 
 void fake_parsing(t_data *data)
 {
@@ -183,6 +164,4 @@ void fake_parsing(t_data *data)
 	
 	parse_environment(data);
 	
-	get_minimap_size(data);
-	init_minimap(data);
 }

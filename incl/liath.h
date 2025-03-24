@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 15:16:32 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 20:06:36 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define FOV			60.0
 # define NUMB_RAYS		(WINDOW_WIDTH / 2)
+
 # define RENDER_DIST	1000
 # define SHADOW_ALPHA	100		// 0 is complete seetrough aka completely gray (max 255)
 # define FOG_FACTOR		4		// smaller numebr is "thicker fog" effect
@@ -49,9 +50,12 @@
 # define MOVING_SPEED	2.8
 # define ROTATING_SPEED	0.03
 
-# define GRIDSIZE_3D	64
-# define GRIDSIZE_MM	(64 / 4)
-# define PLAYER_SIZE	(GRIDSIZE_MM / 4)
+# define GRIDSIZE		64
+
+// # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
+# define MINIMAP_SCALE	3 		// 1 is fullsize, 5 is good
+# define MINIMAP_GRID	13 		// n X n grid
+
 
 // ==== COLOURS FOR PIXELS ==== 0xRRGGBBAA
 # define COLOUR_BLACK			0x000000FF
@@ -166,6 +170,8 @@ typedef struct s_player
 	t_vector_f	dir;
 	float		angle;
 	bool		wall_hit;
+	uint16_t	size;
+	
 }	t_player;
 
 typedef struct s_minimap
@@ -178,6 +184,10 @@ typedef struct s_minimap
 	uint64_t	border_colour;
 	uint8_t		border_size;
 	uint16_t	minimap_size;
+	uint16_t	grid_size;
+	uint16_t	player_size;
+	t_vector_f	player_pos;
+
 }	t_minimap;
 
 typedef struct s_textures
@@ -213,6 +223,12 @@ typedef struct s_data
 	uint64_t	ceiling_colour;
 	uint64_t	walls_colour;
 }	t_data;
+
+// draw_minimap_player.c
+void	draw_player(t_data *data);
+
+// draw_minimap.c
+void	draw_2D_map(t_data *data);
 
 // draw_shapes.c
 void		draw_filled_rectangle(mlx_image_t *image, t_vector_i start_pos, t_vector_i end_pos, uint64_t colour);

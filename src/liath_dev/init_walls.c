@@ -114,17 +114,17 @@ void init_wall_sagment(t_data *data, t_ray *ray)
 	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - data->player.angle);
 
 	// fix fisheye
-	// ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE_3D) / ray->distance;  			// for some fun fisheye effects ;)
-	ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE_3D) / ray->wall_3d.corrected_distance;
+	// ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->distance;  			// for some fun fisheye effects ;)
+	ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->wall_3d.corrected_distance;
 
 
 	ray->wall_3d.wall_top = fmax(0, (data->window->height / 2) - (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.wall_bottom = fmin(data->window->height, (data->window->height / 2) + (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.line_width = data->window->width / NUMB_RAYS;
 	
+	fix_texture_stretch(data, ray);
 	fix_texture_zoom_to_centre(data, ray);
 		
-	fix_texture_stretch(data, ray);
 	
 	set_wall_side(ray);
 	set_wall_texture(data, ray);

@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/24 13:26:57 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/24 19:50:06 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,6 +118,8 @@ HEADERS		:=	incl/liath.h
 
 SRC_DIR		:=	src/liath_dev
 SRC_FILES	:=	\
+				draw_minimap_player.c \
+				draw_minimap.c \
 				draw_shapes.c \
 				error_clear_exit.c \
 				fake_parsing.c \
@@ -129,6 +131,7 @@ SRC_FILES	:=	\
 				player_collision.c \
 				raycasting.c \
 				render_3d_scene.c 
+
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

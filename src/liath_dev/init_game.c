@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 14:39:33 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 20:23:26 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,29 @@ void	game(t_data *data)
 	draw_ceiling_and_floor(data);
 	raycasting(data);
 
-	// minimap(data);
+	minimap(data);
 }
 
-void	images_to_window(t_data *data)
+void	get_minimap_size(t_data *data)
 {
-	if (mlx_image_to_window(data->window, data->window_image, 0, 0) < 0)
+	if (WINDOW_HEIGHT > WINDOW_WIDTH)
+	{
+		data->minimap.minimap_size =  WINDOW_WIDTH / 5;
+	}
+	else 
+	{
+		data->minimap.minimap_size =  WINDOW_HEIGHT / 5;
+	}
+}
+
+void	init_minimap_image(t_data *data)
+{
+	get_minimap_size(data);
+	data->minimap_image = mlx_new_image(data->window, data->minimap.minimap_size, data->minimap.minimap_size);
+	if (data->minimap_image == NULL)
 	{
 		mlx_terminate(data->window);
-		error_and_exit("Image could not be displayed on the window\n");
+		error_and_exit("Image could not be created\n");
 	}
 	if (mlx_image_to_window(data->window, data->minimap_image, 10, 10) < 0)
 	{
@@ -36,7 +50,7 @@ void	images_to_window(t_data *data)
 	}
 }
 
-void	init_window_and_images(t_data *data)
+void	init_window(t_data *data)
 {
 	data->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, false);
 	if (data->window == NULL)
@@ -49,12 +63,12 @@ void	init_window_and_images(t_data *data)
 		mlx_terminate(data->window);
 		error_and_exit("Image could not be created\n");
 	}
-	data->minimap_image = mlx_new_image(data->window, data->minimap.minimap_size, data->minimap.minimap_size);
-	if (data->minimap_image == NULL)
+	if (mlx_image_to_window(data->window, data->window_image, 0, 0) < 0)
 	{
 		mlx_terminate(data->window);
-		error_and_exit("Image could not be created\n");
+		error_and_exit("Image could not be displayed on the window\n");
 	}
+
 }
 
 void init_wall_textures(t_textures	*textures)
@@ -76,8 +90,8 @@ void init_wall_textures(t_textures	*textures)
 
 void cub3d(t_data *data)
 {
-	init_window_and_images(data);
-	images_to_window(data);	
+	init_window(data);
+	init_minimap_image(data);	
 	init_wall_textures(&data->textures);
 
 	game(data);

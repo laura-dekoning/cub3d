@@ -65,7 +65,7 @@ void	draw_wall_segment(t_data *data, t_ray *ray, int ray_i, int wall_top, int wa
 			if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
 			{
 				// create shadow by drawing a pixel in the wall colour first, then the texture pixel with an alpha depending on the distance
-				mlx_put_pixel(data->window_image, x, y, data->walls_colour); // background collor
+				// mlx_put_pixel(data->window_image, x, y, data->walls_colour); // background collor
 				colour = get_pixel_colour(ray, (int)texture_y);
 				mlx_put_pixel(data->window_image, x, y, colour); // texture			
 			}
@@ -80,11 +80,11 @@ void render_3d_wall_sagment(t_data *data, t_ray *ray, int ray_i)
 {
 	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
 	{
-		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.x, GRIDSIZE_3D) / GRIDSIZE_3D;
+		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.x, GRIDSIZE) / GRIDSIZE;
 	}
 	else if (ray->wall_3d.wall_side == EAST || ray->wall_3d.wall_side == WEST)
 	{
-		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.y, GRIDSIZE_3D) / GRIDSIZE_3D;
+		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.y, GRIDSIZE) / GRIDSIZE;
 	}
 
 	// to fix mirrored effect
