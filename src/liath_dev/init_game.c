@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/22 09:12:59 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 13:06:04 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	game(t_data *data)
 {
-	// fill_canvas(data, COLOUR_DARK_GRAY);
 	draw_ceiling_and_floor(data);
 	raycasting(data);
 
@@ -50,7 +49,7 @@ void	init_window_and_images(t_data *data)
 		mlx_terminate(data->window);
 		error_and_exit("Image could not be created\n");
 	}
-	data->minimap_image = mlx_new_image(data->window, data->minimap.size, data->minimap.size);
+	data->minimap_image = mlx_new_image(data->window, data->minimap.minimap_size, data->minimap.minimap_size);
 	if (data->minimap_image == NULL)
 	{
 		mlx_terminate(data->window);
@@ -58,21 +57,20 @@ void	init_window_and_images(t_data *data)
 	}
 }
 
-void init_wall_textures(t_walls *walls)
+void init_wall_textures(t_textures	*textures)
 {
-	walls->north_texture = mlx_load_png(walls->path_to_north_texture);
-	if (!walls->north_texture)
+	textures->north_texture = mlx_load_png(textures->path_to_north_texture);
+	if (!textures->north_texture)
 		error_and_exit("Loading north wall failed\n");
-	
-	// walls->east_texture = mlx_load_png(walls->path_to_east_texture);
-	// if (!walls->east_texture)
-	// 	error_and_exit("Loading east wall failed\n");
-	// walls->south_texture = mlx_load_png(walls->path_to_south_texture);
-	// if (!walls->south_texture)
-	// 	error_and_exit("Loading south wall failed\n");
-	// walls->west_texture = mlx_load_png(walls->path_to_west_texture);
-	// if (!walls->west_texture)
-	// 	error_and_exit("Loading west wall failed\n");
+	textures->east_texture = mlx_load_png(textures->path_to_east_texture);
+	if (!textures->east_texture)
+		error_and_exit("Loading east wall failed\n");
+	textures->south_texture = mlx_load_png(textures->path_to_south_texture);
+	if (!textures->south_texture)
+		error_and_exit("Loading south wall failed\n");
+	textures->west_texture = mlx_load_png(textures->path_to_west_texture);
+	if (!textures->west_texture)
+		error_and_exit("Loading west wall failed\n");
 }
 
 
@@ -80,7 +78,7 @@ void cub3d(t_data *data)
 {
 	init_window_and_images(data);
 	images_to_window(data);	
-	init_wall_textures(&data->walls);
+	init_wall_textures(&data->textures);
 
 	game(data);
 	

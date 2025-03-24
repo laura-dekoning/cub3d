@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/22 11:57:29 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 13:05:42 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,6 @@ void parse_player(t_data *data)
 	data->player.dir.x = cos(data->player.angle);
 	data->player.dir.y = sin(data->player.angle);
 	data->player.wall_hit = false;
-	// data->player.moving_speed = MOVING_SPEED;
-	// data->player.rotating_speed = ROTATING_SPEED;
 	
 	printf("player pos.x	: %f\n", data->player.pos.x);  		//    === TAKEOUT ===
 	printf("player pos.y	: %f\n", data->player.pos.y);  		//    === TAKEOUT ===
@@ -147,11 +145,11 @@ void	get_minimap_size(t_data *data)
 {
 	if (WINDOW_HEIGHT > WINDOW_WIDTH)
 	{
-		data->minimap.size =  WINDOW_WIDTH / 5;
+		data->minimap.minimap_size =  WINDOW_WIDTH / 5;
 	}
 	else 
 	{
-		data->minimap.size =  WINDOW_HEIGHT / 5;
+		data->minimap.minimap_size =  WINDOW_HEIGHT / 5;
 	}
 }
 
@@ -161,20 +159,21 @@ void parse_environment(t_data *data)
 	data->floor_colour = COLOUR_DARK_GREEN;
 	// data->walls_colour = COLOUR_DARK_GRAY;
 	
-	data->walls.path_to_north_texture = "./textures/fun_wall.png";
-	// data->path_to_south_texture = "";
-	// data->path_to_west_texture = "";
-	// data->path_to_east_texture = "";
+	data->textures.path_to_north_texture = "./textures/IMG_2709.png";
+	data->textures.path_to_east_texture = "./textures/fun_wall.png";
+	data->textures.path_to_south_texture = "./textures/IMG_5452.png";
+	data->textures.path_to_west_texture = "./textures/fun_wall.png";
 }
 
-void	set_minimap_colours(t_data *data)
+void	init_minimap(t_data *data)
 {
 	data->minimap.back_ground_colour = COLOUR_DARK_GRAY;
 	data->minimap.wall_colour = COLOUR_DARK_GRAY;
 	data->minimap.floor_colour = COLOUR_GRAY;
 	data->minimap.player_colour = COLOUR_YELLOW;
-	data->minimap.border_colour = COLOUR_BLACK;
 	data->minimap.ray_colour = COLOUR_RED; 	// i you make this a colour with alpha turned off, the rays will look like they are shining trough the minimap hihi
+	data->minimap.border_colour = COLOUR_BLACK;
+	data->minimap.border_size = 10;
 }
 
 void fake_parsing(t_data *data)
@@ -185,5 +184,5 @@ void fake_parsing(t_data *data)
 	parse_environment(data);
 	
 	get_minimap_size(data);
-	set_minimap_colours(data);
+	init_minimap(data);
 }

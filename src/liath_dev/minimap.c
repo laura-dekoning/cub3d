@@ -6,23 +6,52 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/21 20:27:57 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 13:21:27 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../incl/liath.h"
 
+// void init_border_vectors(t_data *data)
+// {
+	
+// }
+
 void	draw_border(t_data *data)
 {
-	uint64_t colour;
-	int size;
-	
-	size = 5;
+	t_vector_i	top_line_start;
+	t_vector_i	top_line_end;
+	t_vector_i	bottom_line_start;
+	t_vector_i	bottom_line_end;
+	t_vector_i	left_line_start;
+	t_vector_i	left_line_end;
+	t_vector_i	right_line_start;
+	t_vector_i	right_line_end;
+	uint64_t	colour;
+
+	top_line_start.x = 0;
+	top_line_start.y = 0;
+	top_line_end.x = data->minimap_image->width;
+	top_line_end.y = data->minimap.border_size;
+	bottom_line_start.x = 0;
+	bottom_line_start.y = data->minimap_image->height - data->minimap.border_size;
+	bottom_line_end.x = data->minimap_image->width;
+	bottom_line_end.y = data->minimap_image->height;
+	left_line_start.x = 0;
+	left_line_start.y = 0;
+	left_line_end.x = data->minimap.border_size;
+	left_line_end.y = data->minimap_image->height;
+	right_line_start.x = data->minimap_image->width - data->minimap.border_size;
+	right_line_start.y = 0;
+	right_line_end.x = data->minimap_image->width;
+	right_line_end.y = data->minimap_image->height;
+
 	colour = data->minimap.border_colour;
-	draw_filled_square(data->minimap_image, (t_vector_i){0, 0}, data->minimap.size, size, colour);
-	draw_filled_square(data->minimap_image, (t_vector_i){0, data->minimap.size - size}, data->minimap.size, size, colour);
-	draw_filled_square(data->minimap_image, (t_vector_i){0, 0}, size, data->minimap.size, colour);
-	draw_filled_square(data->minimap_image, (t_vector_i){data->minimap.size - size, 0}, size, data->minimap.size, colour);
+
+	draw_filled_rectangle(data->minimap_image, top_line_start, top_line_end, colour);
+	draw_filled_rectangle(data->minimap_image, bottom_line_start, bottom_line_end, colour);
+	draw_filled_rectangle(data->minimap_image, left_line_start, left_line_end, colour);
+	draw_filled_rectangle(data->minimap_image, right_line_start, right_line_end, colour);
 }
 	
 void	draw_eye(t_data *data, t_vector_f player_centre, int colour)
@@ -125,19 +154,19 @@ void	draw_player(t_data *data)
 // 	uint64_t colour;
 	
 // 	// Center the minimap around the player
-// 	minimap_offset.x = (int)(data->player.pos.x * GRIDSIZE_MM / GRIDSIZE_3D) - (data->minimap.size / 2);
-// 	minimap_offset.y = (int)(data->player.pos.y * GRIDSIZE_MM / GRIDSIZE_3D) - (data->minimap.size / 2);
+// 	minimap_offset.x = (int)(data->player.pos.x * GRIDSIZE_MM / GRIDSIZE_3D) - (data->minimap.minimap_size / 2);
+// 	minimap_offset.y = (int)(data->player.pos.y * GRIDSIZE_MM / GRIDSIZE_3D) - (data->minimap.minimap_size / 2);
 	
 // 	// Adjust for small maps so they’re centered
-// 	if (data->map->cols * GRIDSIZE_MM < data->minimap.size)
-// 		minimap_offset.x = -(data->minimap.size - (data->map->cols * GRIDSIZE_MM)) / 2;
-// 	if (data->map->rows * GRIDSIZE_MM < data->minimap.size)
-// 		minimap_offset.y = -(data->minimap.size - (data->map->rows * GRIDSIZE_MM)) / 2;
+// 	if (data->map->cols * GRIDSIZE_MM < data->minimap.minimap_size)
+// 		minimap_offset.x = -(data->minimap.minimap_size - (data->map->cols * GRIDSIZE_MM)) / 2;
+// 	if (data->map->rows * GRIDSIZE_MM < data->minimap.minimap_size)
+// 		minimap_offset.y = -(data->minimap.minimap_size - (data->map->rows * GRIDSIZE_MM)) / 2;
 	
 
 // 	float scale = 1.0;
 // 	if (data->map->cols > 8 || data->map->rows > 8)
-// 		scale = (float)data->minimap.size / (data->map->cols * GRIDSIZE_MM);
+// 		scale = (float)data->minimap.minimap_size / (data->map->cols * GRIDSIZE_MM);
 	
 // 	// Adjust GRIDSIZE_MM with the scaling factor
 // 	int scaled_size = (int)(GRIDSIZE_MM * scale);
@@ -152,14 +181,14 @@ void	draw_player(t_data *data)
 // 			offset.y = (y * scaled_size) - minimap_offset.y;
 	
 // 			if (offset.x + scaled_size > 0 && offset.y + scaled_size > 0 &&
-// 				offset.x < data->minimap.size && offset.y < data->minimap.size)
+// 				offset.x < data->minimap.minimap_size && offset.y < data->minimap.minimap_size)
 // 			{
 // 				if (data->map->map[y][x] == '1')
 // 					colour = data->minimap.wall_colour;
 // 				else
 // 					colour = data->minimap.floor_colour;
 	
-// 				draw_filled_square(data->minimap_image, offset, scaled_size, scaled_size, colour);
+// 				draw_filled_rectangle(data->minimap_image, offset, scaled_size, scaled_size, colour);
 // 			}
 // 			x++;
 // 		}
@@ -179,15 +208,15 @@ void	draw_player(t_data *data)
 //	int max_tiles = 8;
 //	int grid_size = GRIDSIZE_MM;
 //	if (data->map->cols > max_tiles || data->map->rows > max_tiles)
-//		grid_size = data->minimap.size / max_tiles;
+//		grid_size = data->minimap.minimap_size / max_tiles;
 //	else
-//		grid_size = data->minimap.size / data->map->cols;
+//		grid_size = data->minimap.minimap_size / data->map->cols;
 
 //	// Center the map around the player
 //	int map_width_px = data->map->cols * grid_size;
 //	int map_height_px = data->map->rows * grid_size;
-//	int offset_x = (data->minimap.size - map_width_px) / 2 - (data->player.pos.x * grid_size - data->minimap.size / 2);
-//	int offset_y = (data->minimap.size - map_height_px) / 2 - (data->player.pos.y * grid_size - data->minimap.size / 2);
+//	int offset_x = (data->minimap.minimap_size - map_width_px) / 2 - (data->player.pos.x * grid_size - data->minimap.minimap_size / 2);
+//	int offset_y = (data->minimap.minimap_size - map_height_px) / 2 - (data->player.pos.y * grid_size - data->minimap.minimap_size / 2);
 
 //	y = 0;
 //	while (y < data->map->rows)
@@ -198,7 +227,7 @@ void	draw_player(t_data *data)
 //			offset.x = x * grid_size + offset_x;
 //			offset.y = y * grid_size + offset_y;
 
-//			if (offset.x + grid_size > 0 && offset.y + grid_size > 0 && offset.x < data->minimap.size && offset.y < data->minimap.size)
+//			if (offset.x + grid_size > 0 && offset.y + grid_size > 0 && offset.x < data->minimap.minimap_size && offset.y < data->minimap.minimap_size)
 //			{
 //				if (data->map->map[y][x] == '1')
 //				{
@@ -208,7 +237,7 @@ void	draw_player(t_data *data)
 //				{
 //					colour = data->minimap.floor_colour;
 //				}
-//				draw_filled_square(data->minimap_image, offset, grid_size, grid_size, colour);
+//				draw_filled_rectangle(data->minimap_image, offset, grid_size, grid_size, colour);
 //			}
 //			x++;
 //		}
@@ -230,7 +259,8 @@ void	draw_2D_map(t_data *data)
 {
 	int x;
 	int y;
-	t_vector_i offset;
+	t_vector_i start_pos;
+	t_vector_i end_pos;
 	uint64_t colour;
 
 	y = 0;
@@ -239,9 +269,9 @@ void	draw_2D_map(t_data *data)
 		x = 0;
 		while (x < data->map->cols)
 		{
-			offset.x = (x * GRIDSIZE_MM); // + x; 	(to draw minimap with gridlines (skips a pixel every row and col))
-			offset.y = (y * GRIDSIZE_MM); // + y; 	(but this causes problems with the rays) (i can do it later on top of the map if i want to)
-			if (offset.x + GRIDSIZE_MM > 0 && offset.y + GRIDSIZE_MM > 0 && offset.x < data->minimap.size && offset.y < data->minimap.size)
+			start_pos.x = (x * GRIDSIZE_MM); // + x; 	(to draw minimap with gridlines (skips a pixel every row and col))
+			start_pos.y = (y * GRIDSIZE_MM); // + y; 	(but this causes problems with the rays) (i can do it later on top of the map if i want to)
+			if (start_pos.x + GRIDSIZE_MM > 0 && start_pos.y + GRIDSIZE_MM > 0 && start_pos.x < data->minimap.minimap_size && start_pos.y < data->minimap.minimap_size)
 			{
 				if (data->map->map[y][x] == '1')
 				{	
@@ -251,7 +281,9 @@ void	draw_2D_map(t_data *data)
 				{	
 					colour = data->minimap.floor_colour;
 				}
-				draw_filled_square(data->minimap_image, offset, GRIDSIZE_MM, GRIDSIZE_MM, colour);
+				end_pos.x = start_pos.x + GRIDSIZE_MM;
+				end_pos.y = start_pos.y + GRIDSIZE_MM;
+				draw_filled_rectangle(data->minimap_image, start_pos, end_pos, colour);
 			}
 			x++;
 		}
@@ -259,11 +291,22 @@ void	draw_2D_map(t_data *data)
 	}
 }
 
+void	draw_minimap_background(t_data *data)
+{
+	t_vector_i start_pos;
+	t_vector_i end_pos;
+	
+	start_pos.x = 0;
+	start_pos.y = 0;
+	end_pos.x = start_pos.x + data->minimap.minimap_size;
+	end_pos.y = start_pos.y + data->minimap.minimap_size;
+	
+	draw_filled_rectangle(data->minimap_image, start_pos, end_pos, data->minimap.back_ground_colour);
+}
 
 void	minimap(t_data *data)
 {
-
-	draw_filled_square(data->minimap_image, (t_vector_i){0, 0}, data->minimap.size, data->minimap.size, data->minimap.back_ground_colour);
+	draw_minimap_background(data);
 	
 	draw_2D_map(data);
 	draw_player(data);

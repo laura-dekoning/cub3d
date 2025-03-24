@@ -6,6 +6,9 @@
 		"ranges": "cpp",
 		"span": "cpp",
 		"liath.h": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"format": "c",
+		"initializer_list": "c",
+		"cstdint": "c"
 	}
 }

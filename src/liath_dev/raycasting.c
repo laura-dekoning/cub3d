@@ -12,30 +12,6 @@
 
 #include "../../incl/liath.h"
 
-void set_wall_sides(t_ray *ray)
-{
-	if (ray->N_S_wall == true)
-	{
-		if (ray->step_dir.y < 0)
-			ray->wall_side = NORTH;
-		else
-			ray->wall_side = SOUTH;
-	}
-	else
-	{
-		if (ray->step_dir.x < 0)
-			ray->wall_side = WEST;
-		else
-			ray->wall_side = EAST;
-	}
-}
-void	init_walls(t_data *data, t_ray *ray)
-{
-	(void)data;
-	set_wall_sides(ray);
-}
-
-
 void DDA_aggorithm(t_data *data, t_ray *ray, t_vector_f *map_pos)
 {
 	while (ray->wall_hit == false)
@@ -45,14 +21,14 @@ void DDA_aggorithm(t_data *data, t_ray *ray, t_vector_f *map_pos)
 			map_pos->x += ray->step_dir.x;
 			ray->distance = ray->collision_point.x;
 			ray->collision_point.x += ray->step_size.x;
-			ray->N_S_wall = false;		
+			ray->wall_3d.N_S_wall = false;		
 		}
 		else
 		{
 			map_pos->y += ray->step_dir.y;
 			ray->distance = ray->collision_point.y;
 			ray->collision_point.y += ray->step_size.y;
-			ray->N_S_wall = true;
+			ray->wall_3d.N_S_wall = true;
 		}
 		if (map_pos->x >= 0 && map_pos->y >= 0 && map_pos->x < data->map->map_width_px && map_pos->y < data->map->map_height_px)
 		{
@@ -62,17 +38,11 @@ void DDA_aggorithm(t_data *data, t_ray *ray, t_vector_f *map_pos)
 	}
 }
 
-void get_ray_distance(t_data *data, t_ray *ray, t_vector_f *map_pos)
+void cast_ray(t_data *data, t_ray *ray, t_vector_f *map_pos)
 {
-
 	DDA_aggorithm(data, ray, map_pos);
-	if (ray->wall_hit)
-	{
-		// for the minimap:
-		ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
-		ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
-		
-	}
+	ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
+	ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;		
 }
 
 // get ray step direction and collision point with the next horixontal or vertical line
@@ -106,7 +76,6 @@ void init_ray(t_data *data, t_ray *ray, t_vector_f dir, float ang, t_vector_f *m
 {
 	map_pos->x = (int)(data->player.pos.x);
 	map_pos->y = (int)(data->player.pos.y);
-
 	ray->start_pos = data->player.pos;
 	ray->direction = dir;
 	ray->angle = ang;
@@ -121,7 +90,6 @@ void init_ray(t_data *data, t_ray *ray, t_vector_f dir, float ang, t_vector_f *m
 	ray->wall_hit = false;
 	ray->distance = 0.0;
 	get_ray_direction(data, ray, map_pos);
-	get_ray_distance(data, ray, map_pos);
 }
 
 void raycasting(t_data *data)
@@ -140,8 +108,9 @@ void raycasting(t_data *data)
 		dir.x = cos(angle);
 		dir.y = sin(angle);
 		init_ray(data, &data->ray[i], dir, angle, &map_pos);
-		init_walls(data, &data->ray[i]);
-		cast_ray(data, &data->ray[i], i);
+		cast_ray(data, &data->ray[i], &map_pos);
+		init_wall_sagment(data, &data->ray[i]);
+		render_3d_wall_sagment(data, &data->ray[i], i);
 		angle += angle_step;
 		if (angle > (2 * PI))
 			angle -= (2 * PI);

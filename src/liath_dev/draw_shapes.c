@@ -12,16 +12,21 @@
 
 #include "../../incl/liath.h"
 
-void	draw_filled_square(mlx_image_t *image, t_vector_i start_pos, uint32_t width, uint32_t height, uint64_t colour)
+
+/*
+* @param start_pos is the top left courner of the rectancle
+* @param start_pos is the bottum right courner of the rectancle
+*/
+void	draw_filled_rectangle(mlx_image_t *image, t_vector_i start_pos, t_vector_i end_pos, uint64_t colour)
 {
 	uint32_t	x;
 	uint32_t	y;
 
 	y = start_pos.y;
-	while (y < start_pos.y + height)
+	while (y < (uint32_t)(start_pos.y + end_pos.y))
 	{
 		x = start_pos.x;
-		while (x < start_pos.x + width)
+		while (x < (uint32_t)(start_pos.x + end_pos.x))
 		{
 			if (x > 0 && y > 0 && x < image->width && y < image->height)
 				mlx_put_pixel(image, x, y, colour);
@@ -85,7 +90,7 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 	step_x = end.x - start.x;
 	step_y = end.y - start.y;
 	//get amount of steps
-	max = get_max(fabsf(step_x), fabsf(step_y));	// fabsf() returns the absolute value of a float
+	max = fmax(fabsf(step_x), fabsf(step_y));	// fabsf() returns the absolute value of a float
 	// get step length for x and y
 	step_x /= max;
 	step_y /= max;
@@ -99,3 +104,28 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 	}
 }
 
+void	draw_ceiling_and_floor(t_data *data)
+{
+	t_vector_i	ceiling_start;
+	t_vector_i	ceiling_end;
+	t_vector_i	floor_start;
+	t_vector_i	floor_end;
+	uint32_t	c_col;
+	uint32_t	f_col;
+
+	c_col = data->ceiling_colour;
+	f_col = data->floor_colour;
+
+	ceiling_start.x = 0;
+	ceiling_start.y = 0;
+	ceiling_end.x = data->window_image->width;
+	ceiling_end.y = data->window_image->height / 2;
+
+	floor_start.x = 0;
+	floor_start.y = data->window_image->height / 2;
+	floor_end.x = data->window_image->width;
+	floor_end.y = data->window_image->height;
+
+	draw_filled_rectangle(data->window_image, ceiling_start, ceiling_end, c_col);
+	draw_filled_rectangle(data->window_image, floor_start, floor_end, f_col);
+}

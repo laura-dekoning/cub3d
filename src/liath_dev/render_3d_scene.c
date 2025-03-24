@@ -12,97 +12,83 @@
 
 #include "../../incl/liath.h"
 
-
-// working version! with different wall colours
-// uint64_t	parse_wall_colours(t_ray *ray)
-// {
-// 	uint64_t colour;
-
-// 	if (ray->wall_side == NORTH)
-// 	{
-// 		colour = COLOUR_BLUE;
-// 	}
-// 	else if (ray->wall_side == EAST)
-// 	{
-// 		colour = COLOUR_GREEN;
-// 	}
-// 	else if (ray->wall_side == SOUTH)
-// 	{
-// 		colour = COLOUR_RED;
-// 	}
-// 	else // ray->wall_side == WEST
-// 	{
-// 		colour = COLOUR_YELLOW;
-// 	}
-// 	return (colour);
-// }
-
-// void render_3d_scene(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
-// {
-// 	int 		line_width;
-// 	int			i;
-// 	t_vector_f 	start;
-// 	t_vector_f 	end;
-// 	uint64_t colour;
-	
-// 	colour = parse_wall_colours(ray);
-// 	line_width = data->window->width / (NUMB_RAYS);
-// 	i = 0;
-// 	while (i < line_width)
-// 	{	
-// 		start.x = line_width * ray_i + i;
-// 		if (start.x >= data->window->width)
-// 			break;
-// 		start.y = wall_top;
-// 		end.x = line_width * ray_i + i;
-// 		end.y = wall_bottom;
-// 		draw_line(data->window_image, start, end, colour);
-// 		i++;
-// 	}
-// }
-
-
-// void cast_ray(t_data *data, t_ray *ray, int ray_i)
-// {
-// 	float		wall_height;
-// 	int			wall_top;
-// 	int			wall_bottom;
-// 	float		wall_distance;
-// 	float		corrected_distance;
-
-// 	wall_distance = (data->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
-// 	corrected_distance = ray->distance * cos(ray->angle - data->player.angle);
-
-// 	wall_height = (wall_distance * GRIDSIZE_3D) / corrected_distance;
-// 	// wall_height = (wall_distance * GRIDSIZE_3D) / ray->distance;
-
-// 	wall_top = get_max(0, (data->window->height / 2) - (wall_height / 2));
-// 	wall_bottom = get_min(data->window->height, (data->window->height / 2) + (wall_height / 2));
-// 	render_3d_scene(data, ray, ray_i, wall_top, wall_bottom);
-// }
-
-void	draw_ceiling_and_floor(t_data *data)
+void set_texture_y(t_ray *ray, int texture_y)
 {
-	t_vector_i	floor_start;
-	t_vector_i	ceiling_start;
-	uint32_t	width;
-	uint32_t	height;
-	uint32_t	c_col;
-	uint32_t	f_col;
-
-	c_col = data->ceiling_colour;
-	f_col = data->floor_colour;
-
-	width = data->window_image->width;
-	height = data->window_image->height / 2;
-
-	ceiling_start.x = 0;
-	ceiling_start.y = 0;
-	floor_start.x = 0;
-	floor_start.y = height;
-
-	draw_filled_square(data->window_image, ceiling_start, width, height, c_col);
-	draw_filled_square(data->window_image, floor_start, width, height, f_col);
+	// to fix ghost effect
+	ray->wall_3d.texture_y = texture_y;
+	if (ray->wall_3d.texture_y >= (int)ray->wall_3d.texture->height)
+	    ray->wall_3d.texture_y = ray->wall_3d.texture->height - 1;
+	if (ray->wall_3d.texture_y < 0)
+	    ray->wall_3d.texture_y = 0;
 }
 
+uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
+{
+	int				pixel_index;
+	uint64_t		colour;
+	uint8_t			r;
+	uint8_t			g;
+	uint8_t			b;
+	uint8_t			a;
 
+	set_texture_y(ray, texture_y);
+	pixel_index = (ray->wall_3d.texture_y * ray->wall_3d.texture->width + ray->wall_3d.texture_x) * ray->wall_3d.texture->bytes_per_pixel;
+	r = ray->wall_3d.texture->pixels[pixel_index];
+	g = ray->wall_3d.texture->pixels[pixel_index + 1];
+	b = ray->wall_3d.texture->pixels[pixel_index + 2];
+	a = ray->wall_3d.texture->pixels[pixel_index + 3];
+	colour = (r << 24) | (g << 16) | (b << 8) | a;
+	return (colour);
+}
+
+void	draw_wall_segment(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
+{
+	uint32_t		x;
+	uint32_t		y;
+	uint64_t		colour;
+	float 			texture_y;
+	int				i;
+
+	texture_y = ray->wall_3d.texture_y_pos;
+	i = 0;
+	while (i < ray->wall_3d.line_width)
+	{
+		x = ray_i * ray->wall_3d.line_width + i;
+		if (x >= (uint32_t)data->window->width) 
+			break;
+		texture_y = ray->wall_3d.texture_y_pos;
+		y = wall_top;
+		while (y < (uint32_t)wall_bottom)
+		{
+			colour = get_pixel_colour(ray, (int)texture_y);
+			if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
+				mlx_put_pixel(data->window_image, x, y, colour);
+			texture_y += ray->wall_3d.texture_y_step;
+			y++;
+		}
+		i++;
+	}
+}
+
+void render_3d_wall_sagment(t_data *data, t_ray *ray, int ray_i)
+{
+	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
+	{
+		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.x, GRIDSIZE_3D) / GRIDSIZE_3D;
+	}
+	else if (ray->wall_3d.wall_side == EAST || ray->wall_3d.wall_side == WEST)
+	{
+		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.y, GRIDSIZE_3D) / GRIDSIZE_3D;
+	}
+
+	// to fix mirrored effect
+	if (ray->wall_3d.wall_side == SOUTH || ray->wall_3d.wall_side == WEST)
+	{
+		ray->wall_3d.wall_hit_screen_x = 1.0 - ray->wall_3d.wall_hit_screen_x;
+	}
+
+	ray->wall_3d.texture_x = (int)(ray->wall_3d.wall_hit_screen_x * ray->wall_3d.texture->width);
+	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / ray->wall_3d.wall_height;
+
+	draw_wall_segment(data, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
+}
