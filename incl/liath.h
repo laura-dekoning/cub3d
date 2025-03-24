@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 13:29:37 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 15:16:32 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 
 # define FOV			60.0
 # define NUMB_RAYS		(WINDOW_WIDTH / 2)
+# define RENDER_DIST	1000
+# define SHADOW_ALPHA	100		// 0 is complete seetrough aka completely gray (max 255)
+# define FOG_FACTOR		4		// smaller numebr is "thicker fog" effect
 
 # define NORTH 			1
 # define EAST 			2
@@ -131,15 +134,15 @@ typedef struct s_wall_sagment_3d
 	float			wall_height;
 	int				wall_top;
 	int				wall_bottom;
+	int				wall_shadow;
 
-
-	int				line_width;
+	uint8_t			line_width;
 	mlx_texture_t	*texture;
-	float			wall_hit_screen_x; // float worked
+	float			wall_hit_screen_x;
 	int				texture_x;
 	int				texture_y;
 	float			texture_y_step; 
-	float			texture_y_pos; // float worked
+	float			texture_y_pos;
 
 }	t_wall_sagment_3d;
 

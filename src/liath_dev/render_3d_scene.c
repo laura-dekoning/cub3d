@@ -17,9 +17,9 @@ void set_texture_y(t_ray *ray, int texture_y)
 	// to fix ghost effect
 	ray->wall_3d.texture_y = texture_y;
 	if (ray->wall_3d.texture_y >= (int)ray->wall_3d.texture->height)
-	    ray->wall_3d.texture_y = ray->wall_3d.texture->height - 1;
+		ray->wall_3d.texture_y = ray->wall_3d.texture->height - 1;
 	if (ray->wall_3d.texture_y < 0)
-	    ray->wall_3d.texture_y = 0;
+		ray->wall_3d.texture_y = 0;
 }
 
 uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
@@ -36,7 +36,9 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	r = ray->wall_3d.texture->pixels[pixel_index];
 	g = ray->wall_3d.texture->pixels[pixel_index + 1];
 	b = ray->wall_3d.texture->pixels[pixel_index + 2];
-	a = ray->wall_3d.texture->pixels[pixel_index + 3];
+	// a = ray->wall_3d.texture->pixels[pixel_index + 3];
+	a = ray->wall_3d.wall_shadow;
+
 	colour = (r << 24) | (g << 16) | (b << 8) | a;
 	return (colour);
 }
@@ -60,9 +62,13 @@ void	draw_wall_segment(t_data *data, t_ray *ray, int ray_i, int wall_top, int wa
 		y = wall_top;
 		while (y < (uint32_t)wall_bottom)
 		{
-			colour = get_pixel_colour(ray, (int)texture_y);
 			if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
-				mlx_put_pixel(data->window_image, x, y, colour);
+			{
+				// create shadow by drawing a pixel in the wall colour first, then the texture pixel with an alpha depending on the distance
+				mlx_put_pixel(data->window_image, x, y, data->walls_colour); // background collor
+				colour = get_pixel_colour(ray, (int)texture_y);
+				mlx_put_pixel(data->window_image, x, y, colour); // texture			
+			}
 			texture_y += ray->wall_3d.texture_y_step;
 			y++;
 		}
@@ -91,4 +97,6 @@ void render_3d_wall_sagment(t_data *data, t_ray *ray, int ray_i)
 	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / ray->wall_3d.wall_height;
 
 	draw_wall_segment(data, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
+
+
 }

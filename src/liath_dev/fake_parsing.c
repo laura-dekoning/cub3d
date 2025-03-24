@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 13:05:42 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 14:36:59 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void parse_map(t_data *data)
 	"10011111111100000001",
 	"10010000000000000001",
 	"10010000000000000001",
-	"10010000000111111111",
+	"10010000000100000001",
 	"10010000000100000001",
 	"100100000001000N0001",
 	"10010000000100000001",
@@ -157,7 +157,7 @@ void parse_environment(t_data *data)
 {
 	data->ceiling_colour = COLOUR_AQUA;
 	data->floor_colour = COLOUR_DARK_GREEN;
-	// data->walls_colour = COLOUR_DARK_GRAY;
+	data->walls_colour = COLOUR_DARK_GRAY; // shadow
 	
 	data->textures.path_to_north_texture = "./textures/IMG_2709.png";
 	data->textures.path_to_east_texture = "./textures/fun_wall.png";

@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 13:06:04 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/24 14:39:33 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	game(t_data *data)
 	draw_ceiling_and_floor(data);
 	raycasting(data);
 
-	minimap(data);
+	// minimap(data);
 }
 
 void	images_to_window(t_data *data)
