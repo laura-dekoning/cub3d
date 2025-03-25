@@ -69,8 +69,8 @@ plan:
 [ ][ ][ ][ ][ ]
 [ ][ ][ ][ ][ ]
 
-*/
 
+*/
 
 void	draw_minimap_background(t_data *data)
 {
@@ -91,6 +91,7 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 	int y;
 	int map_x;
 	int map_y;
+	// char nbr[2];
 
 	t_vector_i player_map_pos;
 
@@ -118,6 +119,18 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 		y++;
 	}
 }
+
+			// nbr[0] = data->map->map[map_y][map_x];
+			// nbr[1] = '\0';
+			// // check if map position is out of bounds
+			// if (map_y < 0 || map_y >= data->map->rows || map_x < 0 || map_x >= data->map->cols)
+			// 	map[y][x] = MM_NONE;
+			// else if (ft_atoi(nbr) > 0)
+			// 	map[y][x] = MM_WALL;
+			// else
+			// 	map[y][x] = MM_FLOOR;
+
+
 static void	set_colour(t_data *data, int map, uint64_t *colour)
 {
 

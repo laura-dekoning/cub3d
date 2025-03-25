@@ -12,6 +12,25 @@
 
 #include "../../incl/liath.h"
 
+/*
+typedef struct mlx_texture
+{
+    uint32_t width;
+    uint32_t height;
+    uint8_t  bytes_per_pixel;
+    uint8_t* pixels;
+} mlx_texture_t;
+ 
+
+width: The texture’s width in pixels.
+height: The texture’s height in pixels.
+bytes_per_pixel: Always 4 (RGBA), meaning every pixel uses 4 bytes.
+pixels: An array where every 4 consecutive values represent the Red, Green, Blue, and Alpha (transparency) of a pixel.
+
+array length = width * height * bytes_per_pixel;
+*/
+
+
 void set_texture_y(t_ray *ray, int texture_y)
 {
 	// to fix ghost effect
@@ -25,18 +44,25 @@ void set_texture_y(t_ray *ray, int texture_y)
 uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 {
 	int				pixel_index;
+	uint8_t				*pixel_array;
+	int 			pixel_array_len;
 	uint64_t		colour;
 	uint8_t			r;
 	uint8_t			g;
 	uint8_t			b;
 	uint8_t			a;
 
+	pixel_array = ray->wall_3d.texture->pixels;
+	pixel_array_len = ray->wall_3d.texture->width * ray->wall_3d.texture->height  * ray->wall_3d.texture->bytes_per_pixel;
+
 	set_texture_y(ray, texture_y);
 	pixel_index = (ray->wall_3d.texture_y * ray->wall_3d.texture->width + ray->wall_3d.texture_x) * ray->wall_3d.texture->bytes_per_pixel;
-	r = ray->wall_3d.texture->pixels[pixel_index];
-	g = ray->wall_3d.texture->pixels[pixel_index + 1];
-	b = ray->wall_3d.texture->pixels[pixel_index + 2];
-	// a = ray->wall_3d.texture->pixels[pixel_index + 3];
+	if (pixel_index + 2 > pixel_array_len)
+		return(0);	// black pixel?
+	r = pixel_array[pixel_index];
+	g = pixel_array[pixel_index + 1];
+	b = pixel_array[pixel_index + 2];
+	// a = pixel_array[pixel_index + 3];
 	a = ray->wall_3d.wall_shadow;
 
 	colour = (r << 24) | (g << 16) | (b << 8) | a;

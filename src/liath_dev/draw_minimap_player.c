@@ -83,7 +83,6 @@ void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 		i++;
 	}
 
-
 // i need to figure out how to open and close the mouth hihi
 	// draw_filled_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, COLOUR_YELLOW);
 
@@ -94,7 +93,7 @@ void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 
 void	draw_player(t_data *data)
 {
-	// draw_rays(data, data->minimap.ray_colour);
+	draw_rays(data, data->minimap.ray_colour);
 	draw_filled_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, data->minimap.player_colour);
 	draw_mouth(data, data->minimap.player_pos, COLOUR_BLACK);
 	draw_eye(data, data->minimap.player_pos, COLOUR_BLACK);

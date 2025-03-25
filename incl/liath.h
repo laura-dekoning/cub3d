@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 20:06:36 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/25 16:34:30 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
-# define WINDOW_WIDTH	1200
-# define WINDOW_HEIGHT	1200
+# define WINDOW_WIDTH	1800
+# define WINDOW_HEIGHT	1800
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define PI				3.14159265359
@@ -47,7 +47,7 @@
 # define DIR_SOUTH 		(PI / 2)
 # define DIR_WEST 		PI
 
-# define MOVING_SPEED	2.8
+# define MOVING_SPEED	4
 # define ROTATING_SPEED	0.03
 
 # define GRIDSIZE		64
