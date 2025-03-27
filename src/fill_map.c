@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 18:01:56 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/27 07:55:13 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,7 @@ void	fill_empty(char *temp, char *map, size_t len)
 	}
 }
 
-void	replace_tab(char *temp, char *map)
-{
-	int	i;
-	int	y;
-	int	spaces;
-
-	i = 0;
-	y = 0;
-	while (map[y] != '\0')
-	{
-		if (map[y] == '\t')
-		{
-			spaces = 4;
-			while (spaces-- != 0)
-			{
-				temp[i] = ' ';
-				i++;
-			}
-		}
-		else
-		{
-			temp[i] = map[y];
-			i++;
-		}
-		y++;
-	}
-}
-
-void	fill_and_replace(t_data *data)
+void	fill_map(t_data *data)
 {
 	int		x;
 	char	*temp;
@@ -69,14 +41,6 @@ void	fill_and_replace(t_data *data)
 	x = 0;
 	while (data->map->map[x] != NULL)
 	{
-		if (ft_strchr(data->map->map[x], '\t') != NULL)
-		{
-			temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
-			replace_tab(temp, data->map->map[x]);
-			free(data->map->map[x]);
-			data->map->map[x] = ft_substr(temp, 0, ft_strlen(temp));
-			free(temp);
-		}
 		if (ft_strlen(data->map->map[x]) < data->map->cols)
 		{
 			temp = safe_calloc(data, data->map->cols + 1, sizeof(char));

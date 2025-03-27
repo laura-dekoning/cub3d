@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/20 13:55:58 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 14:49:10 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/27 07:56:09 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	map_content(char c)
 {
-	if (c != ' ' && c != '\t' && c != '1' && c != '0')
+	if (c != ' ' && c != '1' && c != '0')
 		return (false);
 	return (true);
 }

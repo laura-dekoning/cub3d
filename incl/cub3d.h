@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 13:57:45 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/27 07:55:26 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t	parse_validate_init_rgb(t_data *data, char *file_as_str, size_t start);
 bool	map_content_valid(t_data *data, char *line, size_t start);
 size_t	parse_validate_init_map(t_data *data, char *line, size_t start);
 void	validate_map(t_data *data);
-void	fill_and_replace(t_data *data);
+void	fill_map(t_data *data);
 bool	is_map_content(char *str, int start);
 
 

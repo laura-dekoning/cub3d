@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 17:54:33 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/27 07:56:44 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ void	set_rows_and_cols(t_data *data, char **map)
 		cols = 0;
 		while (map[rows][cols])
 		{
-			if (map[rows][cols] == '\t')
-				count += 4;
-			else
-				count++;
+			count++;
 			if (data->map->cols < count)
 				data->map->cols = count;
 			cols++;
@@ -72,7 +69,7 @@ bool	map_content_valid(t_data *data, char *line, size_t start)
 	{
 		if (line[start] == '0' || line[start] == '1')
 			start++;
-		else if (line[start] == ' ' || line[start] == '\n' || line[start] == '\t')
+		else if (line[start] == ' ' || line[start] == '\n')
 			start++;
 		else if (line[start] == 'N' || line[start] == 'S'
 				|| line[start] == 'E' || line[start] == 'W')
