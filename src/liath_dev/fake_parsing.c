@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/26 12:48:13 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 14:12:35 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,4 @@ void fake_parsing(t_data *data)
 	parse_player(data);
 	
 	parse_environment(data);
-	
 }

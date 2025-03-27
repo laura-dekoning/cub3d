@@ -47,10 +47,12 @@ void	check_collision(t_data *data, t_vector_f step)
 	next_pos.y = data->player.pos.y + step.y * MOVING_SPEED;
 	if (!hit_wall(data, next_pos.x, data->player.pos.y))
 	{
+		printf("step x = %f\n", step.x);
 		data->player.pos.x = next_pos.x;
 	}
 	if (!hit_wall(data, data->player.pos.x, next_pos.y))
 	{
+		printf("step y = %f\n", step.y);
 		data->player.pos.y = next_pos.y;
 	}
 }

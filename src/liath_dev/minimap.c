@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 13:52:21 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 14:13:11 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_minimap(t_data *data)
 	data->minimap.ray_colour = COLOUR_RED; 	// i you make this a colour with alpha turned off, the rays will look like they are shining trough the minimap hihi
 	data->minimap.arrow_colour = COLOUR_GREEN; 
 	
-	data->minimap.border_size = 10;
-	data->minimap.border_colour = COLOUR_BLACK;
+	data->minimap.border_size = 20;
+	data->minimap.border_colour = COLOUR_YELLOW;
 }
 
 

@@ -6,11 +6,30 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/20 17:29:57 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 14:37:03 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incl/liath.h"
+
+void	normalize_diagonal_movement(float *step_x, float *step_y)
+{
+	// stelling van onze grote vriend pytagoras
+
+    // c² = a² + b²
+    // c² = 1² + 1²
+    // c = sqrt (2)
+    // c = 1.41
+
+	float moving_speed;
+
+	moving_speed = sqrt(((*step_x) * (*step_x)) + ((*step_y) * (*step_y)));
+	if (moving_speed > 1)
+	{
+		*step_x /= moving_speed;
+		*step_y /= moving_speed;
+	}
+}
 
 void	movement_keys(t_data *data)
 {
@@ -38,6 +57,7 @@ void	movement_keys(t_data *data)
 		step.x -= data->player.dir.y;
 		step.y += data->player.dir.x;
 	}
+	normalize_diagonal_movement(&step.x, &step.y);
 	check_collision(data, step);
 }
 
