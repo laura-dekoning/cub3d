@@ -112,10 +112,12 @@ void raycasting(t_data *data)
 		init_wall_sagment(data, &data->ray[i]);
 		render_3d_wall_sagment(data, &data->ray[i], i);
 		angle += angle_step;
-		if (angle > (2 * PI))
-			angle -= (2 * PI);
-		if (angle < 0)
-			angle += (2 * PI);
+		check_angle(&angle);
+
+		// if (angle > (2 * PI))
+		// 	angle -= (2 * PI);
+		// if (angle < 0)
+		// 	angle += (2 * PI);
 		i++;
 	}
 }

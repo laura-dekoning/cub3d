@@ -87,3 +87,8 @@ maps:
 // 	darker_colour = (r << 24) | (g << 16) | ( b << 8) | a;
 // 	return (darker_colour);
 // }
+
+
+
+the arrow looks good! but back to the minimap, it looks a lot better! but because im drawing the map in a way that the player "jumps" to the new grid tile, the arrow sometimes looks like it goes into the wall or just misses it. 
+can you help me figure out how to draw the rays and arrow it such a way that it "jumps" with the player? 

@@ -9,6 +9,7 @@
 		"cmath": "c",
 		"format": "c",
 		"initializer_list": "c",
-		"cstdint": "c"
+		"cstdint": "c",
+		"random": "c"
 	}
 }

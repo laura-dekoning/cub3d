@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/25 16:34:30 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 14:09:23 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 # define GRIDSIZE		64
 
 // # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
-# define MINIMAP_SCALE	3 		// 1 is fullsize, 5 is good
+# define MINIMAP_SCALE	5 		// (the window size / MINIMAP_SCALE will be the size of the minimap.) (1 is fullsize, 5 is good)
 # define MINIMAP_GRID	13 		// n X n grid
 
 
@@ -179,14 +179,19 @@ typedef struct s_minimap
 	uint64_t	back_ground_colour;
 	uint64_t	wall_colour;
 	uint64_t	floor_colour;
+	uint64_t	border_colour;
+	
 	uint64_t	player_colour;
 	uint64_t	ray_colour;
-	uint64_t	border_colour;
+	uint64_t	arrow_colour;
+	
 	uint8_t		border_size;
 	uint16_t	minimap_size;
 	uint16_t	grid_size;
 	uint16_t	player_size;
+	
 	t_vector_f	player_pos;
+	// t_vector_i	player_map_pos;
 
 }	t_minimap;
 
@@ -207,8 +212,10 @@ typedef struct s_textures
 typedef struct s_data
 {
 	mlx_t		*window;
+	
 	mlx_image_t	*window_image;
 	mlx_image_t	*minimap_image;
+	mlx_image_t	*minimap_border_image;
 
 	t_map		*map;
 
@@ -228,6 +235,7 @@ typedef struct s_data
 void	draw_player(t_data *data);
 
 // draw_minimap.c
+void	draw_border(t_data *data);
 void	draw_2D_map(t_data *data);
 
 // draw_shapes.c
@@ -244,9 +252,15 @@ void		clear_everything(t_data *data);
 // fake_parsing.c        
 void		fake_parsing(t_data *data); // TAKE OUT
 
-// init_game.c           
+// game.c
 void		game(t_data *data);
 void		cub3d(t_data *data);
+
+// init_game.c
+void	init_window(t_data *data);
+void	init_minimap_image(t_data *data);
+void	init_wall_textures(t_textures	*textures);
+
 
 // init_walls.c
 void init_wall_sagment(t_data *data, t_ray *ray);
@@ -265,5 +279,8 @@ void 		raycasting(t_data *data);
 
 // render_3d_scene.c
 void render_3d_wall_sagment(t_data *data, t_ray *ray, int ray_i);
+
+// utils.c
+void check_angle(float *angle);
 
 #endif

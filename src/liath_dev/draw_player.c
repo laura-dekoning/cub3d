@@ -36,6 +36,8 @@ void	draw_rays(t_data *data, int colour)
 	int i;
 
 	start_pos = data->minimap.player_pos;
+
+
 	angle = data->player.angle - ((FOV / 2) * ONE_D_RADIAN);
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
 	i = 0;
@@ -43,17 +45,63 @@ void	draw_rays(t_data *data, int colour)
 	{
 		dir.x = cos(angle);
 		dir.y = sin(angle);
-		end_pos.x = start_pos.x + dir.x * data->ray[i].distance;
-		end_pos.y = start_pos.y + dir.y * data->ray[i].distance;
+		end_pos.x = (start_pos.x + dir.x * (data->ray[i].distance / GRIDSIZE) * data->minimap.grid_size);
+		end_pos.y = (start_pos.y + dir.y * (data->ray[i].distance / GRIDSIZE) * data->minimap.grid_size);
 		draw_line(data->minimap_image, start_pos, end_pos, colour);
 		angle += angle_step;
-		if (angle > (2 * PI))
-			angle -= (2 * PI);
-		if (angle < 0)		
-			angle += (2 * PI);
+		check_angle(&angle);
 		i++;
 	}
 }
+
+void	draw_arrow_head(t_data *data,  t_vector_f start_pos, t_vector_f end_pos, t_vector_f dir, int colour)
+{
+	float arrow_length;
+	float arrow_angle;
+	float arrow_head_size;
+	uint8_t arrow_head_pointyness;
+
+	arrow_head_size = 0.7;
+	arrow_head_pointyness = 40;	// the arrow will look like 2 * arrow_head_pointyness degrees. for example arrow_head_pointyness = 45 will make an arrowhead of 90 degrees (quarter circle). for more pointy you have to go lower.
+	arrow_length = data->minimap.grid_size * arrow_head_size;
+	arrow_angle = arrow_head_pointyness * ONE_D_RADIAN;
+	
+	dir.x = cos(data->player.angle + PI + arrow_angle);
+	dir.y = sin(data->player.angle + PI + arrow_angle);
+	start_pos.x = end_pos.x + dir.x * arrow_length;
+	start_pos.y = end_pos.y + dir.y * arrow_length;
+	draw_line(data->minimap_image, end_pos, start_pos, colour);
+	
+	dir.x = cos(data->player.angle + PI - arrow_angle);
+	dir.y = sin(data->player.angle + PI - arrow_angle);
+	start_pos.x = end_pos.x + dir.x * arrow_length;
+	start_pos.y = end_pos.y + dir.y * arrow_length;
+	draw_line(data->minimap_image, end_pos, start_pos, colour);
+}
+	
+void	draw_arrow(t_data *data, int colour)
+{
+	t_vector_f 	start_pos;
+	t_vector_f 	end_pos;
+	t_vector_f 	dir;
+	float 		angle;
+	float 		angle_step;
+	int 		i;
+
+	start_pos = data->minimap.player_pos;
+	angle = data->player.angle;
+	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
+	i = (NUMB_RAYS / 2); 
+	dir.x = cos(angle);
+	dir.y = sin(angle);
+	end_pos.x = start_pos.x + dir.x * (data->ray[i].distance / GRIDSIZE) * data->minimap.grid_size;
+	end_pos.y = start_pos.y + dir.y * (data->ray[i].distance / GRIDSIZE) * data->minimap.grid_size;
+	draw_line(data->minimap_image, start_pos, end_pos, colour);
+	angle += angle_step;
+	check_angle(&angle);
+	draw_arrow_head(data, start_pos, end_pos, dir, colour);
+}
+
 
 void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 {
@@ -76,10 +124,7 @@ void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 		end_pos.y = start_pos.y + dir.y * (data->minimap.player_size + 1);
 		draw_line(data->minimap_image, start_pos, end_pos, colour);
 		angle += angle_step;
-		if (angle > (2 * PI))
-			angle -= (2 * PI);
-		if (angle < 0)		
-			angle += (2 * PI);
+		check_angle(&angle);
 		i++;
 	}
 
@@ -93,9 +138,13 @@ void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 
 void	draw_player(t_data *data)
 {
+		
 	draw_rays(data, data->minimap.ray_colour);
+	draw_arrow(data, data->minimap.arrow_colour);
+	
 	draw_filled_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, data->minimap.player_colour);
 	draw_mouth(data, data->minimap.player_pos, COLOUR_BLACK);
 	draw_eye(data, data->minimap.player_pos, COLOUR_BLACK);
 	draw_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, COLOUR_BLACK);
+
 }

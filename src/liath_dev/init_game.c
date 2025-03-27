@@ -6,30 +6,38 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/24 20:23:26 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/27 14:05:59 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incl/liath.h"
 
-
-void	game(t_data *data)
-{
-	draw_ceiling_and_floor(data);
-	raycasting(data);
-
-	minimap(data);
-}
-
 void	get_minimap_size(t_data *data)
 {
 	if (WINDOW_HEIGHT > WINDOW_WIDTH)
 	{
-		data->minimap.minimap_size =  WINDOW_WIDTH / 5;
+		data->minimap.minimap_size =  WINDOW_WIDTH / MINIMAP_SCALE;
 	}
 	else 
 	{
-		data->minimap.minimap_size =  WINDOW_HEIGHT / 5;
+		data->minimap.minimap_size =  WINDOW_HEIGHT / MINIMAP_SCALE;
+	}
+}
+
+void	init_minimap_border_image(t_data *data)
+{
+	data->minimap_border_image = mlx_new_image(data->window, data->minimap.minimap_size + 2, data->minimap.minimap_size + 2);
+	if (data->minimap_border_image == NULL)
+	{
+		mlx_terminate(data->window);
+		error_and_exit("Image could not be created\n");
+	}
+	if (mlx_image_to_window(data->window, data->minimap_border_image, 9, 9) < 0)
+	{
+		mlx_delete_image(data->window, data->window_image);
+		mlx_delete_image(data->window, data->minimap_image);
+		mlx_terminate(data->window);
+		error_and_exit("Image could not be displayed on the window\n");
 	}
 }
 
@@ -48,6 +56,7 @@ void	init_minimap_image(t_data *data)
 		mlx_terminate(data->window);
 		error_and_exit("Image could not be displayed on the window\n");
 	}
+	init_minimap_border_image(data);
 }
 
 void	init_window(t_data *data)
@@ -68,7 +77,6 @@ void	init_window(t_data *data)
 		mlx_terminate(data->window);
 		error_and_exit("Image could not be displayed on the window\n");
 	}
-
 }
 
 void init_wall_textures(t_textures	*textures)
@@ -85,22 +93,4 @@ void init_wall_textures(t_textures	*textures)
 	textures->west_texture = mlx_load_png(textures->path_to_west_texture);
 	if (!textures->west_texture)
 		error_and_exit("Loading west wall failed\n");
-}
-
-
-void cub3d(t_data *data)
-{
-	init_window(data);
-	init_minimap_image(data);	
-	init_wall_textures(&data->textures);
-
-	game(data);
-	
-	mlx_loop_hook(data->window, is_key_pressed, data);
-	mlx_loop(data->window);
-
-	mlx_delete_image(data->window, data->window_image);
-	mlx_delete_image(data->window, data->minimap_image);
-	
-	mlx_terminate(data->window);
 }

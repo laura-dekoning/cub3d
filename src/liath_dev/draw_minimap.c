@@ -31,29 +31,43 @@ void	draw_border(t_data *data)
 
 	top_line_start.x = 0;
 	top_line_start.y = 0;
-	top_line_end.x = data->minimap_image->width;
+	top_line_end.x = data->minimap_image->width + 2;
 	top_line_end.y = data->minimap.border_size;
 	bottom_line_start.x = 0;
-	bottom_line_start.y = data->minimap_image->height - data->minimap.border_size;
-	bottom_line_end.x = data->minimap_image->width;
-	bottom_line_end.y = data->minimap_image->height;
+	bottom_line_start.y = data->minimap_image->height + 2 - data->minimap.border_size;
+	bottom_line_end.x = data->minimap_image->width + 2;
+	bottom_line_end.y = data->minimap_image->height + 2;
 	left_line_start.x = 0;
 	left_line_start.y = 0;
 	left_line_end.x = data->minimap.border_size;
-	left_line_end.y = data->minimap_image->height;
-	right_line_start.x = data->minimap_image->width - data->minimap.border_size;
+	left_line_end.y = data->minimap_image->height + 2;
+	right_line_start.x = data->minimap_image->width + 2 - data->minimap.border_size;
 	right_line_start.y = 0;
-	right_line_end.x = data->minimap_image->width;
-	right_line_end.y = data->minimap_image->height;
+	right_line_end.x = data->minimap_image->width + 2;
+	right_line_end.y = data->minimap_image->height + 2;
 
 	colour = data->minimap.border_colour;
 
-	draw_filled_rectangle(data->minimap_image, top_line_start, top_line_end, colour);
-	draw_filled_rectangle(data->minimap_image, bottom_line_start, bottom_line_end, colour);
-	draw_filled_rectangle(data->minimap_image, left_line_start, left_line_end, colour);
-	draw_filled_rectangle(data->minimap_image, right_line_start, right_line_end, colour);
+	draw_filled_rectangle(data->minimap_border_image, top_line_start, top_line_end, colour);
+	draw_filled_rectangle(data->minimap_border_image, bottom_line_start, bottom_line_end, colour);
+	draw_filled_rectangle(data->minimap_border_image, left_line_start, left_line_end, colour);
+	draw_filled_rectangle(data->minimap_border_image, right_line_start, right_line_end, colour);
 }
 
+
+
+void	draw_minimap_background(t_data *data)
+{
+	t_vector_i start_pos;
+	t_vector_i end_pos;
+	
+	start_pos.x = 0;
+	start_pos.y = 0;
+	end_pos.x = start_pos.x + data->minimap.minimap_size;
+	end_pos.y = start_pos.y + data->minimap.minimap_size;
+	
+	draw_filled_rectangle(data->minimap_image, start_pos, end_pos, data->minimap.back_ground_colour);
+}
 /*
 plan:
 - get location on the map of the player.
@@ -71,19 +85,6 @@ plan:
 
 
 */
-
-void	draw_minimap_background(t_data *data)
-{
-	t_vector_i start_pos;
-	t_vector_i end_pos;
-	
-	start_pos.x = 0;
-	start_pos.y = 0;
-	end_pos.x = start_pos.x + data->minimap.minimap_size;
-	end_pos.y = start_pos.y + data->minimap.minimap_size;
-	
-	draw_filled_rectangle(data->minimap_image, start_pos, end_pos, data->minimap.back_ground_colour);
-}
 
 void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 {
@@ -120,16 +121,6 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 	}
 }
 
-			// nbr[0] = data->map->map[map_y][map_x];
-			// nbr[1] = '\0';
-			// // check if map position is out of bounds
-			// if (map_y < 0 || map_y >= data->map->rows || map_x < 0 || map_x >= data->map->cols)
-			// 	map[y][x] = MM_NONE;
-			// else if (ft_atoi(nbr) > 0)
-			// 	map[y][x] = MM_WALL;
-			// else
-			// 	map[y][x] = MM_FLOOR;
-
 
 static void	set_colour(t_data *data, int map, uint64_t *colour)
 {
@@ -142,13 +133,9 @@ static void	set_colour(t_data *data, int map, uint64_t *colour)
 	{	
 		*colour = data->minimap.floor_colour;
 	}
-	else if (map == MM_NONE)
+	else // if (map == MM_NONE)
 	{	
 		*colour = data->minimap.back_ground_colour;
-	}
-	else
-	{	
-		*colour = COLOUR_BLUE;
 	}
 }
 
@@ -186,47 +173,4 @@ void	draw_2D_map(t_data *data)
 		y++;
 	}
 }
-
-// void	draw_2D_map(t_data *data)
-// {
-// 	int x;
-// 	int y;
-// 	t_vector_i start_pos;
-// 	t_vector_i end_pos;
-// 	uint64_t colour;
-
-	
-// 	// ======
-// 	y = 0;
-// 	while (y < data->map->rows)
-// 	{
-// 		x = 0;
-// 		while (x < data->map->cols)
-// 		{
-// 			start_pos.x = (x * data->minimap.grid_size); // + x; 	(to draw minimap with gridlines (skips a pixel every row and col))
-// 			start_pos.y = (y * data->minimap.grid_size); // + y; 	(but this causes problems with the rays) (i can do it later on top of the map if i want to)
-// 			if (start_pos.x + data->minimap.grid_size > 0 && start_pos.y + data->minimap.grid_size > 0 && start_pos.x < data->minimap.minimap_size && start_pos.y < data->minimap.minimap_size)
-// 			{
-// 				if (data->map->map[y][x] == '1')
-// 				{	
-// 					colour = data->minimap.wall_colour;
-// 				}
-// 				else if (data->map->map[y][x] == '0')
-// 				{	
-// 					colour = data->minimap.floor_colour;
-// 				}
-// 				else
-// 				{	
-// 					colour = data->minimap.back_ground_colour;
-// 				}
-// 				end_pos.x = start_pos.x + data->minimap.grid_size;
-// 				end_pos.y = start_pos.y + data->minimap.grid_size;
-// 				draw_filled_rectangle(data->minimap_image, start_pos, end_pos, colour);
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
 
