@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/27 07:55:52 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/27 08:09:21 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,28 +66,34 @@ OBJ			:=	$(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
 all: $(NAME)
 
 $(MLX42_A):
+	@echo "${BLUE} Making MLX42 ${RESET}"
 	git submodule update --init --recursive --remote
 	cmake $(MLX_DIR) -B $(MLX_DIR)/build > /dev/null
 	make -C $(MLX_DIR)/build -j4 > /dev/null
-
+	@echo "${GREEN} Completed ${RESET}"
+ 
 $(LIBFT_A):
+	@echo "${BLUE} Making libft ${RESET}"
 	git submodule update --init --recursive --remote
 	make -C $(LIBFT_DIR) > /dev/null
+	@echo "${GREEN} Completed ${RESET}"
 
 $(NAME): $(OBJ_DIR) $(OBJ) $(MLX42_A) $(LIBFT_A)
 	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(MLX42_A) $(LIBFT_A) $(MLX_FLAGS) -o $(NAME)
 
 $(OBJ_DIR):
+	@echo "${PURPLE}Making object directories${RESET}"
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(SRC_PRINT)
+	@echo "${GREEN}Completed${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 norminette:
-	echo "${CYAN}🧐 Checking the Norm...${RESET}"
+	@echo "${CYAN}🧐 Checking the Norm...${RESET}"
 	norminette -R CheckForbiddenSourceHeader
-	echo "${GREEN} Norm-i-netting complete. Files are NORM PROOF!${RESET}" 
+	@echo "${GREEN} Norm-i-netting complete. Files are NORM PROOF!${RESET}" 
 
 update:
 	git submodule update --init --recursive --remote

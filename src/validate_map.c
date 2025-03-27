@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 15:29:13 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/27 08:01:49 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	surrounded_by_walls(t_data *data)
 
 void	validate_map(t_data *data)
 {
-	fill_and_replace(data);
+	fill_map(data);
 	surrounded_by_walls(data);
 }
