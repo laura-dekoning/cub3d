@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:27 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/21 09:17:25 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/27 16:57:21 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	(void)argv;
-	(void)argc;
+	// (void)argv;
+	// (void)argc;
 	
 	data = (t_data *)ft_calloc(sizeof(t_data), 1);
 	if (data == NULL)
 		error_and_exit("Malloc allocation failed\n");
 
-	fake_parsing(data);
+	if (argc == 2 && ft_strcmp(argv[1], "lauliland") == 0)
+	{
+		printf("festival!\n");
+		festival_parsing(data);
+	}
+	else
+		fake_parsing(data);
 
+	
 // ======= THE GAME =======//
 	cub3d(data);
 // ========================//

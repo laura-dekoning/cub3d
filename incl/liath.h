@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 14:09:23 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 16:54:51 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ typedef struct s_map
 	int		map_height_px;
 }	t_map;
 
+
+
 typedef struct s_vector_f
 {
 	float	x;
@@ -127,7 +129,7 @@ typedef struct s_vector_i
 	int		y;
 }	t_vector_i;
 
-typedef struct s_wall_sagment_3d
+typedef struct s_wall_segment_3d
 {
 	bool			N_S_wall;
 	int				wall_side;
@@ -148,7 +150,7 @@ typedef struct s_wall_sagment_3d
 	float			texture_y_step; 
 	float			texture_y_pos;
 
-}	t_wall_sagment_3d;
+}	t_wall_segment_3d;
 
 typedef struct s_ray
 {
@@ -161,7 +163,7 @@ typedef struct s_ray
 	t_vector_f			end_pos;
 	float				distance;
 	bool				wall_hit;
-	t_wall_sagment_3d	wall_3d;
+	t_wall_segment_3d	wall_3d;
 }	t_ray;
 
 typedef struct s_player
@@ -173,6 +175,19 @@ typedef struct s_player
 	uint16_t	size;
 	
 }	t_player;
+
+typedef struct s_mm_border
+{
+	t_vector_i	top_line_start;
+	t_vector_i	top_line_end;
+	t_vector_i	bottom_line_start;
+	t_vector_i	bottom_line_end;
+	t_vector_i	left_line_start;
+	t_vector_i	left_line_end;
+	t_vector_i	right_line_start;
+	t_vector_i	right_line_end;
+	uint64_t	colour;
+}  t_mm_border;
 
 typedef struct s_minimap
 {
@@ -191,8 +206,8 @@ typedef struct s_minimap
 	uint16_t	player_size;
 	
 	t_vector_f	player_pos;
-	// t_vector_i	player_map_pos;
-
+	t_mm_border border;
+	
 }	t_minimap;
 
 typedef struct s_textures
@@ -206,36 +221,54 @@ typedef struct s_textures
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*west_texture;
 	mlx_texture_t	*east_texture;
-
 }	t_textures;
+
+typedef struct s_festival_textures
+{
+	char			*path_to_drink_shop;
+	char			*path_to_food_shop;
+	char			*path_to_merch_shop;
+	char			*path_to_dixies;
+	char			*path_to_wall;
+	char			*path_to_stage;
+
+	mlx_texture_t	*drink_shop_texture;
+	mlx_texture_t	*food_shop_texture;
+	mlx_texture_t	*merch_shop_texture;
+	mlx_texture_t	*dixies_texture;
+	mlx_texture_t	*wall_texture;
+	mlx_texture_t	*stage_texture;
+}	t_festival_textures;
 
 typedef struct s_data
 {
-	mlx_t		*window;
+	mlx_t				*window;
 	
-	mlx_image_t	*window_image;
-	mlx_image_t	*minimap_image;
-	mlx_image_t	*minimap_border_image;
+	mlx_image_t			*window_image;
+	mlx_image_t			*minimap_image;
+	mlx_image_t			*minimap_border_image;
 
-	t_map		*map;
+	t_map				*map;
+	bool				festival_map;
 
-	t_player	player;
-	t_ray		ray[NUMB_RAYS];
+	t_player			player;
+	t_ray				ray[NUMB_RAYS];
 
-	t_minimap	minimap;
+	t_minimap			minimap;
 
-	t_textures	textures;
+	t_textures			textures;
+	t_festival_textures	festival_textures;
 
-	uint64_t	floor_colour;
-	uint64_t	ceiling_colour;
-	uint64_t	walls_colour;
+	uint64_t			floor_colour;
+	uint64_t			ceiling_colour;
+	// uint64_t			walls_colour;
 }	t_data;
 
 // draw_minimap_player.c
 void	draw_player(t_data *data);
 
 // draw_minimap.c
-void	draw_border(t_data *data);
+void	draw_border(t_data *data, t_mm_border border);
 void	draw_2D_map(t_data *data);
 
 // draw_shapes.c
@@ -252,6 +285,11 @@ void		clear_everything(t_data *data);
 // fake_parsing.c        
 void		fake_parsing(t_data *data); // TAKE OUT
 
+// festival_parsing.c
+void	festival_parsing(t_data *data);
+void init_festival_wall_textures(t_festival_textures	*f_textures);
+
+
 // game.c
 void		game(t_data *data);
 void		cub3d(t_data *data);
@@ -263,7 +301,7 @@ void	init_wall_textures(t_textures	*textures);
 
 
 // init_walls.c
-void init_wall_sagment(t_data *data, t_ray *ray);
+void init_wall_segment(t_data *data, t_ray *ray);
 
 // keys.c                
 void		is_key_pressed(void *data);
@@ -278,9 +316,10 @@ void		check_collision(t_data *data, t_vector_f step);
 void 		raycasting(t_data *data);
 
 // render_3d_scene.c
-void render_3d_wall_sagment(t_data *data, t_ray *ray, int ray_i);
+void render_3d_wall_segment(t_data *data, t_ray *ray, int ray_i);
 
 // utils.c
+int satoui(const char c);
 void check_angle(float *angle);
 
 #endif

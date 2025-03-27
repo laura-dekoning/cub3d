@@ -10,51 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #define MM_NONE		2
 #define MM_WALL		1
 #define MM_FLOOR	0
 
 # include "../../incl/liath.h"
 
-void	draw_border(t_data *data)
+void	draw_border(t_data *data, t_mm_border border)
 {
-	t_vector_i	top_line_start;
-	t_vector_i	top_line_end;
-	t_vector_i	bottom_line_start;
-	t_vector_i	bottom_line_end;
-	t_vector_i	left_line_start;
-	t_vector_i	left_line_end;
-	t_vector_i	right_line_start;
-	t_vector_i	right_line_end;
-	uint64_t	colour;
-
-	top_line_start.x = 0;
-	top_line_start.y = 0;
-	top_line_end.x = data->minimap_image->width + 2;
-	top_line_end.y = data->minimap.border_size;
-	bottom_line_start.x = 0;
-	bottom_line_start.y = data->minimap_image->height + 2 - data->minimap.border_size;
-	bottom_line_end.x = data->minimap_image->width + 2;
-	bottom_line_end.y = data->minimap_image->height + 2;
-	left_line_start.x = 0;
-	left_line_start.y = 0;
-	left_line_end.x = data->minimap.border_size;
-	left_line_end.y = data->minimap_image->height + 2;
-	right_line_start.x = data->minimap_image->width + 2 - data->minimap.border_size;
-	right_line_start.y = 0;
-	right_line_end.x = data->minimap_image->width + 2;
-	right_line_end.y = data->minimap_image->height + 2;
-
-	colour = data->minimap.border_colour;
-
-	draw_filled_rectangle(data->minimap_border_image, top_line_start, top_line_end, colour);
-	draw_filled_rectangle(data->minimap_border_image, bottom_line_start, bottom_line_end, colour);
-	draw_filled_rectangle(data->minimap_border_image, left_line_start, left_line_end, colour);
-	draw_filled_rectangle(data->minimap_border_image, right_line_start, right_line_end, colour);
+	border.top_line_start.x = 0;
+	border.top_line_start.y = 0;
+	border.top_line_end.x = data->minimap_image->width + 2;
+	border.top_line_end.y = data->minimap.border_size;
+	border.bottom_line_start.x = 0;
+	border.bottom_line_start.y = data->minimap_image->height + 2 - data->minimap.border_size;
+	border.bottom_line_end.x = data->minimap_image->width + 2;
+	border.bottom_line_end.y = data->minimap_image->height + 2;
+	border.left_line_start.x = 0;
+	border.left_line_start.y = 0;
+	border.left_line_end.x = data->minimap.border_size;
+	border.left_line_end.y = data->minimap_image->height + 2;
+	border.right_line_start.x = data->minimap_image->width + 2 - data->minimap.border_size;
+	border.right_line_start.y = 0;
+	border.right_line_end.x = data->minimap_image->width + 2;
+	border.right_line_end.y = data->minimap_image->height + 2;
+	border.colour = data->minimap.border_colour;
+	draw_filled_rectangle(data->minimap_border_image, border.top_line_start, border.top_line_end, border.colour);
+	draw_filled_rectangle(data->minimap_border_image, border.bottom_line_start, border.bottom_line_end, border.colour);
+	draw_filled_rectangle(data->minimap_border_image, border.left_line_start, border.left_line_end, border.colour);
+	draw_filled_rectangle(data->minimap_border_image, border.right_line_start, border.right_line_end, border.colour);
 }
-
-
 
 void	draw_minimap_background(t_data *data)
 {
@@ -76,14 +61,11 @@ plan:
 
 - also data->minimap.grid_size moet waarschijnlijk afhangen van de size of the minimap en dat kan geen define zijn.
 
-
 [ ][ ][ ][ ][ ]
 [ ][ ][ ][ ][ ]
 [ ][ ][X][ ][ ]
 [ ][ ][ ][ ][ ]
 [ ][ ][ ][ ][ ]
-
-
 */
 
 void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
@@ -92,7 +74,6 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 	int y;
 	int map_x;
 	int map_y;
-	// char nbr[2];
 
 	t_vector_i player_map_pos;
 
@@ -111,7 +92,8 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 			// check if map position is out of bounds
 			if (map_y < 0 || map_y >= data->map->rows || map_x < 0 || map_x >= data->map->cols)
 				map[y][x] = MM_NONE;
-			else if (data->map->map[map_y][map_x] == '1')
+			// check what number it is.
+			else if (satoui(data->map->map[map_y][map_x]) > 0)
 				map[y][x] = MM_WALL;
 			else
 				map[y][x] = MM_FLOOR;
@@ -120,7 +102,6 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 		y++;
 	}
 }
-
 
 static void	set_colour(t_data *data, int map, uint64_t *colour)
 {

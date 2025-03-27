@@ -51,33 +51,27 @@ void set_wall_side(t_ray *ray)
 	}
 }
 
-
-
-
-
 void	set_wall_shadow(t_ray *ray)
 {
-
 	// set shadow
 	// the walls are gray, ajust the alpha by wall distance, 0 is no alpha (see through), 255 is full alpha (no see through)
-	ray->wall_3d.wall_shadow = 255;
+	// ray->wall_3d.wall_shadow = 255;
 	if (ray->distance > RENDER_DIST) 
 	{
 		ray->wall_3d.wall_shadow = 0;
 	}
 	else
 	{
-		ray->wall_3d.wall_shadow = (255 - (int)(ray->distance / FOG_FACTOR)); // Gradually lighten the shadow
+		ray->wall_3d.wall_shadow = (255 - (int)(ray->distance / FOG_FACTOR)); // gradually lighten the shadow
 		if (ray->wall_3d.wall_shadow > 255)
-		ray->wall_3d.wall_shadow = 255; // Ensure alpha doesn't exceed 255 (fully transparent)
+		ray->wall_3d.wall_shadow = 255; // make sure alpha doesn't exceed 255 (fully see through)
 		if (ray->wall_3d.wall_shadow < 0)
-		ray->wall_3d.wall_shadow = 0; // Ensure alpha doesn't go below 0 (fully opaque)
+		ray->wall_3d.wall_shadow = 0; // make sure alpha doesn't go below 0 (fully no see through)
 	}
 }
 
 void	fix_texture_stretch(t_data *data, t_ray * ray)
 {
-
 	// fix if texture goes off the top of the screen
 	if (ray->wall_3d.wall_top < 0)
 	{
@@ -97,7 +91,6 @@ void	fix_texture_stretch(t_data *data, t_ray * ray)
 
 void	fix_texture_zoom_to_centre(t_data *data, t_ray * ray)
 {
-
 	float extra_height;
 
 	// fix wall zooms in to the centre of the texture
@@ -106,9 +99,8 @@ void	fix_texture_zoom_to_centre(t_data *data, t_ray * ray)
 		extra_height = ray->wall_3d.wall_height - data->window->height;
 		ray->wall_3d.texture_y_pos = (extra_height / 2.0) * (ray->wall_3d.texture->height / ray->wall_3d.wall_height);
 	}
-	
 }
-void init_wall_sagment(t_data *data, t_ray *ray)
+void init_wall_segment(t_data *data, t_ray *ray)
 {
 	ray->wall_3d.wall_distance = (data->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
 	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - data->player.angle);
@@ -117,14 +109,12 @@ void init_wall_sagment(t_data *data, t_ray *ray)
 	// ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->distance;  			// for some fun fisheye effects ;)
 	ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->wall_3d.corrected_distance;
 
-
 	ray->wall_3d.wall_top = fmax(0, (data->window->height / 2) - (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.wall_bottom = fmin(data->window->height, (data->window->height / 2) + (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.line_width = data->window->width / NUMB_RAYS;
 	
 	fix_texture_stretch(data, ray);
 	fix_texture_zoom_to_centre(data, ray);
-		
 	
 	set_wall_side(ray);
 	set_wall_texture(data, ray);

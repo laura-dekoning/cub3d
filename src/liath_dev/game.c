@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 14:05:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 14:05:36 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 16:51:57 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,18 @@ void	game(t_data *data)
 void cub3d(t_data *data)
 {
 	init_window(data);
-	init_minimap_image(data);	
-	init_wall_textures(&data->textures);
+	init_minimap_image(data);
+
+	if (data->festival_map)
+		init_festival_wall_textures(&data->festival_textures);
+	else
+		init_wall_textures(&data->textures);
 
 	game(data);
 	
 	mlx_loop_hook(data->window, is_key_pressed, data);
 	mlx_loop(data->window);
 
-	
 	mlx_delete_texture(data->textures.north_texture);
 	mlx_delete_texture(data->textures.east_texture);
 	mlx_delete_texture(data->textures.south_texture);

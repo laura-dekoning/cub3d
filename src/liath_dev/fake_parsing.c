@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 14:12:35 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 15:29:46 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void parse_map(t_data *data)
 	"10010000000000000001",
 	"10010000000100000001",
 	"10010000000100000001",
-	"100100000001000E0001",
+	"200100000001000E0001",
 	"10010000000100000001",
 	"10010000000111111111",
 	"10010000000000000001",
@@ -72,9 +72,9 @@ void parse_map(t_data *data)
 		{
 			data->map->map[i][j] = temp_map[i][j];
 			//   === TAKEOUT ===
-			if (data->map->map[i][j] == '1')
+			if (satoui(data->map->map[i][j]) > 0)
 				printf("%c ", '#');
-			else if (data->map->map[i][j] == '0')
+			else if (satoui(data->map->map[i][j]) == 0)
 				printf("%c ", ' ');
 			else
 				printf("%c ", data->map->map[i][j]);
@@ -144,23 +144,21 @@ void parse_player(t_data *data)
 
 void parse_environment(t_data *data)
 {
-	data->ceiling_colour = COLOUR_AQUA;
-	data->floor_colour = COLOUR_DARK_GREEN;
+	data->ceiling_colour = COLOUR_BLACK;
+	data->floor_colour = COLOUR_BLACK;
 
-	data->walls_colour = COLOUR_DARK_GRAY; // shadow
+	// data->walls_colour = COLOUR_DARK_GRAY; // shadow
 	
 	data->textures.path_to_north_texture = "./textures/IMG_2709.png";
-	data->textures.path_to_east_texture = "./textures/fun_wall.png";
+	data->textures.path_to_east_texture = "./textures/red_brick_wall.png";
 	data->textures.path_to_south_texture = "./textures/IMG_5452.png";
-	data->textures.path_to_west_texture = "./textures/fun_wall.png";
+	data->textures.path_to_west_texture = "./textures/cobble_stone_wall.png";
 }
-
 
 
 void fake_parsing(t_data *data)
 {
 	parse_map(data);
 	parse_player(data);
-	
 	parse_environment(data);
 }

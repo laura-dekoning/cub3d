@@ -102,7 +102,7 @@ void	draw_wall_segment(t_data *data, t_ray *ray, int ray_i, int wall_top, int wa
 	}
 }
 
-void render_3d_wall_sagment(t_data *data, t_ray *ray, int ray_i)
+void render_3d_wall_segment(t_data *data, t_ray *ray, int ray_i)
 {
 	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
 	{

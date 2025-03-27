@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/27 14:07:47 by livliege      ########   odam.nl          #
+#    Updated: 2025/03/27 16:56:11 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,7 @@ SRC_FILES	:=	\
 				draw_shapes.c \
 				error_clear_exit.c \
 				fake_parsing.c \
+				festival_map.c \
 				game.c \
 				init_game.c \
 				init_walls.c \
