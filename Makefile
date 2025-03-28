@@ -6,14 +6,14 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/28 18:23:50 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/28 18:27:38 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	cub3d
 
 CC			:=	cc -Ofast -g
-CFLAGS		:=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		:=	-Wall -Werror -Wextra #-g -fsanitize=address
 
 LIBFT_DIR	:=	lib/libft
 LIBFT_A		:=	$(LIBFT_DIR)/libft.a
