@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:51:31 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 18:26:32 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	parse_validate_init_map(t_data *data, char **file_as_arr, int y)
 	}
 	map_content_valid(data);
 	data->check->setting[MAP] = true;
-	print_map(data->map);
 	set_player(data, data->map->map);
 	validate_map(data);
 }
