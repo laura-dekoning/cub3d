@@ -44,7 +44,7 @@ void set_texture_y(t_ray *ray, int texture_y)
 uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 {
 	int				pixel_index;
-	uint8_t				*pixel_array;
+	uint8_t			*pixel_array;
 	int 			pixel_array_len;
 	uint64_t		colour;
 	uint8_t			r;
@@ -123,6 +123,4 @@ void render_3d_wall_segment(t_data *data, t_ray *ray, int ray_i)
 	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / ray->wall_3d.wall_height;
 
 	draw_wall_segment(data, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
-
-
 }

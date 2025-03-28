@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 15:29:46 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 20:35:41 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,10 @@ void parse_player(t_data *data)
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
 
-
 void parse_environment(t_data *data)
 {
-	data->ceiling_colour = COLOUR_BLACK;
-	data->floor_colour = COLOUR_BLACK;
+	data->ceiling_colour = COLOUR_PINK;
+	data->floor_colour = COLOUR_YELLOW;
 
 	// data->walls_colour = COLOUR_DARK_GRAY; // shadow
 	
@@ -154,7 +153,6 @@ void parse_environment(t_data *data)
 	data->textures.path_to_south_texture = "./textures/IMG_5452.png";
 	data->textures.path_to_west_texture = "./textures/cobble_stone_wall.png";
 }
-
 
 void fake_parsing(t_data *data)
 {

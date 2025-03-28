@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 16:54:51 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 18:44:49 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
-# define WINDOW_WIDTH	1800
-# define WINDOW_HEIGHT	1800
+# define WINDOW_WIDTH	1000
+# define WINDOW_HEIGHT	1000
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define PI				3.14159265359
@@ -114,8 +114,6 @@ typedef struct s_map
 	int		map_width_px;
 	int		map_height_px;
 }	t_map;
-
-
 
 typedef struct s_vector_f
 {
