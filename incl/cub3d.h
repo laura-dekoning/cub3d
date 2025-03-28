@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/27 07:55:26 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 12:23:09 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	set_default(t_data *data);
 // PARSING //
 char	*read_file(t_data *data, const char *file);
 int		is_setting(char *line, size_t start);
+bool	is_map_last(t_data *data);
 void	get_data(t_data *data, const char *file);
 size_t	init_texture_data(t_data *data, char *line, size_t start, int flag);
 int		validate_texture_id(t_data *data, char *line, size_t start);

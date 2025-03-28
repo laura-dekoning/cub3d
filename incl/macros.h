@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 15:29:51 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 12:22:15 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define ALPHA "There are not supposed to be letters in a number, stupid!"
 # define BIG "This number is too big!!\nRGB colors have to be between 0-255!"
 # define FILE_CONTENT "This content is not supposed to be in the file!"
+# define MAP_LAST "The map should be at the end of the file! Nowhere else...."
 # define MAP_CONTENT "Map does not contain correct content!!"
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define NO_P "Map is not valid! We're missing the player position."
