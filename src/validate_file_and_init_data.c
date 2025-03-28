@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/11 18:22:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 17:50:25 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 18:21:35 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	validate_file_and_init_data(t_data *data, char **file)
 	y = 0;
 	while (file[y] != NULL)
 	{
-		// print_data(data);
 		if (is_setting(file[y]) == PATH)
 			parse_validate_init_textures(data, file[y]);
 		else if (is_setting(file[y]) == RGB)

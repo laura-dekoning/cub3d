@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/28 17:21:50 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/28 18:23:50 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				read_file.c \
 				safe_calloc.c \
 				string_to_rgb.c \
+				validate_data.c \
 				validate_file_and_init_data.c \
 				validate_map.c \
 				$(addprefix $(SRC_PRINT)/, \

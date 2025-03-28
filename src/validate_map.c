@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 17:58:58 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 18:20:33 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	surrounded_by_walls(t_data *data)
 
 void	validate_map(t_data *data)
 {
-	print_array_with_index(data->map->map);
 	fill_and_replace_space(data);
-	print_array_with_index(data->map->map);
 	surrounded_by_walls(data);
 }
