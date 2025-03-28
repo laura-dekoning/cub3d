@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:11:04 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 15:05:34 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 16:31:15 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void	*alloc_mem_for_data(void)
 		error_message(data, MALLOC);
 	data->map = (t_map *)safe_calloc(data, 1, sizeof(t_map));
 	if (!data->map)
-		error_message(data, MALLOC);
-	data->map->map = (char **)safe_calloc(data, 1, sizeof(char *));
-	if (!data->map->map)
 		error_message(data, MALLOC);
 	data->player = (t_player *)safe_calloc(data, 1, sizeof(t_player));
 	if (!data->player)

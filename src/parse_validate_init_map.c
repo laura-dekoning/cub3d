@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:05:38 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 16:34:47 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	set_player(t_data *data, char **map)
 	}
 }
 
-void	set_rows_and_cols(t_data *data, char **map)
+void	set_rows_and_cols(t_data *data, char **map, int y)
 {
 	size_t	rows;
 	size_t	cols;
 	size_t	count;
 
-	rows = 0;
+	rows = y;
 	while (map[rows])
 	{
 		count = 0;
@@ -60,7 +60,7 @@ void	set_rows_and_cols(t_data *data, char **map)
 		}
 		rows++;
 	}
-	data->map->rows = rows;
+	data->map->rows = rows - y;
 }
 
 void	map_content_valid(t_data *data)
@@ -71,19 +71,22 @@ void	map_content_valid(t_data *data)
 
 	map = data->map->map;
 	y = 0;
-	while (map[y][x] != '\0')
+	while (map[y] != NULL)
 	{
 		x = 0;
-		if (map[y][x] == '0' || map[y][x] == '1')
-			x++;
-		else if (map[y][x] == ' ' || map[y][x] == '\n')
-			x++;
-		else if (map[y][x] == 'N' || map[y][x] == 'S'
-				|| map[y][x] == 'E' || map[y][x] == 'W')
-			x++;
-		else
-			error_message(data, MAP_CONTENT);
-		y++;
+		while (map[y][x] != '\0')
+		{
+			if (map[y][x] == '0' || map[y][x] == '1')
+				x++;
+			else if (map[y][x] == ' ' || map[y][x] == '\n')
+				x++;
+			else if (map[y][x] == 'N' || map[y][x] == 'S'
+					|| map[y][x] == 'E' || map[y][x] == 'W')
+				x++;
+			else
+				error_message(data, MAP_CONTENT);
+			y++;
+		}
 	}
 }
 
@@ -92,16 +95,17 @@ void	parse_validate_init_map(t_data *data, char **file_as_arr, int y)
 	int	x;
 
 	x = 0;
+	set_rows_and_cols(data, file_as_arr, y);
+	data->map->map = (char **)safe_calloc(data, data->map->rows + 1, sizeof(char *));
 	while (file_as_arr[y] != NULL)
 	{
-		data->map->map[x] = ft_strcpy(data->map->map[x], file_as_arr[y]);
+		data->map->map[x] = ft_substr(file_as_arr[y], 0, ft_strlen(file_as_arr[y]));
 		x++;
 		y++;
 	}
 	map_content_valid(data);
 	data->check->setting[MAP] = true;
 	print_map(data->map);
-	set_rows_and_cols(data, data->map->map);
 	set_player(data, data->map->map);
 	validate_map(data);
 }

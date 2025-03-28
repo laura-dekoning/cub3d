@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 15:51:19 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 16:11:07 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_rgb(t_data *data, int **target, char *line)
 	}
 	if (komma > 2)
 		error_message(data, "More then 3 colors in floor or ceiling");
-	*target = string_to_rgb(data, line, 2);
+	string_to_rgb(data, target, line, 2);
 }
 
 void	init_rgb_data(t_data *data, char *line, int flag)

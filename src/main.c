@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 15:06:34 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 16:45:37 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 	data = (t_data *)alloc_mem_for_data();
 	print_data(data);
 	get_data(data, file);
-	set_default(data);
 	print_data(data);
 	free_data(data);
 	printf(B_G"YEEEEEEY EVERYTHING GOOD!\n"DEF);

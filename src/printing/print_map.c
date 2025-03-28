@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/19 16:56:41 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 13:15:47 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 16:16:32 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	print_map(t_map *map)
 	int	i;
 
 	i = 0;
+	if (!map)
+		return ;
 	printf(B_G"Map:\n"DEF);
 	printf("rows\t: %zu\tcols\t: %zu\n", map->rows, map->cols);
 	if (map->map)
