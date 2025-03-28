@@ -1,16 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fill_map.c                                         :+:    :+:            */
+/*   fill_and_replace_space.c                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 13:20:56 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 18:11:43 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	*make_temp(t_data *data)
+{
+	char	*temp;
+
+	temp = (char *)safe_calloc(data, data->map->cols + 1, sizeof(char));
+	if (!temp)
+		error_message(data, MALLOC);
+	return (temp);
+}
+
+void	replace_map_x(t_data *data, char *temp, int x)
+{
+	free(data->map->map[x]);
+	data->map->map[x] = ft_substr(temp, 0, data->map->cols + 1);
+	free(temp);
+}
+
+void	replace_space(char *temp, char *map)
+ {
+ 	int	i;
+ 	int	y;
+ 
+ 	i = 0;
+ 	y = 0;
+ 	while (map[y] != '\0')
+ 	{
+ 		if (map[y] == ' ')
+ 		{
+			temp[i] = '1';
+			i++;
+ 		}
+ 		else
+ 		{
+ 			temp[i] = map[y];
+ 			i++;
+ 		}
+ 		y++;
+ 	}
+ }
 
 void	fill_empty(char *temp, char *map, size_t len)
 {
@@ -28,12 +68,12 @@ void	fill_empty(char *temp, char *map, size_t len)
 			y++;
 
 		}
-		temp[i] = ' ';
+		temp[i] = '1';
 		i++;
 	}
 }
 
-void	fill_map(t_data *data)
+void	fill_and_replace_space(t_data *data)
 {
 	int		x;
 	char	*temp;
@@ -42,15 +82,16 @@ void	fill_map(t_data *data)
 	while (data->map->map[x] != NULL)
 	{
 		if (ft_strlen(data->map->map[x]) < data->map->cols)
-		{
-			temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
-			if (!temp)
-				error_message(data, MALLOC);
+ 		{
+			temp = make_temp(data);
 			fill_empty(temp, data->map->map[x], data->map->cols);
-			free(data->map->map[x]);
-			data->map->map[x] = ft_substr(temp, 0, data->map->cols + 1);
-			// print_string_with_values(data->map->map[x]);
-			free(temp);
+			replace_map_x(data, temp, x);
+		}
+		if (ft_strchr(data->map->map[x], ' ') != NULL)
+		{
+			temp = make_temp(data);
+			replace_space(temp, data->map->map[x]);
+			replace_map_x(data, temp, x);
 		}
 		x++;
 	}

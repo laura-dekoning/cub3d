@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/28 16:45:33 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/28 17:21:50 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC_DIR		:=	src
 SRC_PRINT	:=	printing
 SRC_FILES	:=	alloc_mem_for_data.c \
 				error.c \
-				fill_map.c \
+				fill_and_replace_space.c \
 				free_data.c \
 				get_data.c \
 				main.c \

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/20 15:38:53 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:19:39 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 17:49:37 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	is_setting(char *line)
 {
-	printf("YES IM IN is_setting\n");
 	if (ft_strncmp(line, "NO", 2) == 0)
 		return (PATH);
 	else if (ft_strncmp(line, "EA", 2) == 0)

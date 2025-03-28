@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 14:14:36 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 17:58:58 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	surrounded_by_walls(t_data *data)
 	int	x;
 	int	y;
 
-	print_array_with_index(data->map->map);
+	// print_array_with_index(data->map->map);
 	check_zero(data, data->map->map);
 	x = 1;
 	while (data->map->map[x] != NULL)
@@ -67,7 +67,6 @@ void	surrounded_by_walls(t_data *data)
 		y = 1;
 		while (data->map->map[x][y] != '\0')
 		{
-			printf("map[%i][%i]\n", x, y);
 			if (data->map->map[x][y] == '0'
 					|| is_player(data->map->map[x][y]) == true)
 				check_adjacent(data, data->map->map, x, y);
@@ -79,6 +78,8 @@ void	surrounded_by_walls(t_data *data)
 
 void	validate_map(t_data *data)
 {
-	fill_map(data);
+	print_array_with_index(data->map->map);
+	fill_and_replace_space(data);
+	print_array_with_index(data->map->map);
 	surrounded_by_walls(data);
 }

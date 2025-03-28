@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/11 18:22:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:52:51 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 17:50:25 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	validate_file_and_init_data(t_data *data, char **file)
 	while (file[y] != NULL)
 	{
 		// print_data(data);
-		printf(Y"file[%i] = [%s]\n"DEF, y, file[y]);
 		if (is_setting(file[y]) == PATH)
 			parse_validate_init_textures(data, file[y]);
 		else if (is_setting(file[y]) == RGB)
@@ -34,7 +33,6 @@ void	validate_file_and_init_data(t_data *data, char **file)
 		}
 		else
 			error_message(data, FILE_CONTENT);
-		printf("I DO GET HERE %i YES!!!\n", y);
 		y++;
 	}
 }

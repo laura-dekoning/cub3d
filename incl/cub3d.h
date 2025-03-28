@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:45:19 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 17:21:25 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	string_to_rgb(t_data *data, int **target, char *line, int i);
 void	parse_validate_init_rgb(t_data *data, char *line);
 void	map_content_valid(t_data *data);
 void	validate_map(t_data *data);
-void	fill_map(t_data *data);
+void	fill_and_replace_space(t_data *data);
 bool	is_map_content(char *line);
 
 
