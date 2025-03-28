@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 13:12:41 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 15:43:16 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ void	set_default(t_data *data);
 
 // PARSING //
 char	*read_file(t_data *data, const char *file);
-int		is_setting(char *line, size_t start);
+int		is_setting(char *line);
 bool	is_map_last(t_data *data);
 void	get_data(t_data *data, const char *file);
-size_t	init_texture_data(t_data *data, char *line, size_t start, int flag);
-int		validate_texture_id(t_data *data, char *line, size_t start);
-size_t	parse_validate_init_textures(t_data *data, char *line, size_t start);
-void	validate_file_and_init_data(t_data *data, char *file_as_str);
-int		*string_to_rgb(t_data *data, char *str, int i);
-size_t	parse_validate_init_rgb(t_data *data, char *file_as_str, size_t start);
-bool	map_content_valid(t_data *data, char *line, size_t start);
-size_t	parse_validate_init_map(t_data *data, char *line, size_t start);
+size_t	init_texture_data(t_data *data, char *line, int flag);
+int		validate_texture_id(t_data *data, char *line);
+size_t	parse_validate_init_textures(t_data *data, char *line);
+void	validate_file_and_init_data(t_data *data, char **file);
+int		*string_to_rgb(t_data *data, char *line, int i);
+size_t	parse_validate_init_rgb(t_data *data, char *line);
+bool	map_content_valid(t_data *data, char *line);
+size_t	parse_validate_init_map(t_data *data, char *line);
 void	validate_map(t_data *data);
 void	fill_map(t_data *data);
-bool	is_map_content(char *str, int start);
+bool	is_map_content(char *line);
 
 
 // PRINTING //
@@ -55,6 +55,7 @@ void	print_map(t_map *map);
 void	print_floor_and_ceiling(int *floor, int *ceiling);
 void	print_check(t_check *check);
 void	print_array_with_values(char **map);
+void	print_array_with_index(char **map);
 void	print_string_with_values(char *str);
 void	print_adjacent(char **map, int row, int col);
 

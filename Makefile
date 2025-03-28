@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/28 12:22:33 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/03/28 14:14:21 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				validate_map.c \
 				$(addprefix $(SRC_PRINT)/, \
 				print_adjacent.c \
+				print_array_with_index.c \
 				print_array_with_values.c \
 				print_check.c \
 				print_data.c \

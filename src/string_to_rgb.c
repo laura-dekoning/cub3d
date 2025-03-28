@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 13:21:15 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 15:45:04 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,11 @@ static void	is_correct_rgb(t_data *data, char c)
 		error_message(data, NEG);
 }
 
-int	*string_to_rgb(t_data *data, char *str, int i)
+void	string_to_rgb(t_data *data, char *str, int i)
 {
-	int	*rgb;
 	int	n;
 	int	diff;
 
-	rgb = (int *)safe_calloc(data, 3, sizeof(int));
-	if (!rgb)
-		error_message(data, MALLOC);
 	n = 0;
 	while (n < 3)
 	{
