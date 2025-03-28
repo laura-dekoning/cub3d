@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fill_and_replace.c                                 :+:    :+:            */
+/*   fill_map.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/27 07:55:13 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 13:20:56 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	fill_map(t_data *data)
 		if (ft_strlen(data->map->map[x]) < data->map->cols)
 		{
 			temp = safe_calloc(data, data->map->cols + 1, sizeof(char));
+			if (!temp)
+				error_message(data, MALLOC);
 			fill_empty(temp, data->map->map[x], data->map->cols);
 			free(data->map->map[x]);
 			data->map->map[x] = ft_substr(temp, 0, data->map->cols + 1);
