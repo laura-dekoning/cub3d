@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 15:47:33 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 15:51:19 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_rgb(t_data *data, int **target, char *line)
 
 	komma = 0;
 	i = 2;
-	while(line[i] != '\n' && line[i] != '\0')
+	while(line[i] != '\0')
 	{
 		if (line[i] == ',')
 			komma++;
