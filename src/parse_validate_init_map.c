@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 14:26:34 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/03/28 16:05:38 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,41 +63,45 @@ void	set_rows_and_cols(t_data *data, char **map)
 	data->map->rows = rows;
 }
 
-bool	map_content_valid(t_data *data, char *line, size_t start)
+void	map_content_valid(t_data *data)
 {
-	while (line[start] != '\0')
+	char	**map;
+	int		x;
+	int		y;
+
+	map = data->map->map;
+	y = 0;
+	while (map[y][x] != '\0')
 	{
-		if (line[start] == '0' || line[start] == '1')
-			start++;
-		else if (line[start] == ' ' || line[start] == '\n')
-			start++;
-		else if (line[start] == 'N' || line[start] == 'S'
-				|| line[start] == 'E' || line[start] == 'W')
-			start++;
+		x = 0;
+		if (map[y][x] == '0' || map[y][x] == '1')
+			x++;
+		else if (map[y][x] == ' ' || map[y][x] == '\n')
+			x++;
+		else if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
+			x++;
 		else
 			error_message(data, MAP_CONTENT);
+		y++;
 	}
-	return (true);
 }
 
-size_t	parse_validate_init_map(t_data *data, char *line, size_t start)
+void	parse_validate_init_map(t_data *data, char **file_as_arr, int y)
 {
-	size_t	new_start;
-	char	*map_as_str;
+	int	x;
 
-	map_as_str = ft_substr(line, start, (ft_strlen(line) - start));
-	new_start = start;
-	if (map_content_valid(data, map_as_str, 0) == true)
+	x = 0;
+	while (file_as_arr[y] != NULL)
 	{
-		data->map->map = ft_split(map_as_str, '\n');
-		data->check->setting[MAP] = true;
+		data->map->map[x] = ft_strcpy(data->map->map[x], file_as_arr[y]);
+		x++;
+		y++;
 	}
+	map_content_valid(data);
+	data->check->setting[MAP] = true;
 	print_map(data->map);
 	set_rows_and_cols(data, data->map->map);
 	set_player(data, data->map->map);
 	validate_map(data);
-	free (map_as_str);
-	while (line[new_start] != '\0')
-		new_start++;
-	return (new_start);
 }
