@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 18:23:29 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/01 16:43:47 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,13 @@
 
 # include "libft.h"
 // # include "MLX42.h"
-# include "structs.h"
+# include "parsing.h"
+# include "utils.h"
 # include "macros.h"
 # include "colors.h"
 # include <math.h>
 
 
-// UTILS //
-void	*safe_calloc(t_data *data, size_t count, size_t size);
-void	*alloc_mem_for_data(void);
-void	error_message(t_data *data, char *str);
-void	free_data(t_data *data);
 
-
-// PARSING //
-char	*read_file(t_data *data, const char *file);
-int		is_setting(char *line);
-bool	is_map_last(t_data *data);
-void	get_data(t_data *data, const char *file);
-void	init_texture_data(t_data *data, char *line, int flag);
-int		validate_texture_id(t_data *data, char *line);
-void	validate_file_and_init_data(t_data *data, char **file);
-void	parse_validate_init_textures(t_data *data, char *line);
-void	parse_validate_init_map(t_data *data, char **file_as_arr, int y);
-void	string_to_rgb(t_data *data, int **target, char *line, int i);
-void	parse_validate_init_rgb(t_data *data, char *line);
-void	map_content_valid(t_data *data);
-void	validate_map(t_data *data);
-void	fill_and_replace_space(t_data *data);
-bool	is_map_content(char *line);
-void	validate_data(t_data *data);
-
-
-// PRINTING //
-void	print_data(t_data *data);
-void	print_player(t_player *player);
-void	print_map(t_map *map);
-void	print_floor_and_ceiling(int *floor, int *ceiling);
-void	print_check(t_check *check);
-void	print_array_with_values(char **map);
-void	print_array_with_index(char **map);
-void	print_string_with_values(char *str);
-void	print_adjacent(char **map, int row, int col);
 
 #endif
