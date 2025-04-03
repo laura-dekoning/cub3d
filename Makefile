@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/03/28 18:27:38 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/03 12:17:39 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
 SRC_PRINT	:=	printing
+SRC_LIATH	:=	liath_dev
 SRC_FILES	:=	alloc_mem_for_data.c \
 				error.c \
 				fill_and_replace_space.c \
@@ -56,6 +57,23 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				print_map.c \
 				print_player.c \
 				print_string_with_values.c ) \
+				$(addprefix $(SRC_LIATH)/, \
+				draw_minimap.c \
+				draw_player.c \
+				draw_shapes.c \
+				error_clear_exit.c \
+				fake_parsing.c \
+				festival_map.c \
+				game.c \
+				init_game.c \
+				init_walls.c \
+				keys.c \
+				main_liath.c \
+				minimap.c \
+				player_collision.c \
+				raycasting.c \
+				render_3d_scene.c \
+				utils.c )
 				
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -87,6 +105,7 @@ $(OBJ_DIR):
 	@echo "${PURPLE}Making object directories${RESET}"
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(SRC_PRINT)
+	mkdir -p $(OBJ_DIR)/$(SRC_LIATH)
 	@echo "${GREEN}Completed${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

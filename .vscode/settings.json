@@ -7,6 +7,12 @@
 		"span": "cpp",
 		"cub3d.h": "c",
 		"libft.h": "c",
-		"parsing.h": "c"
+		"parsing.h": "c",
+		"liath.h": "c",
+		"cmath": "c",
+		"format": "c",
+		"initializer_list": "c",
+		"cstdint": "c",
+		"random": "c"
 	}
 }
