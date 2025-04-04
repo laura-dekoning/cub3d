@@ -60,8 +60,8 @@ void	draw_minimap_background(t_game *data)
 
 static void init_player_map_pos(t_game *data, t_vector_i *player_map_pos)
 {
-	player_map_pos->x = data->player.pos.x / GRIDSIZE;	// center player in the minimap
-	player_map_pos->y = data->player.pos.y / GRIDSIZE;
+	player_map_pos->x = data->player->pos.x / GRIDSIZE;	// center player in the minimap
+	player_map_pos->y = data->player->pos.y / GRIDSIZE;
 }
 
 static void init_map_pos(t_vector_i	*map_pos, t_vector_i player_map_pos, int x, int y)

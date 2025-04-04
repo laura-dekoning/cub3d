@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 14:05:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 14:47:54 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 15:59:03 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	game(t_game *data)
 
 void cub3d(t_game *data)
 {
-	init_window(data);
-	init_minimap_image(data);
-	init_wall_textures(&data->textures);
-	
 	game(data);
 	
 	mlx_loop_hook(data->window, is_key_pressed, data);

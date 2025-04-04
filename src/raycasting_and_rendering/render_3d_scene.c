@@ -98,7 +98,7 @@ void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wa
 		y = wall_top;
 		while (y < (uint32_t)wall_bottom)
 		{
-			put_pixel_safe();
+			put_pixel_safe(data, ray, x, y, texture_y);
 			// if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
 			// {
 			// 	colour = get_pixel_colour(ray, (int)texture_y);

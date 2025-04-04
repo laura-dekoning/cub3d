@@ -20,7 +20,7 @@ bool	hit_wall(t_game *data, float player_x, float player_y)
 	t_vector_i	bottom_right;
 	uint16_t	size;
 
-	size = data->player.size;
+	size = data->player->size;
 	top_left.x = ((int)player_x - size) / GRIDSIZE;
 	top_left.y = ((int)player_y - size) / GRIDSIZE;
 	top_right.x = ((int)player_x + size) / GRIDSIZE;
@@ -44,14 +44,14 @@ void	check_collision(t_game *data, t_vector_f step)
 	t_vector_f	next_pos;
 
 	normalize_diagonal_movement(&step.x, &step.y);
-	next_pos.x = data->player.pos.x + step.x * MOVING_SPEED;
-	next_pos.y = data->player.pos.y + step.y * MOVING_SPEED;
-	if (!hit_wall(data, next_pos.x, data->player.pos.y))
+	next_pos.x = data->player->pos.x + step.x * MOVING_SPEED;
+	next_pos.y = data->player->pos.y + step.y * MOVING_SPEED;
+	if (!hit_wall(data, next_pos.x, data->player->pos.y))
 	{
-		data->player.pos.x = next_pos.x;
+		data->player->pos.x = next_pos.x;
 	}
-	if (!hit_wall(data, data->player.pos.x, next_pos.y))
+	if (!hit_wall(data, data->player->pos.x, next_pos.y))
 	{
-		data->player.pos.y = next_pos.y;
+		data->player->pos.y = next_pos.y;
 	}
 }

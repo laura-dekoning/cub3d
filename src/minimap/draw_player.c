@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   draw_minimap_player.c                              :+:    :+:            */
+/*   draw_minimap_player->c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -18,7 +18,7 @@ void	draw_eye(t_game *data, t_vector_f player_centre, int colour)
 	t_vector_f	dir;
 	float		angle;
 
-	angle = data->player.angle - (80.0 * ONE_D_RADIAN);
+	angle = data->player->angle - (80.0 * ONE_D_RADIAN);
 	dir.x = cos(angle);
 	dir.y = sin(angle);
 	eye_centre.x = player_centre.x + dir.x * (data->minimap.player_size / 1.8);
@@ -36,7 +36,7 @@ void	draw_rays(t_game *data, int colour)
 	int			i;
 
 	start_pos = data->minimap.player_pos;
-	angle = data->player.angle - ((FOV / 2) * ONE_D_RADIAN);
+	angle = data->player->angle - ((FOV / 2) * ONE_D_RADIAN);
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
 	i = 0;
 	while (i < NUMB_RAYS)
@@ -64,14 +64,14 @@ void	draw_arrow_head(t_game *data,  t_vector_f start_pos, t_vector_f end_pos, t_
 	arrow_length = data->minimap.grid_size * arrow_head_size;
 	arrow_angle = arrow_head_pointyness * ONE_D_RADIAN;
 	
-	dir.x = cos(data->player.angle + PI + arrow_angle);
-	dir.y = sin(data->player.angle + PI + arrow_angle);
+	dir.x = cos(data->player->angle + PI + arrow_angle);
+	dir.y = sin(data->player->angle + PI + arrow_angle);
 	start_pos.x = end_pos.x + dir.x * arrow_length;
 	start_pos.y = end_pos.y + dir.y * arrow_length;
 	draw_line(data->minimap_image, end_pos, start_pos, colour);
 	
-	dir.x = cos(data->player.angle + PI - arrow_angle);
-	dir.y = sin(data->player.angle + PI - arrow_angle);
+	dir.x = cos(data->player->angle + PI - arrow_angle);
+	dir.y = sin(data->player->angle + PI - arrow_angle);
 	start_pos.x = end_pos.x + dir.x * arrow_length;
 	start_pos.y = end_pos.y + dir.y * arrow_length;
 	draw_line(data->minimap_image, end_pos, start_pos, colour);
@@ -87,7 +87,7 @@ void	draw_arrow(t_game *data, int colour)
 	int 		i;
 
 	start_pos = data->minimap.player_pos;
-	angle = data->player.angle;
+	angle = data->player->angle;
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
 	i = (NUMB_RAYS / 2); 
 	dir.x = cos(angle);
@@ -111,7 +111,7 @@ void	draw_mouth(t_game *data, t_vector_f start_pos, int colour)
 	int			i;
 
 	fov = 60.0;
-	angle = data->player.angle - ((fov / 2) * ONE_D_RADIAN);
+	angle = data->player->angle - ((fov / 2) * ONE_D_RADIAN);
 	angle_step = (fov * ONE_D_RADIAN) / NUMB_RAYS;
 	i = 0;
 	while (i < NUMB_RAYS)

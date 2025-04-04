@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 15:20:16 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 16:54:38 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,23 +125,6 @@ typedef struct s_textures
 	mlx_texture_t	*east_texture;
 }	t_textures;
 
-typedef struct s_festival_textures
-{
-	char			*path_to_drink_shop;
-	char			*path_to_food_shop;
-	char			*path_to_merch_shop;
-	char			*path_to_dixies;
-	char			*path_to_wall;
-	char			*path_to_stage;
-
-	mlx_texture_t	*drink_shop_texture;
-	mlx_texture_t	*food_shop_texture;
-	mlx_texture_t	*merch_shop_texture;
-	mlx_texture_t	*dixies_texture;
-	mlx_texture_t	*wall_texture;
-	mlx_texture_t	*stage_texture;
-}	t_festival_textures;
-
 typedef struct s_game
 {
 	mlx_t				*window;
@@ -153,17 +136,15 @@ typedef struct s_game
 	t_map_ex			*map;
 	bool				festival_map;
 
-	t_player_ex			player;
+	t_player_ex			*player;
 	t_ray				ray[NUMB_RAYS];
 
 	t_minimap			minimap;
 
 	t_textures			textures;
-	t_festival_textures	festival_textures;
 
 	uint64_t			floor_colour;
 	uint64_t			ceiling_colour;
-	// uint64_t			walls_colour;
 }	t_game;
 
 // draw_minimap_player.c
@@ -180,27 +161,15 @@ void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
 void	draw_ceiling_and_floor(t_game *data);
 
-// error_clear_exit.c    
-void	error_and_exit(char *str);
-void	clear_everything(t_game *data);
-
-// fake_parsing.c        
-void	fake_parsing(t_game *data); // TAKE OUT
-
-// festival_parsing.c
-void	festival_parsing(t_game *data);
-void	init_festival_wall_textures(t_festival_textures	*f_textures);
-
 
 // game.c
 void	game(t_game *data);
 void	cub3d(t_game *data);
 
-// init_game.c
+// init_window_and_images.c
 void	init_window(t_game *data);
 void	init_minimap_image(t_game *data);
 void	init_wall_textures(t_data *data, t_textures *textures);
-
 
 // init_walls.c
 void	init_wall_segment(t_game *data, t_ray *ray);

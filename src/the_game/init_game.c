@@ -5,92 +5,132 @@
 /*                                                     +:+                    */
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
+/*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
+/*   Updated: 2025/04/04 16:53:17 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_minimap_size(t_game *data)
+void parse_map(t_game *game, t_data *data)
 {
-	if (WINDOW_HEIGHT > WINDOW_WIDTH)
+	size_t	i;
+	size_t	j;
+
+	// game->map = (t_map *)ft_calloc(sizeof(t_map), 1);
+	// if (data->map == NULL)
+	// 	error_message("Malloc allocation failed\n");
+
+	game->map->rows = data->map->rows;   // y
+	game->map->cols = data->map->cols;   // x
+
+	game->map->map_width_px = data->map->cols * GRIDSIZE;
+	game->map->map_height_px = data->map->rows * GRIDSIZE;
+	
+	game->map->map = (char **)malloc(game->map->rows * sizeof(char *));
+	if (game->map->map == NULL)
+		error_message("Malloc allocation failed\n");
+	i = 0;
+	while (i < game->map->rows) 
 	{
-		data->minimap.minimap_size =  WINDOW_WIDTH / MINIMAP_SCALE;
+		game->map->map[i] = malloc(game->map->cols * sizeof(char));
+		if (game->map->map[i] == NULL)
+			error_message("Malloc allocation failed\n");
+		i++;
 	}
-	else 
+	i = 0;
+	while (i < game->map->rows) 
 	{
-		data->minimap.minimap_size =  WINDOW_HEIGHT / MINIMAP_SCALE;
+		j = 0;
+		while (j < game->map->cols) 
+		{
+			game->map->map[i][j] = data->map->map[i][j];
+			//   === TAKEOUT ===
+			// if (data->map->map[i][j] == '1')
+			// 	printf("%c ", '#');
+			// else if (data->map->map[i][j] == '0')
+			// 	printf("%c ", ' ');
+			// else
+			// 	printf("%c ", data->map->map[i][j]);
+			// //   ===============
+			j++;
+		}
+		// printf("\n"); //   === TAKEOUT ===
+		i++;
 	}
 }
 
-void	init_minimap_border_image(t_game *data)
+
+void parse_player(t_game *game)
 {
-	data->minimap_border_image = mlx_new_image(data->window, data->minimap.minimap_size + 2, data->minimap.minimap_size + 2);
-	if (data->minimap_border_image == NULL)
+	size_t	x;
+	size_t	y;
+	float	offset;
+	
+	offset = GRIDSIZE / 2;
+	y = 0;
+	while (y < game->map->rows) 
 	{
-		mlx_terminate(data->window);
-		error_and_exit("Image could not be created\n");
+		x = 0;
+		while (x < game->map->cols) 
+		{
+			if (!ft_isdigit(game->map->map[y][x])) 
+			{
+				if (game->map->map[y][x] == 'N') 
+				{
+					game->player->angle = DIR_NORTH;
+					game->player->pos.x = (x * GRIDSIZE) + offset;
+					game->player->pos.y = (y * GRIDSIZE) + offset;
+				}
+				if (game->map->map[y][x] == 'S')
+				{
+					game->player->angle = DIR_SOUTH;
+					game->player->pos.x = (x * GRIDSIZE) + offset;
+					game->player->pos.y = (y * GRIDSIZE) + offset;
+				}
+				if (game->map->map[y][x] == 'E') 
+				{
+					game->player->angle = DIR_EAST;
+					game->player->pos.x = (x * GRIDSIZE) + offset;
+					game->player->pos.y = (y * GRIDSIZE) + offset;
+				}
+				if (game->map->map[y][x] == 'W')
+				{
+					game->player->angle = DIR_WEST;
+					game->player->pos.x = (x * GRIDSIZE) + offset;
+					game->player->pos.y = (y * GRIDSIZE) + offset;
+				}
+			}
+			x++;
+		}
+		y++;
 	}
-	if (mlx_image_to_window(data->window, data->minimap_border_image, 9, 9) < 0)
-	{
-		mlx_delete_image(data->window, data->window_image);
-		mlx_delete_image(data->window, data->minimap_image);
-		mlx_terminate(data->window);
-		error_and_exit("Image could not be displayed on the window\n");
-	}
+	game->player->dir.x = cos(game->player->angle);
+	game->player->dir.y = sin(game->player->angle);
+	game->player->wall_hit = false;
+	
+	printf("player pos.x	: %f\n", game->player->pos.x);  		//    === TAKEOUT ===
+	printf("player pos.y	: %f\n", game->player->pos.y);  		//    === TAKEOUT ===
+	printf("player dir.x	: %f\n", game->player->dir.x);  		//    === TAKEOUT ===
+	printf("player dir.y	: %f\n", game->player->dir.y);  		//    === TAKEOUT ===
+	printf("player angle	: %f\n", game->player->angle);  		//    === TAKEOUT ===
 }
 
-void	init_minimap_image(t_game *data)
-{
-	get_minimap_size(data);
-	data->minimap_image = mlx_new_image(data->window, data->minimap.minimap_size, data->minimap.minimap_size);
-	if (data->minimap_image == NULL)
-	{
-		mlx_terminate(data->window);
-		error_and_exit("Image could not be created\n");
-	}
-	if (mlx_image_to_window(data->window, data->minimap_image, 10, 10) < 0)
-	{
-		mlx_delete_image(data->window, data->window_image);
-		mlx_terminate(data->window);
-		error_and_exit("Image could not be displayed on the window\n");
-	}
-	init_minimap_border_image(data);
-}
 
-void	init_window(t_game *data)
+void	init_game(t_game *game, t_data * data)
 {
-	data->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, false);
-	if (data->window == NULL)
-	{
-		error_and_exit("Window could not be created\n");
-	}
-	data->window_image = mlx_new_image(data->window, WINDOW_WIDTH, WINDOW_HEIGHT);
-	if (data->window_image == NULL)
-	{
-		mlx_terminate(data->window);
-		error_and_exit("Image could not be created\n");
-	}
-	if (mlx_image_to_window(data->window, data->window_image, 0, 0) < 0)
-	{
-		mlx_terminate(data->window);
-		error_and_exit("Image could not be displayed on the window\n");
-	}
-}
 
-void init_wall_textures(t_textures	*textures)
-{
-	textures->north_texture = mlx_load_png(textures->path_to_north_texture);
-	if (!textures->north_texture)
-		error_and_exit("Loading north wall failed\n");
-	textures->east_texture = mlx_load_png(textures->path_to_east_texture);
-	if (!textures->east_texture)
-		error_and_exit("Loading east wall failed\n");
-	textures->south_texture = mlx_load_png(textures->path_to_south_texture);
-	if (!textures->south_texture)
-		error_and_exit("Loading south wall failed\n");
-	textures->west_texture = mlx_load_png(textures->path_to_west_texture);
-	if (!textures->west_texture)
-		error_and_exit("Loading west wall failed\n");
+	game->floor_colour = rgb_to_hex(data->floor);
+	game->ceiling_colour = rgb_to_hex(data->ceiling);
+
+	parse_map(game, data);
+	parse_player(game);
+	
+	init_window(game);
+	init_minimap_image(game);
+	init_wall_textures(data, &game->textures);
+
+	free_data(data);
+
+	cub3d(game);
 }

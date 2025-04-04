@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 12:43:37 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 13:22:00 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 16:52:38 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void	*alloc_mem_for_game(void)
 	game->player = (t_player_ex *)safe_calloc(game, 1, sizeof(t_player_ex));
 	if (!game->player)
 		error_message(game, MALLOC);
-
 	return (game);
 }

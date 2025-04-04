@@ -32,7 +32,7 @@ INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
 
-SRC_LIATH	:=	liath_dev
+# SRC_LIATH	:=	liath_dev
 
 SRC_MINIMAP	:=	minimap
 SRC_PLAYER	:=	player_movement
@@ -46,7 +46,6 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				fill_and_replace_space.c \
 				free_data.c \
 				get_data.c \
-				get_game.c \
 				main.c \
 				is_map_content.c \
 				is_map_last.c \
@@ -73,23 +72,27 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				$(addprefix $(SRC_MINIMAP)/, \
 				draw_minimap.c \
 				draw_player.c \
-				minimap.c \
+				minimap.c )\
 				$(addprefix $(SRC_PLAYER)/, \
 				keys.c \
-				player_collision.c \
+				player_collision.c )\
 				$(addprefix $(SRC_UTILS)/, \
 				draw_shapes.c \
 				utils_execution.c )
 				$(addprefix $(SRC_RENDER)/, \
 				raycasting.c \
 				render_3d_scene.c \
+				rendering_utils.c )\
 				$(addprefix $(SRC_GAME)/, \
-				init_walls.c \
-				init_game.c \
 				game.c \
-				$(addprefix $(SRC_LIATH)/, \
-				error_clear_exit.c \
-				fake_parsing.c
+				init_game.c \
+				init_walls.c \
+				init_window_and_images.c )
+
+# $(addprefix $(SRC_LIATH)/, \
+				# error_clear_exit.c \
+				# fake_parsing.c)
+
 
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -121,7 +124,13 @@ $(OBJ_DIR):
 	@echo "${PURPLE}Making object directories${RESET}"
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(SRC_PRINT)
-	mkdir -p $(OBJ_DIR)/$(SRC_LIATH)
+
+	mkdir -p $(OBJ_DIR)/$(SRC_MINIMAP)
+	mkdir -p $(OBJ_DIR)/$(SRC_PLAYER)
+	mkdir -p $(OBJ_DIR)/$(SRC_RENDER)
+	mkdir -p $(OBJ_DIR)/$(SRC_GAME)
+	mkdir -p $(OBJ_DIR)/$(SRC_UTILS)
+	
 	@echo "${GREEN}Completed${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
