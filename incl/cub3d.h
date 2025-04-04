@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:25:31 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 13:29:27 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@
 # include "macros.h"
 # include <math.h>
 # include <sys/time.h>
-
-
 
 #endif

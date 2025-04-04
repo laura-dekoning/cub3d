@@ -58,7 +58,7 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	set_texture_y(ray, texture_y);
 	pixel_index = (ray->wall_3d.texture_y * ray->wall_3d.texture->width + ray->wall_3d.texture_x) * ray->wall_3d.texture->bytes_per_pixel;
 	if (pixel_index + 2 > pixel_array_len)
-		return(0);	// black pixel?
+		return (0);	// black pixel?
 	r = pixel_array[pixel_index];
 	g = pixel_array[pixel_index + 1];
 	b = pixel_array[pixel_index + 2];
@@ -68,12 +68,22 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	colour = (r << 24) | (g << 16) | (b << 8) | a;
 	return (colour);
 }
+void put_pixel_safe(t_game *data, t_ray *ray, int x, int y, float texture_y)
+{
+	uint64_t		colour;
+
+	if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
+	{
+		colour = get_pixel_colour(ray, (int)texture_y);
+		mlx_put_pixel(data->window_image, x, y, colour); // texture			
+	}
+}
 
 void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
 {
 	uint32_t		x;
 	uint32_t		y;
-	uint64_t		colour;
+	// uint64_t		colour;
 	float 			texture_y;
 	int				i;
 
@@ -88,13 +98,12 @@ void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wa
 		y = wall_top;
 		while (y < (uint32_t)wall_bottom)
 		{
-			if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
-			{
-				// create shadow by drawing a pixel in the wall colour first, then the texture pixel with an alpha depending on the distance
-				// mlx_put_pixel(data->window_image, x, y, data->walls_colour); // background collor
-				colour = get_pixel_colour(ray, (int)texture_y);
-				mlx_put_pixel(data->window_image, x, y, colour); // texture			
-			}
+			put_pixel_safe();
+			// if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
+			// {
+			// 	colour = get_pixel_colour(ray, (int)texture_y);
+			// 	mlx_put_pixel(data->window_image, x, y, colour); // texture			
+			// }
 			texture_y += ray->wall_3d.texture_y_step;
 			y++;
 		}

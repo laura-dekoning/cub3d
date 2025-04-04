@@ -28,16 +28,14 @@ void	draw_eye(t_game *data, t_vector_f player_centre, int colour)
 
 void	draw_rays(t_game *data, int colour)
 {
-	t_vector_f start_pos;
-	t_vector_f end_pos;
-	t_vector_f dir;
-	float angle;
-	float angle_step;
-	int i;
+	t_vector_f	start_pos;
+	t_vector_f	end_pos;
+	t_vector_f	dir;
+	float		angle;
+	float		angle_step;
+	int			i;
 
 	start_pos = data->minimap.player_pos;
-
-
 	angle = data->player.angle - ((FOV / 2) * ONE_D_RADIAN);
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
 	i = 0;
@@ -56,10 +54,10 @@ void	draw_rays(t_game *data, int colour)
 
 void	draw_arrow_head(t_game *data,  t_vector_f start_pos, t_vector_f end_pos, t_vector_f dir, int colour)
 {
-	float arrow_length;
-	float arrow_angle;
-	float arrow_head_size;
-	uint8_t arrow_head_pointyness;
+	float	arrow_length;
+	float	arrow_angle;
+	float	arrow_head_size;
+	uint8_t	arrow_head_pointyness;
 
 	arrow_head_size = 0.7;
 	arrow_head_pointyness = 40;	// the arrow will look like 2 * arrow_head_pointyness degrees. for example arrow_head_pointyness = 45 will make an arrowhead of 90 degrees (quarter circle). for more pointy you have to go lower.
@@ -105,12 +103,12 @@ void	draw_arrow(t_game *data, int colour)
 
 void	draw_mouth(t_game *data, t_vector_f start_pos, int colour)
 {
-	t_vector_f end_pos;
-	t_vector_f dir;
-	float angle;
-	float angle_step;
-	float fov;
-	int i;
+	t_vector_f	end_pos;
+	t_vector_f	dir;
+	float		angle;
+	float		angle_step;
+	float		fov;
+	int			i;
 
 	fov = 60.0;
 	angle = data->player.angle - ((fov / 2) * ONE_D_RADIAN);
@@ -127,24 +125,14 @@ void	draw_mouth(t_game *data, t_vector_f start_pos, int colour)
 		check_angle(&angle);
 		i++;
 	}
-
-// i need to figure out how to open and close the mouth hihi
-	// draw_filled_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, COLOUR_YELLOW);
-
-	// end_pos.x = start_pos.x + data->player->dir.x * ((data->minimap.player_size / 2) + 1);
-	// end_pos.y = start_pos.y + data->player->dir.y * ((data->minimap.player_size / 2) + 1);
-	// draw_line(data->minimap_image, start_pos, end_pos, COLOUR_AQUA);
 }
 
 void	draw_player(t_game *data)
 {
-		
 	draw_rays(data, data->minimap.ray_colour);
 	draw_arrow(data, data->minimap.arrow_colour);
-	
 	draw_filled_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, data->minimap.player_colour);
 	draw_mouth(data, data->minimap.player_pos, COLOUR_BLACK);
 	draw_eye(data, data->minimap.player_pos, COLOUR_BLACK);
 	draw_circle(data->minimap_image, data->minimap.player_pos, data->minimap.player_size, COLOUR_BLACK);
-
 }

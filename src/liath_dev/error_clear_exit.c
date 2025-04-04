@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:42:03 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:38:06 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 13:46:06 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	clear_everything(t_game *data)
 	}
 	free(data->map->map);
 	free(data->map);
-
 	free(data);
 }
 

@@ -6,7 +6,11 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/04 14:56:41 by lade-kon      ########   odam.nl         */
+=======
+/*   Updated: 2025/04/04 14:45:07 by livliege      ########   odam.nl         */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +76,9 @@ void parse_map(t_game *data)
 		{
 			data->map->map[i][j] = temp_map[i][j];
 			//   === TAKEOUT ===
-			if (satoui(data->map->map[i][j]) > 0)
+			if (data->map->map[i][j] == '1')
 				printf("%c ", '#');
-			else if (satoui(data->map->map[i][j]) == 0)
+			else if (data->map->map[i][j] == '0')
 				printf("%c ", ' ');
 			else
 				printf("%c ", data->map->map[i][j]);

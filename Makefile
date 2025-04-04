@@ -6,7 +6,11 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
+<<<<<<< Updated upstream
 #    Updated: 2025/04/04 14:38:35 by lade-kon      ########   odam.nl          #
+=======
+#    Updated: 2025/04/04 15:12:04 by livliege      ########   odam.nl          #
+>>>>>>> Stashed changes
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +31,16 @@ INCLS_MLX42	:=	$(MLX_DIR)/include/MLX42
 INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
-SRC_PRINT	:=	printing
+
 SRC_LIATH	:=	liath_dev
+
+SRC_MINIMAP	:=	minimap
+SRC_PLAYER	:=	player_movement
+SRC_PRINT	:=	printing
+SRC_RENDER	:=	raycasting_and_rendering
+SRC_GAME	:=	the_game
+SRC_UTILS	:=	utils
+
 SRC_FILES	:=	alloc_mem_for_data.c \
 				error.c \
 				fill_and_replace_space.c \
@@ -58,22 +70,26 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				print_map.c \
 				print_player.c \
 				print_string_with_values.c ) \
-				$(addprefix $(SRC_LIATH)/, \
+				$(addprefix $(SRC_MINIMAP)/, \
 				draw_minimap.c \
 				draw_player.c \
-				draw_shapes.c \
-				error_clear_exit.c \
-				fake_parsing.c \
-				festival_map.c \
-				game.c \
-				init_game.c \
-				init_walls.c \
-				keys.c \
 				minimap.c \
+				$(addprefix $(SRC_PLAYER)/, \
+				keys.c \
 				player_collision.c \
+				$(addprefix $(SRC_UTILS)/, \
+				draw_shapes.c \
+				utils_execution.c )
+				$(addprefix $(SRC_RENDER)/, \
 				raycasting.c \
 				render_3d_scene.c \
-				utils.c )
+				$(addprefix $(SRC_GAME)/, \
+				init_walls.c \
+				init_game.c \
+				game.c \
+				$(addprefix $(SRC_LIATH)/, \
+				error_clear_exit.c \
+				fake_parsing.c
 
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

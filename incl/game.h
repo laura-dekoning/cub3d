@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 14:47:19 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 15:20:16 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,27 +174,27 @@ void	draw_border(t_game *data, t_mm_border border);
 void	draw_2D_map(t_game *data);
 
 // draw_shapes.c
-void		draw_filled_rectangle(mlx_image_t *image, t_vector_i start_pos, t_vector_i end_pos, uint64_t colour);
-void		draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
-void		draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
-void		draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-void		draw_ceiling_and_floor(t_game *data);
+void	draw_filled_rectangle(mlx_image_t *image, t_vector_i start_pos, t_vector_i end_pos, uint64_t colour);
+void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
+void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
+void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
+void	draw_ceiling_and_floor(t_game *data);
 
 // error_clear_exit.c    
-void		error_and_exit(char *str);
-void		clear_everything(t_game *data);
+void	error_and_exit(char *str);
+void	clear_everything(t_game *data);
 
 // fake_parsing.c        
-void		fake_parsing(t_game *data); // TAKE OUT
+void	fake_parsing(t_game *data); // TAKE OUT
 
 // festival_parsing.c
 void	festival_parsing(t_game *data);
-void init_festival_wall_textures(t_festival_textures	*f_textures);
+void	init_festival_wall_textures(t_festival_textures	*f_textures);
 
 
 // game.c
-void		game(t_game *data);
-void		cub3d(t_game *data);
+void	game(t_game *data);
+void	cub3d(t_game *data);
 
 // init_game.c
 void	init_window(t_game *data);
@@ -203,25 +203,25 @@ void	init_wall_textures(t_data *data, t_textures *textures);
 
 
 // init_walls.c
-void init_wall_segment(t_game *data, t_ray *ray);
+void	init_wall_segment(t_game *data, t_ray *ray);
 
 // keys.c                
-void		is_key_pressed(void *data);
+void	is_key_pressed(void *data);
 
 // minimap.c
-void		minimap(t_game *data);
+void	minimap(t_game *data);
 
 // player_collision.c
-void		check_collision(t_game *data, t_vector_f step);
+void	check_collision(t_game *data, t_vector_f step);
 
 // raycasting.c
-void 		raycasting(t_game *data);
+void 	raycasting(t_game *data);
 
 // render_3d_scene.c
-void render_3d_wall_segment(t_game *data, t_ray *ray, int ray_i);
+void	render_3d_wall_segment(t_game *data, t_ray *ray, int ray_i);
 
 // utils.c
-int satoui(const char c);
-void check_angle(float *angle);
+// int satoui(const char c);
+void	check_angle(float *angle);
 
 #endif

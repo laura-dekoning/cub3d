@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 13:49:22 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	movement_keys(t_game *data)
 		step.x -= data->player.dir.y;
 		step.y += data->player.dir.x;
 	}
-	normalize_diagonal_movement(&step.x, &step.y);
 	check_collision(data, step);
 }
 

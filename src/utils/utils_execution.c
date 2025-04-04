@@ -6,22 +6,22 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/26 12:55:32 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:26:37 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 14:47:19 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
 
 // single ascii to unsigned int. returns positive int on succes, returns -1 on error
-int satoui(const char c)
-{
-	if (ft_isdigit(c))
-	{
-		return (c - '0');
-	}
-	else 
-		return (-1);
-}
+// int satoui(const char c)
+// {
+// 	if (ft_isdigit(c))
+// 	{
+// 		return (c - '0');
+// 	}
+// 	else 
+// 		return (-1);
+// }
 
 
 void	check_angle(float *angle)

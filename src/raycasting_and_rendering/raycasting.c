@@ -32,7 +32,7 @@ void DDA_aggorithm(t_game *data, t_ray *ray, t_vector_f *map_pos)
 		}
 		if (map_pos->x >= 0 && map_pos->y >= 0 && map_pos->x < data->map->map_width_px && map_pos->y < data->map->map_height_px)
 		{
-			if (satoui(data->map->map[(int)(map_pos->y / GRIDSIZE)][(int)(map_pos->x / GRIDSIZE)]) > 0)
+			if (data->map->map[(int)(map_pos->y / GRIDSIZE)][(int)(map_pos->x / GRIDSIZE)] == '1')
 			ray->wall_hit = true;
 		}
 	}
@@ -113,11 +113,6 @@ void raycasting(t_game *data)
 		render_3d_wall_segment(data, &data->ray[i], i);
 		angle += angle_step;
 		check_angle(&angle);
-
-		// if (angle > (2 * PI))
-		// 	angle -= (2 * PI);
-		// if (angle < 0)
-		// 	angle += (2 * PI);
 		i++;
 	}
 }

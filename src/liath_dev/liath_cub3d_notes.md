@@ -9,7 +9,8 @@
 
 
 TODO:
-[]	add framerate
+[]	change liaths code "error_and_exit(err_message)" to lauras's "error_message(t_data *data, char *str)"
+[]	add framerate?
 
 TODO BONUS:
 []	add mouse-rotation
