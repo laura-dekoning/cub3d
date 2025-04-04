@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:38:47 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 14:56:41 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,22 +141,9 @@ void parse_player(t_game *data)
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
 
-void parse_environment(t_game *data)
-{
-	data->ceiling_colour = COLOUR_PINK;
-	data->floor_colour = COLOUR_YELLOW;
-
-	// data->walls_colour = COLOUR_DARK_GRAY; // shadow
-	
-	data->textures.path_to_north_texture = "./textures/IMG_2709.png";
-	data->textures.path_to_east_texture = "./textures/red_brick_wall.png";
-	data->textures.path_to_south_texture = "./textures/IMG_5452.png";
-	data->textures.path_to_west_texture = "./textures/cobble_stone_wall.png";
-}
 
 void fake_parsing(t_game *data)
 {
 	parse_map(data);
 	parse_player(data);
-	parse_environment(data);
 }
