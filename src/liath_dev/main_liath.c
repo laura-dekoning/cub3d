@@ -3,23 +3,23 @@
 /*                                                        ::::::::            */
 /*   main_liath.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:27 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 16:57:21 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_game	*data;
 
 	// (void)argv;
 	// (void)argc;
 	
-	data = (t_data *)ft_calloc(sizeof(t_data), 1);
+	data = (t_game *)ft_calloc(sizeof(t_game), 1);
 	if (data == NULL)
 		error_and_exit("Malloc allocation failed\n");
 

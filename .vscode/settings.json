@@ -13,6 +13,7 @@
 		"format": "c",
 		"initializer_list": "c",
 		"cstdint": "c",
-		"random": "c"
+		"random": "c",
+		"math.h": "c"
 	}
 }

@@ -14,9 +14,9 @@
 #define MM_WALL		1
 #define MM_FLOOR	0
 
-# include "../../incl/liath.h"
+# include "cub3d.h"
 
-void	draw_border(t_data *data, t_mm_border border)
+void	draw_border(t_game *data, t_mm_border border)
 {
 	border.top_line_start.x = 0;
 	border.top_line_start.y = 0;
@@ -41,7 +41,7 @@ void	draw_border(t_data *data, t_mm_border border)
 	draw_filled_rectangle(data->minimap_border_image, border.right_line_start, border.right_line_end, border.colour);
 }
 
-void	draw_minimap_background(t_data *data)
+void	draw_minimap_background(t_game *data)
 {
 	t_vector_i start_pos;
 	t_vector_i end_pos;
@@ -68,14 +68,13 @@ plan:
 [ ][ ][ ][ ][ ]
 */
 
-void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
+void	init_mimimap_grid(t_game *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 {
-	int x;
-	int y;
-	int map_x;
-	int map_y;
-
-	t_vector_i player_map_pos;
+	int			x;
+	int			y;
+	size_t		map_x;
+	size_t		map_y;
+	t_vector_i	player_map_pos;
 
 	// center player in the minimap
 	player_map_pos.x = data->player.pos.x / GRIDSIZE;
@@ -103,7 +102,7 @@ void	init_mimimap_grid(t_data *data, int map[MINIMAP_GRID][MINIMAP_GRID])
 	}
 }
 
-static void	set_colour(t_data *data, int map, uint64_t *colour)
+static void	set_colour(t_game *data, int map, uint64_t *colour)
 {
 
 	if (map == MM_WALL)
@@ -120,7 +119,7 @@ static void	set_colour(t_data *data, int map, uint64_t *colour)
 	}
 }
 
-void	draw_2D_map(t_data *data)
+void	draw_2D_map(t_game *data)
 {
 	int x;
 	int y;

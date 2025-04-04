@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incl/liath.h"
+# include "cub3d.h"
 
-void	draw_eye(t_data *data, t_vector_f player_centre, int colour)
+void	draw_eye(t_game *data, t_vector_f player_centre, int colour)
 {
 	t_vector_f	eye_centre;
 	t_vector_f	dir;
@@ -26,7 +26,7 @@ void	draw_eye(t_data *data, t_vector_f player_centre, int colour)
 	draw_filled_circle(data->minimap_image, eye_centre, (data->minimap.player_size / 5), colour);
 }
 
-void	draw_rays(t_data *data, int colour)
+void	draw_rays(t_game *data, int colour)
 {
 	t_vector_f start_pos;
 	t_vector_f end_pos;
@@ -54,7 +54,7 @@ void	draw_rays(t_data *data, int colour)
 	}
 }
 
-void	draw_arrow_head(t_data *data,  t_vector_f start_pos, t_vector_f end_pos, t_vector_f dir, int colour)
+void	draw_arrow_head(t_game *data,  t_vector_f start_pos, t_vector_f end_pos, t_vector_f dir, int colour)
 {
 	float arrow_length;
 	float arrow_angle;
@@ -79,7 +79,7 @@ void	draw_arrow_head(t_data *data,  t_vector_f start_pos, t_vector_f end_pos, t_
 	draw_line(data->minimap_image, end_pos, start_pos, colour);
 }
 	
-void	draw_arrow(t_data *data, int colour)
+void	draw_arrow(t_game *data, int colour)
 {
 	t_vector_f 	start_pos;
 	t_vector_f 	end_pos;
@@ -103,7 +103,7 @@ void	draw_arrow(t_data *data, int colour)
 }
 
 
-void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
+void	draw_mouth(t_game *data, t_vector_f start_pos, int colour)
 {
 	t_vector_f end_pos;
 	t_vector_f dir;
@@ -136,7 +136,7 @@ void	draw_mouth(t_data *data, t_vector_f start_pos, int colour)
 	// draw_line(data->minimap_image, start_pos, end_pos, COLOUR_AQUA);
 }
 
-void	draw_player(t_data *data)
+void	draw_player(t_game *data)
 {
 		
 	draw_rays(data, data->minimap.ray_colour);

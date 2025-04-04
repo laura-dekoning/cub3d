@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
 /*
 typedef struct mlx_texture
@@ -69,7 +69,7 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	return (colour);
 }
 
-void	draw_wall_segment(t_data *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
+void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
 {
 	uint32_t		x;
 	uint32_t		y;
@@ -102,7 +102,7 @@ void	draw_wall_segment(t_data *data, t_ray *ray, int ray_i, int wall_top, int wa
 	}
 }
 
-void render_3d_wall_segment(t_data *data, t_ray *ray, int ray_i)
+void render_3d_wall_segment(t_game *data, t_ray *ray, int ray_i)
 {
 	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
 	{

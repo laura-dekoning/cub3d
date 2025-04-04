@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
-bool	hit_wall(t_data *data, float player_x, float player_y)
+bool	hit_wall(t_game *data, float player_x, float player_y)
 {
 	t_vector_i	top_left;
 	t_vector_i	top_right;
@@ -39,7 +39,7 @@ bool	hit_wall(t_data *data, float player_x, float player_y)
 	}
 }
 
-void	check_collision(t_data *data, t_vector_f step)
+void	check_collision(t_game *data, t_vector_f step)
 {
 	t_vector_f	next_pos;
 

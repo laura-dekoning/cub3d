@@ -3,17 +3,17 @@
 /*                                                        ::::::::            */
 /*   minimap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 14:48:10 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:28:02 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incl/liath.h"
+# include "cub3d.h"
 
 
-void	init_minimap(t_data *data)
+void	init_minimap(t_game *data)
 {
 	data->minimap.grid_size = data->minimap.minimap_size / MINIMAP_GRID;
 	data->minimap.player_size = data->minimap.grid_size / 1.5;
@@ -37,7 +37,7 @@ void	init_minimap(t_data *data)
 	data->minimap.border_size = 20;
 }
 
-void	minimap(t_data *data)
+void	minimap(t_game *data)
 {
 	init_minimap(data);	
 	draw_2D_map(data);

@@ -3,20 +3,20 @@
 /*                                                        ::::::::            */
 /*   festival_map.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/25 16:06:19 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 17:08:08 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:39:00 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../incl/liath.h"
+# include "cub3d.h"
 
 
-void parse_festival_map(t_data *data)
+void parse_festival_map(t_game *data)
 {
-	int i;
-	int j;
+	size_t	i;
+	size_t	j;
 
 	data->map = (t_map *)ft_calloc(sizeof(t_map), 1);
 	if (data->map == NULL)
@@ -87,7 +87,7 @@ void parse_festival_map(t_data *data)
 	}
 }
 
-// void parse_player(t_data *data)
+// void parse_player(t_game *data)
 // {
 // 	int x;
 // 	int y;
@@ -164,7 +164,7 @@ void init_festival_wall_textures(t_festival_textures	*f_textures)
 		error_and_exit("Loading stage png failed\n");
 }
 
-void parse_festival_environment(t_data *data)
+void parse_festival_environment(t_game *data)
 {
 	data->ceiling_colour = COLOUR_AQUA;
 	data->floor_colour = COLOUR_DARK_GREEN;
@@ -181,7 +181,7 @@ void parse_festival_environment(t_data *data)
 }
 
 
-void	festival_parsing(t_data *data)
+void	festival_parsing(t_game *data)
 {
 	printf("FESTIVAL MAP!\n");
 	// parse_map(data);

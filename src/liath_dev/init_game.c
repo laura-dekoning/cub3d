@@ -3,16 +3,16 @@
 /*                                                        ::::::::            */
 /*   init_game.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 14:05:59 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
-void	get_minimap_size(t_data *data)
+void	get_minimap_size(t_game *data)
 {
 	if (WINDOW_HEIGHT > WINDOW_WIDTH)
 	{
@@ -24,7 +24,7 @@ void	get_minimap_size(t_data *data)
 	}
 }
 
-void	init_minimap_border_image(t_data *data)
+void	init_minimap_border_image(t_game *data)
 {
 	data->minimap_border_image = mlx_new_image(data->window, data->minimap.minimap_size + 2, data->minimap.minimap_size + 2);
 	if (data->minimap_border_image == NULL)
@@ -41,7 +41,7 @@ void	init_minimap_border_image(t_data *data)
 	}
 }
 
-void	init_minimap_image(t_data *data)
+void	init_minimap_image(t_game *data)
 {
 	get_minimap_size(data);
 	data->minimap_image = mlx_new_image(data->window, data->minimap.minimap_size, data->minimap.minimap_size);
@@ -59,7 +59,7 @@ void	init_minimap_image(t_data *data)
 	init_minimap_border_image(data);
 }
 
-void	init_window(t_data *data)
+void	init_window(t_game *data)
 {
 	data->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, false);
 	if (data->window == NULL)

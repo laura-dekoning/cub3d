@@ -3,18 +3,18 @@
 /*                                                        ::::::::            */
 /*   game.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 14:05:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 16:51:57 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
 
-void	game(t_data *data)
+void	game(t_game *data)
 {
 	draw_ceiling_and_floor(data);
 	raycasting(data);
@@ -23,7 +23,7 @@ void	game(t_data *data)
 }
 
 
-void cub3d(t_data *data)
+void cub3d(t_game *data)
 {
 	init_window(data);
 	init_minimap_image(data);

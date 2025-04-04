@@ -3,14 +3,14 @@
 /*                                                        ::::::::            */
 /*   error_clear_exit.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:42:03 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/26 12:13:32 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:38:06 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
 void	error_and_exit(char *str)
 {
@@ -19,9 +19,9 @@ void	error_and_exit(char *str)
 	exit(FAILURE);
 }
 
-void	clear_everything(t_data *data)
+void	clear_everything(t_game *data)
 {
-	int i;
+	size_t i;
 
 	i = 0; 
 	while (i < data->map->rows)

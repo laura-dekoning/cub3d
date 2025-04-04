@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
 
 /*
@@ -104,7 +104,7 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 	}
 }
 
-void	draw_ceiling_and_floor(t_data *data)
+void	draw_ceiling_and_floor(t_game *data)
 {
 	t_vector_i	ceiling_start;
 	t_vector_i	ceiling_end;

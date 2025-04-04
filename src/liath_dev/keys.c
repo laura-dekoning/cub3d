@@ -3,14 +3,14 @@
 /*                                                        ::::::::            */
 /*   keys.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 14:37:03 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
 void	normalize_diagonal_movement(float *step_x, float *step_y)
 {
@@ -31,7 +31,7 @@ void	normalize_diagonal_movement(float *step_x, float *step_y)
 	}
 }
 
-void	movement_keys(t_data *data)
+void	movement_keys(t_game *data)
 {
 	t_vector_f	step;
 
@@ -61,7 +61,7 @@ void	movement_keys(t_data *data)
 	check_collision(data, step);
 }
 
-void	rotation_keys(t_data *data)
+void	rotation_keys(t_game *data)
 {
 	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
 	{
@@ -85,7 +85,7 @@ void	rotation_keys(t_data *data)
 	}
 }
 
-void	exit_key(t_data *data)
+void	exit_key(t_game *data)
 {
 	if (mlx_is_key_down(data->window, MLX_KEY_ESCAPE))
 	{
@@ -95,13 +95,13 @@ void	exit_key(t_data *data)
 
 void	is_key_pressed(void *game_data)
 {
-	t_data		*data;
+	t_game		*data;
 	t_vector_f	old_pos;
 	t_vector_f	old_dir;
 	int			moved;
 	int			rotated;
 
-	data = (t_data *)game_data;
+	data = (t_game *)game_data;
 	old_pos.x = data->player.pos.x;
 	old_pos.y = data->player.pos.y;
 	old_dir.x = data->player.dir.x;

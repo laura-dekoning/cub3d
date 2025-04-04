@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
-mlx_texture_t	*set_wall_texture(t_data *data, t_ray *ray)
+mlx_texture_t	*set_wall_texture(t_game *data, t_ray *ray)
 {
 	if (ray->wall_3d.wall_side == NORTH)
 	{
@@ -35,7 +35,7 @@ mlx_texture_t	*set_wall_texture(t_data *data, t_ray *ray)
 
 void set_wall_side(t_ray *ray)
 {
-	if (ray->wall_3d.N_S_wall == true)
+	if (ray->wall_3d.n_s_wall == true)
 	{
 		if (ray->step_dir.y < 0)
 			ray->wall_3d.wall_side = NORTH;
@@ -70,7 +70,7 @@ void	set_wall_shadow(t_ray *ray)
 	}
 }
 
-void	fix_texture_stretch(t_data *data, t_ray * ray)
+void	fix_texture_stretch(t_game *data, t_ray * ray)
 {
 	// fix if texture goes off the top of the screen
 	if (ray->wall_3d.wall_top < 0)
@@ -89,7 +89,7 @@ void	fix_texture_stretch(t_data *data, t_ray * ray)
 	}
 }
 
-void	fix_texture_zoom_to_centre(t_data *data, t_ray * ray)
+void	fix_texture_zoom_to_centre(t_game *data, t_ray * ray)
 {
 	float extra_height;
 
@@ -100,7 +100,7 @@ void	fix_texture_zoom_to_centre(t_data *data, t_ray * ray)
 		ray->wall_3d.texture_y_pos = (extra_height / 2.0) * (ray->wall_3d.texture->height / ray->wall_3d.wall_height);
 	}
 }
-void init_wall_segment(t_data *data, t_ray *ray)
+void init_wall_segment(t_game *data, t_ray *ray)
 {
 	ray->wall_3d.wall_distance = (data->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
 	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - data->player.angle);

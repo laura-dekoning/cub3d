@@ -3,19 +3,19 @@
 /*                                                        ::::::::            */
 /*   fake_parsing.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 20:35:41 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/04/04 12:38:47 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incl/liath.h"
+#include "cub3d.h"
 
-void parse_map(t_data *data)
+void parse_map(t_game *data)
 {
-	int i;
-	int j;
+	size_t	i;
+	size_t	j;
 
 	data->map = (t_map *)ft_calloc(sizeof(t_map), 1);
 	if (data->map == NULL)
@@ -86,11 +86,11 @@ void parse_map(t_data *data)
 	}
 }
 
-void parse_player(t_data *data)
+void parse_player(t_game *data)
 {
-	int x;
-	int y;
-	float offset;
+	size_t	x;
+	size_t	y;
+	float	offset;
 	
 	offset = GRIDSIZE / 2;
 	y = 0;
@@ -141,7 +141,7 @@ void parse_player(t_data *data)
 	printf("player angle	: %f\n", data->player.angle);  		//    === TAKEOUT ===
 }
 
-void parse_environment(t_data *data)
+void parse_environment(t_game *data)
 {
 	data->ceiling_colour = COLOUR_PINK;
 	data->floor_colour = COLOUR_YELLOW;
@@ -154,7 +154,7 @@ void parse_environment(t_data *data)
 	data->textures.path_to_west_texture = "./textures/cobble_stone_wall.png";
 }
 
-void fake_parsing(t_data *data)
+void fake_parsing(t_game *data)
 {
 	parse_map(data);
 	parse_player(data);
