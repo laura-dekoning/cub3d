@@ -6,13 +6,13 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 18:23:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:42:07 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 13:18:58 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_data(t_game *game, t_data *data, const char *file)
+void	get_data(t_data *data, const char *file)
 {
 	char	*file_as_str;
 	char	**file_as_arr;
@@ -23,5 +23,5 @@ void	get_data(t_game *game, t_data *data, const char *file)
 	free(file_as_str);
 	ft_free_arr(file_as_arr);
 	validate_data(data);
-	get_game_data(game, data);
+
 }
