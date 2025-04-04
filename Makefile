@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/04 12:40:31 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/04 14:38:35 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				fill_and_replace_space.c \
 				free_data.c \
 				get_data.c \
+				get_game.c \
 				main.c \
 				is_map_content.c \
 				is_map_last.c \

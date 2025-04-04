@@ -6,13 +6,11 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 14:05:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:30:51 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 14:43:52 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
-
 
 void	game(t_game *data)
 {
@@ -22,17 +20,8 @@ void	game(t_game *data)
 	minimap(data);
 }
 
-
 void cub3d(t_game *data)
 {
-	init_window(data);
-	init_minimap_image(data);
-
-	if (data->festival_map)
-		init_festival_wall_textures(&data->festival_textures);
-	else
-		init_wall_textures(&data->textures);
-
 	game(data);
 	
 	mlx_loop_hook(data->window, is_key_pressed, data);
@@ -48,4 +37,3 @@ void cub3d(t_game *data)
 	
 	mlx_terminate(data->window);
 }
-

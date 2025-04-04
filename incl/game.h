@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:58:16 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 14:37:29 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,6 @@ typedef struct s_minimap
 
 typedef struct s_textures
 {
-	char			*path_to_north_texture;
-	char			*path_to_south_texture;
-	char			*path_to_west_texture;
-	char			*path_to_east_texture;
-
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*west_texture;

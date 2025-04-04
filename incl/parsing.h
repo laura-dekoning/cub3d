@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 13:18:49 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 14:43:36 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	*read_file(t_data *data, const char *file);
 int		is_setting(char *line);
 bool	is_map_last(t_data *data);
 void	get_data(t_data *data, const char *file);
+void	init_game(t_game *game, t_data *data);
 void	init_texture_data(t_data *data, char *line, int flag);
 int		validate_texture_id(t_data *data, char *line);
 void	validate_file_and_init_data(t_data *data, char **file);
