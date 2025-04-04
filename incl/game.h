@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 14:37:29 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/04 14:47:19 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ void		cub3d(t_game *data);
 // init_game.c
 void	init_window(t_game *data);
 void	init_minimap_image(t_game *data);
-void	init_wall_textures(t_textures	*textures);
+void	init_wall_textures(t_data *data, t_textures *textures);
 
 
 // init_walls.c
