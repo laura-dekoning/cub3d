@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 16:40:29 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 18:44:49 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/04/04 13:06:45 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define SUCCESS 		0
 # define FAILURE 		1
 
-# define WINDOW_WIDTH	1000
-# define WINDOW_HEIGHT	1000
+# define WINDOW_WIDTH	1800
+# define WINDOW_HEIGHT	1800
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define PI				3.14159265359
@@ -54,7 +54,7 @@
 
 // # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
 # define MINIMAP_SCALE	5 		// (the window size / MINIMAP_SCALE will be the size of the minimap.) (1 is fullsize, 5 is good)
-# define MINIMAP_GRID	13 		// n X n grid
+# define MINIMAP_GRID	15 		// n X n grid
 
 
 // ==== COLOURS FOR PIXELS ==== 0xRRGGBBAA
