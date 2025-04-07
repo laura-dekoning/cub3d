@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:11:07 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/01 18:23:09 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ void	parse_validate_init_rgb(t_data *data, char *line)
 		error_message(data, "File should end with map content!");
 	flag = validate_rgb_id(data, line);
 	init_rgb_data(data, line, flag);
+	init_rgb_to_rgba(data, flag);
 }
