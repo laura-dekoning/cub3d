@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 13:48:19 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 15:55:39 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	print_data(data);
 	get_game(game, data);
 	cub3d(game);
-	// clear_everything(game);
+	free_game(game);
 	printf(B_G"YEEEEEEY EVERYTHING GOOD!\n"DEF);
 
 	// 1.) get data;
@@ -42,15 +42,3 @@ int	main(int argc, char **argv)
 	// 5.) end program with freeing game (NOT DATA >> is already freed);
 	return (0);
 }
-
-//gebruik gnl met strjoin om de hele file uit te lezen in 1 string.
-//vervolgens loop door de string en set scene (NO, SO, WE, EA, S, F, C)
-//daarna als het een ' ' of '1' is dan begint de map
-//substr vanaf daar tot het einde van de file naar str *map
-//check of de map valid is -> loop door de string en check of er alleen 0, 1, ' ', N, S, W, E in zitten
-//check of de map gesloten is -> loop door de map en check of de buitenste randen bestaan uit 1's
-//check of de map maar 1 speler bevat -> loop door de map en check of *player_pos is already true
-//yd{1, 0, -1, 0} xd{0, 1, 0, -1} -> loop door de map en check of de 0 niet omgeven is door een ' '
-//check max map_len 
-//fill char **map met de map
-//maak map rectangle door lege plekken eind string op te vullen met ' '
