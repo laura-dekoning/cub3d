@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_game.c                                        :+:    :+:            */
+/*   get_game.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 16:53:17 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/07 15:27:50 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,13 @@ void parse_map(t_game *game, t_data *data)
 	size_t	i;
 	size_t	j;
 
-	// game->map = (t_map *)ft_calloc(sizeof(t_map), 1);
-	// if (data->map == NULL)
-	// 	error_message("Malloc allocation failed\n");
-
-	game->map->rows = data->map->rows;   // y
-	game->map->cols = data->map->cols;   // x
-
+	game->map->rows = data->map->rows;
+	game->map->cols = data->map->cols;
 	game->map->map_width_px = data->map->cols * GRIDSIZE;
 	game->map->map_height_px = data->map->rows * GRIDSIZE;
-	
 	game->map->map = (char **)malloc(game->map->rows * sizeof(char *));
 	if (game->map->map == NULL)
-		error_message("Malloc allocation failed\n");
+		error_message(game, data, MALLOC, 3);
 	i = 0;
 	while (i < game->map->rows) 
 	{
@@ -117,11 +111,11 @@ void parse_player(t_game *game)
 }
 
 
-void	init_game(t_game *game, t_data * data)
+void	get_game(t_game *game, t_data * data)
 {
 
-	game->floor_colour = rgb_to_hex(data->floor);
-	game->ceiling_colour = rgb_to_hex(data->ceiling);
+	game->floor_colour = rgb_to_hex(data->floor[0], data->floor[1], data->floor[2]);
+	game->ceiling_colour = rgb_to_hex(data->ceiling[0], data->ceiling[1], data->ceiling[2]);
 
 	parse_map(game, data);
 	parse_player(game);

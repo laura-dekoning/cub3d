@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 14:01:03 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 15:26:08 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_map_ex
 	char	**map;
 	size_t	rows; //rows = if (ft_strlen(map[x][y] > rows) rows = y;
 	size_t	cols;
-	int		map_width_px;
-	int		map_height_px;
+	size_t	map_width_px;
+	size_t	map_height_px;
 }				t_map_ex;
 
 typedef struct s_wall_segment_3d
@@ -172,7 +172,7 @@ void	init_wall_textures(t_data *data, t_textures *textures);
 // init_walls.c
 void	init_wall_segment(t_game *data, t_ray *ray);
 
-// keys.c                
+// keys.c
 void	is_key_pressed(void *data);
 
 // minimap.c

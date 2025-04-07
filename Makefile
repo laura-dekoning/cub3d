@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/07 13:43:31 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/07 15:08:45 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,10 +73,10 @@ SRC_FILES	:=	main.c \
 				validate_file_and_init_data.c \
 				validate_map.c) \
 				$(addprefix $(SRC_UTILS)/, \
+				draw_shapes.c \
 				is_map_content.c \
 				is_map_last.c \
 				is_setting.c \
-				draw_shapes.c \
 				utils_execution.c ) \
 				$(addprefix $(SRC_PLAYER)/, \
 				keys.c \
@@ -88,7 +88,7 @@ SRC_FILES	:=	main.c \
 				rendering_utils.c )\
 				$(addprefix $(SRC_GAME)/, \
 				game.c \
-				init_game.c \
+				get_game.c \
 				init_walls.c \
 				init_window_and_images.c )
 

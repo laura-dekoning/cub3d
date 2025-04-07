@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:49:57 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 15:09:27 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 
 # include "cub3d.h"
 
-// UTILS //
-void	*safe_calloc(t_data *data, size_t count, size_t size);
-void	*alloc_mem_for_data(void);
-void	*alloc_mem_for_game(void);
-void	error_message(t_data *data, char *str);
-void	free_data(t_data *data);
+
 
 // PRINTING //
 void	print_data(t_data *data);

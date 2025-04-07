@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 13:52:55 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 15:09:50 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,14 @@
 # include "game.h"
 # include "parsing.h"
 # include "utils.h"
+
+// MEMORY //
+void	*alloc_mem_for_data(void);
+void	*alloc_mem_for_game(void);
+void	free_data(t_data *data);
+void	*safe_calloc(t_data *data, size_t count, size_t size);
+
+// UTILS //
+void	error_message(t_data *data, char *str);
 
 #endif
