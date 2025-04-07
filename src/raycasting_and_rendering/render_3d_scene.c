@@ -68,18 +68,18 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	colour = (r << 24) | (g << 16) | (b << 8) | a;
 	return (colour);
 }
-void put_pixel_safe(t_game *data, t_ray *ray, int x, int y, float texture_y)
+void put_pixel_safe(t_game *game, t_ray *ray, int x, int y, float texture_y)
 {
 	uint64_t		colour;
 
-	if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
+	if (x > 0 && y > 0 && x < game->window_image->width && y < game->window_image->height)
 	{
 		colour = get_pixel_colour(ray, (int)texture_y);
-		mlx_put_pixel(data->window_image, x, y, colour); // texture			
+		mlx_put_pixel(game->window_image, x, y, colour); // texture			
 	}
 }
 
-void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
+void	draw_wall_segment(t_game *game, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
 {
 	uint32_t		x;
 	uint32_t		y;
@@ -92,17 +92,17 @@ void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wa
 	while (i < ray->wall_3d.line_width)
 	{
 		x = ray_i * ray->wall_3d.line_width + i;
-		if (x >= (uint32_t)data->window->width) 
+		if (x >= (uint32_t)game->window->width) 
 			break;
 		texture_y = ray->wall_3d.texture_y_pos;
 		y = wall_top;
 		while (y < (uint32_t)wall_bottom)
 		{
-			put_pixel_safe(data, ray, x, y, texture_y);
-			// if (x > 0 && y > 0 && x < data->window_image->width && y < data->window_image->height)
+			put_pixel_safe(game, ray, x, y, texture_y);
+			// if (x > 0 && y > 0 && x < game->window_image->width && y < game->window_image->height)
 			// {
 			// 	colour = get_pixel_colour(ray, (int)texture_y);
-			// 	mlx_put_pixel(data->window_image, x, y, colour); // texture			
+			// 	mlx_put_pixel(game->window_image, x, y, colour); // texture			
 			// }
 			texture_y += ray->wall_3d.texture_y_step;
 			y++;
@@ -111,7 +111,7 @@ void	draw_wall_segment(t_game *data, t_ray *ray, int ray_i, int wall_top, int wa
 	}
 }
 
-void render_3d_wall_segment(t_game *data, t_ray *ray, int ray_i)
+void render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i)
 {
 	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
 	{
@@ -131,5 +131,5 @@ void render_3d_wall_segment(t_game *data, t_ray *ray, int ray_i)
 	ray->wall_3d.texture_x = (int)(ray->wall_3d.wall_hit_screen_x * ray->wall_3d.texture->width);
 	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / ray->wall_3d.wall_height;
 
-	draw_wall_segment(data, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
+	draw_wall_segment(game, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
 }

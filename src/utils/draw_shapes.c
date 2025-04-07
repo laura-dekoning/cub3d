@@ -98,7 +98,7 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 	}
 }
 
-void	draw_ceiling_and_floor(t_game *data)
+void	draw_ceiling_and_floor(t_game *game)
 {
 	t_vector_i	ceiling_start;
 	t_vector_i	ceiling_end;

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 15:41:59 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 16:10:10 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@
 void	*alloc_mem_for_data(void);
 void	*alloc_mem_for_game(void);
 void	free_data(t_data *data);
+void	free_game(t_game *game);
 void	*safe_calloc(t_game *game, t_data *data, size_t count, size_t size);
 
 // UTILS //
 void	error_free_game_and_data(t_game *game, t_data *data, char *str);
 void	error_free_game(t_game *game, char *str);
 void	error_free_data(t_data *data, char *str);
+void	error(char *str);
+
 
 
 #endif

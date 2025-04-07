@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 15:55:39 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 16:05:30 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	main(int argc, char **argv)
 	size_t		len;
 
 	if (argc != 2)
-		error_message(NULL, ARGS);
+		error(ARGS);
 	file = argv[1];
 	len = ft_strlen(file);
 	if (len < 5 || (ft_strncmp(file + len - 4, ".cub", 4)))
-		error_message(NULL, FILE);
+		error(FILE);
 	data = (t_data *)alloc_mem_for_data();
 	game = (t_game *)alloc_mem_for_game();
 	print_data(data);

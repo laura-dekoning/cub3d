@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 16:57:16 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/07 16:16:25 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,87 +31,87 @@ void	normalize_diagonal_movement(float *step_x, float *step_y)
 	}
 }
 
-void	movement_keys(t_game *data)
+void	movement_keys(t_game *game)
 {
 	t_vector_f	step;
 
 	step.x = 0.0;
 	step.y = 0.0;
-	if (mlx_is_key_down(data->window, MLX_KEY_W))
+	if (mlx_is_key_down(game->window, MLX_KEY_W))
 	{
-		step.x += data->player->dir.x;
-		step.y += data->player->dir.y;
+		step.x += game->player->dir.x;
+		step.y += game->player->dir.y;
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_S))
+	if (mlx_is_key_down(game->window, MLX_KEY_S))
 	{
-		step.x -= data->player->dir.x;
-		step.y -= data->player->dir.y;
+		step.x -= game->player->dir.x;
+		step.y -= game->player->dir.y;
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_A))
+	if (mlx_is_key_down(game->window, MLX_KEY_A))
 	{
-		step.x += data->player->dir.y;
-		step.y -= data->player->dir.x;
+		step.x += game->player->dir.y;
+		step.y -= game->player->dir.x;
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_D))
+	if (mlx_is_key_down(game->window, MLX_KEY_D))
 	{
-		step.x -= data->player->dir.y;
-		step.y += data->player->dir.x;
+		step.x -= game->player->dir.y;
+		step.y += game->player->dir.x;
 	}
-	check_collision(data, step);
+	check_collision(game, step);
 }
 
-void	rotation_keys(t_game *data)
+void	rotation_keys(t_game *game)
 {
-	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
+	if (mlx_is_key_down(game->window, MLX_KEY_LEFT))
 	{
-		data->player->angle -= ROTATING_SPEED;
-		if (data->player->angle < 0)
+		game->player->angle -= ROTATING_SPEED;
+		if (game->player->angle < 0)
 		{
-			data->player->angle += (2 * PI);
+			game->player->angle += (2 * PI);
 		}
-		data->player->dir.x = cos(data->player->angle); //* ROTATING_SPEED;
-		data->player->dir.y = sin(data->player->angle); //* ROTATING_SPEED;
+		game->player->dir.x = cos(game->player->angle); //* ROTATING_SPEED;
+		game->player->dir.y = sin(game->player->angle); //* ROTATING_SPEED;
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(game->window, MLX_KEY_RIGHT))
 	{
-		data->player->angle += ROTATING_SPEED;
-		if (data->player->angle > (2 * PI))
+		game->player->angle += ROTATING_SPEED;
+		if (game->player->angle > (2 * PI))
 		{
-			data->player->angle -= (2 * PI);
+			game->player->angle -= (2 * PI);
 		}
-		data->player->dir.x = cos(data->player->angle); // * ROTATING_SPEED;
-		data->player->dir.y = sin(data->player->angle); // * ROTATING_SPEED;
+		game->player->dir.x = cos(game->player->angle); // * ROTATING_SPEED;
+		game->player->dir.y = sin(game->player->angle); // * ROTATING_SPEED;
 	}
 }
 
-void	exit_key(t_game *data)
+void	exit_key(t_game *game)
 {
-	if (mlx_is_key_down(data->window, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(game->window, MLX_KEY_ESCAPE))
 	{
-		mlx_close_window(data->window);
+		mlx_close_window(game->window);
 	}
 }
 
-void	is_key_pressed(void *game_data)
+void	is_key_pressed(void *game_game)
 {
-	t_game		*data;
+	t_game		*game;
 	t_vector_f	old_pos;
 	t_vector_f	old_dir;
 	int			moved;
 	int			rotated;
 
-	data = (t_game *)game_data;
-	old_pos.x = data->player->pos.x;
-	old_pos.y = data->player->pos.y;
-	old_dir.x = data->player->dir.x;
-	old_dir.y = data->player->dir.y;
-	exit_key(data);
-	rotation_keys(data);
-	movement_keys(data);
-	moved = ft_memcmp(&old_pos, &data->player->pos, sizeof(t_vector_f));
-	rotated = ft_memcmp(&old_dir, &data->player->dir, sizeof(t_vector_f));
+	game = (t_game *)game_game;
+	old_pos.x = game->player->pos.x;
+	old_pos.y = game->player->pos.y;
+	old_dir.x = game->player->dir.x;
+	old_dir.y = game->player->dir.y;
+	exit_key(game);
+	rotation_keys(game);
+	movement_keys(game);
+	moved = ft_memcmp(&old_pos, &game->player->pos, sizeof(t_vector_f));
+	rotated = ft_memcmp(&old_dir, &game->player->dir, sizeof(t_vector_f));
 	if (moved != 0 || rotated != 0)
 	{
-		game(data);
+		game(game);
 	}
 }

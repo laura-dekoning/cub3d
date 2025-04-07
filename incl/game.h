@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 15:26:08 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 16:15:52 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,45 +147,45 @@ typedef struct s_game
 }	t_game;
 
 // draw_minimap_player.c
-void	draw_player(t_game *data);
+void	draw_player(t_game *game);
 
 // draw_minimap.c
-void	draw_border(t_game *data, t_mm_border border);
-void	draw_2D_map(t_game *data);
+void	draw_border(t_game *game, t_mm_border border);
+void	draw_2D_map(t_game *game);
 
 // draw_shapes.c
 void	draw_filled_rectangle(mlx_image_t *image, t_vector_i start_pos, t_vector_i end_pos, uint64_t colour);
 void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
 void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-void	draw_ceiling_and_floor(t_game *data);
+void	draw_ceiling_and_floor(t_game *game);
 
 // game.c
-void	game(t_game *data);
-void	cub3d(t_game *data);
+void	game(t_game *game);
+void	cub3d(t_game *game);
 
 // init_window_and_images.c
-void	init_window(t_game *data);
-void	init_minimap_image(t_game *data);
+void	init_window(t_game *game);
+void	init_minimap_image(t_game *game);
 void	init_wall_textures(t_data *data, t_textures *textures);
 
 // init_walls.c
-void	init_wall_segment(t_game *data, t_ray *ray);
+void	init_wall_segment(t_game *game, t_ray *ray);
 
 // keys.c
 void	is_key_pressed(void *data);
 
 // minimap.c
-void	minimap(t_game *data);
+void	minimap(t_game *game);
 
 // player_collision.c
-void	check_collision(t_game *data, t_vector_f step);
+void	check_collision(t_game *game, t_vector_f step);
 
 // raycasting.c
-void 	raycasting(t_game *data);
+void 	raycasting(t_game *game);
 
 // render_3d_scene.c
-void	render_3d_wall_segment(t_game *data, t_ray *ray, int ray_i);
+void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i);
 
 // utils.c
 // int satoui(const char c);

@@ -12,23 +12,23 @@
 
 #include "cub3d.h"
 
-mlx_texture_t	*set_wall_texture(t_game *data, t_ray *ray)
+mlx_texture_t	*set_wall_texture(t_game *game, t_ray *ray)
 {
 	if (ray->wall_3d.wall_side == NORTH)
 	{
-		ray->wall_3d.texture = data->textures.north_texture;
+		ray->wall_3d.texture = game->textures.north_texture;
 	}
 	else if (ray->wall_3d.wall_side == EAST)
 	{
-		ray->wall_3d.texture = data->textures.east_texture;
+		ray->wall_3d.texture = game->textures.east_texture;
 	}
 	else if (ray->wall_3d.wall_side == SOUTH)
 	{
-		ray->wall_3d.texture = data->textures.south_texture;
+		ray->wall_3d.texture = game->textures.south_texture;
 	}
 	else // if (ray->wall_3d.wall_side == WEST)
 	{
-		ray->wall_3d.texture = data->textures.west_texture;
+		ray->wall_3d.texture = game->textures.west_texture;
 	}
 	return (ray->wall_3d.texture);
 }
@@ -70,23 +70,23 @@ void	set_wall_shadow(t_ray *ray)
 	}
 }
 
-void init_wall_segment(t_game *data, t_ray *ray)
+void init_wall_segment(t_game *game, t_ray *ray)
 {
-	ray->wall_3d.wall_distance = (data->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
-	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - data->player->angle);
+	ray->wall_3d.wall_distance = (game->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
+	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - game->player->angle);
 
 	// fix fisheye
 	// ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->distance;  			// for some fun fisheye effects ;)
 	ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->wall_3d.corrected_distance;
 
-	ray->wall_3d.wall_top = fmax(0, (data->window->height / 2) - (ray->wall_3d.wall_height / 2));
-	ray->wall_3d.wall_bottom = fmin(data->window->height, (data->window->height / 2) + (ray->wall_3d.wall_height / 2));
-	ray->wall_3d.line_width = data->window->width / NUMB_RAYS;
+	ray->wall_3d.wall_top = fmax(0, (game->window->height / 2) - (ray->wall_3d.wall_height / 2));
+	ray->wall_3d.wall_bottom = fmin(game->window->height, (game->window->height / 2) + (ray->wall_3d.wall_height / 2));
+	ray->wall_3d.line_width = game->window->width / NUMB_RAYS;
 	
-	fix_texture_stretch(data, ray);
-	fix_texture_zoom_to_centre(data, ray);
+	fix_texture_stretch(game, ray);
+	fix_texture_zoom_to_centre(game, ray);
 	
 	set_wall_side(ray);
-	set_wall_texture(data, ray);
+	set_wall_texture(game, ray);
 	set_wall_shadow(ray);
 }
