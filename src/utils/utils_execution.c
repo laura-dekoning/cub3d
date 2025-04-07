@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
+/*   utils_execution.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/26 12:55:32 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/04 14:47:19 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:36:32 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 // single ascii to unsigned int. returns positive int on succes, returns -1 on error
 // int satoui(const char c)
@@ -23,11 +23,10 @@
 // 		return (-1);
 // }
 
-
 void	check_angle(float *angle)
 {
 	if (*angle > (2 * PI))
 		*angle -= (2 * PI);
-	if (*angle < 0)		
+	if (*angle < 0)
 		*angle += (2 * PI);
 }

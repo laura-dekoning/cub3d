@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void DDA_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
+void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
 	while (ray->wall_hit == false)
 	{
@@ -21,7 +21,7 @@ void DDA_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 			map_pos->x += ray->step_dir.x;
 			ray->distance = ray->collision_point.x;
 			ray->collision_point.x += ray->step_size.x;
-			ray->wall_3d.n_s_wall = false;		
+			ray->wall_3d.n_s_wall = false;
 		}
 		else
 		{
@@ -33,30 +33,30 @@ void DDA_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 		if (map_pos->x >= 0 && map_pos->y >= 0 && map_pos->x < game->map->map_width_px && map_pos->y < game->map->map_height_px)
 		{
 			if (game->map->map[(int)(map_pos->y / GRIDSIZE)][(int)(map_pos->x / GRIDSIZE)] == '1')
-			ray->wall_hit = true;
+				ray->wall_hit = true;
 		}
 	}
 }
 
-void cast_ray(t_game *game, t_ray *ray, t_vector_f *map_pos)
+void	cast_ray(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
-	DDA_aggorithm(game, ray, map_pos);
+	dda_aggorithm(game, ray, map_pos);
 	ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
-	ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;		
+	ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
 }
 
 // get ray step direction and collision point with the next horixontal or vertical line
-void get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
+void	get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
 	if (map_pos->x < 0 || map_pos->x >= game->map->map_width_px || map_pos->y < 0 || map_pos->y >= game->map->map_height_px)
-    	return;
+		return ;
 	if (ray->direction.x < 0)
 	{
 		get_collision_point_negative_x(ray, map_pos->x);
 		// ray->step_dir.x = -1;
 		// ray->collision_point.x = (ray->start_pos.x - (float)map_pos->x) * ray->step_size.x;
 	}
-	else 
+	else
 	{
 		get_collision_point_positive_x(ray, map_pos->x);
 		// ray->step_dir.x = 1;
@@ -68,7 +68,7 @@ void get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
 		// ray->step_dir.y = -1;
 		// ray->collision_point.y = (ray->start_pos.y - (float)map_pos->y) * ray->step_size.y;
 	}
-	else 
+	else
 	{
 		get_collision_point_positive_y(ray, map_pos->y);
 		// ray->step_dir.y = 1;
@@ -76,7 +76,7 @@ void get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
 	}
 }
 
-void init_ray(t_game *game, t_ray *ray, t_vector_f dir, float ang, t_vector_f *map_pos)
+void	init_ray(t_game *game, t_ray *ray, t_vector_f dir, float ang, t_vector_f *map_pos)
 {
 	map_pos->x = (int)(game->player->pos.x);
 	map_pos->y = (int)(game->player->pos.y);
@@ -96,13 +96,13 @@ void init_ray(t_game *game, t_ray *ray, t_vector_f dir, float ang, t_vector_f *m
 	get_ray_direction(game, ray, map_pos);
 }
 
-void raycasting(t_game *game)
+void	raycasting(t_game *game)
 {
-	t_vector_f map_pos;
-	t_vector_f dir;
-	float angle;
-	float angle_step;
-	int i;
+	t_vector_f	map_pos;
+	t_vector_f	dir;
+	float		angle;
+	float		angle_step;
+	int			i;
 
 	angle = game->player->angle - ((FOV / 2) * ONE_D_RADIAN);
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;

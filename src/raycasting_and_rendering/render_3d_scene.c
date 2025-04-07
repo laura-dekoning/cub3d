@@ -30,8 +30,7 @@ pixels: An array where every 4 consecutive values represent the Red, Green, Blue
 array length = width * height * bytes_per_pixel;
 */
 
-
-void set_texture_y(t_ray *ray, int texture_y)
+void	set_texture_y(t_ray *ray, int texture_y)
 {
 	// to fix ghost effect
 	ray->wall_3d.texture_y = texture_y;
@@ -43,18 +42,17 @@ void set_texture_y(t_ray *ray, int texture_y)
 
 uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 {
-	int				pixel_index;
-	uint8_t			*pixel_array;
-	int 			pixel_array_len;
-	uint64_t		colour;
-	uint8_t			r;
-	uint8_t			g;
-	uint8_t			b;
-	uint8_t			a;
+	int			pixel_index;
+	uint8_t		*pixel_array;
+	int			pixel_array_len;
+	uint64_t	colour;
+	uint8_t		r;
+	uint8_t		g;
+	uint8_t		b;
+	uint8_t		a;
 
 	pixel_array = ray->wall_3d.texture->pixels;
 	pixel_array_len = ray->wall_3d.texture->width * ray->wall_3d.texture->height  * ray->wall_3d.texture->bytes_per_pixel;
-
 	set_texture_y(ray, texture_y);
 	pixel_index = (ray->wall_3d.texture_y * ray->wall_3d.texture->width + ray->wall_3d.texture_x) * ray->wall_3d.texture->bytes_per_pixel;
 	if (pixel_index + 2 > pixel_array_len)
@@ -64,11 +62,10 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	b = pixel_array[pixel_index + 2];
 	// a = pixel_array[pixel_index + 3];
 	a = ray->wall_3d.wall_shadow;
-
 	colour = (r << 24) | (g << 16) | (b << 8) | a;
 	return (colour);
 }
-void put_pixel_safe(t_game *game, t_ray *ray, uint32_t x, uint32_t y, float texture_y)
+void	put_pixel_safe(t_game *game, t_ray *ray, uint32_t x, uint32_t y, float texture_y)
 {
 	uint64_t		colour;
 
@@ -111,7 +108,7 @@ void	draw_wall_segment(t_game *game, t_ray *ray, int ray_i, int wall_top, int wa
 	}
 }
 
-void render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i)
+void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i)
 {
 	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
 	{
@@ -121,15 +118,12 @@ void render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i)
 	{
 		ray->wall_3d.wall_hit_screen_x = fmod(ray->end_pos.y, GRIDSIZE) / GRIDSIZE;
 	}
-
 	// to fix mirrored effect
 	if (ray->wall_3d.wall_side == SOUTH || ray->wall_3d.wall_side == WEST)
 	{
 		ray->wall_3d.wall_hit_screen_x = 1.0 - ray->wall_3d.wall_hit_screen_x;
 	}
-
 	ray->wall_3d.texture_x = (int)(ray->wall_3d.wall_hit_screen_x * ray->wall_3d.texture->width);
 	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / ray->wall_3d.wall_height;
-
 	draw_wall_segment(game, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
 }

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:09:05 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:38:11 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,5 @@ int	main(int argc, char **argv)
 	get_game(game, data);
 	cub3d(game);
 	free_game(game);
-	printf(B_G"YEEEEEEY EVERYTHING GOOD!\n"DEF);
-
-	// 1.) get data;
-	// 2.) convert data to game;
-	// 3.) free data;
-	// 4.) start execution with game >> cub3d(game);
-	// 5.) end program with freeing game (NOT DATA >> is already freed);
 	return (0);
 }

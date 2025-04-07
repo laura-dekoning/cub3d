@@ -6,13 +6,11 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 18:21:31 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/20 18:20:45 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:43:17 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//MAKE SURE EVERYTHING IS FREED!!!! Might need to add some extras for Liath stuff and extra added things in struct
 
 static void	free_int_arr(t_data *data)
 {

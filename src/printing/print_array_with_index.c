@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/19 16:55:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 14:24:45 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:51:39 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ static void	print_end_nl_begin(void)
 
 static void	print_index(char **map, int x)
 {
-	int	y;
 	static int	i = 0;
+	int			y;
 
 	y = 0;
 	printf(B"|%2d|"DEF, i);
 	while (map[x][y])
 	{
 		printf(G"|%2d|"DEF, y);
-		y++;			
+		y++;
 	}
 	i++;
 }
@@ -61,7 +61,7 @@ static void	print_characters(char **map, int x)
 	while (map[x][y])
 	{
 		printf("|%2c|", map[x][y]);
-		y++;			
+		y++;
 	}
 	i++;
 }

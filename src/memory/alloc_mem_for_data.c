@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:11:04 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:07:10 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:43:54 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*alloc_mem_for_data(void)
 {
-	t_data		*data;
+	t_data	*data;
 
 	data = (t_data *)safe_calloc(NULL, NULL, 1, sizeof(t_data));
 	if (!data)
@@ -22,7 +22,7 @@ void	*alloc_mem_for_data(void)
 	data->floor = (int *)safe_calloc(NULL, data, 3, sizeof(int));
 	if (!data->floor)
 		error_free_data(data, MALLOC);
- 	data->ceiling = (int *)safe_calloc(NULL, data, 3, sizeof(int));
+	data->ceiling = (int *)safe_calloc(NULL, data, 3, sizeof(int));
 	if (!data->ceiling)
 		error_free_data(data, MALLOC);
 	data->map = (t_map *)safe_calloc(NULL, data, 1, sizeof(t_map));

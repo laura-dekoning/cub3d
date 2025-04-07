@@ -35,16 +35,16 @@ void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s 
 	}
 }
 
-void draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour) 
+void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	y = -radius;
-	while (y <= radius) 
+	while (y <= radius)
 	{
 		x = -radius;
-		while (x <= radius) 
+		while (x <= radius)
 		{
 			if ((centre.x + x >= 0 && centre.y + y >= 0 && centre.x + x < (int)image->width && centre.y + y < (int)image->height) && (x * x + y * y <= radius * radius))
 			{
@@ -56,7 +56,7 @@ void draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int c
 	}
 }
 
-void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
+void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
 {
 	int		x;
 	int		y;
@@ -76,7 +76,6 @@ void draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
 		angle += angle_step;
 	}
 }
-
 
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour)
 {

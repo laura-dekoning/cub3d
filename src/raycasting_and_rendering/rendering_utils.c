@@ -6,13 +6,13 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 16:00:10 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:16:45 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:35:55 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	fix_texture_stretch(t_game *game, t_ray * ray)
+void	fix_texture_stretch(t_game *game, t_ray *ray)
 {
 	// fix if texture goes off the top of the screen
 	if (ray->wall_3d.wall_top < 0)
@@ -31,9 +31,9 @@ void	fix_texture_stretch(t_game *game, t_ray * ray)
 	}
 }
 
-void	fix_texture_zoom_to_centre(t_game *game, t_ray * ray)
+void	fix_texture_zoom_to_centre(t_game *game, t_ray *ray)
 {
-	float extra_height;
+	float	extra_height;
 
 	// fix wall zooms in to the centre of the texture
 	if (ray->wall_3d.wall_height > game->window->height)

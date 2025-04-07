@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/19 16:55:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/19 17:33:49 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:52:00 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	print_values(char **map, int x)
 	while (map[x][y])
 	{
 		printf("|%i|", map[x][y]);
-		y++;			
+		y++;
 	}
 }
 
@@ -56,7 +56,7 @@ static void	print_characters(char **map, int x)
 	while (map[x][y])
 	{
 		printf("|%c |", map[x][y]);
-		y++;			
+		y++;
 	}
 }
 

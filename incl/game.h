@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:20:36 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:46:31 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ typedef struct s_vector_s
 	size_t	y;
 }	t_vector_s;
 
-typedef struct s_map_ex
+typedef struct s_game_m
 {
 	char	**map;
 	size_t	rows; //rows = if (ft_strlen(map[x][y] > rows) rows = y;
 	size_t	cols;
 	size_t	map_width_px;
 	size_t	map_height_px;
-}				t_map_ex;
+}				t_game_m;
 
 typedef struct s_wall_segment_3d
 {
@@ -74,14 +74,14 @@ typedef struct s_ray
 }	t_ray;
 
 // HIER MOET NOG IETS MEE GEBEUREN DENK IK
-typedef struct s_player_ex
+typedef struct s_game_p
 {
 	t_vector_f	pos;
 	t_vector_f	dir;
 	float		angle;
 	bool		wall_hit;
 	uint16_t	size; //waarom een uint16_t?
-}	t_player_ex;
+}	t_game_p;
 
 typedef struct s_mm_border
 {
@@ -132,10 +132,10 @@ typedef struct s_game
 	mlx_image_t			*minimap_image;
 	mlx_image_t			*minimap_border_image;
 
-	t_map_ex			*map;
+	t_game_m			*map;
 	bool				festival_map;
 
-	t_player_ex			*player;
+	t_game_p			*player;
 	t_ray				ray[NUMB_RAYS];
 
 	t_minimap			minimap;

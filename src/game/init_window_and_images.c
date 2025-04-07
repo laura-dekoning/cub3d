@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:05:37 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:47:24 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	get_minimap_size(t_game *game)
 {
 	if (WINDOW_HEIGHT > WINDOW_WIDTH)
-		game->minimap.minimap_size =  WINDOW_WIDTH / MINIMAP_SCALE;
-	else 
-		game->minimap.minimap_size =  WINDOW_HEIGHT / MINIMAP_SCALE;
+		game->minimap.minimap_size = WINDOW_WIDTH / MINIMAP_SCALE;
+	else
+		game->minimap.minimap_size = WINDOW_HEIGHT / MINIMAP_SCALE;
 }
 
 void	init_minimap_border_image(t_game *game)
@@ -75,7 +75,7 @@ void	init_window(t_game *game)
 	}
 }
 
-void init_wall_textures(t_game *game, t_data *data)
+void	init_wall_textures(t_game *game, t_data *data)
 {
 	game->textures.north_texture = mlx_load_png(data->north_texture);
 	if (!game->textures.north_texture)
