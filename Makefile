@@ -6,11 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-<<<<<<< Updated upstream
-#    Updated: 2025/04/04 14:38:35 by lade-kon      ########   odam.nl          #
-=======
-#    Updated: 2025/04/04 15:12:04 by livliege      ########   odam.nl          #
->>>>>>> Stashed changes
+#    Updated: 2025/04/07 12:56:16 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +50,7 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				parse_validate_init_rgb.c \
 				parse_validate_init_textures.c \
 				read_file.c \
+				rgb_to_hex.c \
 				safe_calloc.c \
 				string_to_rgb.c \
 				validate_data.c \
