@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/07 12:56:16 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/07 13:19:36 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,13 +70,14 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				draw_minimap.c \
 				draw_player.c \
 				minimap.c )\
+				$(addprefix $(SRC_UTILS)/, \
+				draw_shapes.c \
+				utils_execution.c ) \
 				$(addprefix $(SRC_PLAYER)/, \
 				keys.c \
 				player_collision.c )\
-				$(addprefix $(SRC_UTILS)/, \
-				draw_shapes.c \
-				utils_execution.c )
 				$(addprefix $(SRC_RENDER)/, \
+				collision_points.c \
 				raycasting.c \
 				render_3d_scene.c \
 				rendering_utils.c )\
