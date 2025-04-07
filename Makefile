@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/07 13:19:36 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/07 13:43:31 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,32 +30,17 @@ SRC_DIR		:=	src
 
 # SRC_LIATH	:=	liath_dev
 
+SRC_GAME	:=	the_game
 SRC_MINIMAP	:=	minimap
+SRC_MEMORY	:=	memory
+SRC_PARSING	:=	parsing
 SRC_PLAYER	:=	player_movement
 SRC_PRINT	:=	printing
 SRC_RENDER	:=	raycasting_and_rendering
-SRC_GAME	:=	the_game
 SRC_UTILS	:=	utils
 
-SRC_FILES	:=	alloc_mem_for_data.c \
+SRC_FILES	:=	main.c \
 				error.c \
-				fill_and_replace_space.c \
-				free_data.c \
-				get_data.c \
-				main.c \
-				is_map_content.c \
-				is_map_last.c \
-				is_setting.c \
-				parse_validate_init_map.c \
-				parse_validate_init_rgb.c \
-				parse_validate_init_textures.c \
-				read_file.c \
-				rgb_to_hex.c \
-				safe_calloc.c \
-				string_to_rgb.c \
-				validate_data.c \
-				validate_file_and_init_data.c \
-				validate_map.c \
 				$(addprefix $(SRC_PRINT)/, \
 				print_adjacent.c \
 				print_array_with_index.c \
@@ -70,7 +55,27 @@ SRC_FILES	:=	alloc_mem_for_data.c \
 				draw_minimap.c \
 				draw_player.c \
 				minimap.c )\
+				$(addprefix $(SRC_MEMORY)/, \
+				alloc_mem_for_data.c \
+				alloc_mem_for_game.c \
+				free_data.c \
+				safe_calloc.c) \
+				$(addprefix $(SRC_PARSING)/, \
+				fill_and_replace_space.c \
+				get_data.c \
+				parse_validate_init_map.c \
+				parse_validate_init_rgb.c \
+				parse_validate_init_textures.c \
+				read_file.c \
+				rgb_to_hex.c \
+				string_to_rgb.c \
+				validate_data.c \
+				validate_file_and_init_data.c \
+				validate_map.c) \
 				$(addprefix $(SRC_UTILS)/, \
+				is_map_content.c \
+				is_map_last.c \
+				is_setting.c \
 				draw_shapes.c \
 				utils_execution.c ) \
 				$(addprefix $(SRC_PLAYER)/, \
@@ -121,14 +126,14 @@ $(NAME): $(MLX42_A) $(LIBFT_A) $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	@echo "${PURPLE}Making object directories${RESET}"
 	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/$(SRC_PRINT)
-
-	mkdir -p $(OBJ_DIR)/$(SRC_MINIMAP)
-	mkdir -p $(OBJ_DIR)/$(SRC_PLAYER)
-	mkdir -p $(OBJ_DIR)/$(SRC_RENDER)
 	mkdir -p $(OBJ_DIR)/$(SRC_GAME)
+	mkdir -p $(OBJ_DIR)/$(SRC_MEMORY)
+	mkdir -p $(OBJ_DIR)/$(SRC_MINIMAP)
+	mkdir -p $(OBJ_DIR)/$(SRC_PARSING)
+	mkdir -p $(OBJ_DIR)/$(SRC_PLAYER)
+	mkdir -p $(OBJ_DIR)/$(SRC_PRINT)
+	mkdir -p $(OBJ_DIR)/$(SRC_RENDER)
 	mkdir -p $(OBJ_DIR)/$(SRC_UTILS)
-	
 	@echo "${GREEN}Completed${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

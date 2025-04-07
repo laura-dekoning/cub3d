@@ -6,12 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 12:19:47 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 13:44:33 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
+
+# include "cub3d.h"
 
 # define SUCCESS 0
 # define FAILURE 1

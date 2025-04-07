@@ -6,12 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 12:56:28 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 13:47:26 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
+
+# include "cub3d.h"
 
 //0: NORTH, 1: SOUTH, 2: EAST, 3: WEST, 4: FLOOR, 5: CEILING, 6: MAP.
 typedef struct s_check
@@ -62,35 +64,24 @@ typedef struct s_data
 }				t_data;
 
 // PARSING //
-<<<<<<< HEAD
-char	*read_file(t_data *data, const char *file);
-int		is_setting(char *line);
-bool	is_map_last(t_data *data);
-void	get_data(t_data *data, const char *file);
-void	init_game(t_game *game, t_data *data);
-void	init_texture_data(t_data *data, char *line, int flag);
-int		validate_texture_id(t_data *data, char *line);
-void	validate_file_and_init_data(t_data *data, char **file);
-void	parse_validate_init_textures(t_data *data, char *line);
-void	parse_validate_init_map(t_data *data, char **file_as_arr, int y);
-void	string_to_rgb(t_data *data, int **target, char *line, int i);
-void	parse_validate_init_rgb(t_data *data, char *line);
-void	map_content_valid(t_data *data);
-void	validate_map(t_data *data);
-void	fill_and_replace_space(t_data *data);
-bool	is_map_content(char *line);
-void	validate_data(t_data *data);
-=======
 char			*read_file(t_data *data, const char *file);
 int				is_setting(char *line);
 bool			is_map_last(t_data *data);
 void			get_data(t_data *data, const char *file);
+void			get_game(t_game *game, t_data *data);
+void			init_game(t_game *game, t_data *data);
 void			init_texture_data(t_data *data, char *line, int flag);
 int				validate_texture_id(t_data *data, char *line);
 void			validate_file_and_init_data(t_data *data, char **file);
 void			parse_validate_init_textures(t_data *data, char *line);
 void			parse_validate_init_map(t_data *data, char **file_as_arr, int y);
 void			string_to_rgb(t_data *data, int **target, char *line, int i);
+void			parse_validate_init_rgb(t_data *data, char *line);
+void			map_content_valid(t_data *data);
+void			validate_map(t_data *data);
+void			fill_and_replace_space(t_data *data);
+bool			is_map_content(char *line);
+void			validate_data(t_data *data);
 unsigned int	rgb_to_hex(int red, int green, int blue);
 void			parse_validate_init_rgb(t_data *data, char *line);
 void			map_content_valid(t_data *data);
@@ -98,6 +89,5 @@ void			validate_map(t_data *data);
 void			fill_and_replace_space(t_data *data);
 bool			is_map_content(char *line);
 void			validate_data(t_data *data);
->>>>>>> laura
 
 #endif

@@ -6,12 +6,12 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/04 16:54:38 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/07 13:45:48 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROOT_H
-# define ROOT_H
+#ifndef GAME_H
+# define GAME_H
 
 # include "cub3d.h"
 # include "macros.h"
@@ -160,7 +160,6 @@ void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int 
 void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
 void	draw_ceiling_and_floor(t_game *data);
-
 
 // game.c
 void	game(t_game *data);
