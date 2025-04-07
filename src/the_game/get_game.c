@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 15:27:50 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 15:33:43 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void parse_map(t_game *game, t_data *data)
 	game->map->cols = data->map->cols;
 	game->map->map_width_px = data->map->cols * GRIDSIZE;
 	game->map->map_height_px = data->map->rows * GRIDSIZE;
-	game->map->map = (char **)malloc(game->map->rows * sizeof(char *));
+	game->map->map = (char **)safe_calloc(game->map->rows * sizeof(char *));
 	if (game->map->map == NULL)
 		error_message(game, data, MALLOC, 3);
 	i = 0;
@@ -29,7 +29,7 @@ void parse_map(t_game *game, t_data *data)
 	{
 		game->map->map[i] = malloc(game->map->cols * sizeof(char));
 		if (game->map->map[i] == NULL)
-			error_message("Malloc allocation failed\n");
+			error_message(game, data, MALLOC, 3);
 		i++;
 	}
 	i = 0;
