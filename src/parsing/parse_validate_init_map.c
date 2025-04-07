@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 18:26:32 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:10:56 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_player(t_data *data, char **map)
 				|| map[row][col] == 'E' || map[row][col] == 'W')
 			{
 				if (player == true)
-					error_message(data, DUP_P);
+					error_free_data(data, DUP_P);
 				data->player->x = row;
 				data->player->y = col;
 				player = true;
@@ -84,7 +84,7 @@ void	map_content_valid(t_data *data)
 					|| map[y][x] == 'E' || map[y][x] == 'W')
 				x++;
 			else
-				error_message(data, MAP_CONTENT);
+				error_free_data(data, MAP_CONTENT);
 		}
 		y++;
 	}
@@ -96,10 +96,12 @@ void	parse_validate_init_map(t_data *data, char **file_as_arr, int y)
 
 	x = 0;
 	set_rows_and_cols(data, file_as_arr, y);
-	data->map->map = (char **)safe_calloc(data, data->map->rows + 1, sizeof(char *));
+	data->map->map = (char **)safe_calloc(NULL, data, data->map->rows + 1, sizeof(char *));
 	while (file_as_arr[y] != NULL)
 	{
 		data->map->map[x] = ft_substr(file_as_arr[y], 0, ft_strlen(file_as_arr[y]));
+		if (data->map->map[x] == NULL)
+			error_free_data(data, MALLOC);
 		x++;
 		y++;
 	}

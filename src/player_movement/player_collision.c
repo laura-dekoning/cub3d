@@ -14,10 +14,10 @@
 
 bool	hit_wall(t_game *game, float player_x, float player_y)
 {
-	t_vector_i	top_left;
-	t_vector_i	top_right;
-	t_vector_i	bottom_left;
-	t_vector_i	bottom_right;
+	t_vector_s	top_left;
+	t_vector_s	top_right;
+	t_vector_s	bottom_left;
+	t_vector_s	bottom_right;
 	uint16_t	size;
 
 	size = game->player->size;

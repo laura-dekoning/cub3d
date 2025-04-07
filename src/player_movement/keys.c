@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:16:25 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:16:53 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ void	is_key_pressed(void *game_game)
 	rotated = ft_memcmp(&old_dir, &game->player->dir, sizeof(t_vector_f));
 	if (moved != 0 || rotated != 0)
 	{
-		game(game);
+		start_game(game);
 	}
 }

@@ -6,14 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 14:05:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:16:59 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:17:18 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub3d.h"
 
-void	game(t_game *game)
+void	start_game(t_game *game)
 {
 	draw_ceiling_and_floor(game);
 	raycasting(game);
@@ -22,8 +22,7 @@ void	game(t_game *game)
 
 void cub3d(t_game *game)
 {
-	game(game);
-	
+	start_game(game);
 	mlx_loop_hook(game->window, is_key_pressed, game);
 	mlx_loop(game->window);
 

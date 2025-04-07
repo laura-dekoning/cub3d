@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:15:52 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 16:24:23 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_minimap(t_game *game)
 
 void	minimap(t_game *game)
 {
-	init_minimap(data);	
-	draw_2D_map(data);
-	draw_player(data);
-	draw_border(data, game->minimap.border);
+	init_minimap(game);	
+	draw_2D_map(game);
+	draw_player(game);
+	draw_border(game, game->minimap.border);
 }

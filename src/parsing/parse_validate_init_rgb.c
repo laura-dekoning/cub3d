@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/01 18:23:09 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:13:04 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_rgb(t_data *data, int **target, char *line)
 		i++;
 	}
 	if (komma > 2)
-		error_message(data, "More then 3 colors in floor or ceiling");
+		error_free_data(data, "More then 3 colors in floor or ceiling");
 	string_to_rgb(data, target, line, 2);
 }
 
@@ -49,7 +49,7 @@ int	validate_rgb_id(t_data *data, char *line)
 	else if (ft_strncmp(line, "C ", 2) == 0)
 		flag = CEILING;
 	else
-		error_message(data, "Invalid RGB ID\n");
+		error_free_data(data, "Invalid RGB ID\n");
 	return (flag);
 }
 
@@ -58,8 +58,7 @@ void	parse_validate_init_rgb(t_data *data, char *line)
 	int		flag;
 
 	if (data->check->setting[MAP] == true)
-		error_message(data, "File should end with map content!");
+		error_free_data(data, "File should end with map content!");
 	flag = validate_rgb_id(data, line);
 	init_rgb_data(data, line, flag);
-	init_rgb_to_rgba(data, flag);
 }

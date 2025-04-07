@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:16:59 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:05:37 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,18 @@ void	init_window(t_game *game)
 	}
 }
 
-void init_wall_textures(t_game *game, t_game *game)
+void init_wall_textures(t_game *game, t_data *data)
 {
-	game->textures.north_texture = mlx_load_png(game->north_texture);
+	game->textures.north_texture = mlx_load_png(data->north_texture);
 	if (!game->textures.north_texture)
-		error_free_game_and_game(game, game, "Loading north wall failed");
-	game->textures.east_texture = mlx_load_png(game->east_texture);
+		error_free_game_and_data(game, data, "Loading north wall failed");
+	game->textures.east_texture = mlx_load_png(data->east_texture);
 	if (!game->textures.east_texture)
-		error_free_game_and_game(game, game, "Loading east wall failed");
-	game->textures.south_texture = mlx_load_png(game->south_texture);
+		error_free_game_and_data(game, data, "Loading east wall failed");
+	game->textures.south_texture = mlx_load_png(data->south_texture);
 	if (!game->textures.south_texture)
-		error_free_game_and_game(game, game, "Loading south wall failed");
-	game->textures.west_texture = mlx_load_png(game->west_texture);
+		error_free_game_and_data(game, data, "Loading south wall failed");
+	game->textures.west_texture = mlx_load_png(data->west_texture);
 	if (!game->textures.west_texture)
-		error_free_game_and_game(game, game, "Loading west wall failed");
+		error_free_game_and_data(game, data, "Loading west wall failed");
 }

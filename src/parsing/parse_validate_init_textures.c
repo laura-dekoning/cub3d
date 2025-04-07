@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 15:58:21 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:13:32 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_texture(char **target, char *line)
 void	init_texture_data(t_data *data, char *line, int flag)
 {
 	if (data->check->setting[flag] == true)
-		error_message(data, DUP_TEXTURE);		
+		error_free_data(data, DUP_TEXTURE);		
 	if (flag == NORTH)
 		set_texture(&data->north_texture, line);
 	else if (flag == EAST)
@@ -58,7 +58,7 @@ int	validate_texture_id(t_data *data, char *line)
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		flag = WEST;
 	else
-		error_message(data, "Invalid texture ID\n");
+		error_free_data(data, "Invalid texture ID\n");
 	return (flag);
 }
 
@@ -67,7 +67,7 @@ void	parse_validate_init_textures(t_data *data, char *line)
 	int		flag;
 
 	if (data->check->setting[MAP] == true)
-		error_message(data, "File should end with map content!");
+		error_free_data(data, "File should end with map content!");
 	flag = validate_texture_id(data, line);
 	init_texture_data(data, line, flag);
 }

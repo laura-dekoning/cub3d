@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 18:11:43 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:09:36 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	*make_temp(t_data *data)
 {
 	char	*temp;
 
-	temp = (char *)safe_calloc(data, data->map->cols + 1, sizeof(char));
+	temp = (char *)safe_calloc(NULL, data, data->map->cols + 1, sizeof(char));
 	if (!temp)
-		error_message(data, MALLOC);
+		error_free_data(data, MALLOC);
 	return (temp);
 }
 

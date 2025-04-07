@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 18:19:43 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:15:48 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	is_correct_rgb(t_data *data, char c)
 {
 	if (ft_isalpha(c))
-		error_message(data, ALPHA);
+		error_free_data(data, ALPHA);
 	if (c == '-')
-		error_message(data, NEG);
+		error_free_data(data, NEG);
 }
 
 void	string_to_rgb(t_data *data, int **target, char *str, int i)
@@ -40,7 +40,7 @@ void	string_to_rgb(t_data *data, int **target, char *str, int i)
 			i++;
 		}
 		if (i - diff > 3)
-			error_message(data, BIG);
+			error_free_data(data, BIG);
 		n++;
 	}
 }

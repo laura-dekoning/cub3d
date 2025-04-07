@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:15:52 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:20:36 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ typedef struct s_vector_f
 	float	y;
 }	t_vector_f;
 
-typedef struct s_vector_i
+typedef struct s_vector_s
 {
-	int		x;
-	int		y;
-}	t_vector_i;
+	size_t	x;
+	size_t	y;
+}	t_vector_s;
 
 typedef struct s_map_ex
 {
@@ -64,7 +64,7 @@ typedef struct s_ray
 	t_vector_f			start_pos;
 	float				angle;
 	t_vector_f			direction;
-	t_vector_i			step_dir;
+	t_vector_s			step_dir;
 	t_vector_f			step_size;
 	t_vector_f			collision_point;
 	t_vector_f			end_pos;
@@ -85,14 +85,14 @@ typedef struct s_player_ex
 
 typedef struct s_mm_border
 {
-	t_vector_i	top_line_start;
-	t_vector_i	top_line_end;
-	t_vector_i	bottom_line_start;
-	t_vector_i	bottom_line_end;
-	t_vector_i	left_line_start;
-	t_vector_i	left_line_end;
-	t_vector_i	right_line_start;
-	t_vector_i	right_line_end;
+	t_vector_s	top_line_start;
+	t_vector_s	top_line_end;
+	t_vector_s	bottom_line_start;
+	t_vector_s	bottom_line_end;
+	t_vector_s	left_line_start;
+	t_vector_s	left_line_end;
+	t_vector_s	right_line_start;
+	t_vector_s	right_line_end;
 	uint64_t	colour;
 }	t_mm_border;
 
@@ -154,41 +154,56 @@ void	draw_border(t_game *game, t_mm_border border);
 void	draw_2D_map(t_game *game);
 
 // draw_shapes.c
-void	draw_filled_rectangle(mlx_image_t *image, t_vector_i start_pos, t_vector_i end_pos, uint64_t colour);
+void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s end_pos, uint64_t colour);
 void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
 void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
 void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
 void	draw_ceiling_and_floor(t_game *game);
 
 // game.c
-void	game(t_game *game);
+void	start_game(t_game *game);
 void	cub3d(t_game *game);
 
 // init_window_and_images.c
 void	init_window(t_game *game);
 void	init_minimap_image(t_game *game);
-void	init_wall_textures(t_data *data, t_textures *textures);
+void	init_wall_textures(t_game *game, t_data *data);
 
 // init_walls.c
 void	init_wall_segment(t_game *game, t_ray *ray);
 
 // keys.c
 void	is_key_pressed(void *data);
+void	normalize_diagonal_movement(float *step_x, float *step_y);
 
 // minimap.c
 void	minimap(t_game *game);
 
-// player_collision.c
+// utils.c
+// int satoui(const char c);
+void	check_angle(float *angle);
+
+
+
+
+
+/* RAYCASTING AND RENDERING */
+// collision_points.c
 void	check_collision(t_game *game, t_vector_f step);
+void	get_collision_point_negative_x(t_ray *ray, float map_pos_x);
+void	get_collision_point_positive_x(t_ray *ray, float map_pos_x);
+void	get_collision_point_negative_y(t_ray *ray, float map_pos_y);
+void	get_collision_point_positive_y(t_ray *ray, float map_pos_y);
 
 // raycasting.c
-void 	raycasting(t_game *game);
+void	raycasting(t_game *game);
 
 // render_3d_scene.c
 void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i);
 
-// utils.c
-// int satoui(const char c);
-void	check_angle(float *angle);
+// rendering_utils.c
+void	fix_texture_stretch(t_game *game, t_ray * ray);
+void	fix_texture_zoom_to_centre(t_game *game, t_ray * ray);
+
 
 #endif

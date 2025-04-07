@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 18:20:33 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:16:21 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	check_adjacent(t_data *data, char **map, int row, int col)
 	while (i < 4)
 	{
 		if (map[row + x[i]][col + y[i]] == ' ')
-			error_message(data, NO_WALL);
+			error_free_data(data, NO_WALL);
 		i++;
 	}
 }
@@ -42,14 +42,14 @@ static void	check_zero(t_data *data, char **map)
 	while (map[0][i] != '\0')
 	{
 		if (map[0][i] != '1' && map[0][i] != ' ')
-			error_message(data, NO_WALL);
+			error_free_data(data, NO_WALL);
 		i++;
 	}
 	i = 0;
 	while (map[i] != NULL)
 	{
 		if (map[i][0] != '1' && map[i][0] != ' ')
-			error_message(data, NO_WALL);
+			error_free_data(data, NO_WALL);
 		i++;
 	}
 }

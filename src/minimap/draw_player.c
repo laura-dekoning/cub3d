@@ -97,7 +97,7 @@ void	draw_arrow(t_game *game, int colour)
 	draw_line(game->minimap_image, start_pos, end_pos, colour);
 	angle += angle_step;
 	check_angle(&angle);
-	draw_arrow_head(data, start_pos, end_pos, dir, colour);
+	draw_arrow_head(game, start_pos, end_pos, dir, colour);
 }
 
 
@@ -129,10 +129,10 @@ void	draw_mouth(t_game *game, t_vector_f start_pos, int colour)
 
 void	draw_player(t_game *game)
 {
-	draw_rays(data, game->minimap.ray_colour);
-	draw_arrow(data, game->minimap.arrow_colour);
+	draw_rays(game, game->minimap.ray_colour);
+	draw_arrow(game, game->minimap.arrow_colour);
 	draw_filled_circle(game->minimap_image, game->minimap.player_pos, game->minimap.player_size, game->minimap.player_colour);
-	draw_mouth(data, game->minimap.player_pos, COLOUR_BLACK);
-	draw_eye(data, game->minimap.player_pos, COLOUR_BLACK);
+	draw_mouth(game, game->minimap.player_pos, COLOUR_BLACK);
+	draw_eye(game, game->minimap.player_pos, COLOUR_BLACK);
 	draw_circle(game->minimap_image, game->minimap.player_pos, game->minimap.player_size, COLOUR_BLACK);
 }

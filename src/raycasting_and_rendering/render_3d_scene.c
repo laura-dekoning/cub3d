@@ -68,7 +68,7 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	colour = (r << 24) | (g << 16) | (b << 8) | a;
 	return (colour);
 }
-void put_pixel_safe(t_game *game, t_ray *ray, int x, int y, float texture_y)
+void put_pixel_safe(t_game *game, t_ray *ray, uint32_t x, uint32_t y, float texture_y)
 {
 	uint64_t		colour;
 

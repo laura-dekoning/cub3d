@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/07 15:08:45 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/07 16:27:06 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC_DIR		:=	src
 
 # SRC_LIATH	:=	liath_dev
 
-SRC_GAME	:=	the_game
+SRC_GAME	:=	game
 SRC_MINIMAP	:=	minimap
 SRC_MEMORY	:=	memory
 SRC_PARSING	:=	parsing
@@ -41,25 +41,21 @@ SRC_UTILS	:=	utils
 
 SRC_FILES	:=	main.c \
 				error.c \
-				$(addprefix $(SRC_PRINT)/, \
-				print_adjacent.c \
-				print_array_with_index.c \
-				print_array_with_values.c \
-				print_check.c \
-				print_data.c \
-				print_floor_and_ceiling.c \
-				print_map.c \
-				print_player.c \
-				print_string_with_values.c ) \
-				$(addprefix $(SRC_MINIMAP)/, \
-				draw_minimap.c \
-				draw_player.c \
-				minimap.c )\
+				$(addprefix $(SRC_GAME)/, \
+				game.c \
+				get_game.c \
+				init_walls.c \
+				init_window_and_images.c ) \
 				$(addprefix $(SRC_MEMORY)/, \
 				alloc_mem_for_data.c \
 				alloc_mem_for_game.c \
 				free_data.c \
+				free_game.c \
 				safe_calloc.c) \
+				$(addprefix $(SRC_MINIMAP)/, \
+				draw_minimap.c \
+				draw_player.c \
+				minimap.c )\
 				$(addprefix $(SRC_PARSING)/, \
 				fill_and_replace_space.c \
 				get_data.c \
@@ -72,25 +68,30 @@ SRC_FILES	:=	main.c \
 				validate_data.c \
 				validate_file_and_init_data.c \
 				validate_map.c) \
+				$(addprefix $(SRC_PLAYER)/, \
+				keys.c \
+				player_collision.c )\
+				$(addprefix $(SRC_PRINT)/, \
+				print_adjacent.c \
+				print_array_with_index.c \
+				print_array_with_values.c \
+				print_check.c \
+				print_data.c \
+				print_floor_and_ceiling.c \
+				print_map.c \
+				print_player.c \
+				print_string_with_values.c ) \
+				$(addprefix $(SRC_RENDER)/, \
+				collision_points.c \
+				raycasting.c \
+				render_3d_scene.c \
+				rendering_utils.c )\
 				$(addprefix $(SRC_UTILS)/, \
 				draw_shapes.c \
 				is_map_content.c \
 				is_map_last.c \
 				is_setting.c \
 				utils_execution.c ) \
-				$(addprefix $(SRC_PLAYER)/, \
-				keys.c \
-				player_collision.c )\
-				$(addprefix $(SRC_RENDER)/, \
-				collision_points.c \
-				raycasting.c \
-				render_3d_scene.c \
-				rendering_utils.c )\
-				$(addprefix $(SRC_GAME)/, \
-				game.c \
-				get_game.c \
-				init_walls.c \
-				init_window_and_images.c )
 
 # $(addprefix $(SRC_LIATH)/, \
 				# error_clear_exit.c \

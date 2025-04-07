@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 14:11:04 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/03/28 16:31:15 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 17:07:10 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void	*alloc_mem_for_data(void)
 {
 	t_data		*data;
 
-	data = (t_data *)safe_calloc(NULL, 1, sizeof(t_data));
+	data = (t_data *)safe_calloc(NULL, NULL, 1, sizeof(t_data));
 	if (!data)
-		error_message(data, MALLOC);
-	data->floor = (int *)safe_calloc(data, 3, sizeof(int));
+		error_free_data(data, MALLOC);
+	data->floor = (int *)safe_calloc(NULL, data, 3, sizeof(int));
 	if (!data->floor)
-		error_message(data, MALLOC);
- 	data->ceiling = (int *)safe_calloc(data, 3, sizeof(int));
+		error_free_data(data, MALLOC);
+ 	data->ceiling = (int *)safe_calloc(NULL, data, 3, sizeof(int));
 	if (!data->ceiling)
-		error_message(data, MALLOC);
-	data->map = (t_map *)safe_calloc(data, 1, sizeof(t_map));
+		error_free_data(data, MALLOC);
+	data->map = (t_map *)safe_calloc(NULL, data, 1, sizeof(t_map));
 	if (!data->map)
-		error_message(data, MALLOC);
-	data->player = (t_player *)safe_calloc(data, 1, sizeof(t_player));
+		error_free_data(data, MALLOC);
+	data->player = (t_player *)safe_calloc(NULL, data, 1, sizeof(t_player));
 	if (!data->player)
-		error_message(data, MALLOC);
-	data->check = (t_check *)safe_calloc(data, 1, sizeof(t_check));
+		error_free_data(data, MALLOC);
+	data->check = (t_check *)safe_calloc(NULL, data, 1, sizeof(t_check));
 	if (!data->check)
-		error_message(data, MALLOC);
+		error_free_data(data, MALLOC);
 	return (data);
 }
