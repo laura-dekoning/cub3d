@@ -6,15 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 13:45:48 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 14:01:03 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
-# include "cub3d.h"
-# include "macros.h"
+typedef struct s_data t_data;
 
 typedef struct s_vector_f
 {

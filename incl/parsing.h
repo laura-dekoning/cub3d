@@ -6,14 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 13:47:26 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 14:00:52 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "cub3d.h"
+typedef struct s_game t_game;
 
 //0: NORTH, 1: SOUTH, 2: EAST, 3: WEST, 4: FLOOR, 5: CEILING, 6: MAP.
 typedef struct s_check

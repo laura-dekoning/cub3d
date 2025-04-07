@@ -6,14 +6,12 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 13:44:33 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/07 13:55:44 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
-
-# include "cub3d.h"
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -36,10 +34,10 @@
 # define SHADOW_ALPHA	100		// 0 is complete seetrough aka completely gray (max 255)
 # define FOG_FACTOR		4		// smaller numebr is "thicker fog" effect
 
-# define NORTH 			1
-# define EAST 			2
-# define SOUTH 			3
-# define WEST 			4
+// # define NORTH 			1
+// # define EAST 			2
+// # define SOUTH 			3
+// # define WEST 			4
 
 # define DIR_NORTH 		(3 * (PI / 2))
 # define DIR_EAST 		0
