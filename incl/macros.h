@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 17:05:15 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/10 17:21:18 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@
 # define MALLOC "Allocation failed =("
 # define NEG "No negative numbers!\nRGB colors have to be between 0-255!"
 # define ALPHA "There are not supposed to be letters in a number, stupid!"
+# define EMPTY "File is empty. Needs textures, rgb and a map."
 # define BIG "This number is too big!!\nRGB colors have to be between 0-255!"
 # define FILE_CONTENT "This content is not supposed to be in the file!"
 # define MAP_LAST "The map should be at the end of the file! Nowhere else...."

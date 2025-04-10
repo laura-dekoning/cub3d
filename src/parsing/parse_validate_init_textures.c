@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:51:25 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:53:26 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@
 void	set_texture(char **target, char *line)
 {
 	size_t	len;
+	size_t	start;
 
-	len = 3;
+	start = 3;
+	while (line[start] == ' ' || line[start] == '\t')
+		start++;
+	len = start;
 	while (ft_issymbol(line[len]))
 		len++;
 	if (*target)
 		free(*target);
-	*target = ft_substr(line, 3, len - 3);
+	*target = ft_substr(line, start, len - start);
 	while (line[len] == ' ')
 		len++;
 }
