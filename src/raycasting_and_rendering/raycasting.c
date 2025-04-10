@@ -14,14 +14,26 @@
 
 void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
+
+	// printf("map pixel width = %zu\n", game->map->map_width_px / GRIDSIZE);
+	// printf("map pixel hight = %zu\n", game->map->map_height_px / GRIDSIZE);
+	// printf("map pixel width = %zu\n", game->map->map_width_px);
+	// printf("map pixel hight = %zu\n", game->map->map_height_px);
+
+	// printf("map pixel pos x = %f\n", map_pos->x);
+	// printf("map pixel pos y = %f\n", map_pos->y);
+
+	// infinite while loop
 	while (ray->wall_hit == false)
 	{
+		// printf("test \n");
 		if (ray->collision_point.x < ray->collision_point.y)
 		{
 			map_pos->x += ray->step_dir.x;
 			ray->distance = ray->collision_point.x;
 			ray->collision_point.x += ray->step_size.x;
 			ray->wall_3d.n_s_wall = false;
+			// printf("point x < point y \n");
 		}
 		else
 		{
@@ -29,7 +41,16 @@ void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 			ray->distance = ray->collision_point.y;
 			ray->collision_point.y += ray->step_size.y;
 			ray->wall_3d.n_s_wall = true;
+			// printf("point x > point y \n");
 		}
+		// printf("map pixel pos x = %f\n", map_pos->x);
+		// printf("map pixel pos y = %f\n", map_pos->y);
+
+		// printf("ray->step_dir.y = %zu\n", ray->step_dir.y);
+
+
+		
+
 		if (map_pos->x >= 0 && map_pos->y >= 0 && map_pos->x < game->map->map_width_px && map_pos->y < game->map->map_height_px)
 		{
 			if (game->map->map[(int)(map_pos->y / GRIDSIZE)][(int)(map_pos->x / GRIDSIZE)] == '1')
@@ -41,8 +62,10 @@ void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 void	cast_ray(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
 	dda_aggorithm(game, ray, map_pos);
+
 	ray->end_pos.x = ray->start_pos.x + ray->direction.x * ray->distance;
 	ray->end_pos.y = ray->start_pos.y + ray->direction.y * ray->distance;
+
 }
 
 // get ray step direction and collision point with the next horixontal or vertical line
@@ -53,26 +76,18 @@ void	get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
 	if (ray->direction.x < 0)
 	{
 		get_collision_point_negative_x(ray, map_pos->x);
-		// ray->step_dir.x = -1;
-		// ray->collision_point.x = (ray->start_pos.x - (float)map_pos->x) * ray->step_size.x;
 	}
 	else
 	{
 		get_collision_point_positive_x(ray, map_pos->x);
-		// ray->step_dir.x = 1;
-		// ray->collision_point.x = (((float)map_pos->x + 1.0) - ray->start_pos.x) * ray->step_size.x;
 	}
 	if (ray->direction.y < 0)
 	{
 		get_collision_point_negative_y(ray, map_pos->y);
-		// ray->step_dir.y = -1;
-		// ray->collision_point.y = (ray->start_pos.y - (float)map_pos->y) * ray->step_size.y;
 	}
 	else
 	{
 		get_collision_point_positive_y(ray, map_pos->y);
-		// ray->step_dir.y = 1;
-		// ray->collision_point.y = (((float)map_pos->y + 1.0) - ray->start_pos.y) * ray->step_size.y;
 	}
 }
 
@@ -80,6 +95,7 @@ void	init_ray(t_game *game, t_ray *ray, t_vector_f dir, float ang, t_vector_f *m
 {
 	map_pos->x = (int)(game->player->pos.x);
 	map_pos->y = (int)(game->player->pos.y);
+
 	ray->start_pos = game->player->pos;
 	ray->direction = dir;
 	ray->angle = ang;
@@ -106,17 +122,22 @@ void	raycasting(t_game *game)
 
 	angle = game->player->angle - ((FOV / 2) * ONE_D_RADIAN);
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
+
 	i = 0;
 	while (i < NUMB_RAYS)
 	{
 		dir.x = cos(angle);
 		dir.y = sin(angle);
+		
 		init_ray(game, &game->ray[i], dir, angle, &map_pos);
+
 		cast_ray(game, &game->ray[i], &map_pos);
+
 		init_wall_segment(game, &game->ray[i]);
 		render_3d_wall_segment(game, &game->ray[i], i);
 		angle += angle_step;
 		check_angle(&angle);
 		i++;
 	}
+
 }

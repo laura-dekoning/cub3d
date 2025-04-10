@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:10:56 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 16:18:38 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	set_player(t_data *data, char **map)
 			{
 				if (player == true)
 					error_free_data(data, DUP_P);
-				data->player->x = row;
-				data->player->y = col;
+				data->player->x = col;
+				data->player->y = row;
 				player = true;
 			}
 			col++;

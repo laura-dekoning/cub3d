@@ -33,6 +33,7 @@ void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s 
 		}
 		y++;
 	}
+
 }
 
 void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour)
@@ -106,8 +107,10 @@ void	draw_ceiling_and_floor(t_game *game)
 	uint32_t	c_col;
 	uint32_t	f_col;
 
+
 	c_col = game->ceiling_colour;
 	f_col = game->floor_colour;
+
 	ceiling_start.x = 0;
 	ceiling_start.y = 0;
 	ceiling_end.x = game->window_image->width;
@@ -116,6 +119,8 @@ void	draw_ceiling_and_floor(t_game *game)
 	floor_start.y = game->window_image->height / 2;
 	floor_end.x = game->window_image->width;
 	floor_end.y = game->window_image->height;
+
 	draw_filled_rectangle(game->window_image, ceiling_start, ceiling_end, c_col);
 	draw_filled_rectangle(game->window_image, floor_start, floor_end, f_col);
+
 }
