@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 13:43:48 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 14:26:18 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	validate_texture_id(t_data *data, char *line)
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		flag = WEST;
 	else
-		error_free_data(data, "Invalid texture ID\n");
+		error_free_data(data, "Invalid texture ID");
 	return (flag);
 }
 
