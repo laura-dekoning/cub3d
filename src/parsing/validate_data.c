@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:16:00 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 17:09:48 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_images(t_data *data)
 {
 	if (!data->north_texture || !data->south_texture
 			|| !data->west_texture || !data->east_texture)
-		error_free_data(data, TEXTURE);
+		error_free_data(data, "One or more textures are missing!");
 	if (ft_strncmp(data->north_texture + ft_strlen(data->north_texture) - 4,
 			".png", 4))
 		error_free_data(data, TEXTURE);

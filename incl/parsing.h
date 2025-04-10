@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:15:27 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 17:13:47 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ void		map_content_valid(t_data *data);
 void		validate_map(t_data *data);
 void		fill_and_replace_space(t_data *data);
 bool		is_map_content(char *line);
-void		validate_data(t_data *data);
 
 #endif
