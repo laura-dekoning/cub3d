@@ -107,11 +107,8 @@ void	raycasting(t_game *game)
 	{
 		dir.x = cos(angle);
 		dir.y = sin(angle);
-		
 		init_ray(game, &game->ray[i], dir, angle, &map_pos);
-
 		cast_ray(game, &game->ray[i], &map_pos);
-
 		init_wall_segment(game, &game->ray[i]);
 		render_3d_wall_segment(game, &game->ray[i], i);
 		angle += angle_step;

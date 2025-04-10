@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/10 17:05:04 by livliege      ########   odam.nl          #
+#    Updated: 2025/04/10 17:41:56 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRC_FILES	:=	main.c \
 				$(addprefix $(SRC_GAME)/, \
 				game.c \
 				get_game.c \
-				init_walls.c \
 				init_window_and_images.c ) \
 				$(addprefix $(SRC_MEMORY)/, \
 				alloc_mem_for_data.c \
@@ -84,6 +83,7 @@ SRC_FILES	:=	main.c \
 				print_string_with_values.c ) \
 				$(addprefix $(SRC_RENDER)/, \
 				collision_points.c \
+				init_walls.c \
 				raycasting.c \
 				render_3d_scene.c \
 				rendering_utils.c )\

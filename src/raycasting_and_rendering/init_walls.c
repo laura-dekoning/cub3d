@@ -30,10 +30,6 @@ mlx_texture_t	*set_wall_texture(t_game *game, t_ray *ray)
 	{
 		ray->wall_3d.texture = game->textures.west_texture;
 	}
-	if (ray->wall_3d.texture == NULL)
-	{
-		printf("ERROR: in set wall textures ray->wall_3d.texture is NULL... HOW AND WHY???????\n");
-	}
 	return (ray->wall_3d.texture);
 }
 
@@ -79,9 +75,9 @@ void init_wall_segment(t_game *game, t_ray *ray)
 	ray->wall_3d.wall_top = fmax(0, (game->window->height / 2) - (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.wall_bottom = fmin(game->window->height, (game->window->height / 2) + (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.line_width = game->window->width / NUMB_RAYS;
-	fix_texture_stretch(game, ray);
-	fix_texture_zoom_to_centre(game, ray);
 	set_wall_side(ray);
 	set_wall_texture(game, ray);
 	set_wall_shadow(ray);
+	fix_texture_stretch(game, ray);
+	fix_texture_zoom_to_centre(game, ray);
 }
