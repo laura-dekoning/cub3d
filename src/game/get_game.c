@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:50:24 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 14:03:01 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parse_map(t_game *game, t_data *data)
 	size_t	i;
 	size_t	rows;
 
-	rows = game->map->rows;
+	rows = data->map->rows;
 	game->map->rows = data->map->rows;
 	game->map->cols = data->map->cols;
 	game->map->map_width_px = data->map->cols * GRIDSIZE;
@@ -28,7 +28,9 @@ void	parse_map(t_game *game, t_data *data)
 	{
 		game->map->map[i] = ft_strdup(data->map->map[i]);
 		if (game->map->map[i] == NULL)
+		{
 			error_free_game_and_data(game, data, MALLOC);
+		}
 		i++;
 	}
 }

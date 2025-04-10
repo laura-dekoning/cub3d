@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 13:55:44 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 16:36:59 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define PATH 1
 # define RGB 2
 
-# define WINDOW_WIDTH	1000
-# define WINDOW_HEIGHT	1000
+# define WINDOW_WIDTH	1800
+# define WINDOW_HEIGHT	1800
 # define WINDOW_TITLE	"L&L Cub3d"
 
 # define PI				3.14159265359

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:46:31 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 16:32:33 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_vector_s
 	size_t	x;
 	size_t	y;
 }	t_vector_s;
+
+typedef struct s_vector_i
+{
+	int	x;
+	int	y;
+}	t_vector_i;
 
 typedef struct s_game_m
 {
@@ -64,7 +70,7 @@ typedef struct s_ray
 	t_vector_f			start_pos;
 	float				angle;
 	t_vector_f			direction;
-	t_vector_s			step_dir;
+	t_vector_i			step_dir;
 	t_vector_f			step_size;
 	t_vector_f			collision_point;
 	t_vector_f			end_pos;
