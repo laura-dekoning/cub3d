@@ -1,12 +1,12 @@
 NO ./textures/cobble_stone_wall.png
-EA textures/mossy_brick_wall.png
+EA ./textures/mossy_brick_wall.png
 SO ./textures/red_brick_wall.png
 WE ./textures/wood_wall.png
 
 F 220,100,0
 C 225,30,0
 
-        111001111111111111111111111
+        111111011111111111111111111
         1000000000110000000000001
         1011000001110000000000001
         1001000000000000000000001

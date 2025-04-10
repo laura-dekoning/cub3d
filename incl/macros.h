@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 16:36:59 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/10 17:05:15 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@
 // Defined error strings to save space in the functions. 
 # define ARGS "This is an invalid number of arguments. Provide 1 map file!"
 # define FILE "Incorrect file format. Provide a .cub file!"
-# define TEXTURE "Incorrect format for textures. Provide a .xpm file!"
+# define TEXTURE "Incorrect format for textures. Provide a .png file!"
 # define MALLOC "Allocation failed =("
 # define NEG "No negative numbers!\nRGB colors have to be between 0-255!"
 # define ALPHA "There are not supposed to be letters in a number, stupid!"
 # define BIG "This number is too big!!\nRGB colors have to be between 0-255!"
 # define FILE_CONTENT "This content is not supposed to be in the file!"
 # define MAP_LAST "The map should be at the end of the file! Nowhere else...."
-# define MAP_CONTENT "Map does not contain correct content!!"
+# define MAP_CONTENT "Invalid map! Can have '0', '1', space and player."
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define NO_P "Map is not valid! We're missing the player position."
 # define NO_WALL "Map is not valid! Map is not surrounded by walls!"
