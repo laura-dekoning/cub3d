@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/10 17:41:56 by livliege      ########   odam.nl          #
+#    Updated: 2025/04/10 18:44:57 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRC_FILES	:=	main.c \
 				$(addprefix $(SRC_MINIMAP)/, \
 				draw_minimap.c \
 				draw_player.c \
+				draw_rays.c \
+				init_minimap.c \
 				minimap.c )\
 				$(addprefix $(SRC_PARSING)/, \
 				fill_and_replace_space.c \
@@ -83,6 +85,7 @@ SRC_FILES	:=	main.c \
 				print_string_with_values.c ) \
 				$(addprefix $(SRC_RENDER)/, \
 				collision_points.c \
+				draw_ceiling_and_floor.c \
 				init_walls.c \
 				raycasting.c \
 				render_3d_scene.c \

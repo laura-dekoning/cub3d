@@ -23,28 +23,26 @@ void	set_texture_y(t_ray *ray, int texture_y)
 
 uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 {
-	int			pixel_index;
-	uint8_t		*pixel_array;
-	int			pixel_array_len;
-	uint64_t	colour;
-	uint8_t		r;
-	uint8_t		g;
-	uint8_t		b;
-	uint8_t		a;
+	int				pixel_index;
+	uint8_t			*pixel_array;
+	int				pixel_array_len;
+	uint64_t		colour_hex;
+	t_colour_rgba	colour;
 
 	pixel_array = ray->wall_3d.texture->pixels;
-	pixel_array_len = ray->wall_3d.texture->width * ray->wall_3d.texture->height  * ray->wall_3d.texture->bytes_per_pixel;
+	pixel_array_len = ray->wall_3d.texture->width * ray->wall_3d.texture->height * ray->wall_3d.texture->bytes_per_pixel;
 	set_texture_y(ray, texture_y);
 	pixel_index = (ray->wall_3d.texture_y * ray->wall_3d.texture->width + ray->wall_3d.texture_x) * ray->wall_3d.texture->bytes_per_pixel;
 	if (pixel_index + 2 > pixel_array_len)
 		return (0);
-	r = pixel_array[pixel_index];
-	g = pixel_array[pixel_index + 1];
-	b = pixel_array[pixel_index + 2];
-	a = ray->wall_3d.wall_shadow;
-	colour = (r << 24) | (g << 16) | (b << 8) | a;
-	return (colour);
+	colour.r = pixel_array[pixel_index];
+	colour.g = pixel_array[pixel_index + 1];
+	colour.b = pixel_array[pixel_index + 2];
+	colour.a = ray->wall_3d.wall_shadow;
+	colour_hex = (colour.r << 24) | (colour.g << 16) | (colour.b << 8) | colour.a;
+	return (colour_hex);
 }
+
 void	put_pixel_safe(t_game *game, t_ray *ray, uint32_t x, uint32_t y, float texture_y)
 {
 	uint64_t		colour;
@@ -52,7 +50,7 @@ void	put_pixel_safe(t_game *game, t_ray *ray, uint32_t x, uint32_t y, float text
 	if (x > 0 && y > 0 && x < game->window_image->width && y < game->window_image->height)
 	{
 		colour = get_pixel_colour(ray, (int)texture_y);
-		mlx_put_pixel(game->window_image, x, y, colour); // texture			
+		mlx_put_pixel(game->window_image, x, y, colour);
 	}
 }
 
@@ -60,7 +58,7 @@ void	draw_wall_segment(t_game *game, t_ray *ray, int ray_i, int wall_top, int wa
 {
 	uint32_t		x;
 	uint32_t		y;
-	float 			texture_y;
+	float			texture_y;
 	int				i;
 
 	texture_y = ray->wall_3d.texture_y_pos;
@@ -68,8 +66,8 @@ void	draw_wall_segment(t_game *game, t_ray *ray, int ray_i, int wall_top, int wa
 	while (i < ray->wall_3d.line_width)
 	{
 		x = ray_i * ray->wall_3d.line_width + i;
-		if (x >= (uint32_t)game->window->width) 
-			break;
+		if (x >= (uint32_t)game->window->width)
+			break ;
 		texture_y = ray->wall_3d.texture_y_pos;
 		y = wall_top;
 		while (y < (uint32_t)wall_bottom)

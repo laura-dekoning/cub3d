@@ -12,10 +12,6 @@
 
 #include "cub3d.h"
 
-/*
-* @param start_pos is the top left courner of the rectancle
-* @param start_pos is the bottom right courner of the rectancle
-*/
 void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s end_pos, uint64_t colour)
 {
 	uint32_t	x;
@@ -33,7 +29,6 @@ void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s 
 		}
 		y++;
 	}
-
 }
 
 void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour)
@@ -86,7 +81,7 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 
 	step_x = end.x - start.x;
 	step_y = end.y - start.y;
-	max = fmax(fabsf(step_x), fabsf(step_y));	// fabsf() returns the absolute value of a float
+	max = fmax(fabsf(step_x), fabsf(step_y));
 	step_x /= max;
 	step_y /= max;
 	while ((int)(start.x - end.x) || (int)(start.y - end.y))
@@ -96,31 +91,4 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 		start.x += step_x;
 		start.y += step_y;
 	}
-}
-
-void	draw_ceiling_and_floor(t_game *game)
-{
-	t_vector_s	ceiling_start;
-	t_vector_s	ceiling_end;
-	t_vector_s	floor_start;
-	t_vector_s	floor_end;
-	uint32_t	c_col;
-	uint32_t	f_col;
-
-
-	c_col = game->ceiling_colour;
-	f_col = game->floor_colour;
-
-	ceiling_start.x = 0;
-	ceiling_start.y = 0;
-	ceiling_end.x = game->window_image->width;
-	ceiling_end.y = game->window_image->height / 2;
-	floor_start.x = 0;
-	floor_start.y = game->window_image->height / 2;
-	floor_end.x = game->window_image->width;
-	floor_end.y = game->window_image->height;
-
-	draw_filled_rectangle(game->window_image, ceiling_start, ceiling_end, c_col);
-	draw_filled_rectangle(game->window_image, floor_start, floor_end, f_col);
-
 }

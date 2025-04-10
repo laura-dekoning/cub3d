@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 17:26:33 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:45:53 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ typedef struct s_vector_i
 	int	x;
 	int	y;
 }	t_vector_i;
+
+typedef struct s_colour_rgba
+{
+	uint8_t		r;
+	uint8_t		g;
+	uint8_t		b;
+	uint8_t		a;
+}	t_colour_rgba;
 
 typedef struct s_game_m
 {
@@ -152,40 +160,41 @@ typedef struct s_game
 	uint64_t			ceiling_colour;
 }	t_game;
 
-// draw_minimap_player.c
-void	draw_player(t_game *game);
 
-// draw_minimap.c
-void	draw_border(t_game *game, t_mm_border border);
-void	draw_2D_map(t_game *game);
 
-// draw_shapes.c
-void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s end_pos, uint64_t colour);
-void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
-void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
-void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
-void	draw_ceiling_and_floor(t_game *game);
+/* GAME */
 
 // game.c
 void	start_game(t_game *game);
 void	cub3d(t_game *game);
-
+// get_game.c
 // init_window_and_images.c
 void	init_window(t_game *game);
 void	init_minimap_image(t_game *game);
 void	init_wall_textures(t_game *game, t_data *data);
 
-// init_walls.c
-void	init_wall_segment(t_game *game, t_ray *ray);
 
+
+/* MINIMAP */
+
+// draw_minimap.c
+void	draw_border(t_game *game, t_mm_border border);
+void	draw_2d_map(t_game *game);
+// draw_player.c
+void	draw_player(t_game *game);
+// draw_rays.c
+void	draw_rays(t_game *game);
+void	draw_arrow(t_game *game);
+// init_minimap.c
+void	init_border(t_game *game, t_mm_border *border);
+void	init_mimimap_grid(t_game *game, int map[MINIMAP_GRID][MINIMAP_GRID]);
+void	set_colour(t_game *game, int map, uint64_t *colour);
 // minimap.c
 void	minimap(t_game *game);
 
-// utils.c
-void	check_angle(float *angle);
-
 
 /* PLAYER MOVEMENT */
+
 // keys.c
 void	is_key_pressed(void *data);
 void	normalize_diagonal_movement(float *step_x, float *step_y);
@@ -193,23 +202,37 @@ void	normalize_diagonal_movement(float *step_x, float *step_y);
 void	check_collision(t_game *game, t_vector_f step);
 
 
+
 /* RAYCASTING AND RENDERING */
+
 // collision_points.c
 void	get_collision_point_negative_x(t_ray *ray, float map_pos_x);
 void	get_collision_point_positive_x(t_ray *ray, float map_pos_x);
 void	get_collision_point_negative_y(t_ray *ray, float map_pos_y);
 void	get_collision_point_positive_y(t_ray *ray, float map_pos_y);
-
+// draw_ceiling_and_floor.c
+void	draw_ceiling_and_floor(t_game *game);
+// init_walls.c
+void	init_wall_segment(t_game *game, t_ray *ray);
 // raycasting.c
 void	raycasting(t_game *game);
-
 // render_3d_scene.c
 void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i);
-
 // rendering_utils.c
 void	fix_texture_stretch(t_game *game, t_ray * ray);
 void	fix_texture_zoom_to_centre(t_game *game, t_ray * ray);
 void	fix_mirrored_effect(t_ray *ray);
 
 
+
+/* UTILS */
+
+// draw_shapes.c
+void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s end_pos, uint64_t colour);
+void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
+void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
+void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
+void	draw_ceiling_and_floor(t_game *game);
+// utils_execution.c
+void	check_angle(float *angle);
 #endif

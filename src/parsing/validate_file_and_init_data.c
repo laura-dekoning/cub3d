@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/11 18:22:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 12:47:45 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:51:07 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	validate_file_and_init_data(t_data *data, char **file)
 			if (is_map_last(data) == false)
 				error_free_data(data, MAP_LAST);
 			parse_validate_init_map(data, file, y);
-			break;
+			break ;
 		}
 		else
 			error_free_data(data, FILE_CONTENT);

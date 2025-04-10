@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/16 14:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:09:36 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:50:03 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,27 @@ void	replace_map_x(t_data *data, char *temp, int x)
 }
 
 void	replace_space(char *temp, char *map)
- {
- 	int	i;
- 	int	y;
- 
- 	i = 0;
- 	y = 0;
- 	while (map[y] != '\0')
- 	{
- 		if (map[y] == ' ')
- 		{
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	y = 0;
+	while (map[y] != '\0')
+	{
+		if (map[y] == ' ')
+		{
 			temp[i] = '1';
 			i++;
- 		}
- 		else
- 		{
- 			temp[i] = map[y];
- 			i++;
- 		}
- 		y++;
- 	}
- }
+		}
+		else
+		{
+			temp[i] = map[y];
+			i++;
+		}
+		y++;
+	}
+}
 
 void	fill_empty(char *temp, char *map, size_t len)
 {
@@ -66,7 +66,6 @@ void	fill_empty(char *temp, char *map, size_t len)
 			temp[i] = map[y];
 			i++;
 			y++;
-
 		}
 		temp[i] = '1';
 		i++;
@@ -82,7 +81,7 @@ void	fill_and_replace_space(t_data *data)
 	while (data->map->map[x] != NULL)
 	{
 		if (ft_strlen(data->map->map[x]) < data->map->cols)
- 		{
+		{
 			temp = make_temp(data);
 			fill_empty(temp, data->map->map[x], data->map->cols);
 			replace_map_x(data, temp, x);

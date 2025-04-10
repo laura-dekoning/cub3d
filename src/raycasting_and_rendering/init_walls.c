@@ -26,14 +26,14 @@ mlx_texture_t	*set_wall_texture(t_game *game, t_ray *ray)
 	{
 		ray->wall_3d.texture = game->textures.south_texture;
 	}
-	else // if (ray->wall_3d.wall_side == WEST)
+	else
 	{
 		ray->wall_3d.texture = game->textures.west_texture;
 	}
 	return (ray->wall_3d.texture);
 }
 
-void set_wall_side(t_ray *ray)
+void	set_wall_side(t_ray *ray)
 {
 	if (ray->wall_3d.n_s_wall == true)
 	{
@@ -53,7 +53,7 @@ void set_wall_side(t_ray *ray)
 
 void	set_wall_shadow(t_ray *ray)
 {
-	if (ray->distance > RENDER_DIST) 
+	if (ray->distance > RENDER_DIST)
 	{
 		ray->wall_3d.wall_shadow = 0;
 	}
@@ -67,7 +67,7 @@ void	set_wall_shadow(t_ray *ray)
 	}
 }
 
-void init_wall_segment(t_game *game, t_ray *ray)
+void	init_wall_segment(t_game *game, t_ray *ray)
 {
 	ray->wall_3d.wall_distance = (game->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
 	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - game->player->angle);

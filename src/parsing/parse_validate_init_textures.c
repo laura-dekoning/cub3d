@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 14:26:18 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:51:25 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_texture(char **target, char *line)
 void	init_texture_data(t_data *data, char *line, int flag)
 {
 	if (data->check->setting[flag] == true)
-		error_free_data(data, DUP_TEXTURE);		
+		error_free_data(data, DUP_TEXTURE);
 	if (flag == NORTH)
 		set_texture(&data->north_texture, line);
 	else if (flag == EAST)

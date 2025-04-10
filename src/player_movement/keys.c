@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:16:53 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:32:50 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 
 void	normalize_diagonal_movement(float *step_x, float *step_y)
 {
-	// stelling van onze grote vriend pytagoras
-
-    // c² = a² + b²
-    // c² = 1² + 1²
-    // c = sqrt (2)
-    // c = 1.41
-
-	float moving_speed;
+	float	moving_speed;
 
 	moving_speed = sqrt(((*step_x) * (*step_x)) + ((*step_y) * (*step_y)));
 	if (moving_speed > 1)
@@ -69,8 +62,8 @@ void	rotation_keys(t_game *game)
 		{
 			game->player->angle += (2 * PI);
 		}
-		game->player->dir.x = cos(game->player->angle); //* ROTATING_SPEED;
-		game->player->dir.y = sin(game->player->angle); //* ROTATING_SPEED;
+		game->player->dir.x = cos(game->player->angle);
+		game->player->dir.y = sin(game->player->angle);
 	}
 	if (mlx_is_key_down(game->window, MLX_KEY_RIGHT))
 	{
@@ -79,8 +72,8 @@ void	rotation_keys(t_game *game)
 		{
 			game->player->angle -= (2 * PI);
 		}
-		game->player->dir.x = cos(game->player->angle); // * ROTATING_SPEED;
-		game->player->dir.y = sin(game->player->angle); // * ROTATING_SPEED;
+		game->player->dir.x = cos(game->player->angle);
+		game->player->dir.y = sin(game->player->angle);
 	}
 }
 

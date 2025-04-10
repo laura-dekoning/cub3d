@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 14:03:41 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/10 18:47:04 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int	main(int argc, char **argv)
 	get_data(data, file);
 	print_data(data);
 	get_game(game, data);
-
 	cub3d(game);
-
 	free_game(game);
 	return (0);
 }
