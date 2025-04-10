@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/11 18:22:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:16:10 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 12:47:45 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	validate_file_and_init_data(t_data *data, char **file)
 		else
 			error_free_data(data, FILE_CONTENT);
 		y++;
+		// print_data(data);
 	}
 }
