@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 16:32:33 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/10 17:26:33 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,24 +178,23 @@ void	init_wall_textures(t_game *game, t_data *data);
 // init_walls.c
 void	init_wall_segment(t_game *game, t_ray *ray);
 
-// keys.c
-void	is_key_pressed(void *data);
-void	normalize_diagonal_movement(float *step_x, float *step_y);
-
 // minimap.c
 void	minimap(t_game *game);
 
 // utils.c
-// int satoui(const char c);
 void	check_angle(float *angle);
 
 
-
+/* PLAYER MOVEMENT */
+// keys.c
+void	is_key_pressed(void *data);
+void	normalize_diagonal_movement(float *step_x, float *step_y);
+// player_collision.c
+void	check_collision(t_game *game, t_vector_f step);
 
 
 /* RAYCASTING AND RENDERING */
 // collision_points.c
-void	check_collision(t_game *game, t_vector_f step);
 void	get_collision_point_negative_x(t_ray *ray, float map_pos_x);
 void	get_collision_point_positive_x(t_ray *ray, float map_pos_x);
 void	get_collision_point_negative_y(t_ray *ray, float map_pos_y);
@@ -210,6 +209,7 @@ void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i);
 // rendering_utils.c
 void	fix_texture_stretch(t_game *game, t_ray * ray);
 void	fix_texture_zoom_to_centre(t_game *game, t_ray * ray);
+void	fix_mirrored_effect(t_ray *ray);
 
 
 #endif

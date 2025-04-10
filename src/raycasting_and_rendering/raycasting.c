@@ -14,26 +14,14 @@
 
 void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
-
-	// printf("map pixel width = %zu\n", game->map->map_width_px / GRIDSIZE);
-	// printf("map pixel hight = %zu\n", game->map->map_height_px / GRIDSIZE);
-	// printf("map pixel width = %zu\n", game->map->map_width_px);
-	// printf("map pixel hight = %zu\n", game->map->map_height_px);
-
-	// printf("map pixel pos x = %f\n", map_pos->x);
-	// printf("map pixel pos y = %f\n", map_pos->y);
-
-	// infinite while loop
 	while (ray->wall_hit == false)
 	{
-		// printf("test \n");
 		if (ray->collision_point.x < ray->collision_point.y)
 		{
 			map_pos->x += ray->step_dir.x;
 			ray->distance = ray->collision_point.x;
 			ray->collision_point.x += ray->step_size.x;
 			ray->wall_3d.n_s_wall = false;
-			// printf("point x < point y \n");
 		}
 		else
 		{
@@ -41,16 +29,7 @@ void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f *map_pos)
 			ray->distance = ray->collision_point.y;
 			ray->collision_point.y += ray->step_size.y;
 			ray->wall_3d.n_s_wall = true;
-			// printf("point x > point y \n");
 		}
-		// printf("map pixel pos x = %f\n", map_pos->x);
-		// printf("map pixel pos y = %f\n", map_pos->y);
-
-		// printf("ray->step_dir.y = %zu\n", ray->step_dir.y);
-
-
-		
-
 		if (map_pos->x >= 0 && map_pos->y >= 0 && map_pos->x < game->map->map_width_px && map_pos->y < game->map->map_height_px)
 		{
 			if (game->map->map[(int)(map_pos->y / GRIDSIZE)][(int)(map_pos->x / GRIDSIZE)] == '1')
