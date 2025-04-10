@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_string_with_values.c                         :+:    :+:            */
+/*   print_string_with_index.c                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/19 16:54:43 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 13:41:13 by lade-kon      ########   odam.nl         */
+/*   Created: 2025/04/10 13:26:47 by lade-kon      #+#    #+#                 */
+/*   Updated: 2025/04/10 13:41:51 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	print_character(int c)
+static void	print_character(int c, int i)
 {
 	if (c == '\t')
-		printf(P"|\\t|"DEF);
-	else if (c < 10)
-		printf(P"|%c|"DEF, c);
-	else if (c < 100)
-		printf(P"|%c |"DEF, c);
+		printf(G"|\\t|"DEF);
+	else if (i < 10)
+		printf(G"|%c|"DEF, c);
+	else if (i < 100)
+		printf(G"|%c |"DEF, c);
 	else
-		printf(P"|%c  |"DEF, c);
+		printf(G"|%c  |"DEF, c);
 }
 
-void	print_string_with_values(char *str)
+void	print_string_with_index(char *str)
 {
 	int	i;
 
@@ -33,17 +33,17 @@ void	print_string_with_values(char *str)
 	{
 		while (str[i])
 		{
-			print_character(str[i]);
+			print_character(str[i], i);
 			i++;
 		}
 		printf("\n");
 		i = 0;
 		while (str[i])
 		{
-			if (str[i] == '\t')
-				printf(B_P"|%i |"DEF, str[i]);
+			if (str[i] == '\t' && i < 10)
+				printf(B_G"|%i |"DEF, i);
 			else
-				printf(B_P"|%i|"DEF, str[i]);
+				printf(B_G"|%i|"DEF, i);
 			i++;
 		}
 		printf("\n"DEF);

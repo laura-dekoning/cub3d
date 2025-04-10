@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/07 16:27:06 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/10 13:29:30 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC_FILES	:=	main.c \
 				print_floor_and_ceiling.c \
 				print_map.c \
 				print_player.c \
+				print_string_with_index.c \
 				print_string_with_values.c ) \
 				$(addprefix $(SRC_RENDER)/, \
 				collision_points.c \

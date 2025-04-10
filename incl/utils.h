@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 15:09:27 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 13:29:15 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	print_floor_and_ceiling(int *floor, int *ceiling);
 void	print_check(t_check *check);
 void	print_array_with_values(char **map);
 void	print_array_with_index(char **map);
+void	print_string_with_index(char *str);
 void	print_string_with_values(char *str);
 void	print_adjacent(char **map, int row, int col);
 

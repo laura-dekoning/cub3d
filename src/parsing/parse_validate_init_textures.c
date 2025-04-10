@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 12:59:32 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/10 13:43:48 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_texture(char **target, char *line)
 		len++;
 	if (*target)
 		free(*target);
-	*target = ft_substr(line, 3, len);
+	*target = ft_substr(line, 3, len - 3);
 	while (line[len] == ' ')
 		len++;
 }
