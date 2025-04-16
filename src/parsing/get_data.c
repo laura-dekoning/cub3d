@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 18:23:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:53:23 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/16 14:13:21 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	get_data(t_data *data, const char *file)
 	validate_file_and_init_data(data, file_as_arr);
 	free(file_as_str);
 	ft_free_arr(file_as_arr);
+	print_data(data);
 	validate_data(data);
 }

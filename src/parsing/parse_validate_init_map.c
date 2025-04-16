@@ -6,11 +6,23 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 16:18:38 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/16 14:21:17 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	set_player_dir(t_data *data, char p)
+{
+	if (p == 'N')
+		data->player->dir = NORTH;
+	else if (p == 'E')
+		data->player->dir = EAST;
+	else if (p == 'S')
+		data->player->dir = SOUTH;
+	else if (p == 'W')
+		data->player->dir = WEST;
+}
 
 void	set_player(t_data *data, char **map)
 {
@@ -32,6 +44,7 @@ void	set_player(t_data *data, char **map)
 					error_free_data(data, DUP_P);
 				data->player->x = col;
 				data->player->y = row;
+				set_player_dir(data, map[row][col]);
 				player = true;
 			}
 			col++;

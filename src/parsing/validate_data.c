@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 14:10:33 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/16 14:35:50 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 static void	check_player(t_data *data)
 {
-	if (!data->player->pos)
-		error_free_data(data, "Player position is missing!");
-	else if (!data->player->dir || !data->player->x || !data->player->y)
+	int	cols;
+	int	rows;
+
+	cols = (int)data->map->cols;
+	rows = (int)data->map->rows;
+	printf("rows = %i\ty = %i\ncols = %i\tx = %i\n", rows, data->player->y, cols, data->player->x);
+	if (data->player->dir < 0 || data->player->dir > 3)
 		error_free_data(data, "Player direction is missing!");
-	else if (!data->player->x || !data->player->y)
-		error_free_data(data, "Player x or y is missing!");
+	else if (data->player->x < 0 || data->player->x > cols)
+		error_free_data(data, "Player x is missing or incorrect!");
+	else if (data->player->y < 0 || data->player->y > rows)
+		error_free_data(data, "Player y is missing or incorrect!");
 }
 
 static void	check_images(t_data *data)
