@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/07 16:07:31 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 16:09:55 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/16 15:19:58 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ void	free_game(t_game *game)
 	{
 		if (game->map)
 		{
-			ft_free_arr(game->map->map);
+			if (game->map->map)
+				ft_free_arr(game->map->map);
 			free(game->map);
 		}
+		if (game->player)
+			free(game->player);
 	}
 	free(game);
 }
