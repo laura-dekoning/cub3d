@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:53:26 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/16 16:24:21 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	set_texture(char **target, char *line)
 {
 	size_t	len;
 	size_t	start;
-
-	start = 3;
+	int		i;
+	
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	start = i + 3;
 	while (line[start] == ' ' || line[start] == '\t')
 		start++;
 	len = start;
@@ -51,15 +55,19 @@ void	init_texture_data(t_data *data, char *line, int flag)
 int	validate_texture_id(t_data *data, char *line)
 {
 	int	flag;
-
+	int	i;
+	
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
 	flag = 0;
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	if (ft_strncmp(&line[i], "NO ", 3) == 0)
 		flag = NORTH;
-	else if (ft_strncmp(line, "EA ", 3) == 0)
+	else if (ft_strncmp(&line[i], "EA ", 3) == 0)
 		flag = EAST;
-	else if (ft_strncmp(line, "SO ", 3) == 0)
+	else if (ft_strncmp(&line[i], "SO ", 3) == 0)
 		flag = SOUTH;
-	else if (ft_strncmp(line, "WE ", 3) == 0)
+	else if (ft_strncmp(&line[i], "WE ", 3) == 0)
 		flag = WEST;
 	else
 		error_free_data(data, "Invalid texture ID");
