@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 17:04:56 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/16 15:40:10 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parse_map(t_game *game, t_data *data)
 	game->map->cols = data->map->cols;
 	game->map->map_width_px = data->map->cols * GRIDSIZE;
 	game->map->map_height_px = data->map->rows * GRIDSIZE;
-	game->map->map = (char **)safe_calloc(game, data, rows, sizeof(char *));
+	game->map->map = (char **)safe_calloc(game, data, rows + 1, sizeof(char *));
 	i = 0;
 	while (i < game->map->rows)
 	{

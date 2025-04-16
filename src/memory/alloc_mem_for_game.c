@@ -6,13 +6,13 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 12:43:37 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/07 17:46:24 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/16 15:37:34 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	*alloc_mem_for_game(t_data *data)
+t_game	*alloc_mem_for_game(t_data *data)
 {
 	t_game		*game;
 
