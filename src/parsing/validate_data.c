@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 14:35:50 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/16 16:42:25 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@ static void	check_player(t_data *data)
 		error_free_data(data, "Player y is missing or incorrect!");
 }
 
-static void	check_images(t_data *data)
+static void	check_textures(t_data *data, char *texture)
 {
-	if (!data->north_texture || !data->south_texture || !data->west_texture || !data->east_texture)
-		error_free_data(data, TEXTURE);
-	if (ft_strncmp(data->north_texture + ft_strlen(data->north_texture) - 4,
+	if (ft_strncmp(texture + ft_strlen(texture) - 4,
 			".png", 4))
 		error_free_data(data, TEXTURE);
-	return ;
 }
 
 static void	check_rgb(t_data *data)
@@ -43,8 +40,6 @@ static void	check_rgb(t_data *data)
 	int	i;
 
 	i = 0;
-	if (!data->floor || !data->ceiling)
-		error_free_data(data, "RGB missing");
 	while (i < 3)
 	{
 		if (data->floor[i] > 255 || data->ceiling[i] > 255)
@@ -56,6 +51,9 @@ static void	check_rgb(t_data *data)
 void	validate_data(t_data *data)
 {
 	check_rgb(data);
-	check_images(data);
+	check_textures(data, data->north_texture);
+	check_textures(data, data->east_texture);
+	check_textures(data, data->south_texture);
+	check_textures(data, data->west_texture);
 	check_player(data);
 }
