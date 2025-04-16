@@ -6,13 +6,23 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:53:56 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/16 14:10:33 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_images(t_data *data)
+static void	check_player(t_data *data)
+{
+	if (!data->player->pos)
+		error_free_data(data, "Player position is missing!");
+	else if (!data->player->dir || !data->player->x || !data->player->y)
+		error_free_data(data, "Player direction is missing!");
+	else if (!data->player->x || !data->player->y)
+		error_free_data(data, "Player x or y is missing!");
+}
+
+static void	check_images(t_data *data)
 {
 	if (!data->north_texture || !data->south_texture || !data->west_texture || !data->east_texture)
 		error_free_data(data, TEXTURE);
@@ -22,7 +32,7 @@ void	check_images(t_data *data)
 	return ;
 }
 
-void	check_rgb(t_data *data)
+static void	check_rgb(t_data *data)
 {
 	int	i;
 
@@ -41,4 +51,5 @@ void	validate_data(t_data *data)
 {
 	check_rgb(data);
 	check_images(data);
+	check_player(data);
 }
