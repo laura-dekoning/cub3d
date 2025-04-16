@@ -1,7 +1,7 @@
-NO textures/test/north.png
-SO textures/test/south.png
-WE textures/test/west.png
-EA textures/test/east.png
+NO ./textures/cobble_stone_wall.png
+EA ./textures/mossy_brick_wall.png
+SO ./textures/red_brick_wall.png
+WE ./textures/wood_wall.png
 
 11111
 10001
