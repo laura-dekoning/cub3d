@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/20 15:38:53 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 16:22:06 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 13:47:10 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_setting(char *line)
 {
 	int	i;
-	
+
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;

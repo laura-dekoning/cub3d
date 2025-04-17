@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/16 15:25:43 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/17 13:45:00 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,6 @@ INCLS_MLX42	:=	$(MLX_DIR)/include/MLX42
 INCLUDES	:=	-I $(INCLS_CUB3D) -I $(INCLS_LIBFT) -I $(INCLS_MLX42)
 
 SRC_DIR		:=	src
-
-# SRC_LIATH	:=	liath_dev
 
 SRC_GAME	:=	game
 SRC_MINIMAP	:=	minimap
@@ -96,11 +94,6 @@ SRC_FILES	:=	main.c \
 				is_map_last.c \
 				is_setting.c \
 				utils_execution.c ) \
-
-# $(addprefix $(SRC_LIATH)/, \
-				# error_clear_exit.c \
-				# fake_parsing.c)
-
 
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:45:53 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/17 13:57:04 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_ray
 	float				distance;
 	bool				wall_hit;
 	t_wall_segment_3d	wall_3d;
+	size_t				index;
 }	t_ray;
 
 // HIER MOET NOG IETS MEE GEBEUREN DENK IK
@@ -217,7 +218,7 @@ void	init_wall_segment(t_game *game, t_ray *ray);
 // raycasting.c
 void	raycasting(t_game *game);
 // render_3d_scene.c
-void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i);
+void	render_3d_wall_segment(t_game *game, t_ray *ray);
 // rendering_utils.c
 void	fix_texture_stretch(t_game *game, t_ray * ray);
 void	fix_texture_zoom_to_centre(t_game *game, t_ray * ray);

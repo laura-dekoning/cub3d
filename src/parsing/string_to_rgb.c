@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 17:17:13 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 13:48:10 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	string_to_rgb(t_data *data, int **target, char *str, int i)
 {
 	int	n;
 	int	diff;
-	int found;
+	int	found;
 
 	n = 0;
 	while (n < 3)

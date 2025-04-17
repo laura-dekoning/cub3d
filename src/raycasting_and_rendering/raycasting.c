@@ -67,12 +67,11 @@ void	get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
 	}
 }
 
-void	init_ray(t_game *game, t_ray *ray, t_vector_f dir, float ang, t_vector_f *map_pos)
+void	init_ray(t_game *game, t_ray *ray, float ang, t_vector_f *map_pos)
 {
 	map_pos->x = (int)(game->player->pos.x);
 	map_pos->y = (int)(game->player->pos.y);
 	ray->start_pos = game->player->pos;
-	ray->direction = dir;
 	ray->angle = ang;
 	if (ray->direction.x == 0)
 		ray->step_size.x = 1.0e30;
@@ -102,10 +101,12 @@ void	raycasting(t_game *game)
 	{
 		dir.x = cos(angle);
 		dir.y = sin(angle);
-		init_ray(game, &game->ray[i], dir, angle, &map_pos);
+		game->ray[i].direction = dir;
+		game->ray[i].index = i;
+		init_ray(game, &game->ray[i], angle, &map_pos);
 		cast_ray(game, &game->ray[i], &map_pos);
 		init_wall_segment(game, &game->ray[i]);
-		render_3d_wall_segment(game, &game->ray[i], i);
+		render_3d_wall_segment(game, &game->ray[i]);
 		angle += angle_step;
 		check_angle(&angle);
 		i++;

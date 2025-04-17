@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 16:24:21 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 13:47:47 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_texture(char **target, char *line)
 	size_t	len;
 	size_t	start;
 	int		i;
-	
+
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
@@ -56,7 +56,7 @@ int	validate_texture_id(t_data *data, char *line)
 {
 	int	flag;
 	int	i;
-	
+
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 17:56:57 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 16:28:09 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 13:47:58 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	validate_rgb_id(t_data *data, char *line)
 {
 	int	flag;
 	int	i;
-	
+
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;

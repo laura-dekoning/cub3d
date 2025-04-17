@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 15:43:43 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 13:46:46 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	main(int argc, char **argv)
 		error(FILE);
 	data = (t_data *)alloc_mem_for_data();
 	game = (t_game *)alloc_mem_for_game(data);
-	// print_data(data);
 	get_data(data, file);
-	// print_data(data);
 	get_game(game, data);
 	cub3d(game);
 	free_game(game);

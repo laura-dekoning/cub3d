@@ -43,21 +43,20 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	return (colour_hex);
 }
 
-void	put_pixel_safe(t_game *game, t_ray *ray, uint32_t x, uint32_t y, float texture_y)
+void	put_pixel_safe(t_game *game, t_ray *ray, t_vector_s	screen_pos, float texture_y)
 {
 	uint64_t		colour;
 
-	if (x > 0 && y > 0 && x < game->window_image->width && y < game->window_image->height)
+	if (screen_pos.x > 0 && screen_pos.y > 0 && screen_pos.x < game->window_image->width && screen_pos.y < game->window_image->height)
 	{
 		colour = get_pixel_colour(ray, (int)texture_y);
-		mlx_put_pixel(game->window_image, x, y, colour);
+		mlx_put_pixel(game->window_image, screen_pos.x, screen_pos.y, colour);
 	}
 }
 
-void	draw_wall_segment(t_game *game, t_ray *ray, int ray_i, int wall_top, int wall_bottom)
+void	draw_wall_segment(t_game *game, t_ray *ray, int wall_top, int wall_bottom)
 {
-	uint32_t		x;
-	uint32_t		y;
+	t_vector_s		screen_pos;
 	float			texture_y;
 	int				i;
 
@@ -65,22 +64,22 @@ void	draw_wall_segment(t_game *game, t_ray *ray, int ray_i, int wall_top, int wa
 	i = 0;
 	while (i < ray->wall_3d.line_width)
 	{
-		x = ray_i * ray->wall_3d.line_width + i;
-		if (x >= (uint32_t)game->window->width)
+		screen_pos.x = ray->index * ray->wall_3d.line_width + i;
+		if (screen_pos.x >= (uint32_t)game->window->width)
 			break ;
 		texture_y = ray->wall_3d.texture_y_pos;
-		y = wall_top;
-		while (y < (uint32_t)wall_bottom)
+		screen_pos.y = wall_top;
+		while (screen_pos.y < (uint32_t)wall_bottom)
 		{
-			put_pixel_safe(game, ray, x, y, texture_y);
+			put_pixel_safe(game, ray, screen_pos, texture_y);
 			texture_y += ray->wall_3d.texture_y_step;
-			y++;
+			screen_pos.y++;
 		}
 		i++;
 	}
 }
 
-void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i)
+void	render_3d_wall_segment(t_game *game, t_ray *ray)
 {
 	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
 	{
@@ -93,5 +92,5 @@ void	render_3d_wall_segment(t_game *game, t_ray *ray, int ray_i)
 	fix_mirrored_effect(ray);
 	ray->wall_3d.texture_x = (int)(ray->wall_3d.wall_hit_screen_x * ray->wall_3d.texture->width);
 	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / ray->wall_3d.wall_height;
-	draw_wall_segment(game, ray, ray_i, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
+	draw_wall_segment(game, ray, ray->wall_3d.wall_top, ray->wall_3d.wall_bottom);
 }
