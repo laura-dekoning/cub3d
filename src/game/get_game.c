@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 15:40:10 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:49:05 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ void	parse_player(t_game *game, t_data *data)
 	game->player->dir.x = cos(game->player->angle);
 	game->player->dir.y = sin(game->player->angle);
 	game->player->wall_hit = false;
-	printf("player pos.x	: %f\n", game->player->pos.x);
-	printf("player pos.y	: %f\n", game->player->pos.y);
-	printf("player dir.x	: %f\n", game->player->dir.x);
-	printf("player dir.y	: %f\n", game->player->dir.y);
-	printf("player angle	: %f\n", game->player->angle);
 }
 
 void	get_game(t_game *game, t_data *data)

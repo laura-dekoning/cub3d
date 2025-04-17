@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:32 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 15:39:34 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:09:54 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include "rgba.h"
 # include "utils.h"
 
-
-
 // MEMORY //
 t_data	*alloc_mem_for_data(void);
 t_game	*alloc_mem_for_game(t_data *data);
@@ -37,7 +35,5 @@ void	error_free_game_and_data(t_game *game, t_data *data, char *str);
 void	error_free_game(t_game *game, char *str);
 void	error_free_data(t_data *data, char *str);
 void	error(char *str);
-
-
 
 #endif

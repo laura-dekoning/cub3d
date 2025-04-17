@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:17:12 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:46:12 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	init_minimap(t_game *game)
 	game->minimap.wall_colour = COLOUR_DARK_GRAY;
 	game->minimap.floor_colour = COLOUR_GRAY;
 	game->minimap.player_colour = COLOUR_YELLOW;
-	game->minimap.ray_colour = COLOUR_RED;
-	game->minimap.arrow_colour = COLOUR_GREEN;
-	game->minimap.border_colour = COLOUR_YELLOW;
-	game->minimap.border_size = 20;
+	game->minimap.ray_colour = COLOUR_LIGHT_BLUE;
+	game->minimap.arrow_colour = COLOUR_DARK_BLUE;
+	game->minimap.border_colour = COLOUR_DARK_PINK;
+	game->minimap.border_size = 10;
 }
 
 void	minimap(t_game *game)

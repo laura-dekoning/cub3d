@@ -10,7 +10,29 @@
 
 
 TODO:
-[] sagfaults and memleaks:
+
+door hele code heen lopen en checken waar ik exit
+
+valgrind zegt dit 17-04-25 16:30:
+==73441== 
+==73441== HEAP SUMMARY:
+==73441==     in use at exit: 317,955 bytes in 3,107 blocks
+==73441==   total heap usage: 83,112 allocs, 80,005 frees, 245,472,586 bytes allocated
+==73441== 
+==73441== LEAK SUMMARY:
+==73441==    definitely lost: 0 bytes in 1 blocks
+==73441==    indirectly lost: 0 bytes in 0 blocks
+==73441==      possibly lost: 0 bytes in 0 blocks
+==73441==    still reachable: 317,955 bytes in 3,106 blocks
+==73441==         suppressed: 0 bytes in 0 blocks
+==73441== Rerun with --leak-check=full to see details of leaked memory
+==73441== 
+==73441== For lists of detected and suppressed errors, rerun with: -s
+==73441== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+
+
+[X] sagfaults and memleaks:
 
 [] ./cub3d maps/liath_map.cub
 

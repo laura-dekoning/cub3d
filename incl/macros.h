@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 16:58:47 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:54:47 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,28 @@
 # define WINDOW_HEIGHT	1800
 # define WINDOW_TITLE	"L&L Cub3d"
 
-# define PI				3.14159265359
-# define ONE_D_RADIAN	0.0174533		// 1 degree = 0.0174533 radians
+# define PI				3.141592654
+# define ONE_D_RADIAN	0.0174533	// 1 degree = 0.0174533 radians
 
 # define FOV			60.0
-# define NUMB_RAYS		(WINDOW_WIDTH / 2)
+# define NUMB_RAYS		900
 
 # define RENDER_DIST	1000
-# define SHADOW_ALPHA	100		// 0 is complete seetrough aka completely gray (max 255)
-# define FOG_FACTOR		4		// smaller numebr is "thicker fog" effect
+# define SHADOW_ALPHA	100
+# define FOG_FACTOR		4
 
-// # define NORTH 			1
-// # define EAST 			2
-// # define SOUTH 			3
-// # define WEST 			4
-
-# define DIR_NORTH 		(3 * (PI / 2))
+# define DIR_NORTH 		4.71238898
 # define DIR_EAST 		0
-# define DIR_SOUTH 		(PI / 2)
-# define DIR_WEST 		PI
+# define DIR_SOUTH 		1.570796327
+# define DIR_WEST 		3.141592654
 
 # define MOVING_SPEED	4
 # define ROTATING_SPEED	0.03
 
 # define GRIDSIZE		64
 
-// # define PLAYER_SIZE	(GRIDSIZE_MM / 4)
-# define MINIMAP_SCALE	5 		// (the window size / MINIMAP_SCALE will be the size of the minimap.) (1 is fullsize, 5 is good)
-# define MINIMAP_GRID	13 		// n X n grid
+# define MINIMAP_SCALE	5			// (1 is fullscreen, 5 is good)
+# define MINIMAP_GRID	13
 
 // Defined error strings to save space in the functions. 
 # define ARGS "This is an invalid number of arguments. Provide 1 map file!"

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 16:42:25 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:49:53 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	check_player(t_data *data)
 
 	cols = (int)data->map->cols;
 	rows = (int)data->map->rows;
-	printf("rows = %i\ty = %i\ncols = %i\tx = %i\n", rows, data->player->y, cols, data->player->x);
 	if (data->player->dir < 0 || data->player->dir > 3)
 		error_free_data(data, "Player direction is missing!");
 	else if (data->player->x < 0 || data->player->x > cols)

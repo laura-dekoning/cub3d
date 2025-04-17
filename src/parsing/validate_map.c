@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 13:48:33 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:55:16 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	surrounded_by_walls(t_data *data)
 	int	x;
 	int	y;
 
-	// print_array_with_index(data->map->map);
 	check_zero(data, data->map->map);
 	x = 1;
 	while (data->map->map[x] != NULL)

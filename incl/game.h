@@ -6,14 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 13:57:04 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/17 15:09:41 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_vector_f
 {
@@ -35,16 +35,16 @@ typedef struct s_vector_i
 
 typedef struct s_colour_rgba
 {
-	uint8_t		r;
-	uint8_t		g;
-	uint8_t		b;
-	uint8_t		a;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
 }	t_colour_rgba;
 
 typedef struct s_game_m
 {
 	char	**map;
-	size_t	rows; //rows = if (ft_strlen(map[x][y] > rows) rows = y;
+	size_t	rows;
 	size_t	cols;
 	size_t	map_width_px;
 	size_t	map_height_px;
@@ -63,7 +63,7 @@ typedef struct s_wall_segment_3d
 	int				wall_bottom;
 	int				wall_shadow;
 
-	uint8_t			line_width; //waarom hier uint8_t?
+	uint8_t			line_width;
 	mlx_texture_t	*texture;
 	float			wall_hit_screen_x;
 	int				texture_x;
@@ -88,14 +88,13 @@ typedef struct s_ray
 	size_t				index;
 }	t_ray;
 
-// HIER MOET NOG IETS MEE GEBEUREN DENK IK
 typedef struct s_game_p
 {
 	t_vector_f	pos;
 	t_vector_f	dir;
 	float		angle;
 	bool		wall_hit;
-	uint16_t	size; //waarom een uint16_t?
+	uint16_t	size;
 }	t_game_p;
 
 typedef struct s_mm_border
@@ -141,27 +140,24 @@ typedef struct s_textures
 
 typedef struct s_game
 {
-	mlx_t				*window;
+	mlx_t			*window;
 
-	mlx_image_t			*window_image;
-	mlx_image_t			*minimap_image;
-	mlx_image_t			*minimap_border_image;
+	mlx_image_t		*window_image;
+	mlx_image_t		*minimap_image;
+	mlx_image_t		*minimap_border_image;
 
-	t_game_m			*map;
-	bool				festival_map;
+	t_game_m		*map;
 
-	t_game_p			*player;
-	t_ray				ray[NUMB_RAYS];
+	t_game_p		*player;
+	t_ray			ray[NUMB_RAYS];
 
-	t_minimap			minimap;
+	t_minimap		minimap;
 
-	t_textures			textures;
+	t_textures		textures;
 
-	uint64_t			floor_colour;
-	uint64_t			ceiling_colour;
+	uint64_t		floor_colour;
+	uint64_t		ceiling_colour;
 }	t_game;
-
-
 
 /* GAME */
 
@@ -169,12 +165,11 @@ typedef struct s_game
 void	start_game(t_game *game);
 void	cub3d(t_game *game);
 // get_game.c
+void	get_game(t_game *game, t_data *data);
 // init_window_and_images.c
 void	init_window(t_game *game);
 void	init_minimap_image(t_game *game);
 void	init_wall_textures(t_game *game, t_data *data);
-
-
 
 /* MINIMAP */
 
@@ -193,7 +188,6 @@ void	set_colour(t_game *game, int map, uint64_t *colour);
 // minimap.c
 void	minimap(t_game *game);
 
-
 /* PLAYER MOVEMENT */
 
 // keys.c
@@ -201,8 +195,6 @@ void	is_key_pressed(void *data);
 void	normalize_diagonal_movement(float *step_x, float *step_y);
 // player_collision.c
 void	check_collision(t_game *game, t_vector_f step);
-
-
 
 /* RAYCASTING AND RENDERING */
 
@@ -220,19 +212,21 @@ void	raycasting(t_game *game);
 // render_3d_scene.c
 void	render_3d_wall_segment(t_game *game, t_ray *ray);
 // rendering_utils.c
-void	fix_texture_stretch(t_game *game, t_ray * ray);
-void	fix_texture_zoom_to_centre(t_game *game, t_ray * ray);
+void	fix_texture_stretch(t_game *game, t_ray *ray);
+void	fix_texture_zoom_to_centre(t_game *game, t_ray *ray);
 void	fix_mirrored_effect(t_ray *ray);
-
-
 
 /* UTILS */
 
 // draw_shapes.c
-void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s end_pos, uint64_t colour);
-void	draw_filled_circle(mlx_image_t		*image, t_vector_f centre, int radius, int colour);
-void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour);
-void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour);
+void	draw_filled_rectangle(mlx_image_t *image, \
+	t_vector_s start_pos, t_vector_s end_pos, uint64_t colour);
+void	draw_filled_circle(mlx_image_t *image, \
+	t_vector_f centre, int radius, int colour);
+void	draw_circle(mlx_image_t *image, \
+	t_vector_f centre, int radius, int colour);
+void	draw_line(mlx_image_t *image, \
+	t_vector_f start, t_vector_f end, uint64_t colour);
 void	draw_ceiling_and_floor(t_game *game);
 // utils_execution.c
 void	check_angle(float *angle);
