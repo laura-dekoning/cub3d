@@ -6,18 +6,26 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/17 16:18:44 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/18 14:21:24 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_minimap_size(t_game *game)
+void	init_wall_textures(t_game *game, t_data *data)
 {
-	if (WINDOW_HEIGHT > WINDOW_WIDTH)
-		game->minimap.minimap_size = WINDOW_WIDTH / MINIMAP_SCALE;
-	else
-		game->minimap.minimap_size = WINDOW_HEIGHT / MINIMAP_SCALE;
+	game->textures.north_texture = mlx_load_png(data->north_texture);
+	if (!game->textures.north_texture)
+		error_free_game_and_data(game, data, "Loading north wall failed");
+	game->textures.east_texture = mlx_load_png(data->east_texture);
+	if (!game->textures.east_texture)
+		error_free_game_and_data(game, data, "Loading east wall failed");
+	game->textures.south_texture = mlx_load_png(data->south_texture);
+	if (!game->textures.south_texture)
+		error_free_game_and_data(game, data, "Loading south wall failed");
+	game->textures.west_texture = mlx_load_png(data->west_texture);
+	if (!game->textures.west_texture)
+		error_free_game_and_data(game, data, "Loading west wall failed");
 }
 
 void	init_minimap_border_image(t_game *game)
@@ -35,6 +43,14 @@ void	init_minimap_border_image(t_game *game)
 		mlx_terminate(game->window);
 		error_free_game(game, "Image could not be displayed on the window");
 	}
+}
+
+void	get_minimap_size(t_game *game)
+{
+	if (WINDOW_HEIGHT > WINDOW_WIDTH)
+		game->minimap.minimap_size = WINDOW_WIDTH / MINIMAP_SCALE;
+	else
+		game->minimap.minimap_size = WINDOW_HEIGHT / MINIMAP_SCALE;
 }
 
 void	init_minimap_image(t_game *game)
@@ -73,20 +89,4 @@ void	init_window(t_game *game)
 		mlx_terminate(game->window);
 		error_free_game(game, "Image could not be displayed on the window");
 	}
-}
-
-void	init_wall_textures(t_game *game, t_data *data)
-{
-	game->textures.north_texture = mlx_load_png(data->north_texture);
-	if (!game->textures.north_texture)
-		error_free_game_and_data(game, data, "Loading north wall failed");
-	game->textures.east_texture = mlx_load_png(data->east_texture);
-	if (!game->textures.east_texture)
-		error_free_game_and_data(game, data, "Loading east wall failed");
-	game->textures.south_texture = mlx_load_png(data->south_texture);
-	if (!game->textures.south_texture)
-		error_free_game_and_data(game, data, "Loading south wall failed");
-	game->textures.west_texture = mlx_load_png(data->west_texture);
-	if (!game->textures.west_texture)
-		error_free_game_and_data(game, data, "Loading west wall failed");
 }

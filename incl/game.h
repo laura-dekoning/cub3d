@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 15:09:41 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/18 14:50:35 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_game_m
 	size_t	cols;
 	size_t	map_width_px;
 	size_t	map_height_px;
-}				t_game_m;
+}	t_game_m;
 
 typedef struct s_wall_segment_3d
 {

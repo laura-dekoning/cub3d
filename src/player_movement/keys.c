@@ -6,23 +6,11 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:47 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:32:50 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/18 19:11:36 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	normalize_diagonal_movement(float *step_x, float *step_y)
-{
-	float	moving_speed;
-
-	moving_speed = sqrt(((*step_x) * (*step_x)) + ((*step_y) * (*step_y)));
-	if (moving_speed > 1)
-	{
-		*step_x /= moving_speed;
-		*step_y /= moving_speed;
-	}
-}
 
 void	movement_keys(t_game *game)
 {

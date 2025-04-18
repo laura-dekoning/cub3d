@@ -12,6 +12,22 @@
 
 #include "cub3d.h"
 
+void	set_wall_shadow(t_ray *ray)
+{
+	if (ray->distance > RENDER_DIST)
+	{
+		ray->wall_3d.wall_shadow = 0;
+	}
+	else
+	{
+		ray->wall_3d.wall_shadow = (255 - (int)(ray->distance / FOG_FACTOR));
+		if (ray->wall_3d.wall_shadow > 255)
+			ray->wall_3d.wall_shadow = 255;
+		if (ray->wall_3d.wall_shadow < 0)
+			ray->wall_3d.wall_shadow = 0;
+	}
+}
+
 mlx_texture_t	*set_wall_texture(t_game *game, t_ray *ray)
 {
 	if (ray->wall_3d.wall_side == NORTH)
@@ -48,22 +64,6 @@ void	set_wall_side(t_ray *ray)
 			ray->wall_3d.wall_side = WEST;
 		else
 			ray->wall_3d.wall_side = EAST;
-	}
-}
-
-void	set_wall_shadow(t_ray *ray)
-{
-	if (ray->distance > RENDER_DIST)
-	{
-		ray->wall_3d.wall_shadow = 0;
-	}
-	else
-	{
-		ray->wall_3d.wall_shadow = (255 - (int)(ray->distance / FOG_FACTOR));
-		if (ray->wall_3d.wall_shadow > 255)
-			ray->wall_3d.wall_shadow = 255;
-		if (ray->wall_3d.wall_shadow < 0)
-			ray->wall_3d.wall_shadow = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 14:34:34 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 15:49:05 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/18 17:00:25 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	parse_player(t_game *game, t_data *data)
 	game->player->pos.y = (data->player->y * GRIDSIZE) + offset;
 	game->player->dir.x = cos(game->player->angle);
 	game->player->dir.y = sin(game->player->angle);
+	game->player->size = game->minimap.minimap_size / MINIMAP_GRID;
 	game->player->wall_hit = false;
 }
 
@@ -62,12 +63,12 @@ void	get_game(t_game *game, t_data *data)
 
 	f = data->floor;
 	c = data->ceiling;
-	game->floor_colour = rgb_to_hex(f[0], f[1], f[2], 100);
-	game->ceiling_colour = rgb_to_hex(c[0], c[1], c[2], 100);
-	parse_map(game, data);
-	parse_player(game, data);
+	game->floor_colour = rgb_to_hex(f[0], f[1], f[2], 255);
+	game->ceiling_colour = rgb_to_hex(c[0], c[1], c[2], 255);
+	init_wall_textures(game, data);
 	init_window(game);
 	init_minimap_image(game);
-	init_wall_textures(game, data);
+	parse_map(game, data);
+	parse_player(game, data);
 	free_data(data);
 }

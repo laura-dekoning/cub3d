@@ -39,6 +39,18 @@ bool	hit_wall(t_game *game, float player_x, float player_y)
 	}
 }
 
+void	normalize_diagonal_movement(float *step_x, float *step_y)
+{
+	float	moving_speed;
+
+	moving_speed = sqrt(((*step_x) * (*step_x)) + ((*step_y) * (*step_y)));
+	if (moving_speed > 1)
+	{
+		*step_x /= moving_speed;
+		*step_y /= moving_speed;
+	}
+}
+
 void	check_collision(t_game *game, t_vector_f step)
 {
 	t_vector_f	next_pos;
