@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 16:52:36 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/23 20:04:20 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	set_player(t_data *data, char **map)
 {
 	int		row;
 	int		col;
-	bool	player;
 
-	player = false;
 	row = 0;
 	while (map[row])
 	{
@@ -40,17 +38,19 @@ void	set_player(t_data *data, char **map)
 			if (map[row][col] == 'N' || map[row][col] == 'S'
 				|| map[row][col] == 'E' || map[row][col] == 'W')
 			{
-				if (player == true)
+				if (data->player->present == true)
 					error_free_data(data, DUP_P);
 				data->player->x = col;
 				data->player->y = row;
 				set_player_dir(data, map[row][col]);
-				player = true;
+				data->player->present = true;
 			}
 			col++;
 		}
 		row++;
 	}
+	if (data->player->present == false)
+		error_free_data(data, NO_P);
 }
 
 void	set_rows_and_cols(t_data *data, char **map, int y)

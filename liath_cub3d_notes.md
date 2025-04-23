@@ -1,5 +1,71 @@
 
 
+TESTEN MORGEN VOOR DE EVAL!:
+
+maps/tests/crashed.cub
+maps/tests/new.cub
+maps/tests/noplayer.cub
+maps/tests/segfault.cub
+
+maps/good/test_pos_bottom.cub
+maps/good/test_pos_right.cub
+maps/good/test_textures.cub
+maps/good/test_pos_left.cub
+maps/good/test_pos_top.cub
+maps/good/test_whitespace.cub
+
+maps/bad/color_invalid_rgb.cub
+maps/bad/color_missing.cub
+maps/bad/color_missing_ceiling_rgb.cub
+maps/bad/color_missing_floor_rgb.cub
+maps/bad/color_none.cub
+maps/bad/empty.cub
+maps/bad/file_letter_end.cub
+maps/bad/filetype_missing
+maps/bad/filetype_wrong.buc
+maps/bad/forbidden.cub
+maps/bad/map_first.cub
+maps/bad/map_middle.cub
+maps/bad/map_missing.cub
+maps/bad/map_only.cub
+maps/bad/map_too_small.cub
+maps/bad/player_multiple.cub
+maps/bad/player_none.cub
+maps/bad/player_on_edge.cub
+maps/bad/textures_dir.cub
+maps/bad/textures_duplicates.cub
+maps/bad/textures_forbidden.cub
+maps/bad/textures_invalid.cub
+maps/bad/textures_missing.cub
+maps/bad/textures_none.cub
+maps/bad/textures_not_png.cub
+maps/bad/wall_hole_east.cub
+maps/bad/wall_hole_north.cub
+maps/bad/wall_hole_south.cub
+maps/bad/wall_hole_west.cub
+maps/bad/wall_none.cub
+maps/bad/correct_map.cub
+
+maps/checked_for_parsing/correct_map_small.cub.cub
+maps/checked_for_parsing/file_no_format
+maps/checked_for_parsing/liath_map.cub
+maps/checked_for_parsing/map_one_space_less_than_max_cols.cub
+maps/checked_for_parsing/map_open_wall.cub
+maps/checked_for_parsing/map_with_tab.cub
+maps/checked_for_parsing/rgb_3_numbers_too_big.cub
+maps/checked_for_parsing/rgb_4_numbers.cub
+maps/checked_for_parsing/rgb_negative_number.cub
+maps/checked_for_parsing/texture_path_with_space.cub
+maps/checked_for_parsing/texture_path_with_space_and_extra.cub
+maps/checked_for_parsing/texture_path_with_space_before_path.cub
+maps/checked_for_parsing/texture_path_wrong_format.cub
+maps/checked_for_parsing/texture_path_wrong_id.cub
+
+
+
+
+
+
 # Cub3D
 
 
@@ -10,6 +76,10 @@
 
 
 TODO:
+
+[] fill and replace space heeft nog een main erin staan
+
+
 
 [X] door hele code heen lopen en checken waar ik exit
 

@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 15:04:44 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 15:10:10 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 20:03:42 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_player
 	int		x;
 	int		y;
 	int		dir;
+	bool	present;
 }				t_player;
 
 //0: NORTH, 1: SOUTH, 2: EAST, 3: WEST

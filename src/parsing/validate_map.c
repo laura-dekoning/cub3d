@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 19:46:55 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/23 20:05:36 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	check_adjacent(t_data *data, char **map, int row, int col)
 	int			i;
 
 	i = 0;
-	print_array_with_values(map);
 	while (i < 4)
 	{
 		if (map[row + x[i]][col + y[i]] == ' ' \
