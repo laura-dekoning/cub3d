@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 16:00:10 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/23 14:23:52 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 15:35:00 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fix_texture_stretch(t_game *game, t_ray *ray)
 	}
 	else
 	{
-		ray->wall_3d.texture_y_pos = 0.0f;
+		ray->wall_3d.texture_y_pos = 0.0;
 	}
 	if (ray->wall_3d.wall_bottom > game->window->height)
 	{
