@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/10 18:45:20 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/10 18:45:45 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:24:14 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	draw_ceiling(t_game *game)
 	ceiling_start.y = 0;
 	ceiling_end.x = game->window_image->width;
 	ceiling_end.y = game->window_image->height / 2;
-	draw_filled_rectangle(game->window_image, ceiling_start, ceiling_end, colour);
+	draw_filled_rectangle(game->window_image, ceiling_start, ceiling_end, \
+		colour);
 }
 
 void	draw_floor(t_game *game)

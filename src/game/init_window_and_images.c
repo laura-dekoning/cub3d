@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/07 14:41:53 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/18 14:21:24 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:38:29 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ void	init_wall_textures(t_game *game, t_data *data)
 
 void	init_minimap_border_image(t_game *game)
 {
-	game->minimap_border_image = mlx_new_image(game->window, game->minimap.minimap_size + 2, game->minimap.minimap_size + 2);
+	game->minimap_border_image = mlx_new_image(game->window, \
+		game->minimap.minimap_size + 2, game->minimap.minimap_size + 2);
 	if (game->minimap_border_image == NULL)
 	{
 		mlx_terminate(game->window);
 		error_free_game(game, "Image could not be created");
 	}
-	if (mlx_image_to_window(game->window, game->minimap_border_image, 9, 9) < 0)
+	if (mlx_image_to_window \
+		(game->window, game->minimap_border_image, 9, 9) < 0)
 	{
 		mlx_delete_image(game->window, game->window_image);
 		mlx_delete_image(game->window, game->minimap_image);
@@ -56,7 +58,8 @@ void	get_minimap_size(t_game *game)
 void	init_minimap_image(t_game *game)
 {
 	get_minimap_size(game);
-	game->minimap_image = mlx_new_image(game->window, game->minimap.minimap_size, game->minimap.minimap_size);
+	game->minimap_image = mlx_new_image(game->window, \
+		game->minimap.minimap_size, game->minimap.minimap_size);
 	if (game->minimap_image == NULL)
 	{
 		mlx_terminate(game->window);
@@ -78,7 +81,8 @@ void	init_window(t_game *game)
 	{
 		error_free_game(game, "Window could not be created");
 	}
-	game->window_image = mlx_new_image(game->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game->window_image = mlx_new_image(game->window, \
+		WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (game->window_image == NULL)
 	{
 		mlx_terminate(game->window);

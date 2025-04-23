@@ -12,7 +12,8 @@
 
 #include "cub3d.h"
 
-void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s end_pos, uint64_t colour)
+void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, \
+t_vector_s end_pos, uint64_t colour)
 {
 	uint32_t	x;
 	uint32_t	y;
@@ -31,7 +32,8 @@ void	draw_filled_rectangle(mlx_image_t *image, t_vector_s start_pos, t_vector_s 
 	}
 }
 
-void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int colour)
+void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, \
+int radius, int colour)
 {
 	int	x;
 	int	y;
@@ -42,7 +44,10 @@ void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int c
 		x = -radius;
 		while (x <= radius)
 		{
-			if ((centre.x + x >= 0 && centre.y + y >= 0 && centre.x + x < (int)image->width && centre.y + y < (int)image->height) && (x * x + y * y <= radius * radius))
+			if ((centre.x + x >= 0 && centre.y + y >= 0 && \
+				centre.x + x < (int)image->width && \
+				centre.y + y < (int)image->height) && \
+				(x * x + y * y <= radius * radius))
 			{
 				mlx_put_pixel(image, centre.x + x, centre.y + y, colour);
 			}
@@ -52,7 +57,8 @@ void	draw_filled_circle(mlx_image_t	*image, t_vector_f centre, int radius, int c
 	}
 }
 
-void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
+void	draw_circle(mlx_image_t *image, t_vector_f centre, \
+int radius, int colour)
 {
 	int		x;
 	int		y;
@@ -65,7 +71,8 @@ void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
 	{
 		x = (int)(centre.x + cos(angle) * radius);
 		y = (int)(centre.y + sin(angle) * radius);
-		if (x >= 0 && y >= 0 && x < (int)image->width && y < (int)image->height)
+		if (x >= 0 && y >= 0 && \
+			x < (int)image->width && y < (int)image->height)
 		{
 			mlx_put_pixel(image, x, y, colour);
 		}
@@ -73,7 +80,8 @@ void	draw_circle(mlx_image_t *image, t_vector_f centre, int radius, int colour)
 	}
 }
 
-void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t colour)
+void	draw_line(mlx_image_t *image, t_vector_f start, \
+t_vector_f end, uint64_t colour)
 {
 	float	step_x;
 	float	step_y;
@@ -86,7 +94,8 @@ void	draw_line(mlx_image_t *image, t_vector_f start, t_vector_f end, uint64_t co
 	step_y /= max;
 	while ((int)(start.x - end.x) || (int)(start.y - end.y))
 	{
-		if (start.x >= 0 && start.y >= 0 && start.x < (int)image->width && start.y < (int)image->height)
+		if (start.x >= 0 && start.y >= 0 && \
+			start.x < (int)image->width && start.y < (int)image->height)
 			mlx_put_pixel(image, start.x, start.y, colour);
 		start.x += step_x;
 		start.y += step_y;

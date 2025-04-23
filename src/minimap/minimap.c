@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/15 20:25:33 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/18 19:16:23 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:29:34 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	init_minimap(t_game *game)
 {
 	game->minimap.grid_size = game->minimap.minimap_size / MINIMAP_GRID;
 	game->minimap.player_size = game->minimap.grid_size / 1.5;
-	game->minimap.player_pos.x = (MINIMAP_GRID / 2 + ((int)game->player->pos.x % GRIDSIZE) / (float)GRIDSIZE) * game->minimap.grid_size;
-	game->minimap.player_pos.y = (MINIMAP_GRID / 2 + ((int)game->player->pos.y % GRIDSIZE) / (float)GRIDSIZE) * game->minimap.grid_size;
+	game->minimap.player_pos.x = (MINIMAP_GRID / 2 + \
+		((int)game->player->pos.x % GRIDSIZE) / (float)GRIDSIZE) * \
+		game->minimap.grid_size;
+	game->minimap.player_pos.y = (MINIMAP_GRID / 2 + \
+		((int)game->player->pos.y % GRIDSIZE) / (float)GRIDSIZE) * \
+		game->minimap.grid_size;
 	game->minimap.back_ground_colour = COLOUR_BLACK;
 	game->minimap.wall_colour = COLOUR_DARK_GRAY;
 	game->minimap.floor_colour = COLOUR_GRAY;

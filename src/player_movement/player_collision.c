@@ -29,14 +29,14 @@ bool	hit_wall(t_game *game, float player_x, float player_y)
 	bottom_left.y = ((int)player_y + size) / GRIDSIZE;
 	bottom_right.x = ((int)player_x + size) / GRIDSIZE;
 	bottom_right.y = ((int)player_y + size) / GRIDSIZE;
-	if (game->map->map[top_left.y][top_left.x] == '1' || game->map->map[top_right.y][top_right.x] == '1' || game->map->map[bottom_left.y][bottom_left.x] == '1' || game->map->map[bottom_right.y][bottom_right.x] == '1')
+	if (game->map->map[top_left.y][top_left.x] == '1' || \
+		game->map->map[top_right.y][top_right.x] == '1' || \
+		game->map->map[bottom_left.y][bottom_left.x] == '1' || \
+		game->map->map[bottom_right.y][bottom_right.x] == '1')
 	{
 		return (true);
 	}
-	else
-	{
-		return (false);
-	}
+	return (false);
 }
 
 void	normalize_diagonal_movement(float *step_x, float *step_y)

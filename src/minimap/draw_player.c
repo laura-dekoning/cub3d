@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   draw_minimap_player->c                              :+:    :+:            */
+/*   draw_player.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -23,7 +23,8 @@ void	draw_eye(t_game *game, t_vector_f player_centre, int colour)
 	dir.y = sin(angle);
 	eye_centre.x = player_centre.x + dir.x * (game->minimap.player_size / 1.8);
 	eye_centre.y = player_centre.y + dir.y * (game->minimap.player_size / 1.8);
-	draw_filled_circle(game->minimap_image, eye_centre, (game->minimap.player_size / 5), colour);
+	draw_filled_circle(game->minimap_image, eye_centre, \
+		(game->minimap.player_size / 5), colour);
 }
 
 void	draw_mouth(t_game *game, t_vector_f start_pos, int colour)
@@ -54,8 +55,10 @@ void	draw_player(t_game *game)
 {
 	draw_rays(game);
 	draw_arrow(game);
-	draw_filled_circle(game->minimap_image, game->minimap.player_pos, game->minimap.player_size, game->minimap.player_colour);
+	draw_filled_circle(game->minimap_image, game->minimap.player_pos, \
+		game->minimap.player_size, game->minimap.player_colour);
 	draw_mouth(game, game->minimap.player_pos, COLOUR_BLACK);
 	draw_eye(game, game->minimap.player_pos, COLOUR_BLACK);
-	draw_circle(game->minimap_image, game->minimap.player_pos, game->minimap.player_size, COLOUR_BLACK);
+	draw_circle(game->minimap_image, game->minimap.player_pos, \
+		game->minimap.player_size, COLOUR_BLACK);
 }

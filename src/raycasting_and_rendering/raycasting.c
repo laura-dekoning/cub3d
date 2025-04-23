@@ -30,9 +30,11 @@ void	dda_aggorithm(t_game *game, t_ray *ray, t_vector_f map_pos)
 			ray->collision_point.y += ray->step_size.y;
 			ray->wall_3d.n_s_wall = true;
 		}
-		if (map_pos.x >= 0 && map_pos.y >= 0 && map_pos.x < game->map->map_width_px && map_pos.y < game->map->map_height_px)
+		if (map_pos.x >= 0 && map_pos.y >= 0 && map_pos.x < \
+			game->map->map_width_px && map_pos.y < game->map->map_height_px)
 		{
-			if (game->map->map[(int)(map_pos.y / GRIDSIZE)][(int)(map_pos.x / GRIDSIZE)] == '1')
+			if (game->map->map[(int)(map_pos.y / GRIDSIZE)] \
+			[(int)(map_pos.x / GRIDSIZE)] == '1')
 				ray->wall_hit = true;
 		}
 	}
@@ -47,7 +49,8 @@ void	cast_ray(t_game *game, t_ray *ray, t_vector_f map_pos)
 
 void	get_ray_direction(t_game *game, t_ray *ray, t_vector_f *map_pos)
 {
-	if (map_pos->x < 0 || map_pos->x >= game->map->map_width_px || map_pos->y < 0 || map_pos->y >= game->map->map_height_px)
+	if (map_pos->x < 0 || map_pos->x >= game->map->map_width_px || \
+		map_pos->y < 0 || map_pos->y >= game->map->map_height_px)
 		return ;
 	if (ray->direction.x < 0)
 	{
@@ -78,11 +81,13 @@ void	init_ray(t_game *game, t_ray *ray, float ang, t_vector_f *map_pos)
 	if (ray->direction.x == 0)
 		ray->step_size.x = 1.0e30;
 	else
-		ray->step_size.x = sqrt(1 + (ray->direction.y / ray->direction.x) * (ray->direction.y / ray->direction.x));
+		ray->step_size.x = sqrt(1 + (ray->direction.y / ray->direction.x) * \
+		(ray->direction.y / ray->direction.x));
 	if (ray->direction.y == 0)
 		ray->step_size.y = 1.0e30;
 	else
-		ray->step_size.y = sqrt(1 + (ray->direction.x / ray->direction.y) * (ray->direction.x / ray->direction.y));
+		ray->step_size.y = sqrt(1 + (ray->direction.x / ray->direction.y) * \
+		(ray->direction.x / ray->direction.y));
 	ray->wall_hit = false;
 	ray->distance = 0.0;
 	get_ray_direction(game, ray, map_pos);

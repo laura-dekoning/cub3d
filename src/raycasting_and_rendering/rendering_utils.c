@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/04 16:00:10 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/10 17:47:20 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:23:52 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	fix_texture_stretch(t_game *game, t_ray *ray)
 {
 	if (ray->wall_3d.wall_top < 0)
 	{
-		ray->wall_3d.texture_y_pos = -ray->wall_3d.wall_top * ray->wall_3d.texture->height / ray->wall_3d.wall_height;
+		ray->wall_3d.texture_y_pos = -ray->wall_3d.wall_top * \
+		ray->wall_3d.texture->height / ray->wall_3d.wall_height;
 	}
 	else
 	{
@@ -35,7 +36,8 @@ void	fix_texture_zoom_to_centre(t_game *game, t_ray *ray)
 	if (ray->wall_3d.wall_height > game->window->height)
 	{
 		extra_height = ray->wall_3d.wall_height - game->window->height;
-		ray->wall_3d.texture_y_pos = (extra_height / 2.0) * (ray->wall_3d.texture->height / ray->wall_3d.wall_height);
+		ray->wall_3d.texture_y_pos = (extra_height / 2.0) * \
+		(ray->wall_3d.texture->height / ray->wall_3d.wall_height);
 	}
 }
 

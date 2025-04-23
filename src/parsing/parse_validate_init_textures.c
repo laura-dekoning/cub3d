@@ -6,13 +6,14 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/28 15:27:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 13:47:47 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:39:43 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//Maybe change variables. Maybe pass whole data struct to EVERY function for clean exit everywhere
+//Maybe change variables. 
+//Maybe pass whole data struct to EVERY function for clean exit everywhere
 //Also no hassle with pointers and stuff. 
 void	set_texture(char **target, char *line)
 {

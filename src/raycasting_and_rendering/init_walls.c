@@ -69,11 +69,16 @@ void	set_wall_side(t_ray *ray)
 
 void	init_wall_segment(t_game *game, t_ray *ray)
 {
-	ray->wall_3d.wall_distance = (game->window->width / 2) / tan((FOV * ONE_D_RADIAN) / 2);
-	ray->wall_3d.corrected_distance = ray->distance * cos(ray->angle - game->player->angle);
-	ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / ray->wall_3d.corrected_distance;
-	ray->wall_3d.wall_top = fmax(0, (game->window->height / 2) - (ray->wall_3d.wall_height / 2));
-	ray->wall_3d.wall_bottom = fmin(game->window->height, (game->window->height / 2) + (ray->wall_3d.wall_height / 2));
+	ray->wall_3d.wall_distance = (game->window->width / 2) / \
+	tan((FOV * ONE_D_RADIAN) / 2);
+	ray->wall_3d.corrected_distance = ray->distance * \
+	cos(ray->angle - game->player->angle);
+	ray->wall_3d.wall_height = (ray->wall_3d.wall_distance * GRIDSIZE) / \
+	ray->wall_3d.corrected_distance;
+	ray->wall_3d.wall_top = fmax(0, (game->window->height / 2) - \
+	(ray->wall_3d.wall_height / 2));
+	ray->wall_3d.wall_bottom = fmin(game->window->height, \
+		(game->window->height / 2) + (ray->wall_3d.wall_height / 2));
 	ray->wall_3d.line_width = game->window->width / NUMB_RAYS;
 	set_wall_side(ray);
 	set_wall_texture(game, ray);

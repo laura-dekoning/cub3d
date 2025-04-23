@@ -19,10 +19,14 @@
 void	draw_border(t_game *game, t_mm_border border)
 {
 	init_border(game, &border);
-	draw_filled_rectangle(game->minimap_border_image, border.top_line_start, border.top_line_end, border.colour);
-	draw_filled_rectangle(game->minimap_border_image, border.bottom_line_start, border.bottom_line_end, border.colour);
-	draw_filled_rectangle(game->minimap_border_image, border.left_line_start, border.left_line_end, border.colour);
-	draw_filled_rectangle(game->minimap_border_image, border.right_line_start, border.right_line_end, border.colour);
+	draw_filled_rectangle(game->minimap_border_image, \
+		border.top_line_start, border.top_line_end, border.colour);
+	draw_filled_rectangle(game->minimap_border_image, \
+		border.bottom_line_start, border.bottom_line_end, border.colour);
+	draw_filled_rectangle(game->minimap_border_image, \
+		border.left_line_start, border.left_line_end, border.colour);
+	draw_filled_rectangle(game->minimap_border_image, \
+		border.right_line_start, border.right_line_end, border.colour);
 }
 
 void	draw_minimap_background(t_game *game)
@@ -34,7 +38,8 @@ void	draw_minimap_background(t_game *game)
 	start_pos.y = 0;
 	end_pos.x = start_pos.x + game->minimap.minimap_size;
 	end_pos.y = start_pos.y + game->minimap.minimap_size;
-	draw_filled_rectangle(game->minimap_image, start_pos, end_pos, game->minimap.back_ground_colour);
+	draw_filled_rectangle(game->minimap_image, start_pos, end_pos, \
+		game->minimap.back_ground_colour);
 }
 
 void	draw_2d_map(t_game *game)
@@ -58,7 +63,8 @@ void	draw_2d_map(t_game *game)
 			end_pos.x = start_pos.x + game->minimap.grid_size;
 			end_pos.y = start_pos.y + game->minimap.grid_size;
 			set_colour(game, map[map_index.y][map_index.x], &colour);
-			draw_filled_rectangle(game->minimap_image, start_pos, end_pos, colour);
+			draw_filled_rectangle(game->minimap_image, \
+				start_pos, end_pos, colour);
 			map_index.x++;
 		}
 		map_index.y++;
