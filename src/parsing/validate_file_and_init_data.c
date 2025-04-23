@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/11 18:22:48 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 14:20:54 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:58:38 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	validate_file_and_init_data(t_data *data, char **file)
 			parse_validate_init_textures(data, file[y]);
 		else if (is_setting(file[y]) == RGB)
 			parse_validate_init_rgb(data, file[y]);
-		else if (is_setting(file[y]) == MAP && data->check->setting[MAP] == false)
+		else if (is_setting(file[y]) == MAP && !data->check->setting[MAP])
 		{
 			if (is_map_last(data) == false)
 				error_free_data(data, MAP_LAST);

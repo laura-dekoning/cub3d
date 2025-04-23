@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 14:28:51 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:59:56 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,23 @@ void	map_content_valid(t_data *data)
 void	parse_validate_init_map(t_data *data, char **file_as_arr, int y)
 {
 	int	x;
+	t_map *map;
+
+	map = data->map;
 
 	x = 0;
 	set_rows_and_cols(data, file_as_arr, y);
-	data->map->map = (char **)safe_calloc(NULL, data, data->map->rows + 1, sizeof(char *));
+	map->map = (char **)safe_calloc(NULL, data, map->rows + 1, sizeof(char *));
 	while (file_as_arr[y] != NULL)
 	{
-		data->map->map[x] = ft_substr(file_as_arr[y], 0, ft_strlen(file_as_arr[y]));
-		if (data->map->map[x] == NULL)
+		map->map[x] = ft_substr(file_as_arr[y], 0, ft_strlen(file_as_arr[y]));
+		if (map->map[x] == NULL)
 			error_free_data(data, MALLOC);
 		x++;
 		y++;
 	}
 	map_content_valid(data);
 	data->check->setting[MAP] = true;
-	set_player(data, data->map->map);
+	set_player(data, map->map);
 	validate_map(data);
 }
