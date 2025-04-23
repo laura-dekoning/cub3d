@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:41:18 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 15:55:16 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 19:46:55 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ static void	check_adjacent(t_data *data, char **map, int row, int col)
 	int			i;
 
 	i = 0;
+	print_array_with_values(map);
 	while (i < 4)
 	{
-		if (map[row + x[i]][col + y[i]] == ' ')
+		if (map[row + x[i]][col + y[i]] == ' ' \
+				|| map[row + x[i]][col + y[i]] == '\0')
 			error_free_data(data, NO_WALL);
 		i++;
 	}
@@ -37,11 +39,15 @@ static void	check_adjacent(t_data *data, char **map, int row, int col)
 static void	check_zero(t_data *data, char **map)
 {
 	int	i;
+	int	last_row;
 
 	i = 0;
+	last_row = data->map->rows - 1;
 	while (map[0][i] != '\0')
 	{
 		if (map[0][i] != '1' && map[0][i] != ' ')
+			error_free_data(data, NO_WALL);
+		if (map[last_row][i] != '1' && map[last_row][i] != ' ')
 			error_free_data(data, NO_WALL);
 		i++;
 	}
