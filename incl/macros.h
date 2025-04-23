@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 15:54:47 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 16:51:26 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 # define BIG "This number is too big!!\nRGB colors have to be between 0-255!"
 # define FILE_CONTENT "This content is not supposed to be in the file!"
 # define MAP_LAST "Some data is missing. Map should be at the end of the file!"
-# define MAP_CONTENT "Invalid map! Can have '0', '1', space and player."
+# define MAP_CONTENT "Invalid map! Only '0' '1' ' ' 'N' 'E' 'S' 'W' allowed"
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define NO_P "Map is not valid! We're missing the player position."
 # define NO_WALL "Map is not valid! Map is not surrounded by walls!"

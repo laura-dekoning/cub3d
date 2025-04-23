@@ -6,7 +6,7 @@
 #    By: lade-kon <lade-kon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/02/26 12:59:37 by lade-kon      #+#    #+#                  #
-#    Updated: 2025/04/23 13:59:12 by lade-kon      ########   odam.nl          #
+#    Updated: 2025/04/23 15:43:48 by lade-kon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRC_FILES	:=	main.c \
 				is_map_content.c \
 				is_map_last.c \
 				is_setting.c \
+				split_cub3d.c \
 				utils_execution.c ) \
 
 SRC			:=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))

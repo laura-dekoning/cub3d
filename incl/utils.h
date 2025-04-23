@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/16 15:39:24 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/23 15:54:27 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define UTILS_H
 
 # include "cub3d.h"
+
+char	**split_cub3d(char const *s, char c);
 
 // PRINTING //
 void	print_data(t_data *data);

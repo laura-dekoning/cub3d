@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/13 19:46:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 14:59:56 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 16:52:36 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	set_rows_and_cols(t_data *data, char **map, int y)
 void	map_content_valid(t_data *data)
 {
 	char	**map;
-	int		x;
-	int		y;
+	size_t	x;
+	size_t	y;
 
 	map = data->map->map;
 	y = 0;
@@ -99,17 +99,18 @@ void	map_content_valid(t_data *data)
 			else
 				error_free_data(data, MAP_CONTENT);
 		}
+		if (map[y][0] == '\0')
+			error_free_data(data, "Empty line in map!");
 		y++;
 	}
 }
 
 void	parse_validate_init_map(t_data *data, char **file_as_arr, int y)
 {
-	int	x;
-	t_map *map;
+	int		x;
+	t_map	*map;
 
 	map = data->map;
-
 	x = 0;
 	set_rows_and_cols(data, file_as_arr, y);
 	map->map = (char **)safe_calloc(NULL, data, map->rows + 1, sizeof(char *));
