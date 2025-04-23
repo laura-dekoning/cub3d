@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:05:28 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/18 14:50:59 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 14:43:00 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	if (len < 5 || (ft_strncmp(file + len - 4, ".cub", 4)))
 		error(FILE);
 	data = (t_data *)alloc_mem_for_data();
-	game = (t_game *)alloc_mem_for_game(data);
 	get_data(data, file);
+	game = (t_game *)alloc_mem_for_game(data);
 	get_game(game, data);
 	cub3d(game);
 	free_game(game);
