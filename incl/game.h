@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/01 16:44:06 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/18 14:50:35 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 20:23:58 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_wall_segment_3d
 
 	uint8_t			line_width;
 	mlx_texture_t	*texture;
-	float			wall_hit_screen_x;
+	float			screen_x;
 	int				texture_x;
 	int				texture_y;
 	float			texture_y_step;

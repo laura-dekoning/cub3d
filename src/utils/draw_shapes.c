@@ -45,9 +45,9 @@ int radius, int colour)
 		while (x <= radius)
 		{
 			if ((centre.x + x >= 0 && centre.y + y >= 0 && \
-				centre.x + x < (int)image->width && \
-				centre.y + y < (int)image->height) && \
-				(x * x + y * y <= radius * radius))
+			centre.x + x < (int)image->width && \
+			centre.y + y < (int)image->height) && \
+			(x * x + y * y <= radius * radius))
 			{
 				mlx_put_pixel(image, centre.x + x, centre.y + y, colour);
 			}
@@ -95,7 +95,7 @@ t_vector_f end, uint64_t colour)
 	while ((int)(start.x - end.x) || (int)(start.y - end.y))
 	{
 		if (start.x >= 0 && start.y >= 0 && \
-			start.x < (int)image->width && start.y < (int)image->height)
+		start.x < (int)image->width && start.y < (int)image->height)
 			mlx_put_pixel(image, start.x, start.y, colour);
 		start.x += step_x;
 		start.y += step_y;

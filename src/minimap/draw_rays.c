@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/10 18:20:37 by livliege      #+#    #+#                 */
-/*   Updated: 2025/04/23 14:38:06 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 20:36:43 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	draw_arrow(t_game *game)
 	angle_step = (FOV * ONE_D_RADIAN) / NUMB_RAYS;
 	dir.x = cos(angle);
 	dir.y = sin(angle);
-	end_pos.x = start_pos.x + dir.x * \
-	(game->ray[NUMB_RAYS / 2].distance / GRIDSIZE) * game->minimap.grid_size;
-	end_pos.y = start_pos.y + dir.y * \
-	(game->ray[NUMB_RAYS / 2].distance / GRIDSIZE) * game->minimap.grid_size;
+	end_pos.x = start_pos.x + dir.x * (game->ray[NUMB_RAYS / 2].distance / \
+		GRIDSIZE) * game->minimap.grid_size;
+	end_pos.y = start_pos.y + dir.y * (game->ray[NUMB_RAYS / 2].distance / \
+		GRIDSIZE) * game->minimap.grid_size;
 	draw_line(game->minimap_image, start_pos, end_pos, \
 		game->minimap.arrow_colour);
 	angle += angle_step;

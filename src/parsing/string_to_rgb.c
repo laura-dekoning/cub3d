@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 13:48:10 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/23 20:36:53 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,3 @@ void	string_to_rgb(t_data *data, int **target, char *str, int i)
 		n++;
 	}
 }
-
-// int	main()
-// {
-// 	char *int_str;
-// 	int	*rgb;
-// 	int	n;
-
-// 	n = 0;
-// 	int_str = "F 255,100,33";
-// 	rgb = string_to_rgb(int_str, 0);
-// 	while (n < 3)
-// 	{
-// 		printf("rgb[%i] = %i\n", n, rgb[n]);
-// 		n++;
-// 	}
-// 	return (0);
-// }

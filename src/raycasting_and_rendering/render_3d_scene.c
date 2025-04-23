@@ -31,7 +31,7 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 
 	pixel_array = ray->wall_3d.texture->pixels;
 	pixel_array_len = ray->wall_3d.texture->width * \
-	ray->wall_3d.texture->height * ray->wall_3d.texture->bytes_per_pixel;
+		ray->wall_3d.texture->height * ray->wall_3d.texture->bytes_per_pixel;
 	set_texture_y(ray, texture_y);
 	pixel_index = (ray->wall_3d.texture_y * ray->wall_3d.texture->width + \
 		ray->wall_3d.texture_x) * ray->wall_3d.texture->bytes_per_pixel;
@@ -42,7 +42,7 @@ uint64_t	get_pixel_colour(t_ray *ray, int texture_y)
 	colour.b = pixel_array[pixel_index + 2];
 	colour.a = ray->wall_3d.wall_shadow;
 	colour_hex = (colour.r << 24) | (colour.g << 16) | \
-	(colour.b << 8) | colour.a;
+		(colour.b << 8) | colour.a;
 	return (colour_hex);
 }
 
@@ -87,21 +87,13 @@ int wall_top, int wall_bottom)
 
 void	render_3d_wall_segment(t_game *game, t_ray *ray)
 {
-	if (ray->wall_3d.wall_side == NORTH || ray->wall_3d.wall_side == SOUTH)
-	{
-		ray->wall_3d.wall_hit_screen_x = \
-		fmod(ray->end_pos.x, GRIDSIZE) / GRIDSIZE;
-	}
-	else if (ray->wall_3d.wall_side == EAST || ray->wall_3d.wall_side == WEST)
-	{
-		ray->wall_3d.wall_hit_screen_x = \
-		fmod(ray->end_pos.y, GRIDSIZE) / GRIDSIZE;
-	}
 	fix_mirrored_effect(ray);
-	ray->wall_3d.texture_x = (int)(ray->wall_3d.wall_hit_screen_x * \
+	fix_texture_stretch(game, ray);
+	fix_texture_zoom_to_centre(game, ray);
+	ray->wall_3d.texture_x = (int)(ray->wall_3d.screen_x * \
 		ray->wall_3d.texture->width);
 	ray->wall_3d.texture_y_step = (float)ray->wall_3d.texture->height / \
-	ray->wall_3d.wall_height;
+		ray->wall_3d.wall_height;
 	draw_wall_segment(game, ray, ray->wall_3d.wall_top, \
 		ray->wall_3d.wall_bottom);
 }
