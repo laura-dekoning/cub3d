@@ -19,6 +19,8 @@ TESTEN MORGEN VOOR DE EVAL!:
 ./cub3d maps/bad/color_missing_ceiling_rgb.cub
 ./cub3d maps/bad/color_missing_floor_rgb.cub
 ./cub3d maps/bad/color_none.cub
+./cub3d maps/bad/color_split_by_letters.cub
+./cub3d maps/bad/color_split_by_non_commas.cub
 ./cub3d maps/bad/empty.cub
 ./cub3d maps/bad/file_letter_end.cub
 ./cub3d maps/bad/filetype_missing
@@ -60,7 +62,6 @@ TESTEN MORGEN VOOR DE EVAL!:
 ./cub3d maps/checked_for_parsing/texture_path_with_space_before_path.cub
 ./cub3d maps/checked_for_parsing/texture_path_wrong_format.cub
 ./cub3d maps/checked_for_parsing/texture_path_wrong_id.cub
-
 
 
 
