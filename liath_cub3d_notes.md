@@ -46,8 +46,8 @@ TESTEN MORGEN VOOR DE EVAL!:
 ./cub3d maps/bad/wall_hole_south.cub
 ./cub3d maps/bad/wall_hole_west.cub
 ./cub3d maps/bad/wall_none.cub
-./cub3d maps/bad/correct_map.cub
 
+./cub3d maps/checked_for_parsing/correct_map.cub
 ./cub3d maps/checked_for_parsing/correct_map_small.cub.cub
 ./cub3d maps/checked_for_parsing/file_no_format
 ./cub3d maps/checked_for_parsing/liath_map.cub
