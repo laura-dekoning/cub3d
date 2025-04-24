@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:09:51 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 16:51:26 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/24 11:55:45 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 # define DUP_P "Map is not valid! Map has more than 1 player."
 # define NO_P "Map is not valid! We're missing the player position."
 # define NO_WALL "Map is not valid! Map is not surrounded by walls!"
+# define NO_MAP "Map is missing bro =("
 # define DUP_TEXTURE "Map contains more than 1 path for one of the textures!"
 
 #endif

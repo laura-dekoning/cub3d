@@ -6,12 +6,17 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/17 15:49:53 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/24 11:55:25 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	check_map(t_data *data)
+{
+	if (data->check->setting[MAP] == false)
+		error_free_data(data, NO_MAP);
+}
 static void	check_player(t_data *data)
 {
 	int	cols;
@@ -55,4 +60,5 @@ void	validate_data(t_data *data)
 	check_textures(data, data->south_texture);
 	check_textures(data, data->west_texture);
 	check_player(data);
+	check_map(data);
 }
