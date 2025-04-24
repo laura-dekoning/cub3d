@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/06 19:52:29 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/23 20:36:53 by livliege      ########   odam.nl         */
+/*   Updated: 2025/04/24 12:29:10 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static int	is_correct_rgb(t_data *data, char *str, int i)
 	{
 		if (ft_isalpha(str[i]))
 			error_free_data(data, ALPHA);
-		if (str[i] == '-')
+		else if (str[i] == '-')
 			error_free_data(data, NEG);
+		else if (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != ' ')
+			error_free_data(data, SYMBOLS);
 		i++;
 	}
 	return (i);
