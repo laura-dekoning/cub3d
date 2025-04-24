@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/23 15:42:43 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/24 12:19:47 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/24 12:21:29 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	str_count(char *str, char c)
 			i++;
 		}
 		while (str[i] && str[i] != c)
-		i++;
+			i++;
 	}
 	if (str[i] == '\0')
 		count++;

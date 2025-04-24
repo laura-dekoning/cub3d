@@ -6,7 +6,7 @@
 /*   By: lade-kon <lade-kon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/26 13:27:05 by lade-kon      #+#    #+#                 */
-/*   Updated: 2025/04/24 11:55:25 by lade-kon      ########   odam.nl         */
+/*   Updated: 2025/04/24 12:21:22 by lade-kon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	check_map(t_data *data)
 	if (data->check->setting[MAP] == false)
 		error_free_data(data, NO_MAP);
 }
+
 static void	check_player(t_data *data)
 {
 	int	cols;
