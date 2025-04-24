@@ -1,6 +1,6 @@
 NO ./textures/IMG_5452.png
-SO ./textures/IMG_5452.png
-WE ./textures/IMG_5452.png
+SO ./textures/IMG_2709.png
+WE ./textures/IMG_2709.png
 EA ./textures/IMG_5452.png
 
 F 20,20,20
@@ -22,5 +22,4 @@ C 200,100,0
 10001
 10001
 11111
-
 11111111111111111111111

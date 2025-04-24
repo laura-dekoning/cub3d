@@ -1,7 +1,7 @@
-NO ./textures/cobble_stone_wall.png
-SO ./textures/red_brick_wall.png
-WE ./textures/wood_wall.png
-EA ./textures/mossy_brick_wall.png
+NO ./textures/fun_wall.png
+SO ./textures/fun_wall.png
+WE ./textures/fun_wall.png
+EA ./textures/fun_wall.png
 
 F 150,0,100
 C 250,250,250
